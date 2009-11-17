@@ -1,1 +1,3 @@
-Execute setup.sh in your home directory.
+1. Checkout this repository into ~/.vimgit
+2. Execute setup.sh in your home directory.
+3. There is no step three
