@@ -1,3 +1,4 @@
+let moria_style = 'white'
 colorscheme moria
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
