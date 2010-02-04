@@ -12,5 +12,5 @@ set nocompatible
 helptags ~/.vim/doc
 set list listchars=tab:\|_,trail:~
 "highlight SpecialKey ctermfg=DarkGray
-set laststatus=2
-set statusline=%{GitBranch()}
+"set laststatus=2
+"set statusline=%#StatusLine#%{GitBranch()}
