@@ -14,3 +14,4 @@ set list listchars=tab:\|_,trail:~
 "highlight SpecialKey ctermfg=DarkGray
 "set laststatus=2
 "set statusline=%#StatusLine#%{GitBranch()}
+au BufRead,BufNewFile *.less setfiletype css
