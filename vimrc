@@ -15,3 +15,12 @@ set list listchars=tab:\|_,trail:~
 "set laststatus=2
 "set statusline=%#StatusLine#%{GitBranch()}
 au BufRead,BufNewFile *.less setfiletype css
+" IMPORTANT: grep will sometimes skip displaying the file name if you
+" search in a singe file. This will confuse Latex-Suite. Set your grep
+" program to always generate a file-name.
+set grepprg=grep\ -nH\ $*
+" refresh view, Ctrl-X Ctrl-R
+cnoremap <C-X><C-L> <C-R>=GetVimCmdOutput('redraw')<CR>
+
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
