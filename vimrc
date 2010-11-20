@@ -15,6 +15,8 @@ set list listchars=tab:\|_,trail:~
 "set laststatus=2
 "set statusline=%#StatusLine#%{GitBranch()}
 au BufRead,BufNewFile *.less setfiletype css
+au BufRead,BufNewFile *.thtml setfiletype php
+
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
