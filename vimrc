@@ -26,3 +26,6 @@ cnoremap <C-X><C-L> <C-R>=GetVimCmdOutput('redraw')<CR>
 
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+
+set nobackup
+set noswapfile
