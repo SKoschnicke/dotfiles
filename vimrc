@@ -20,6 +20,7 @@ set list listchars=tab:\|_,trail:~
 
 " use css syntax highlighting for .less files
 au BufRead,BufNewFile *.less setfiletype css
+au BufRead,BufNewFile *.thtml setfiletype php
 
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
@@ -30,3 +31,6 @@ cnoremap <C-X><C-L> <C-R>=GetVimCmdOutput('redraw')<CR>
 
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+
+set nobackup
+set noswapfile
