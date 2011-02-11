@@ -9,12 +9,18 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set nocompatible
+set nobackup          " make no backups when writing
+set nowritebackup
+set noswapfile        " Disable creation of swap files
 helptags ~/.vim/doc
 set list listchars=tab:\|_,trail:~
 "highlight SpecialKey ctermfg=DarkGray
 "set laststatus=2
 "set statusline=%#StatusLine#%{GitBranch()}
+
+" use css syntax highlighting for .less files
 au BufRead,BufNewFile *.less setfiletype css
+
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
