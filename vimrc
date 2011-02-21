@@ -34,3 +34,5 @@ let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 
 set nobackup
 set noswapfile
+
+map <C-X>t :FuzzyFinderTextMate<CR>
