@@ -35,4 +35,19 @@ let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 set nobackup
 set noswapfile
 
+function IdeFindTextMate()
+  let g:FuzzyFinderOptions.Base.key_open = '<CR>'
+  let g:FuzzyFinderOptions.Base.key_open_split = '<C-j>'
+  exe "FuzzyFinderTextMate"
+endfunction
+
+function IdeSplitFindTextMate()
+  let g:FuzzyFinderOptions.Base.key_open = '<C-j>'
+  let g:FuzzyFinderOptions.Base.key_open_split = '<CR>'
+  exe "FuzzyFinderTextMate"
+endfunction
+
+map <silent> ,e :call IdeFindTextMate()<CR>
+map <silent> ,s :call IdeSplitFindTextMate()<CR>
+
 map <C-X>t :FuzzyFinderTextMate<CR>
