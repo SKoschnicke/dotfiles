@@ -16,7 +16,6 @@ helptags ~/.vim/doc
 set list listchars=tab:\|_,trail:~
 "highlight SpecialKey ctermfg=DarkGray
 "set laststatus=2
-"set statusline=%#StatusLine#%{GitBranch()}
 
 " use css syntax highlighting for .less files
 au BufRead,BufNewFile *.less setfiletype css
@@ -61,3 +60,17 @@ let g:syntastic_auto_loc_list=1
 
 
 map <silent> ,t :TlistToggle<CR>
+
+set statusline=%t       "tail of the filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file"
+set statusline+=\ %{fugitive#statusline()}
+
