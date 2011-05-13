@@ -61,7 +61,7 @@ let g:syntastic_auto_loc_list=1
 
 map <silent> ,t :TlistToggle<CR>
 
-set statusline=%t       "tail of the filename
+set statusline=%f       "tail of the filename
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] "file format
 set statusline+=%h      "help file flag
