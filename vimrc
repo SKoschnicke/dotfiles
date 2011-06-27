@@ -74,3 +74,5 @@ set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file"
 set statusline+=\ %{fugitive#statusline()}
 
+" let :w!! save file as sudoer
+cmap w!! %!sudo tee > /dev/null %
