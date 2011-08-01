@@ -1,5 +1,7 @@
 let moria_style = 'white'
-colorscheme moria
+"colorscheme moria
+set background=light
+colorscheme solarized
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
