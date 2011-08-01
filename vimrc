@@ -20,6 +20,8 @@ set list listchars=tab:\|_,trail:~
 " use css syntax highlighting for .less files
 au BufRead,BufNewFile *.less setfiletype css
 au BufRead,BufNewFile *.thtml setfiletype php
+" files named buildfile belong to buildr and use ruby syntax
+au BufRead,BufNewFile buildfile setfiletype ruby
 
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
