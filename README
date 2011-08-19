@@ -1,3 +1,3 @@
-1. Checkout this repository into ~/.vimgit, #~> git clone git://github.com/SKoschnicke/dotvim.git .vimgit
-2. Execute setup.sh in your home directory #~> sh .vimgit/setup.sh
+1. Checkout this repository into ~/.dotfiles, #~> git clone git://github.com/SKoschnicke/dotfiles.git .dotfiles
+2. Execute setup.sh #~> sh .dotfiles/setup.sh
 3. There is no step three.
