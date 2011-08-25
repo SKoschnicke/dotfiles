@@ -1,4 +1,5 @@
+startup_message off
+shell -$SHELL
 nethack on
-screen -t Server 0 bash
-screen -t Vim 1 bash
-#screen -t Mutt 9 bash
+screen -t Server 0
+screen -t Vim 1
