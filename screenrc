@@ -1,0 +1,4 @@
+nethack on
+screen -t Server 0 bash
+screen -t Vim 1 bash
+#screen -t Mutt 9 bash
