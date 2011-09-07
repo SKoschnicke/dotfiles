@@ -1,6 +1,6 @@
 let moria_style = 'white'
 "colorscheme moria
-set background=light
+set background=dark " because of strange xresources, this means actually light
 colorscheme solarized
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
@@ -14,6 +14,7 @@ set nocompatible
 set nobackup          " make no backups when writing
 set nowritebackup
 set noswapfile        " Disable creation of swap files
+set smartcase         " case-sensitive if search contains an uppercase character
 helptags ~/.vim/doc
 set list listchars=tab:\|_,trail:~
 "highlight SpecialKey ctermfg=DarkGray
