@@ -1,7 +1,7 @@
 let moria_style = 'white'
-"colorscheme moria
-set background=dark " because of strange xresources, this means actually light
-colorscheme solarized
+colorscheme moria
+"set background=dark " because of strange xresources, this means actually light
+"colorscheme solarized
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
@@ -19,12 +19,15 @@ helptags ~/.vim/doc
 set list listchars=tab:\|_,trail:~
 "highlight SpecialKey ctermfg=DarkGray
 "set laststatus=2
+set textwidth=80
+set wrap
 
 " use css syntax highlighting for .less files
 au BufRead,BufNewFile *.less setfiletype css
 au BufRead,BufNewFile *.thtml setfiletype php
 " files named buildfile belong to buildr and use ruby syntax
 au BufRead,BufNewFile buildfile setfiletype ruby
+au BufRead,BufNewFile Vagrantfile setfiletype ruby
 
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
