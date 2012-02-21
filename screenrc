@@ -1,5 +1,10 @@
 startup_message off
 shell -$SHELL
+term xterm-256color
 nethack on
-screen -t Server 0
-screen -t Vim 1
+chdir /home/svk/development/pa_yesod
+screen -t Server 0 vagrant up
+screen -t Vim 1 vi
+screen -t bash 2
+screen -t irssi 7 irssi
+chdir /home/svk
