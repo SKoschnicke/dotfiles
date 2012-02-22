@@ -4,7 +4,7 @@ term xterm-256color
 nethack on
 chdir /home/svk/development/pa_yesod
 screen -t Server 0 vagrant up
-screen -t Vim 1 vi
-screen -t bash 2
 screen -t irssi 7 irssi
+screen -t bash 2
+screen -t Vim 1 vim
 chdir /home/svk
