@@ -68,3 +68,6 @@ set statusline+=\ %{fugitive#statusline()}
 
 " let :w!! save file as sudoer
 cmap w!! %!sudo tee > /dev/null %
+
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.hi,*.o   " for Linux/MacOSX
+set wildignore+=.git\*,.hg\*,.svn\*         " for Windows"
