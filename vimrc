@@ -1,7 +1,10 @@
-let moria_style = 'white'
-colorscheme moria
+"let moria_style = 'white'
+"colorscheme moria
 "set background=dark " because of strange xresources, this means actually light
 "colorscheme solarized
+colorscheme github
+
+set t_Co=256          " explicitly tell vim that its a terminal supporting 256 colors
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
