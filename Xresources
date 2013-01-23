@@ -1,0 +1,94 @@
+! this are Xresources to make xterm look good
+! put into ~/.Xresources
+! after changing contents, run xrdb -merge .Xresources
+! gentoo has a bug so that it doesnt read it when X starts, so add above
+! command to /etc/xfce4/xinitrc (top) and be happy.
+
+!xterm*font:     -Misc-Fixed-Medium-R-Normal--20-200-75-75-C-100-ISO10646-1
+!xterm*faceName: Inconsolata
+xterm*faceName: DejaVu Sans Mono
+!xterm*faceName: Anonymous Pro
+!xterm*faceName: Monospace
+xterm*faceSize: 9
+!xterm*font:        -misc-fixed-medium-r-normal--18-*-*-*-*-*-iso10646-1
+!xterm*iconPixmap: ...
+!XTerm*iconName: terminal
+!Mwm*xterm*iconImage: /home/a/a1111aa/xterm.icon
+XTerm*loginShell: true
+XTerm*visualBell: true
+XTerm*saveLines: 1000
+!! XTerm.VT100.allowSendEvents: True
+XTerm*allowSendEvents: True
+XTerm*sessionMgt: false
+!XTerm*eightBitInput:  false
+!XTerm*metaSendsEscape: true
+!XTerm*internalBorder:  10
+!XTerm*highlightSelection:  true
+!XTerm*VT100*colorBDMode:  on
+!XTerm*VT100*colorBD:  blue
+!XTerm.VT100.eightBitOutput:  true
+!XTerm.VT100.titeInhibit:  false
+XTerm*utf8:    2
+*customization: -color
+XTerm*termName:  xterm-256color
+
+#define Foreground_color #000000
+#define Background_color #FFFFFF
+
+#define S_base03 #002b36
+#define S_base02 #073642
+#define S_base01 #586e75
+#define S_base00 #657b83
+#define S_base0 #839496
+#define S_base1 #93a1a1
+#define S_base2 #eee8d5
+#define S_base3 #fdf6e3
+#define S_yellow #b58900
+#define S_orange #cb4b16
+#define S_red #dc322f
+#define S_magenta #d33682
+#define S_violet #6c71c4
+#define S_blue #268bd2
+#define S_cyan #2aa198
+#define S_green #859900
+
+XTerm*background:  Background_color
+XTerm*foreground:  Foreground_color
+XTerm*borderColor: Foreground_color
+XTerm*scrollColor: Foreground_color
+XTerm*color0: Background_color
+XTerm*color15: Foreground_color
+
+!! black dark/light
+!*color0: S_base2
+XTerm*color8: S_base3
+
+!! red dark/light
+XTerm*color1: S_red
+XTerm*color9: S_orange
+
+!! green dark/light
+XTerm*color2: S_green
+XTerm*color10: S_base1
+
+!! yellow dark/light
+XTerm*color3: S_yellow
+XTerm*color11: S_base0
+
+!! blue dark/light
+XTerm*color4: S_blue
+XTerm*color12: S_base00
+
+!! magenta dark/light
+XTerm*color5: S_magenta
+XTerm*color13: S_violet
+
+!! cyan dark/light
+XTerm*color6: S_cyan
+XTerm*color14: S_base01
+
+!! white dark/light
+XTerm*color7: S_base02
+!*color15: S_base03
+
+XTerm*rightScrollBar: false
