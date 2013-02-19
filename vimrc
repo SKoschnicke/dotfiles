@@ -135,3 +135,8 @@ let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_extensions = ['tag']
+
+let g:vimroom_background = 'white'
+
+" set correct wrapping for writing prose
+"set wrap linebreak nolist
