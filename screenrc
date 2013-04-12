@@ -3,9 +3,13 @@ shell -$SHELL
 term xterm-256color
 nethack on
 chdir $HOME/development/pa
-screen -t Server 0
-screen -t bash 2
-screen -t Vim 1 vim
+screen -t "Server rails" 0
+screen -t "bash rails" 2
+screen -t "Vim rails" 1 vim
+chdir $HOME/development/pa_yesod
+screen -t "Server yesod" 9
+screen -t "bash yesod" 2
+screen -t "Vim yesod" 1 vim
 chdir $HOME
 attrcolor b ".I"
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
