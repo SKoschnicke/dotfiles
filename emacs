@@ -13,16 +13,22 @@
 
 (el-get 'sync)
 
+;;; emacs own package system
+(require 'package)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; agenda and orgmode config
 (setq org-agenda-files (list "~/documents/promotion/gedanken.org"
-			     "~/Dropbox/uni/uni-plan.org"
-			     "~/Dropbox/pav-plan.org")
+                             "~/Dropbox/uni/uni-plan.org"
+                             "~/Dropbox/pav-plan.org")
       org-agenda-include-all-todo t
       org-agenda-include-diary t
 )
+(setq org-default-notes-file "~/Dropbox/notes.org")
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; calendar and diary
