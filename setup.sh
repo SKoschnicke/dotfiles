@@ -7,3 +7,4 @@ ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/screenrc ~/.screenrc
 ln -s ~/.dotfiles/Xresources ~/.Xresources
 ln -s ~/.dotfiles/emacs ~/.emacs
+ln -s ~/.dotfiles/el-get-emacs-packages ~/.emacs.d/el-get-init-files

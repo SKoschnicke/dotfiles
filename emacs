@@ -1,3 +1,5 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; el-get, this should be at the top of the config
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil 'noerror)
@@ -7,8 +9,12 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
+(setq el-get-user-package-directory "~/.emacs.d/el-get-init-files/")
+
 (el-get 'sync)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; agenda and orgmode config
 (setq org-agenda-files (list "~/documents/promotion/gedanken.org"
 			     "~/Dropbox/uni/uni-plan.org"
 			     "~/Dropbox/pav-plan.org")
@@ -17,9 +23,6 @@
 )
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
-(add-to-list 'load-path "~/.emacs.d/evil") ; only without ELPA/el-get
-(require 'evil)
-(evil-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; calendar and diary
@@ -44,8 +47,6 @@
                           (holiday-easter-etc  1 "Gesetzlicher Feiertag (Ostermontag)")
                           (holiday-easter-etc 39 "Gesetzlicher Feiertag (Christi Himmelfahrt)")
                           (holiday-easter-etc 50 "Gesetzlicher Feiertag (Pfingstmontag)")))
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -59,3 +60,6 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "adobe" :family "Source Code Pro")))))
+
+; insert spaces when pressing tab
+(setq-default indent-tabs-mode nil)
