@@ -1,3 +1,14 @@
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(el-get 'sync)
+
 (setq org-agenda-files (list "~/documents/promotion/gedanken.org"
 			     "~/Dropbox/uni/uni-plan.org"
 			     "~/Dropbox/pav-plan.org")
@@ -33,6 +44,9 @@
                           (holiday-easter-etc  1 "Gesetzlicher Feiertag (Ostermontag)")
                           (holiday-easter-etc 39 "Gesetzlicher Feiertag (Christi Himmelfahrt)")
                           (holiday-easter-etc 50 "Gesetzlicher Feiertag (Pfingstmontag)")))
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -44,4 +58,4 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "adobe" :family "Source Code Pro")))))
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "adobe" :family "Source Code Pro")))))
