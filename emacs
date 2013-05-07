@@ -28,6 +28,7 @@
                              "~/Dropbox/pav-plan.org")
       org-agenda-include-all-todo t
       org-agenda-include-diary t
+      org-log-done t
 )
 (setq org-default-notes-file "~/Dropbox/notes.org")
 (global-set-key "\C-cl" 'org-store-link)
@@ -81,6 +82,12 @@
       `((".*" ,temporary-file-directory t)))
 ; disable toolbar
 (tool-bar-mode -1)
+
+; disable menubar
+(menu-bar-mode -1)
+
+; disable scrollbar
+(scroll-bar-mode -1)
 
 ; show agenda on start
 (setq inhibit-splash-screen t)
