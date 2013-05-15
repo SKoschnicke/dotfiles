@@ -70,10 +70,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "adobe" :family "Source Code Pro")))))
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "adobe" :family "Source Code Pro")))))
 
 ; insert spaces when pressing tab
 (setq-default indent-tabs-mode nil)
+; set indenting width
+(setq tab-width 2)
+; set other offsets to tab-width
+(defvaralias 'c-basic-offset 'tab-width)
+(defvaralias 'cperl-indent-level 'tab-width)
 
 ; put temp files in temp dir
 (setq backup-directory-alist
