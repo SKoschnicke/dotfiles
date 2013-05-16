@@ -11,4 +11,4 @@
 (require 'auto-complete-config)
 (ac-config-default)
 (global-auto-complete-mode t)
-(add-to-list 'ac-modes 'latex-mode)
+(add-to-list 'ac-modes 'latex-mode 'enh-ruby-mode)

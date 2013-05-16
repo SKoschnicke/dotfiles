@@ -34,6 +34,14 @@
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
+(org-babel-do-load-languages
+  'org-babel-load-languages
+  '((latex . t)
+    (R . t)
+    (ruby . t)
+    (haskell . t)
+   )
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; calendar and diary

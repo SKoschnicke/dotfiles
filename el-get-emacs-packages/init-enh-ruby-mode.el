@@ -1,0 +1,1 @@
+(require 'enh-ruby-mode)
