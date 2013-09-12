@@ -2,9 +2,27 @@
 "colorscheme moria
 "set background=dark " because of strange xresources, this means actually light
 "colorscheme solarized
-colorscheme github
+"colorscheme github
+colorscheme proton
+set guifont=Inconsolata\ Medium\ 11
 
-set t_Co=256          " explicitly tell vim that its a terminal supporting 256 colors
+" no right scrollbars
+set guioptions=-R
+set guioptions=-r
+" no buttom scrollbar
+set guioptions=-b
+" no left scrollbar
+set guioptions=-L
+set guioptions=-l
+" no toolbar
+set guioptions=-T
+" menu bar is hidden
+set guioptions=-m
+" put selected text in global clipboard
+set guioptions=+a
+
+
+"set t_Co=256          " explicitly tell vim that its a terminal supporting 256 colors
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
@@ -148,3 +166,8 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 autocmd FileType html,xml,erb source ~/.vim/plugin/closetag.vim
+
+au BufRead,BufNewFile *.hamlet  setf hamlet
+au BufRead,BufNewFile *.cassius setf cassius
+au BufRead,BufNewFile *.lucius  setf lucius
+au BufRead,BufNewFile *.julius  setf julius
