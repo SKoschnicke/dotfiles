@@ -28,6 +28,7 @@
                              "~/Dropbox/isavision.org"
                              "~/Dropbox/pav-plan.org"
                              "~/Dropbox/getdigital.org"
+                             "~/documents/promotion/qantrade.org"
                              )
       org-agenda-include-all-todo t
       org-agenda-include-diary t
