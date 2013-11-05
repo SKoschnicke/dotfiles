@@ -33,6 +33,8 @@
       org-agenda-include-all-todo t
       org-agenda-include-diary t
       org-log-done t
+      org-pretty-entities t
+      org-pretty-entities-include-sub-superscripts t
 )
 (setq org-default-notes-file "~/Dropbox/notes.org")
 (global-set-key "\C-cl" 'org-store-link)
@@ -46,6 +48,42 @@
     (haskell . t)
    )
 )
+
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; latex export
+(setq ieeetran-class
+      '("IEEEtran"
+        "\\documentclass[11pt]{IEEEtran}"
+        ("\\section{%s}" . "\\section*{%s}")
+        ("\\subsection{%s}" . "\\subsection*{%s}")
+        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+        ("\\paragraph{%s}" . "\\paragraph*{%s}")
+        ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+(require 'org-latex)
+(add-to-list 'org-export-latex-classes ieeetran-class t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; org mode bibtex integration
+(defun my-rtcite-export-handler (path desc format)
+  (message "my-rtcite-export-handler is called : path = %s, desc = %s, format = %s" path desc format)
+  (let* ((search (when (string-match "::#?\\(.+\\)\\'" path)
+                   (match-string 1 path)))
+         (path (substring path 0 (match-beginning 0))))
+    (cond ((eq format 'latex)
+           (if (or (not desc) 
+                   (equal 0 (search "rtcite:" desc)))
+               (format "\\cite{%s}" search)
+             (format "\\cite[%s]{%s}" desc search))))))
+
+
+(require 'org)
+
+(org-add-link-type "rtcite" 
+                   'org-bibtex-open
+                   'my-rtcite-export-handler)
 
 ; ESS emacs speaks statistics
 (add-to-list 'load-path "~/.emacs.d/ess-site/lisp")
