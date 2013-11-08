@@ -65,6 +65,11 @@
 (require 'org-latex)
 (add-to-list 'org-export-latex-classes ieeetran-class t)
 
+(eval-after-load "org"
+  '(progn
+     ;; Change .pdf association directly within the alist
+     (setcdr (assoc "\\.pdf\\'" org-file-apps) "acroread %s")))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; org mode bibtex integration
 (defun my-rtcite-export-handler (path desc format)
