@@ -1,0 +1,5 @@
+(:name smtpmail-multi
+:auto-generated t
+:type emacswiki
+:description "Use different smtp servers for sending mail"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/smtpmail-multi.el")

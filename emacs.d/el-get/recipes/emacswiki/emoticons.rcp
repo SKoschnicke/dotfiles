@@ -1,0 +1,5 @@
+(:name emoticons
+:auto-generated t
+:type emacswiki
+:description "Replace text with emoticons"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emoticons.el")

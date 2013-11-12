@@ -1,0 +1,5 @@
+(:name peg
+:auto-generated t
+:type emacswiki
+:description "Parsing Expression Grammars in Emacs Lisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/peg.el")

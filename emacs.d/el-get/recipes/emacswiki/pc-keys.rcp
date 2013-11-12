@@ -1,0 +1,5 @@
+(:name pc-keys
+:auto-generated t
+:type emacswiki
+:description "Smart `home' and `end' keys."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pc-keys.el")

@@ -1,0 +1,5 @@
+(:name place-windows
+:auto-generated t
+:type emacswiki
+:description "commands for placing active windows"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/place-windows.el")

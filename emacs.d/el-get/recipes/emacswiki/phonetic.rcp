@@ -1,0 +1,5 @@
+(:name phonetic
+:auto-generated t
+:type emacswiki
+:description "Phonetize (Alpha, Bravo, Charlie...) the region"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/phonetic.el")

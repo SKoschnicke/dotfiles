@@ -1,0 +1,5 @@
+(:name space-chord
+:auto-generated t
+:type emacswiki
+:description "key chord with Space"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/space-chord.el")

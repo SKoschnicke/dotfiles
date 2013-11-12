@@ -1,0 +1,5 @@
+(:name anything-emms
+:auto-generated t
+:type emacswiki
+:description "Integrate EMMS with `anything.el'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-emms.el")

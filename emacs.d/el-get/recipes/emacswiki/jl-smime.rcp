@@ -1,0 +1,5 @@
+(:name jl-smime
+:auto-generated t
+:type emacswiki
+:description "Improved support for S/MIME with MML"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jl-smime.el")

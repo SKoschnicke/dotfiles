@@ -1,0 +1,5 @@
+(:name TeXMed
+:auto-generated t
+:type emacswiki
+:description "Query and retrieve BibTeX from NCBI pubmed via TeXMed in Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/TeXMed.el")

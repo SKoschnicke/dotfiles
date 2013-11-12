@@ -1,0 +1,5 @@
+(:name mon-cifs-utils
+:auto-generated t
+:type emacswiki
+:description "utilities for mounting CIFS domain using auth-source"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-cifs-utils.el")

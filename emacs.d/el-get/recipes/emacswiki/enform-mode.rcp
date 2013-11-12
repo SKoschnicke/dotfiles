@@ -1,0 +1,5 @@
+(:name enform-mode
+:auto-generated t
+:type emacswiki
+:description "Handles the Tandem/NSK/Guardian ENFORM report language."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/enform-mode.el")

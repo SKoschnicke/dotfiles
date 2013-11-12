@@ -1,0 +1,5 @@
+(:name qq-mode
+:auto-generated t
+:type emacswiki
+:description "Modes for creating valid XHTML 1.0 Transitional pages."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/qq-mode.el")

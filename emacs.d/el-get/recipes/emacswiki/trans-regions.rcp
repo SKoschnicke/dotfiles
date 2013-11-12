@@ -1,0 +1,5 @@
+(:name trans-regions
+:auto-generated t
+:type emacswiki
+:description "Transpose regions command."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/trans-regions.el")

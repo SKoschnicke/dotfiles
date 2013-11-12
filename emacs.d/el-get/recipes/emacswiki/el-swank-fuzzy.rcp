@@ -1,0 +1,5 @@
+(:name el-swank-fuzzy
+:auto-generated t
+:type emacswiki
+:description "fuzzy symbol completion."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/el-swank-fuzzy.el")

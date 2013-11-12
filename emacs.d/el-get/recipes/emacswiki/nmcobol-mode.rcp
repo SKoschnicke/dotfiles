@@ -1,0 +1,5 @@
+(:name nmcobol-mode
+:auto-generated t
+:type emacswiki
+:description "For use with Tandem Cobol only - Sorry."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/nmcobol-mode.el")

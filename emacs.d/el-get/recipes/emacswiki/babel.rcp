@@ -1,0 +1,5 @@
+(:name babel
+:auto-generated t
+:type emacswiki
+:description "interface to web translation services such as Babelfish"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/babel.el")

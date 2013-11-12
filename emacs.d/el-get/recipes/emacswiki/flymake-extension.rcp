@@ -1,0 +1,5 @@
+(:name flymake-extension
+:auto-generated t
+:type emacswiki
+:description "Some extension for flymake"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/flymake-extension.el")

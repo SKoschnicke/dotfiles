@@ -1,0 +1,5 @@
+(:name widget-demo
+:auto-generated t
+:type emacswiki
+:description "Some recipes for creating widgets"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/widget-demo.el")

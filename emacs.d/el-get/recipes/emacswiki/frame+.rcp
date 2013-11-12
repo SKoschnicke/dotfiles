@@ -1,0 +1,5 @@
+(:name frame+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `frame.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/frame+.el")

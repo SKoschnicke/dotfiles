@@ -1,0 +1,5 @@
+(:name project-buffer-mode+
+:auto-generated t
+:type emacswiki
+:description "Extension for project-buffer-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/project-buffer-mode+.el")

@@ -1,0 +1,5 @@
+(:name beginner
+:auto-generated t
+:type emacswiki
+:description "simplify Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/beginner.el")

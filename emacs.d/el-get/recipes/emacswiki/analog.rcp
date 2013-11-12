@@ -1,0 +1,5 @@
+(:name analog
+:auto-generated t
+:type emacswiki
+:description "monitor lists of files or command output"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/analog.el")

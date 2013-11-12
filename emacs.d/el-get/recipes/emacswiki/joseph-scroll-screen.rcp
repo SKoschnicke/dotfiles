@@ -1,0 +1,5 @@
+(:name joseph-scroll-screen
+:auto-generated t
+:type emacswiki
+:description "Scroll half screen down or up, and highlight current line."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/joseph-scroll-screen.el")

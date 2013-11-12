@@ -1,0 +1,5 @@
+(:name longlines
+:auto-generated t
+:type emacswiki
+:description "automatically wrap long lines"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/longlines.el")

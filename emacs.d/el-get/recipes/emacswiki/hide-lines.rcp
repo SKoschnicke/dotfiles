@@ -1,0 +1,5 @@
+(:name hide-lines
+:auto-generated t
+:type emacswiki
+:description "Commands for hiding lines based on a regexp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hide-lines.el")

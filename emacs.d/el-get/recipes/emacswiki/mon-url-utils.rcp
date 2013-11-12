@@ -1,0 +1,5 @@
+(:name mon-url-utils
+:auto-generated t
+:type emacswiki
+:description "interactive utils for URL data lookups"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-url-utils.el")

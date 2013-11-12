@@ -1,0 +1,5 @@
+(:name pylit
+:auto-generated t
+:type emacswiki
+:description "support for the PyLit literate programming tool"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pylit.el")

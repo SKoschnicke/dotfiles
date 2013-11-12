@@ -1,0 +1,5 @@
+(:name init-icicles
+:auto-generated t
+:type emacswiki
+:description "Config file for icicles.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-icicles.el")

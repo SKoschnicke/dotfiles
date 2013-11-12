@@ -1,0 +1,5 @@
+(:name icicles-mac
+:auto-generated t
+:type emacswiki
+:description "Macros for Icicles"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-mac.el")

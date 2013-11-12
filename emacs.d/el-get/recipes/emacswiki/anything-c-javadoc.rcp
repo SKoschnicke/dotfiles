@@ -1,0 +1,5 @@
+(:name anything-c-javadoc
+:auto-generated t
+:type emacswiki
+:description "anything-sources for opening javadocs."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-c-javadoc.el")

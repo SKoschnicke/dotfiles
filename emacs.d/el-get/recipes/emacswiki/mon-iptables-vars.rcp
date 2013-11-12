@@ -1,0 +1,5 @@
+(:name mon-iptables-vars
+:auto-generated t
+:type emacswiki
+:description ""
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-iptables-vars.el")

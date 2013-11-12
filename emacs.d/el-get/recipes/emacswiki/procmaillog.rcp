@@ -1,0 +1,5 @@
+(:name procmaillog
+:auto-generated t
+:type emacswiki
+:description "Read the procmail log file in Gnus"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/procmaillog.el")

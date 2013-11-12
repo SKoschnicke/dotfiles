@@ -1,0 +1,5 @@
+(:name iswitchb-highlight
+:auto-generated t
+:type emacswiki
+:description "Highlighting extension for iswitchb"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/iswitchb-highlight.el")

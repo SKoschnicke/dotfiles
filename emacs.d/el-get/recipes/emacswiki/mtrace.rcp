@@ -1,0 +1,5 @@
+(:name mtrace
+:auto-generated t
+:type emacswiki
+:description "keep track of hidden buffer changes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mtrace.el")

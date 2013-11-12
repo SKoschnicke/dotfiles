@@ -1,0 +1,5 @@
+(:name fuzzy-format
+:auto-generated t
+:type emacswiki
+:description "select indent-tabs-mode and format code automatically."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fuzzy-format.el")

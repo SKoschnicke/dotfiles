@@ -1,0 +1,5 @@
+(:name a-menu
+:auto-generated t
+:type emacswiki
+:description "create a menu from a specified directory"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/a-menu.el")

@@ -1,0 +1,5 @@
+(:name dirvars
+:auto-generated t
+:type emacswiki
+:description "Local variables that apply to an entire directory -*- local-enable-local-variables: nil -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dirvars.el")

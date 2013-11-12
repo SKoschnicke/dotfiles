@@ -1,0 +1,5 @@
+(:name get-rfc
+:auto-generated t
+:type emacswiki
+:description "Getting and viewing RFCs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/get-rfc.el")

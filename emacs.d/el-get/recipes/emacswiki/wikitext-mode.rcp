@@ -1,0 +1,5 @@
+(:name wikitext-mode
+:auto-generated t
+:type emacswiki
+:description "Mode for editing Wikitexts"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wikitext-mode.el")

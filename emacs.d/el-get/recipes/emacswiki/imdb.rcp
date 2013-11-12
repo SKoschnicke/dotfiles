@@ -1,0 +1,5 @@
+(:name imdb
+:auto-generated t
+:type emacswiki
+:description "Interface to the Internet Movie DB"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/imdb.el")

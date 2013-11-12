@@ -1,0 +1,5 @@
+(:name auto-install-batch-list
+:auto-generated t
+:type emacswiki
+:description "Data file of auto-install.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-install-batch-list.el")

@@ -1,0 +1,5 @@
+(:name replace-from-region
+:auto-generated t
+:type emacswiki
+:description "Replace commands whose query is from region"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/replace-from-region.el")

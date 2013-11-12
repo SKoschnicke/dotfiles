@@ -1,0 +1,5 @@
+(:name unicode-helper
+:auto-generated t
+:type emacswiki
+:description "Unicode helper functions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/unicode-helper.el")

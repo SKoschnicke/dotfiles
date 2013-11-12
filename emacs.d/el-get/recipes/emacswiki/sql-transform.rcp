@@ -1,0 +1,5 @@
+(:name sql-transform
+:auto-generated t
+:type emacswiki
+:description "transform SQL statements"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sql-transform.el")

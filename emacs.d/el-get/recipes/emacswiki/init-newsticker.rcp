@@ -1,0 +1,5 @@
+(:name init-newsticker
+:auto-generated t
+:type emacswiki
+:description "Newsticker configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-newsticker.el")

@@ -1,0 +1,5 @@
+(:name mon-randomize-utils
+:auto-generated t
+:type emacswiki
+:description "procedures for generating pseudo randomness"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-randomize-utils.el")

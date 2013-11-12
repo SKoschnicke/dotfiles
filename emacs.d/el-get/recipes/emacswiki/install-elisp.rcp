@@ -1,0 +1,5 @@
+(:name install-elisp
+:auto-generated t
+:type emacswiki
+:description "Simple Emacs Lisp installer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/install-elisp.el")

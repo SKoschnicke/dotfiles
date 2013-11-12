@@ -1,0 +1,5 @@
+(:name lib-requires
+:auto-generated t
+:type emacswiki
+:description "Commands to list Emacs Lisp library dependencies."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lib-requires.el")

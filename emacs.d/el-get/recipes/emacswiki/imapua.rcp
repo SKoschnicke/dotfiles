@@ -1,0 +1,5 @@
+(:name imapua
+:auto-generated t
+:type emacswiki
+:description "a purely IMAP based email client for EMACS"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/imapua.el")

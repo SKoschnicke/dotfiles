@@ -1,0 +1,5 @@
+(:name wid-edit+
+:auto-generated t
+:type emacswiki
+:description "Extensions to standard library `wid-edit.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wid-edit+.el")

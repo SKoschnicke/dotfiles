@@ -1,0 +1,5 @@
+(:name grep-a-lot
+:auto-generated t
+:type emacswiki
+:description "manages multiple search results buffers for grep.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/grep-a-lot.el")

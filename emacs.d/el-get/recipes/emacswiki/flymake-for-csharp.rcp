@@ -1,0 +1,5 @@
+(:name flymake-for-csharp
+:auto-generated t
+:type emacswiki
+:description "C# mode derived mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/flymake-for-csharp.el")

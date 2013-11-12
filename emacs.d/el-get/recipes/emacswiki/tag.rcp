@@ -1,0 +1,5 @@
+(:name tag
+:auto-generated t
+:type emacswiki
+:description "tagging files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tag.el")

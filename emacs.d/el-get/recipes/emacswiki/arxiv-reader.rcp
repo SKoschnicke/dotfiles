@@ -1,0 +1,5 @@
+(:name arxiv-reader
+:auto-generated t
+:type emacswiki
+:description "an interface for reading and sorting arXiv abstracts."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/arxiv-reader.el")

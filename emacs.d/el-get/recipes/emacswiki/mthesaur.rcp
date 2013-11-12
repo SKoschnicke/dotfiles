@@ -1,0 +1,5 @@
+(:name mthesaur
+:auto-generated t
+:type emacswiki
+:description "Thesaurus look-up of a word or phrase."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mthesaur.el")

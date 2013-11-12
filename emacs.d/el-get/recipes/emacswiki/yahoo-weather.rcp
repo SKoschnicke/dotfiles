@@ -1,0 +1,5 @@
+(:name yahoo-weather
+:auto-generated t
+:type emacswiki
+:description "Get the weather from yahoo."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/yahoo-weather.el")

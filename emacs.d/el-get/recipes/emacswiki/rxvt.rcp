@@ -1,0 +1,5 @@
+(:name rxvt
+:auto-generated t
+:type emacswiki
+:description "define function key sequences for rxvt"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rxvt.el")

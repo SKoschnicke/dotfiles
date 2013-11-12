@@ -1,0 +1,5 @@
+(:name yari
+:auto-generated t
+:type emacswiki
+:description "Yet Another RI interface for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/yari.el")

@@ -1,0 +1,5 @@
+(:name require-or-install
+:auto-generated t
+:type emacswiki
+:description "Download and automagically install Emacs Lisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/require-or-install.el")

@@ -1,0 +1,5 @@
+(:name bookmark+
+:auto-generated t
+:type emacswiki
+:description "Bookmark+: extensions to standard library `bookmark.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bookmark+.el")

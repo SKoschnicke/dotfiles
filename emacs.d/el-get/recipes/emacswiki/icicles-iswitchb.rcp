@@ -1,0 +1,5 @@
+(:name icicles-iswitchb
+:auto-generated t
+:type emacswiki
+:description "Using iswitchb with Icicles"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-iswitchb.el")

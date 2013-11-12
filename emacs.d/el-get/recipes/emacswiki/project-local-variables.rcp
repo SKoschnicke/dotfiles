@@ -1,0 +1,5 @@
+(:name project-local-variables
+:auto-generated t
+:type emacswiki
+:description "Set project-local variables from a file."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/project-local-variables.el")

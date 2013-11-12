@@ -1,0 +1,5 @@
+(:name dropdown-list
+:auto-generated t
+:type emacswiki
+:description "Drop-down menu interface"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dropdown-list.el")

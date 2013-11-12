@@ -1,0 +1,5 @@
+(:name subr-21
+:auto-generated t
+:type emacswiki
+:description "Provides Emacs 20 with Emacs 21 subr.el and built-in functions."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/subr-21.el")

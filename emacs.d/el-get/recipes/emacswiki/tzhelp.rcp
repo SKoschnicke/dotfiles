@@ -1,0 +1,5 @@
+(:name tzhelp
+:auto-generated t
+:type emacswiki
+:description "very simple time zone tools"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tzhelp.el")

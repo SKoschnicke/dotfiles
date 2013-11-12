@@ -1,0 +1,5 @@
+(:name menu-bar+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `menu-bar.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/menu-bar+.el")

@@ -1,0 +1,5 @@
+(:name persistent-soft
+:auto-generated t
+:type emacswiki
+:description "Persistent storage, returning nil on failure"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/persistent-soft.el")

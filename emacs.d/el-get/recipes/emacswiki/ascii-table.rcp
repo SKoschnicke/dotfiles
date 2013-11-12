@@ -1,0 +1,5 @@
+(:name ascii-table
+:auto-generated t
+:type emacswiki
+:description "simple ASCII table"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ascii-table.el")

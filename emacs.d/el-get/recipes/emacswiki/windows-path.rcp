@@ -1,0 +1,5 @@
+(:name windows-path
+:auto-generated t
+:type emacswiki
+:description "Teach cygwin EMACS about windows styles path"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/windows-path.el")

@@ -1,0 +1,5 @@
+(:name calendar+
+:auto-generated t
+:type emacswiki
+:description "Calendar, diary and appointments stuff."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/calendar+.el")

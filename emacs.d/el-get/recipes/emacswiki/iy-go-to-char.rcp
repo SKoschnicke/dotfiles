@@ -1,0 +1,5 @@
+(:name iy-go-to-char
+:auto-generated t
+:type emacswiki
+:description "Go to next CHAR which is similar to "f" and "t" in vim"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/iy-go-to-char.el")

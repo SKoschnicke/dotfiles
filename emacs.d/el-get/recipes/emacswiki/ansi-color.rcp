@@ -1,0 +1,5 @@
+(:name ansi-color
+:auto-generated t
+:type emacswiki
+:description "translate ANSI escape sequences into faces"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ansi-color.el")

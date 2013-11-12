@@ -1,0 +1,5 @@
+(:name buff-menu+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `buff-menu.el'.    -*- coding:utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/buff-menu+.el")

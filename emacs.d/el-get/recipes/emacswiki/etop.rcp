@@ -1,0 +1,5 @@
+(:name etop
+:auto-generated t
+:type emacswiki
+:description "run "top" to display information about processes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/etop.el")

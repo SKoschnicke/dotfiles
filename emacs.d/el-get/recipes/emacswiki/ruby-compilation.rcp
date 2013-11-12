@@ -1,0 +1,5 @@
+(:name ruby-compilation
+:auto-generated t
+:type emacswiki
+:description "run a ruby process in a compilation buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ruby-compilation.el")

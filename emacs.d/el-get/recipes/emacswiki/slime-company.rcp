@@ -1,0 +1,5 @@
+(:name slime-company
+:auto-generated t
+:type emacswiki
+:description "slime completion backend for company mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/slime-company.el")

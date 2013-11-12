@@ -1,0 +1,5 @@
+(:name highline
+:auto-generated t
+:type emacswiki
+:description "minor mode to highlight current line in buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/highline.el")

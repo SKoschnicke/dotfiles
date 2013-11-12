@@ -1,0 +1,5 @@
+(:name ls-lisp-20
+:auto-generated t
+:type emacswiki
+:description "emulate insert-directory completely in Emacs Lisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ls-lisp-20.el")

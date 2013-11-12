@@ -1,0 +1,5 @@
+(:name control-lock
+:auto-generated t
+:type emacswiki
+:description "Like caps-lock, but for your control key.  Give your pinky a rest!"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/control-lock.el")

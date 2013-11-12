@@ -1,0 +1,5 @@
+(:name vhdl-process-wave
+:auto-generated t
+:type emacswiki
+:description "processes waveform saved of modelsim"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vhdl-process-wave.el")

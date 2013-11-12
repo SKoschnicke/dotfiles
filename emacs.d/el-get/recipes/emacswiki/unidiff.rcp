@@ -1,0 +1,5 @@
+(:name unidiff
+:auto-generated t
+:type emacswiki
+:description "editing unified format patches"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/unidiff.el")

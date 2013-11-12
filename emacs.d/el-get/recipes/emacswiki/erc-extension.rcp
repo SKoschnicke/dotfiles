@@ -1,0 +1,5 @@
+(:name erc-extension
+:auto-generated t
+:type emacswiki
+:description "Some extension for erc"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/erc-extension.el")

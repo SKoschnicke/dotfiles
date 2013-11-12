@@ -1,0 +1,5 @@
+(:name ts-mode
+:auto-generated t
+:type emacswiki
+:description "An Emacs major mode for editing TypoScript files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ts-mode.el")

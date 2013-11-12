@@ -1,0 +1,5 @@
+(:name eijiro
+:auto-generated t
+:type emacswiki
+:description "英辞郎をanything.elを使って検索する"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eijiro.el")

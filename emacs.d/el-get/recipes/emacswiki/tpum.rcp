@@ -1,0 +1,5 @@
+(:name tpum
+:auto-generated t
+:type emacswiki
+:description "Popup menus in text mode."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tpum.el")

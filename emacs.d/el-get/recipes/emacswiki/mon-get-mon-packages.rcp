@@ -1,0 +1,5 @@
+(:name mon-get-mon-packages
+:auto-generated t
+:type emacswiki
+:description "snarf MON libraries with wget."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-get-mon-packages.el")

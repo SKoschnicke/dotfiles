@@ -1,0 +1,5 @@
+(:name bibtex-utils
+:auto-generated t
+:type emacswiki
+:description "utilities for BibTeX"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bibtex-utils.el")

@@ -1,0 +1,5 @@
+(:name gnus-notify
+:auto-generated t
+:type emacswiki
+:description "use the modeline to indicate groups with new messages"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-notify.el")

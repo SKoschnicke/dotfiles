@@ -1,0 +1,5 @@
+(:name autotest
+:auto-generated t
+:type emacswiki
+:description "ZenTest's autotest integration with emacs."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/autotest.el")

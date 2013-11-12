@@ -1,0 +1,5 @@
+(:name xml-weather
+:auto-generated t
+:type emacswiki
+:description "Get xml-weather infos in emacs. "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/xml-weather.el")

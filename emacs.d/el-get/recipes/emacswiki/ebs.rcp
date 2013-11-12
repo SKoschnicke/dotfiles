@@ -1,0 +1,5 @@
+(:name ebs
+:auto-generated t
+:type emacswiki
+:description "easy buffer switch (ebs)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ebs.el")

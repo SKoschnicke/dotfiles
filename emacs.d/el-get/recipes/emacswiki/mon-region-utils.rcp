@@ -1,0 +1,5 @@
+(:name mon-region-utils
+:auto-generated t
+:type emacswiki
+:description "region oriented procedures for mon-*utils features"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-region-utils.el")

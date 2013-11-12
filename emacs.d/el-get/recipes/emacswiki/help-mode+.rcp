@@ -1,0 +1,5 @@
+(:name help-mode+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `help-mode.el'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/help-mode+.el")

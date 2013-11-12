@@ -1,0 +1,5 @@
+(:name tagger
+:auto-generated t
+:type emacswiki
+:description "Tagged information handler"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tagger.el")

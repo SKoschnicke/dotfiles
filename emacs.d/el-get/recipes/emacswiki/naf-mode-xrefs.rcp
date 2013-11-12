@@ -1,0 +1,5 @@
+(:name naf-mode-xrefs
+:auto-generated t
+:type emacswiki
+:description "xrefing variable list of corelated naf-mode symbols"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/naf-mode-xrefs.el")

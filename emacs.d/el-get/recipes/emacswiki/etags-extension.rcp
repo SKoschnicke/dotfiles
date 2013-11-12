@@ -1,0 +1,5 @@
+(:name etags-extension
+:auto-generated t
+:type emacswiki
+:description "A collect extensions for etags."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/etags-extension.el")

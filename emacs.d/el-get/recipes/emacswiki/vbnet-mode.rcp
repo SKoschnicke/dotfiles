@@ -1,0 +1,5 @@
+(:name vbnet-mode
+:auto-generated t
+:type emacswiki
+:description "A mode for editing Visual Basic .NET programs."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vbnet-mode.el")

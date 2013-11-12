@@ -1,0 +1,5 @@
+(:name mon-css-complete
+:auto-generated t
+:type emacswiki
+:description "complete css attributes and properties"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-css-complete.el")

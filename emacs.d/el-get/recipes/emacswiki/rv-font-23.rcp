@@ -1,0 +1,5 @@
+(:name rv-font-23
+:auto-generated t
+:type emacswiki
+:description "set font(cjk) for emacs-23"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rv-font-23.el")

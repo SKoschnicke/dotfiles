@@ -1,0 +1,5 @@
+(:name msf-abbrev
+:auto-generated t
+:type emacswiki
+:description "maintain abbrevs in a directory tree"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/msf-abbrev.el")

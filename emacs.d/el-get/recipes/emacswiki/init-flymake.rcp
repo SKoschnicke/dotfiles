@@ -1,0 +1,5 @@
+(:name init-flymake
+:auto-generated t
+:type emacswiki
+:description "Flymake configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-flymake.el")

@@ -1,0 +1,5 @@
+(:name title-time
+:auto-generated t
+:type emacswiki
+:description "like display-time but in the title-bar"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/title-time.el")

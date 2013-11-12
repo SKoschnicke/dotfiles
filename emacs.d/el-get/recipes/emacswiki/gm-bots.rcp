@@ -1,0 +1,5 @@
+(:name gm-bots
+:auto-generated t
+:type emacswiki
+:description "Here you can define new bots used by gm-webbot.el."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gm-bots.el")

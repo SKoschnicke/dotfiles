@@ -1,0 +1,5 @@
+(:name anything-menu
+:auto-generated t
+:type emacswiki
+:description "anything.el candidate selection outside Emacs "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-menu.el")

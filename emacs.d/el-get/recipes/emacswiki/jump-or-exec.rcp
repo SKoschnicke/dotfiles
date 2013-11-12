@@ -1,0 +1,5 @@
+(:name jump-or-exec
+:auto-generated t
+:type emacswiki
+:description "Jump to a buffer or create it."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jump-or-exec.el")

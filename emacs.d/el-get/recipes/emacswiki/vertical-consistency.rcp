@@ -1,0 +1,5 @@
+(:name vertical-consistency
+:auto-generated t
+:type emacswiki
+:description "make opposite vertical movement go back its track"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vertical-consistency.el")

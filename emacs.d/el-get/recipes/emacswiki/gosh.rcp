@@ -1,0 +1,5 @@
+(:name gosh
+:auto-generated t
+:type emacswiki
+:description "an interface to Gauche"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gosh.el")

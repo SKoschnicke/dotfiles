@@ -1,0 +1,5 @@
+(:name fsdired
+:auto-generated t
+:type emacswiki
+:description "sort files to go to different places in dired"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fsdired.el")

@@ -1,0 +1,5 @@
+(:name buffer-move
+:auto-generated t
+:type emacswiki
+:description "Swap buffers without typing C-x b on each window"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/buffer-move.el")

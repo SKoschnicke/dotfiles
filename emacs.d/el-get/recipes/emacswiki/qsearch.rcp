@@ -1,0 +1,5 @@
+(:name qsearch
+:auto-generated t
+:type emacswiki
+:description "simple isearch implemented as a quasimode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/qsearch.el")

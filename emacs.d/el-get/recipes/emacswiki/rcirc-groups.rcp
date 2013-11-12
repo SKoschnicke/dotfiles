@@ -1,0 +1,5 @@
+(:name rcirc-groups
+:auto-generated t
+:type emacswiki
+:description "an emacs buffer in rcirc-groups major mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc-groups.el")

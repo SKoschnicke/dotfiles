@@ -1,0 +1,5 @@
+(:name el-expectations-failure-sample
+:auto-generated t
+:type emacswiki
+:description "failure example of Emacs Lisp Expectations."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/el-expectations-failure-sample.el")

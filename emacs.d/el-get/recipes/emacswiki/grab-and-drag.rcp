@@ -1,0 +1,5 @@
+(:name grab-and-drag
+:auto-generated t
+:type emacswiki
+:description "Scroll a window by mouse dragging"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/grab-and-drag.el")

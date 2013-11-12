@@ -1,0 +1,5 @@
+(:name smooth-scroll
+:auto-generated t
+:type emacswiki
+:description "Minor mode for smooth scrolling and in-place scrolling."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/smooth-scroll.el")

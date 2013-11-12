@@ -1,0 +1,5 @@
+(:name steno
+:auto-generated t
+:type emacswiki
+:description "edit time-stamped entries in text notepads under Emacs."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/steno.el")

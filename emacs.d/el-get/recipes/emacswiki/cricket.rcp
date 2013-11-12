@@ -1,0 +1,5 @@
+(:name cricket
+:auto-generated t
+:type emacswiki
+:description "Get live cricket scores and news updates from inside emacs."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cricket.el")

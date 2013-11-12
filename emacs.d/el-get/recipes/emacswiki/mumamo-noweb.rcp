@@ -1,0 +1,5 @@
+(:name mumamo-noweb
+:auto-generated t
+:type emacswiki
+:description "MuMaMo noweb goo"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mumamo-noweb.el")

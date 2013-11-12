@@ -1,0 +1,5 @@
+(:name historyf
+:auto-generated t
+:type emacswiki
+:description "file history library like browser"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/historyf.el")

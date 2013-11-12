@@ -1,0 +1,5 @@
+(:name imenu+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `imenu.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/imenu+.el")

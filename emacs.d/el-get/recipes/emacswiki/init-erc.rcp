@@ -1,0 +1,5 @@
+(:name init-erc
+:auto-generated t
+:type emacswiki
+:description "Configuration for erc"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-erc.el")

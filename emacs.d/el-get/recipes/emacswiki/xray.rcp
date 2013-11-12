@@ -1,0 +1,5 @@
+(:name xray
+:auto-generated t
+:type emacswiki
+:description "Display internal object structures in a temporary buffer."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/xray.el")

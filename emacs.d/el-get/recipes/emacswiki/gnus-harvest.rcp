@@ -1,0 +1,5 @@
+(:name gnus-harvest
+:auto-generated t
+:type emacswiki
+:description "Harvest e-mail address from read/written articles"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-harvest.el")

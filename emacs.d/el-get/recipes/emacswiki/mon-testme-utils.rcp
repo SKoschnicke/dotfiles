@@ -1,0 +1,5 @@
+(:name mon-testme-utils
+:auto-generated t
+:type emacswiki
+:description "tests and template for inserting them"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-testme-utils.el")

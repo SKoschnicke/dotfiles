@@ -1,0 +1,5 @@
+(:name scrl-margs
+:auto-generated t
+:type emacswiki
+:description "scroll margins minor mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/scrl-margs.el")

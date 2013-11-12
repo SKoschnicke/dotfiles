@@ -1,0 +1,5 @@
+(:name hl-spotlight
+:auto-generated t
+:type emacswiki
+:description "Extension of hl-line.el to spotlight current few lines."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hl-spotlight.el")

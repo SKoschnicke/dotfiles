@@ -1,0 +1,5 @@
+(:name wikify-ell
+:auto-generated t
+:type emacswiki
+:description "Transform the ELL into a Wiki page."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wikify-ell.el")

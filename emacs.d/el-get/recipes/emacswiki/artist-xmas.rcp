@@ -1,0 +1,5 @@
+(:name artist-xmas
+:auto-generated t
+:type emacswiki
+:description "xemacs port of artist.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/artist-xmas.el")

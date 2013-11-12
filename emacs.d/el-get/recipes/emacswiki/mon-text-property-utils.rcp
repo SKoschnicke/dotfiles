@@ -1,0 +1,5 @@
+(:name mon-text-property-utils
+:auto-generated t
+:type emacswiki
+:description "extensions for text-properties/overlays"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-text-property-utils.el")

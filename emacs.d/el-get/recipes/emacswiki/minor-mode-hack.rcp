@@ -1,0 +1,5 @@
+(:name minor-mode-hack
+:auto-generated t
+:type emacswiki
+:description "Change priority of minor-mode keymaps"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/minor-mode-hack.el")

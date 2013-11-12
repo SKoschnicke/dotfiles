@@ -1,0 +1,5 @@
+(:name emdroid
+:auto-generated t
+:type emacswiki
+:description "Android Wrappers for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emdroid.el")

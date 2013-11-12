@@ -1,0 +1,5 @@
+(:name xlicense
+:auto-generated t
+:type emacswiki
+:description "Insert a pre-defined license text"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/xlicense.el")

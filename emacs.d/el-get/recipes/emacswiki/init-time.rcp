@@ -1,0 +1,5 @@
+(:name init-time
+:auto-generated t
+:type emacswiki
+:description "时间设置"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-time.el")

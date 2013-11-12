@@ -1,0 +1,5 @@
+(:name jira
+:auto-generated t
+:type emacswiki
+:description "Connect to JIRA issue tracking software"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jira.el")

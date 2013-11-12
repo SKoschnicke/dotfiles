@@ -1,0 +1,5 @@
+(:name init-w3m
+:auto-generated t
+:type emacswiki
+:description "W3m configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-w3m.el")

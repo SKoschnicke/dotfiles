@@ -1,0 +1,5 @@
+(:name byte-code-cache
+:auto-generated t
+:type emacswiki
+:description "Compile files as they're used"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/byte-code-cache.el")

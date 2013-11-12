@@ -1,0 +1,5 @@
+(:name iterator
+:auto-generated t
+:type emacswiki
+:description "A library to create and use elisp iterators objects."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/iterator.el")

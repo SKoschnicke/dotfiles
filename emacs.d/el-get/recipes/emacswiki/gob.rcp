@@ -1,0 +1,5 @@
+(:name gob
+:auto-generated t
+:type emacswiki
+:description "A code generator for GObject"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gob.el")

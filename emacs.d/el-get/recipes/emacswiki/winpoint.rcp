@@ -1,0 +1,5 @@
+(:name winpoint
+:auto-generated t
+:type emacswiki
+:description "Remember buffer positions per-window, not per buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/winpoint.el")

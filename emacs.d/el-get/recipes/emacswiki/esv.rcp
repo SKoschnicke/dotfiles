@@ -1,0 +1,5 @@
+(:name esv
+:auto-generated t
+:type emacswiki
+:description "Support for Crossway's ESV API in Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/esv.el")

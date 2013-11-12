@@ -1,0 +1,5 @@
+(:name popup-kill-ring
+:auto-generated t
+:type emacswiki
+:description "interactively insert item from kill-ring"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/popup-kill-ring.el")

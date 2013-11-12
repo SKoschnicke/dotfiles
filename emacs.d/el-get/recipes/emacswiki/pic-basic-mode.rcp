@@ -1,0 +1,5 @@
+(:name pic-basic-mode
+:auto-generated t
+:type emacswiki
+:description "Editing mode for MELabs PIC Basic"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pic-basic-mode.el")

@@ -1,0 +1,5 @@
+(:name extend-dnd
+:auto-generated t
+:type emacswiki
+:description "R drag and Drop"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/extend-dnd.el")

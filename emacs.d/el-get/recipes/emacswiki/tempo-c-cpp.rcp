@@ -1,0 +1,5 @@
+(:name tempo-c-cpp
+:auto-generated t
+:type emacswiki
+:description "abbrevs for c/c++ programming"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tempo-c-cpp.el")

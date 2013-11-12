@@ -1,0 +1,5 @@
+(:name summarye
+:auto-generated t
+:type emacswiki
+:description "list up matched strings from a buffer, and display them in summary buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/summarye.el")

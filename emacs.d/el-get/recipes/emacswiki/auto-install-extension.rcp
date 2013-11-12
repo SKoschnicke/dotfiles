@@ -1,0 +1,5 @@
+(:name auto-install-extension
+:auto-generated t
+:type emacswiki
+:description "Some extension functions for auto-install.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-install-extension.el")

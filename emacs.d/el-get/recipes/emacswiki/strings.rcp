@@ -1,0 +1,5 @@
+(:name strings
+:auto-generated t
+:type emacswiki
+:description "Miscellaneous string functions."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/strings.el")

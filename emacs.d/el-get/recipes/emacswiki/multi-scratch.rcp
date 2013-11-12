@@ -1,0 +1,5 @@
+(:name multi-scratch
+:auto-generated t
+:type emacswiki
+:description "Multiple scratches manager"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/multi-scratch.el")

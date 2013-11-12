@@ -1,0 +1,5 @@
+(:name gnus-summary-stripe
+:auto-generated t
+:type emacswiki
+:description "Strip gnus summary buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-summary-stripe.el")

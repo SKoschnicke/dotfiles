@@ -1,0 +1,5 @@
+(:name basic-edit-toolkit
+:auto-generated t
+:type emacswiki
+:description "Basic edit toolkit."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/basic-edit-toolkit.el")

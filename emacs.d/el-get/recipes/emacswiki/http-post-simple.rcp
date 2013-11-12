@@ -1,0 +1,5 @@
+(:name http-post-simple
+:auto-generated t
+:type emacswiki
+:description "HTTP POST requests using the url library"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/http-post-simple.el")

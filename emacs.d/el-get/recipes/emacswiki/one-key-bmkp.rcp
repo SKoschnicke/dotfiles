@@ -1,0 +1,5 @@
+(:name one-key-bmkp
+:auto-generated t
+:type emacswiki
+:description "one-key menus for bookmarks"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/one-key-bmkp.el")

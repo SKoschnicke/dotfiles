@@ -1,0 +1,5 @@
+(:name arrange-buffers
+:auto-generated t
+:type emacswiki
+:description "display all buffers which name and mode match a regexp "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/arrange-buffers.el")

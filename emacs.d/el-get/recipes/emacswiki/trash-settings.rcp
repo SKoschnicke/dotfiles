@@ -1,0 +1,5 @@
+(:name trash-settings
+:auto-generated t
+:type emacswiki
+:description "Intelligent integration with system trash"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/trash-settings.el")

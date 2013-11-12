@@ -1,0 +1,5 @@
+(:name everything
+:auto-generated t
+:type emacswiki
+:description "Bridge to MS Windows desktop-search engine Everything"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/everything.el")

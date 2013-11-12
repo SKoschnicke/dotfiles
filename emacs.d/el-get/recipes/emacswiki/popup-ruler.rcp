@@ -1,0 +1,5 @@
+(:name popup-ruler
+:auto-generated t
+:type emacswiki
+:description "Displays a ruler at point."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/popup-ruler.el")

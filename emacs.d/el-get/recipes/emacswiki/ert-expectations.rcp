@@ -1,0 +1,5 @@
+(:name ert-expectations
+:auto-generated t
+:type emacswiki
+:description "The simplest unit test framework in the world"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ert-expectations.el")

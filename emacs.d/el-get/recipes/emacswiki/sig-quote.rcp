@@ -1,0 +1,5 @@
+(:name sig-quote
+:auto-generated t
+:type emacswiki
+:description " Add quotes to signature according to recipients (Gnus/RMAIL/MH-E/vm)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sig-quote.el")

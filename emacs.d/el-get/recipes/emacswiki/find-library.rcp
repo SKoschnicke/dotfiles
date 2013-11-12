@@ -1,0 +1,5 @@
+(:name find-library
+:auto-generated t
+:type emacswiki
+:description "Find emacs-lisp library with completion"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/find-library.el")

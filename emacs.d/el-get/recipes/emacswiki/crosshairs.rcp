@@ -1,0 +1,5 @@
+(:name crosshairs
+:auto-generated t
+:type emacswiki
+:description "Highlight the current line and column."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/crosshairs.el")

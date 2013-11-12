@@ -1,0 +1,5 @@
+(:name rmail-spamprobe
+:auto-generated t
+:type emacswiki
+:description "interact with spamprobe from within RMAIL"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rmail-spamprobe.el")

@@ -1,0 +1,5 @@
+(:name ascii
+:auto-generated t
+:type emacswiki
+:description "ASCII code display."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ascii.el")

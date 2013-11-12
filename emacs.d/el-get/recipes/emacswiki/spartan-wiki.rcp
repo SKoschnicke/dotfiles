@@ -1,0 +1,5 @@
+(:name spartan-wiki
+:auto-generated t
+:type emacswiki
+:description "a really spartan personal wiki"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/spartan-wiki.el")

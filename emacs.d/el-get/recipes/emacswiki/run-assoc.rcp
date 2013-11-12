@@ -1,0 +1,5 @@
+(:name run-assoc
+:auto-generated t
+:type emacswiki
+:description "Run program or lisp function associated with a file."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/run-assoc.el")

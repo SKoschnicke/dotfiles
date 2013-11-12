@@ -1,0 +1,5 @@
+(:name cppsense
+:auto-generated t
+:type emacswiki
+:description "Simple, heuristic, tag-based C++ coding assistant"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cppsense.el")

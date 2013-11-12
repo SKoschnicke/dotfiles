@@ -1,0 +1,5 @@
+(:name growl
+:auto-generated t
+:type emacswiki
+:description "Growl notifications"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/growl.el")

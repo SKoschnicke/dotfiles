@@ -1,0 +1,5 @@
+(:name mdabbrev
+:auto-generated t
+:type emacswiki
+:description "Dynamic abbreviation expansion in the middle of a word"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mdabbrev.el")

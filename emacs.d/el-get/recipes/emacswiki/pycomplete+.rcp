@@ -1,0 +1,5 @@
+(:name pycomplete+
+:auto-generated t
+:type emacswiki
+:description "complete symbols at point using Pymacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pycomplete+.el")

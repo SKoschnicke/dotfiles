@@ -1,0 +1,5 @@
+(:name diff+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `diff.el' for Emacs 21 and later."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/diff+.el")

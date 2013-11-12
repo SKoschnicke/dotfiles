@@ -1,0 +1,5 @@
+(:name col-highlight
+:auto-generated t
+:type emacswiki
+:description "Highlight the current column."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/col-highlight.el")

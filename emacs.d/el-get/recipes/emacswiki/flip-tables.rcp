@@ -1,0 +1,5 @@
+(:name flip-tables
+:auto-generated t
+:type emacswiki
+:description "put a flipping table emoji on your kill ring"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/flip-tables.el")

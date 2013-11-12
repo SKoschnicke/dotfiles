@@ -1,0 +1,5 @@
+(:name tacl-mode
+:auto-generated t
+:type emacswiki
+:description "Handles the Tandem/NSK/Guardian TACL language."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tacl-mode.el")

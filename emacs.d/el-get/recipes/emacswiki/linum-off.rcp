@@ -1,0 +1,5 @@
+(:name linum-off
+:auto-generated t
+:type emacswiki
+:description "Provides an interface for turning line-numbering off"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/linum-off.el")

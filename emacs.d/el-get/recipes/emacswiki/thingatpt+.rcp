@@ -1,0 +1,5 @@
+(:name thingatpt+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `thingatpt.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/thingatpt+.el")

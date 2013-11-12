@@ -1,0 +1,5 @@
+(:name org
+:auto-generated t
+:type emacswiki
+:description "Carsten's outline mode for keeping track of everything."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/org.el")

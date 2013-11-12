@@ -1,0 +1,5 @@
+(:name cyrillic-win
+:auto-generated t
+:type emacswiki
+:description "support for Cyrillic-CP1251 -*- coding: iso-2022-7bit; -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cyrillic-win.el")

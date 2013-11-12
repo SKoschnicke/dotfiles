@@ -1,0 +1,5 @@
+(:name sourcepair
+:auto-generated t
+:type emacswiki
+:description "Load the corresponding C/C++ header or source file for the current buffer."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sourcepair.el")

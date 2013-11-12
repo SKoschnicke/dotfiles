@@ -1,0 +1,5 @@
+(:name isearch+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `isearch.el' (incremental search)."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/isearch+.el")

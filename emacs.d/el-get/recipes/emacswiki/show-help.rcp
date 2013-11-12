@@ -1,0 +1,5 @@
+(:name show-help
+:auto-generated t
+:type emacswiki
+:description "Show help as showtip"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/show-help.el")

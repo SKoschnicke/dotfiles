@@ -1,0 +1,5 @@
+(:name javacc-mode
+:auto-generated t
+:type emacswiki
+:description "A major mode for editing javacc and jjtree files."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/javacc-mode.el")

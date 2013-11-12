@@ -1,0 +1,5 @@
+(:name doremi-cmd
+:auto-generated t
+:type emacswiki
+:description "Miscellaneous Do Re Mi commands"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/doremi-cmd.el")

@@ -1,0 +1,5 @@
+(:name color-theme-x
+:auto-generated t
+:type emacswiki
+:description "convert color themes to X11 resource settings"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/color-theme-x.el")

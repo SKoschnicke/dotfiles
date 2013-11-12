@@ -1,0 +1,5 @@
+(:name PowerShell-Mode
+:auto-generated t
+:type emacswiki
+:description "Mode for editing Powershell scripts"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/PowerShell-Mode.el")

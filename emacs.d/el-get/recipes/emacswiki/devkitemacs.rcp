@@ -1,0 +1,5 @@
+(:name devkitemacs
+:auto-generated t
+:type emacswiki
+:description "Helper functions for working with the devkitpro package (NDS and PSP development)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/devkitemacs.el")

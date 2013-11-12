@@ -1,0 +1,5 @@
+(:name selectkey
+:auto-generated t
+:type emacswiki
+:description "Select buffers by type with a single key"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/selectkey.el")

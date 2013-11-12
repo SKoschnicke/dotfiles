@@ -1,0 +1,5 @@
+(:name savehist-20+
+:auto-generated t
+:type emacswiki
+:description "Save minibuffer history."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/savehist-20+.el")

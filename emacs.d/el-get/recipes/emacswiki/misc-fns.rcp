@@ -1,0 +1,5 @@
+(:name misc-fns
+:auto-generated t
+:type emacswiki
+:description "Miscellaneous non-interactive functions."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/misc-fns.el")

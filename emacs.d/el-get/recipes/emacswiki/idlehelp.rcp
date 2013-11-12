@@ -1,0 +1,5 @@
+(:name idlehelp
+:auto-generated t
+:type emacswiki
+:description "Display help when being idle."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/idlehelp.el")

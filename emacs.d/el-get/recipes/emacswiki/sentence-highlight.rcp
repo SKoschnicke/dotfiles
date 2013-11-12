@@ -1,0 +1,5 @@
+(:name sentence-highlight
+:auto-generated t
+:type emacswiki
+:description "highlight the current sentence"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sentence-highlight.el")

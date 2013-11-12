@@ -1,0 +1,5 @@
+(:name command-remapping-settings
+:auto-generated t
+:type emacswiki
+:description "Remap commands in all modes from a custom variable"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/command-remapping-settings.el")

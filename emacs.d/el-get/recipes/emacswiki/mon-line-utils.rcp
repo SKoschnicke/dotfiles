@@ -1,0 +1,5 @@
+(:name mon-line-utils
+:auto-generated t
+:type emacswiki
+:description "line centric procedures for mon-*utils features"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-line-utils.el")

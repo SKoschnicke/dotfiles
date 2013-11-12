@@ -1,0 +1,5 @@
+(:name novice+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `novice.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/novice+.el")

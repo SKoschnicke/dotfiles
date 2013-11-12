@@ -1,0 +1,5 @@
+(:name old-fashioned-undo
+:auto-generated t
+:type emacswiki
+:description "Undo/Redo in very simple, and old fashioned way."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/old-fashioned-undo.el")

@@ -1,0 +1,5 @@
+(:name x-face-mini
+:auto-generated t
+:type emacswiki
+:description "Create MINI X-Face image for XEmacs/Emacs21+."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/x-face-mini.el")

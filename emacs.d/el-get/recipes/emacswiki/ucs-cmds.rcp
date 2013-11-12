@@ -1,0 +1,5 @@
+(:name ucs-cmds
+:auto-generated t
+:type emacswiki
+:description "Macro to create commands that insert Unicode chars."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ucs-cmds.el")

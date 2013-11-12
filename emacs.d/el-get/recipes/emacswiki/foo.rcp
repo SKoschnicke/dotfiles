@@ -1,0 +1,5 @@
+(:name foo
+:auto-generated t
+:type emacswiki
+:description "example file"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/foo.el")

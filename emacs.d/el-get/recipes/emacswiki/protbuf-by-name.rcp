@@ -1,0 +1,5 @@
+(:name protbuf-by-name
+:auto-generated t
+:type emacswiki
+:description "Extend protbuf.el to allow protecting specific buffer names."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/protbuf-by-name.el")

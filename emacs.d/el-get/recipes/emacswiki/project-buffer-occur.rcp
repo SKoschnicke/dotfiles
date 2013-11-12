@@ -1,0 +1,5 @@
+(:name project-buffer-occur
+:auto-generated t
+:type emacswiki
+:description "Occur functionality for Project Mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/project-buffer-occur.el")

@@ -1,0 +1,5 @@
+(:name ifind
+:auto-generated t
+:type emacswiki
+:description "An interface to `find` based on igrep.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ifind.el")

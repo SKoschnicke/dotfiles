@@ -1,0 +1,5 @@
+(:name mogo
+:auto-generated t
+:type emacswiki
+:description "Simple MoGo client"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mogo.el")

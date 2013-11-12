@@ -1,0 +1,5 @@
+(:name d-insert-import
+:auto-generated t
+:type emacswiki
+:description "insert import statement for D language"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/d-insert-import.el")

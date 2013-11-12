@@ -1,0 +1,5 @@
+(:name mon-dir-locals-alist
+:auto-generated t
+:type emacswiki
+:description "MON global vars bound to commonly used local-site paths"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-dir-locals-alist.el")

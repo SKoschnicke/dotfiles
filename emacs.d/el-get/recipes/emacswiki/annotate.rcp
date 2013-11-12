@@ -1,0 +1,5 @@
+(:name annotate
+:auto-generated t
+:type emacswiki
+:description "simple file annotation system"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/annotate.el")

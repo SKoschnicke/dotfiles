@@ -1,0 +1,5 @@
+(:name cdb-gud
+:auto-generated t
+:type emacswiki
+:description "Grand Unified Debugger mode for running CDB"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cdb-gud.el")

@@ -1,0 +1,5 @@
+(:name font-lock-color-test
+:auto-generated t
+:type emacswiki
+:description "Tool to test new font lock colors."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/font-lock-color-test.el")

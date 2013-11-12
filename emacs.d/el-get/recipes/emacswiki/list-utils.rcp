@@ -1,0 +1,5 @@
+(:name list-utils
+:auto-generated t
+:type emacswiki
+:description "List-manipulation utility functions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/list-utils.el")

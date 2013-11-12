@@ -1,0 +1,5 @@
+(:name contentswitch
+:auto-generated t
+:type emacswiki
+:description "switch to buffer/file by content"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/contentswitch.el")

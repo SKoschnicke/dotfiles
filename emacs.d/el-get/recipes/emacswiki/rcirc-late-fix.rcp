@@ -1,0 +1,5 @@
+(:name rcirc-late-fix
+:auto-generated t
+:type emacswiki
+:description "Replace s/wrong/right strings on rcirc buffers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc-late-fix.el")

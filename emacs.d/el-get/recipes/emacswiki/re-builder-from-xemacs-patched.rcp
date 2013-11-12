@@ -1,0 +1,5 @@
+(:name re-builder-from-xemacs-patched
+:auto-generated t
+:type emacswiki
+:description "building Regexps with visual feedback"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/re-builder-from-xemacs-patched.el")

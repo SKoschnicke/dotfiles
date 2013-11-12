@@ -1,0 +1,5 @@
+(:name finkinfo
+:auto-generated t
+:type emacswiki
+:description "major mode for Fink package info files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/finkinfo.el")

@@ -1,0 +1,5 @@
+(:name mon-doc-help-utils-supplemental
+:auto-generated t
+:type emacswiki
+:description "functions to bootstrap mon-doc-help-utils"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-doc-help-utils-supplemental.el")

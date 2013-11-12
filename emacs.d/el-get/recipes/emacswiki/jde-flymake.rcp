@@ -1,0 +1,5 @@
+(:name jde-flymake
+:auto-generated t
+:type emacswiki
+:description "an extension to flymake that uses JDEE and Jikes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jde-flymake.el")

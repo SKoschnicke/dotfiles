@@ -1,0 +1,5 @@
+(:name mon-keybindings
+:auto-generated t
+:type emacswiki
+:description "MON keybindings for fncns used across sites"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-keybindings.el")

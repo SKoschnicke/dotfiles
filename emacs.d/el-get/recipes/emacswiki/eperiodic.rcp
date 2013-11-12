@@ -1,0 +1,5 @@
+(:name eperiodic
+:auto-generated t
+:type emacswiki
+:description "periodic table for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eperiodic.el")

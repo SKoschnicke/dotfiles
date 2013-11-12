@@ -1,0 +1,5 @@
+(:name strptime
+:auto-generated t
+:type emacswiki
+:description "partial implementation of POSIX date and time parsing"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/strptime.el")

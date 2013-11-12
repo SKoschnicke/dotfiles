@@ -1,0 +1,5 @@
+(:name wsh-repl
+:auto-generated t
+:type emacswiki
+:description "Windows Scripting Host REPL (in javascript)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wsh-repl.el")

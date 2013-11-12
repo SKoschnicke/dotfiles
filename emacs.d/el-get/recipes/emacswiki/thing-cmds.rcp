@@ -1,0 +1,5 @@
+(:name thing-cmds
+:auto-generated t
+:type emacswiki
+:description "Commands that use things, as defined by `thingatpt.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/thing-cmds.el")

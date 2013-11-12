@@ -1,0 +1,5 @@
+(:name sunrise-x-modeline
+:auto-generated t
+:type emacswiki
+:description "navigable mode line for the Sunrise Commander File Manager -*- lexical-binding: t -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sunrise-x-modeline.el")

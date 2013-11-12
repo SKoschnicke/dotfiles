@@ -1,0 +1,5 @@
+(:name date-calc
+:auto-generated t
+:type emacswiki
+:description "date calculation and parsing routines"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/date-calc.el")

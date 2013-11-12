@@ -1,0 +1,5 @@
+(:name zoom-frm
+:auto-generated t
+:type emacswiki
+:description "Commands to zoom frame font size."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/zoom-frm.el")

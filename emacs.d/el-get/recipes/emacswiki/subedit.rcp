@@ -1,0 +1,5 @@
+(:name subedit
+:auto-generated t
+:type emacswiki
+:description "edit part of a buffer in a new buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/subedit.el")

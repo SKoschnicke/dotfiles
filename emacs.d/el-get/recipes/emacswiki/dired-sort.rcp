@@ -1,0 +1,5 @@
+(:name dired-sort
+:auto-generated t
+:type emacswiki
+:description "Sort files in dired."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dired-sort.el")

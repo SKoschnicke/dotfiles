@@ -1,0 +1,5 @@
+(:name help-dwim-perldoc
+:auto-generated t
+:type emacswiki
+:description "dwim interface to perldoc"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/help-dwim-perldoc.el")

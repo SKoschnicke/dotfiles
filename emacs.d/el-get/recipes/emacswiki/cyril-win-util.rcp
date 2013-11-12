@@ -1,0 +1,5 @@
+(:name cyril-win-util
+:auto-generated t
+:type emacswiki
+:description " utilities for Cyrillic-CP1251 scripts. "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cyril-win-util.el")

@@ -1,0 +1,5 @@
+(:name flyphpcs
+:auto-generated t
+:type emacswiki
+:description "Flymake for PHP via PHP-CodeSniffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/flyphpcs.el")

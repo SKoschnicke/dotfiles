@@ -1,0 +1,5 @@
+(:name back-button
+:auto-generated t
+:type emacswiki
+:description "Visual navigation through mark rings"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/back-button.el")

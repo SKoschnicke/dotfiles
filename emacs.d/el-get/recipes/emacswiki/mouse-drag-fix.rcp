@@ -1,0 +1,5 @@
+(:name mouse-drag-fix
+:auto-generated t
+:type emacswiki
+:description "Bug fixed version of mouse-drag"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mouse-drag-fix.el")

@@ -1,0 +1,5 @@
+(:name linkify
+:auto-generated t
+:type emacswiki
+:description "Create clickable links to lines in files."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/linkify.el")

@@ -1,0 +1,5 @@
+(:name mon-replacement-utils
+:auto-generated t
+:type emacswiki
+:description "common regexp and subsitiution procedures "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-replacement-utils.el")

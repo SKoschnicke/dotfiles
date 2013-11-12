@@ -1,0 +1,5 @@
+(:name ediff+
+:auto-generated t
+:type emacswiki
+:description "Enhancements to Ediff"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ediff+.el")

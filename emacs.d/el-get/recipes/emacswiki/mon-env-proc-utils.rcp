@@ -1,0 +1,5 @@
+(:name mon-env-proc-utils
+:auto-generated t
+:type emacswiki
+:description "procedures for interacting w/ process environment"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-env-proc-utils.el")

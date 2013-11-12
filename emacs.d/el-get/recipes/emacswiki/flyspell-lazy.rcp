@@ -1,0 +1,5 @@
+(:name flyspell-lazy
+:auto-generated t
+:type emacswiki
+:description "Improve flyspell responsiveness using idle timers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/flyspell-lazy.el")

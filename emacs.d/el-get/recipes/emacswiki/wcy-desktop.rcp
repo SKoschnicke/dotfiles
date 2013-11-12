@@ -1,0 +1,5 @@
+(:name wcy-desktop
+:auto-generated t
+:type emacswiki
+:description "faster than desktop.el and less features."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wcy-desktop.el")

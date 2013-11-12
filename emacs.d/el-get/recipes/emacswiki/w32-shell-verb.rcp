@@ -1,0 +1,5 @@
+(:name w32-shell-verb
+:auto-generated t
+:type emacswiki
+:description "ShellExecute verbs on a file"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w32-shell-verb.el")

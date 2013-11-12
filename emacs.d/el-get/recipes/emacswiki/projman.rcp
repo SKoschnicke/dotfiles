@@ -1,0 +1,5 @@
+(:name projman
+:auto-generated t
+:type emacswiki
+:description "Simple source file project management"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/projman.el")

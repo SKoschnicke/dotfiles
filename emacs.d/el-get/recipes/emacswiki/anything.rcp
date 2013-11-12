@@ -1,0 +1,5 @@
+(:name anything
+:auto-generated t
+:type emacswiki
+:description "open anything / QuickSilver-like candidate-selection framework"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything.el")

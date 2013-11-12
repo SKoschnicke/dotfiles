@@ -1,0 +1,5 @@
+(:name init-hideshow
+:auto-generated t
+:type emacswiki
+:description "Hideshow configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-hideshow.el")

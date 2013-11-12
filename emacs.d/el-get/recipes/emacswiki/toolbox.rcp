@@ -1,0 +1,5 @@
+(:name toolbox
+:auto-generated t
+:type emacswiki
+:description "create simple menus in buffers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/toolbox.el")

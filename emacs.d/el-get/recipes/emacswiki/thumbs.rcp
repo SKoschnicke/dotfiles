@@ -1,0 +1,5 @@
+(:name thumbs
+:auto-generated t
+:type emacswiki
+:description "Thumbnails previewer for images files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/thumbs.el")

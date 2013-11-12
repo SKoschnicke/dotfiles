@@ -1,0 +1,5 @@
+(:name inhibit-clash-detection
+:auto-generated t
+:type emacswiki
+:description "suppress lockfiles"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/inhibit-clash-detection.el")

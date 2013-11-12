@@ -1,0 +1,5 @@
+(:name simple-wiki-recent-changes
+:auto-generated t
+:type emacswiki
+:description "view recent changes "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/simple-wiki-recent-changes.el")

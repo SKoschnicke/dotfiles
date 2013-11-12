@@ -1,0 +1,5 @@
+(:name tsv-mode
+:auto-generated t
+:type emacswiki
+:description "Major mode for edit table files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tsv-mode.el")

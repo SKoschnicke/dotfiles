@@ -1,0 +1,5 @@
+(:name time-ext
+:auto-generated t
+:type emacswiki
+:description "more function for time/date"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/time-ext.el")

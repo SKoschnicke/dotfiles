@@ -1,0 +1,5 @@
+(:name joystick
+:auto-generated t
+:type emacswiki
+:description "Lisp part of joystick interface for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/joystick.el")

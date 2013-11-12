@@ -1,0 +1,5 @@
+(:name evil-elscreen
+:auto-generated t
+:type emacswiki
+:description "evil wrpaaer to use elscreen as tab"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/evil-elscreen.el")

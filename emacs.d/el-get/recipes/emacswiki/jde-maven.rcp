@@ -1,0 +1,5 @@
+(:name jde-maven
+:auto-generated t
+:type emacswiki
+:description "Use Apache Maven to build your JDE projects"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jde-maven.el")

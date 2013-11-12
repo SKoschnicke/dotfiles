@@ -1,0 +1,5 @@
+(:name elisp-format
+:auto-generated t
+:type emacswiki
+:description "Format elisp code"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/elisp-format.el")

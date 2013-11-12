@@ -1,0 +1,5 @@
+(:name migemo-viper
+:auto-generated t
+:type emacswiki
+:description "A extension for viper 'f,F,t,T' commands by migemo."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/migemo-viper.el")

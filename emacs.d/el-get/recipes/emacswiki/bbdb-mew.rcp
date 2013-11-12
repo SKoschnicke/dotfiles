@@ -1,0 +1,5 @@
+(:name bbdb-mew
+:auto-generated t
+:type emacswiki
+:description "BBDB interface to Mew"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bbdb-mew.el")

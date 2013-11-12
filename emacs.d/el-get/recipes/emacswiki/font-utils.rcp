@@ -1,0 +1,5 @@
+(:name font-utils
+:auto-generated t
+:type emacswiki
+:description "Utility functions for working with fonts"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/font-utils.el")

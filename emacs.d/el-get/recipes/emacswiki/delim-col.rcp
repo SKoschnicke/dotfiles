@@ -1,0 +1,5 @@
+(:name delim-col
+:auto-generated t
+:type emacswiki
+:description "prettify all columns in a region or rectangle"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/delim-col.el")

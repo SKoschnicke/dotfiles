@@ -1,0 +1,5 @@
+(:name point-ring
+:auto-generated t
+:type emacswiki
+:description "Cycle between point positions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/point-ring.el")

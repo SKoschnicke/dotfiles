@@ -1,0 +1,5 @@
+(:name really-simple-wiki
+:auto-generated t
+:type emacswiki
+:description "edit local raw wiki pages"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/really-simple-wiki.el")

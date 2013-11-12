@@ -1,0 +1,5 @@
+(:name help-fns+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `help-fns.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/help-fns+.el")

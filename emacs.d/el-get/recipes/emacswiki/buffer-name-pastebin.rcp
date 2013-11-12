@@ -1,0 +1,5 @@
+(:name buffer-name-pastebin
+:auto-generated t
+:type emacswiki
+:description "A simple interface to the www.pastebin.com webservice"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/buffer-name-pastebin.el")

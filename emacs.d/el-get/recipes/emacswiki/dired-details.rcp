@@ -1,0 +1,5 @@
+(:name dired-details
+:auto-generated t
+:type emacswiki
+:description "make file details hide-able in dired"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dired-details.el")

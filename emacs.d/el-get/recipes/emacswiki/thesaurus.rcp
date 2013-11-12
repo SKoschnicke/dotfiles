@@ -1,0 +1,5 @@
+(:name thesaurus
+:auto-generated t
+:type emacswiki
+:description "replace a word with a synonym looked up in a web service."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/thesaurus.el")

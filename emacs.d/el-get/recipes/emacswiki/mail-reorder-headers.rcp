@@ -1,0 +1,5 @@
+(:name mail-reorder-headers
+:auto-generated t
+:type emacswiki
+:description "Re-arrange mail headers into pleasing order."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mail-reorder-headers.el")

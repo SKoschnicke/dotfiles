@@ -1,0 +1,5 @@
+(:name mon-button-utils
+:auto-generated t
+:type emacswiki
+:description "utilities for examining button properties"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-button-utils.el")

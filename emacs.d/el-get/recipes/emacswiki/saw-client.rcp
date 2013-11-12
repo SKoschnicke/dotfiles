@@ -1,0 +1,5 @@
+(:name saw-client
+:auto-generated t
+:type emacswiki
+:description "Interaction with sawfish"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/saw-client.el")

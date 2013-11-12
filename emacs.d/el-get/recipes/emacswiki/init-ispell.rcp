@@ -1,0 +1,5 @@
+(:name init-ispell
+:auto-generated t
+:type emacswiki
+:description "Ispell configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-ispell.el")

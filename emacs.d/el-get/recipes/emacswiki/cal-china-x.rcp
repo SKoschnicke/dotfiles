@@ -1,0 +1,5 @@
+(:name cal-china-x
+:auto-generated t
+:type emacswiki
+:description "Chinese calendar extras"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cal-china-x.el")

@@ -1,0 +1,5 @@
+(:name pp+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `pp.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pp+.el")

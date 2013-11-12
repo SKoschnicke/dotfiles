@@ -1,0 +1,5 @@
+(:name mc-gpg-file-mode
+:auto-generated t
+:type emacswiki
+:description "automatically gpg decrypt/encrypt files ending with '.gpg'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mc-gpg-file-mode.el")

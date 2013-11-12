@@ -1,0 +1,5 @@
+(:name dummy-h-mode
+:auto-generated t
+:type emacswiki
+:description "switch major mode to c-/c++-/objc-mode on .h file"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dummy-h-mode.el")

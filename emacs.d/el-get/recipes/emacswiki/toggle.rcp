@@ -1,0 +1,5 @@
+(:name toggle
+:auto-generated t
+:type emacswiki
+:description "quickly open corresponding file (eg test vs impl)."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/toggle.el")

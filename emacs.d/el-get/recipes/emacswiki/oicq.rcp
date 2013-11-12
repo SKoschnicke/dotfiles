@@ -1,0 +1,5 @@
+(:name oicq
+:auto-generated t
+:type emacswiki
+:description "A front-end to perl OICQ"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/oicq.el")

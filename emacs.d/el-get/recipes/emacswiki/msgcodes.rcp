@@ -1,0 +1,5 @@
+(:name msgcodes
+:auto-generated t
+:type emacswiki
+:description "common and rare Usenet message "encodings""
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/msgcodes.el")

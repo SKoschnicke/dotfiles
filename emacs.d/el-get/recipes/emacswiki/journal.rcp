@@ -1,0 +1,5 @@
+(:name journal
+:auto-generated t
+:type emacswiki
+:description "The Emacs Journal"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/journal.el")

@@ -1,0 +1,5 @@
+(:name gradebook
+:auto-generated t
+:type emacswiki
+:description "major mode for keeping a simple plain-text gradebook"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gradebook.el")

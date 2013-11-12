@@ -1,0 +1,5 @@
+(:name moikrug
+:auto-generated t
+:type emacswiki
+:description "(S)XEmacs interface to MoiKrug."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/moikrug.el")

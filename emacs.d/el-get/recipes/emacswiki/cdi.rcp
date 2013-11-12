@@ -1,0 +1,5 @@
+(:name cdi
+:auto-generated t
+:type emacswiki
+:description "interface between Emacs and command line CD players"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cdi.el")

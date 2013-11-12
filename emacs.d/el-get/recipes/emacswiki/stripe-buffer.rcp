@@ -1,0 +1,5 @@
+(:name stripe-buffer
+:auto-generated t
+:type emacswiki
+:description "Make stripe color with buffer."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/stripe-buffer.el")

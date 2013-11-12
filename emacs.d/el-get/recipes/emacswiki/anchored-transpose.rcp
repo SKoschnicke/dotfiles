@@ -1,0 +1,5 @@
+(:name anchored-transpose
+:auto-generated t
+:type emacswiki
+:description "Transposes a phrase around an anchor phrase"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anchored-transpose.el")

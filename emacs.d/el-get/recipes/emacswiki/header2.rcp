@@ -1,0 +1,5 @@
+(:name header2
+:auto-generated t
+:type emacswiki
+:description "Support for creation and update of file headers."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/header2.el")

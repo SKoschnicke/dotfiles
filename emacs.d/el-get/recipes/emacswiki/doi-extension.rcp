@@ -1,0 +1,5 @@
+(:name doi-extension
+:auto-generated t
+:type emacswiki
+:description "Extension for doi.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/doi-extension.el")

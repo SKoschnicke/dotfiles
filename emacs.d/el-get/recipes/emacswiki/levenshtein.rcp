@@ -1,0 +1,5 @@
+(:name levenshtein
+:auto-generated t
+:type emacswiki
+:description "Edit distance between two strings."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/levenshtein.el")

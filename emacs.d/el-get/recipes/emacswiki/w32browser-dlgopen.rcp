@@ -1,0 +1,5 @@
+(:name w32browser-dlgopen
+:auto-generated t
+:type emacswiki
+:description "Use w32browser with standard Windows Open File box."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w32browser-dlgopen.el")

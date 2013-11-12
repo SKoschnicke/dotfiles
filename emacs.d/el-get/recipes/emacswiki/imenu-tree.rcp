@@ -1,0 +1,5 @@
+(:name imenu-tree
+:auto-generated t
+:type emacswiki
+:description "A mode to view imenu using tree-widget"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/imenu-tree.el")

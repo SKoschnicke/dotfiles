@@ -1,0 +1,5 @@
+(:name md-readme
+:auto-generated t
+:type emacswiki
+:description "Markdown-formatted READMEs for your ELisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/md-readme.el")

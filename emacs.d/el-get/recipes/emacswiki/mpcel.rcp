@@ -1,0 +1,5 @@
+(:name mpcel
+:auto-generated t
+:type emacswiki
+:description "A mpd (Music Player Daemon) client"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mpcel.el")

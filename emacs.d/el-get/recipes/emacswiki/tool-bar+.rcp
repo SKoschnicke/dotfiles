@@ -1,0 +1,5 @@
+(:name tool-bar+
+:auto-generated t
+:type emacswiki
+:description "Extensions to standard library tool-bar.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tool-bar+.el")

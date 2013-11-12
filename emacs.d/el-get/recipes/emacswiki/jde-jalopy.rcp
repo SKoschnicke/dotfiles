@@ -1,0 +1,5 @@
+(:name jde-jalopy
+:auto-generated t
+:type emacswiki
+:description "JALOPY interface for JDE"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jde-jalopy.el")

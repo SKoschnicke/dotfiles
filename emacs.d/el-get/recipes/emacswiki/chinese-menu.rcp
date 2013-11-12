@@ -1,0 +1,5 @@
+(:name chinese-menu
+:auto-generated t
+:type emacswiki
+:description "Add chinese menu bar -*- coding: utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/chinese-menu.el")

@@ -1,0 +1,5 @@
+(:name log-buffer
+:auto-generated t
+:type emacswiki
+:description "Log buffer utils"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/log-buffer.el")

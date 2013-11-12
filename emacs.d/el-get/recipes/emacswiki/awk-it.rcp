@@ -1,0 +1,5 @@
+(:name awk-it
+:auto-generated t
+:type emacswiki
+:description "Run AWK interactively on region!"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/awk-it.el")

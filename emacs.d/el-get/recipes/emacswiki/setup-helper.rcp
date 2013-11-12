@@ -1,0 +1,5 @@
+(:name setup-helper
+:auto-generated t
+:type emacswiki
+:description "Functions for installation and setup of Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/setup-helper.el")

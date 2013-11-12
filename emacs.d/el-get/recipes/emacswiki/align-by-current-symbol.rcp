@@ -1,0 +1,5 @@
+(:name align-by-current-symbol
+:auto-generated t
+:type emacswiki
+:description "Align lines containing a symbol according to that symbol."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/align-by-current-symbol.el")

@@ -1,0 +1,5 @@
+(:name modeline-posn
+:auto-generated t
+:type emacswiki
+:description "Set up `mode-line-position'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/modeline-posn.el")

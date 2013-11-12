@@ -1,0 +1,5 @@
+(:name aes
+:auto-generated t
+:type emacswiki
+:description "Implementation of AES"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/aes.el")

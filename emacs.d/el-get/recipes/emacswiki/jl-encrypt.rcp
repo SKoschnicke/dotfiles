@@ -1,0 +1,5 @@
+(:name jl-encrypt
+:auto-generated t
+:type emacswiki
+:description "Insert MML encryption tags if public keys are available"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jl-encrypt.el")

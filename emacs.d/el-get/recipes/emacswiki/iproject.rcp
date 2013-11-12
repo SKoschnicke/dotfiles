@@ -1,0 +1,5 @@
+(:name iproject
+:auto-generated t
+:type emacswiki
+:description "Interactive Project Mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/iproject.el")

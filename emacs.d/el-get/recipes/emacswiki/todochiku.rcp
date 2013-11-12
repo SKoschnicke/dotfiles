@@ -1,0 +1,5 @@
+(:name todochiku
+:auto-generated t
+:type emacswiki
+:description "A mode for interfacing with Growl, Snarl, and the like."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/todochiku.el")

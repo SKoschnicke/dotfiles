@@ -1,0 +1,5 @@
+(:name windata
+:auto-generated t
+:type emacswiki
+:description "convert window configuration to list"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/windata.el")

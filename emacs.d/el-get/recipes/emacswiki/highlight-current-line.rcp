@@ -1,0 +1,5 @@
+(:name highlight-current-line
+:auto-generated t
+:type emacswiki
+:description "highlight line where the cursor is."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/highlight-current-line.el")

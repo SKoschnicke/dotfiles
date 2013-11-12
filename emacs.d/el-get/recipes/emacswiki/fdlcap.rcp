@@ -1,0 +1,5 @@
+(:name fdlcap
+:auto-generated t
+:type emacswiki
+:description "Cycle through case and capitalization of words."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fdlcap.el")

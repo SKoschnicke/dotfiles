@@ -1,0 +1,5 @@
+(:name trantab
+:auto-generated t
+:type emacswiki
+:description "translation table bundles"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/trantab.el")

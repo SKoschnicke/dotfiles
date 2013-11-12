@@ -1,0 +1,5 @@
+(:name snipplr
+:auto-generated t
+:type emacswiki
+:description "Emacs interface to snipplr.com"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/snipplr.el")

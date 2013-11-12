@@ -1,0 +1,5 @@
+(:name sticky
+:auto-generated t
+:type emacswiki
+:description "Sticky key for capital letters"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sticky.el")

@@ -1,0 +1,5 @@
+(:name eyedropper
+:auto-generated t
+:type emacswiki
+:description "Pick foreground and background colors at cursor or pointer."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eyedropper.el")

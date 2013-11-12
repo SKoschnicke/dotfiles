@@ -1,0 +1,5 @@
+(:name fenc
+:auto-generated t
+:type emacswiki
+:description "Detect CJK coding system by counting most frequence charaters"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fenc.el")

@@ -1,0 +1,5 @@
+(:name mon-time-utils
+:auto-generated t
+:type emacswiki
+:description "utilities for working with time."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-time-utils.el")

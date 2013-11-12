@@ -1,0 +1,5 @@
+(:name 123-menu
+:auto-generated t
+:type emacswiki
+:description "Simple menuing system, reminiscent of Lotus 123 in DOS"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/123-menu.el")

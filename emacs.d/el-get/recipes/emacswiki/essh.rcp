@@ -1,0 +1,5 @@
+(:name essh
+:auto-generated t
+:type emacswiki
+:description "a set of commands that emulate for bash what ESS is to R."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/essh.el")

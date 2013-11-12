@@ -1,0 +1,5 @@
+(:name tiling
+:auto-generated t
+:type emacswiki
+:description "changing window layout"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tiling.el")

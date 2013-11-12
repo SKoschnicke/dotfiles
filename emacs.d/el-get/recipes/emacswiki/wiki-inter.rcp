@@ -1,0 +1,5 @@
+(:name wiki-inter
+:auto-generated t
+:type emacswiki
+:description "interwikis for wiki.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wiki-inter.el")

@@ -1,0 +1,5 @@
+(:name ajc-java-complete-my-config-example
+:auto-generated t
+:type emacswiki
+:description "Auto Java Completion for GNU Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ajc-java-complete-my-config-example.el")

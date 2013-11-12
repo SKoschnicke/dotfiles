@@ -1,0 +1,5 @@
+(:name descbinds-anything
+:auto-generated t
+:type emacswiki
+:description "Yet Another `describe-bindings' with `anything'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/descbinds-anything.el")

@@ -1,0 +1,5 @@
+(:name pkb-html-0.2
+:auto-generated t
+:type emacswiki
+:description "print bindings in a pretty fashion in html format"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pkb-html-0.2.el")

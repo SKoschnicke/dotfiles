@@ -1,0 +1,5 @@
+(:name cc-mode+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `c-mode.el' & `cc-mode.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cc-mode+.el")

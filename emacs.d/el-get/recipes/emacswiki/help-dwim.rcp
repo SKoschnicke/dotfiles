@@ -1,0 +1,5 @@
+(:name help-dwim
+:auto-generated t
+:type emacswiki
+:description "Show help information"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/help-dwim.el")

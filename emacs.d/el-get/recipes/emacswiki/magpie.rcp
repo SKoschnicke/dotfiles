@@ -1,0 +1,5 @@
+(:name magpie
+:auto-generated t
+:type emacswiki
+:description "acronym expansion and others. "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/magpie.el")

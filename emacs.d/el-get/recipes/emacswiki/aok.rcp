@@ -1,0 +1,5 @@
+(:name aok
+:auto-generated t
+:type emacswiki
+:description "various useful ways to do `multi-occur'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/aok.el")

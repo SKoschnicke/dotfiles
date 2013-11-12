@@ -1,0 +1,5 @@
+(:name highlight-chars
+:auto-generated t
+:type emacswiki
+:description "Highlight specified sets of characters, including whitespace."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/highlight-chars.el")

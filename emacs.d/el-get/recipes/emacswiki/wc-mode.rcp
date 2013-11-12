@@ -1,0 +1,5 @@
+(:name wc-mode
+:auto-generated t
+:type emacswiki
+:description "show wc-like information in status bar"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wc-mode.el")

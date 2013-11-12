@@ -1,0 +1,5 @@
+(:name queue-mail
+:auto-generated t
+:type emacswiki
+:description "Queue draft e-mail in a directory"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/queue-mail.el")

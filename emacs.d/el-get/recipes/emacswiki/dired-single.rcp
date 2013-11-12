@@ -1,0 +1,5 @@
+(:name dired-single
+:auto-generated t
+:type emacswiki
+:description "Reuse the current dired buffer to visit another directory"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dired-single.el")

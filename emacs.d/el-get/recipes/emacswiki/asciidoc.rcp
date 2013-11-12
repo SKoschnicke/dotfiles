@@ -1,0 +1,5 @@
+(:name asciidoc
+:auto-generated t
+:type emacswiki
+:description "asciidoc text file development support"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/asciidoc.el")

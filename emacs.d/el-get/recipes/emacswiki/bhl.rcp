@@ -1,0 +1,5 @@
+(:name bhl
+:auto-generated t
+:type emacswiki
+:description "From (P)lain text to (H)tml and (L)aTeX."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bhl.el")

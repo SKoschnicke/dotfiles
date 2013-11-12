@@ -1,0 +1,5 @@
+(:name w3m-extension
+:auto-generated t
+:type emacswiki
+:description "Emacs-W3m extensions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w3m-extension.el")

@@ -1,0 +1,5 @@
+(:name viewer
+:auto-generated t
+:type emacswiki
+:description "View-mode extension"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/viewer.el")

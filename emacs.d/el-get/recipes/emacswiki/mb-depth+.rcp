@@ -1,0 +1,5 @@
+(:name mb-depth+
+:auto-generated t
+:type emacswiki
+:description "Indicate minibuffer-depth in prompt"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mb-depth+.el")

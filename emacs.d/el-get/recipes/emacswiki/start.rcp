@@ -1,0 +1,5 @@
+(:name start
+:auto-generated t
+:type emacswiki
+:description "Main Emacs startup file: require/autoload other files."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/start.el")

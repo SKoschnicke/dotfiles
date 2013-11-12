@@ -1,0 +1,5 @@
+(:name icicles-menu-xmas
+:auto-generated t
+:type emacswiki
+:description "xemacs port (beta) of icicles-menu.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-menu-xmas.el")

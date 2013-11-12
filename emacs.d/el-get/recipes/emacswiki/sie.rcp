@@ -1,0 +1,5 @@
+(:name sie
+:auto-generated t
+:type emacswiki
+:description "Interpreter of a Scheme-like language"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sie.el")

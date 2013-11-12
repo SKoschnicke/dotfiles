@@ -1,0 +1,5 @@
+(:name grep-buffers
+:auto-generated t
+:type emacswiki
+:description "grep through buffers (a la 'moccur')"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/grep-buffers.el")

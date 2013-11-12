@@ -1,0 +1,5 @@
+(:name dired-isearch
+:auto-generated t
+:type emacswiki
+:description "isearch in Dired"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dired-isearch.el")

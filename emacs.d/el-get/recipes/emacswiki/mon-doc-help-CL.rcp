@@ -1,0 +1,5 @@
+(:name mon-doc-help-CL
+:auto-generated t
+:type emacswiki
+:description "utils for documenting Common Lisp from within Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-doc-help-CL.el")

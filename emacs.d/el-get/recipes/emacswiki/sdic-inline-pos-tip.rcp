@@ -1,0 +1,5 @@
+(:name sdic-inline-pos-tip
+:auto-generated t
+:type emacswiki
+:description "Extension for sdic-inline-mode using pos-tip.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sdic-inline-pos-tip.el")

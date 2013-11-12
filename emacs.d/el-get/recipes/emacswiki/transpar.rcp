@@ -1,0 +1,5 @@
+(:name transpar
+:auto-generated t
+:type emacswiki
+:description "Transpose paragraph text as a table."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/transpar.el")

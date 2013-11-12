@@ -1,0 +1,5 @@
+(:name org-dotemacs
+:auto-generated t
+:type emacswiki
+:description "Store your emacs config as an org file, and choose which bits to load."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/org-dotemacs.el")

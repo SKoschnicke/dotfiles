@@ -1,0 +1,5 @@
+(:name xpath
+:auto-generated t
+:type emacswiki
+:description "XPATH implementation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/xpath.el")

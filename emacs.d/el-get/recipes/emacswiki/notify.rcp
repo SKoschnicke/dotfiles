@@ -1,0 +1,5 @@
+(:name notify
+:auto-generated t
+:type emacswiki
+:description "notification front-end"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/notify.el")

@@ -1,0 +1,5 @@
+(:name tal-indent
+:auto-generated t
+:type emacswiki
+:description "Handles indentation functions for tal-mode."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tal-indent.el")

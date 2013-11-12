@@ -1,0 +1,5 @@
+(:name devel-notes
+:auto-generated t
+:type emacswiki
+:description "Add annotation to sources and track them in an org file."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/devel-notes.el")

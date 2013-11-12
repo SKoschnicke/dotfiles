@@ -1,0 +1,5 @@
+(:name httpgetwin32
+:auto-generated t
+:type emacswiki
+:description "small utility interactive fn to perform an HTTP GET"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/httpgetwin32.el")

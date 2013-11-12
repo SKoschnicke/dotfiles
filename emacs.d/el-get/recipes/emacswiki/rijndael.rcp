@@ -1,0 +1,5 @@
+(:name rijndael
+:auto-generated t
+:type emacswiki
+:description "Rijndael (AES) block cipher implementation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rijndael.el")

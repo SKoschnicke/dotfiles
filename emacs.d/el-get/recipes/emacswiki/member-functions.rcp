@@ -1,0 +1,5 @@
+(:name member-functions
+:auto-generated t
+:type emacswiki
+:description "Expand C++ member functions into implementation file"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/member-functions.el")

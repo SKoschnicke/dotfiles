@@ -1,0 +1,5 @@
+(:name mon-boxcutter
+:auto-generated t
+:type emacswiki
+:description "w32 screencaptures from Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-boxcutter.el")

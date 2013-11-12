@@ -1,0 +1,5 @@
+(:name df-mode
+:auto-generated t
+:type emacswiki
+:description "Minor mode to show space left on devices in the mode line "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/df-mode.el")

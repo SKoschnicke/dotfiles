@@ -1,0 +1,5 @@
+(:name textmate-to-yas
+:auto-generated t
+:type emacswiki
+:description "Import Textmate macros into yasnippet syntax"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/textmate-to-yas.el")

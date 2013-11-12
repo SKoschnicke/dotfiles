@@ -1,0 +1,5 @@
+(:name column-marker
+:auto-generated t
+:type emacswiki
+:description "Highlight certain character columns"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/column-marker.el")

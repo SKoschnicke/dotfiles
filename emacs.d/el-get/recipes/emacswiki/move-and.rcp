@@ -1,0 +1,5 @@
+(:name move-and
+:auto-generated t
+:type emacswiki
+:description "Move point and perform some other action"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/move-and.el")

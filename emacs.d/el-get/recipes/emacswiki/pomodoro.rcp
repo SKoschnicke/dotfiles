@@ -1,0 +1,5 @@
+(:name pomodoro
+:auto-generated t
+:type emacswiki
+:description "Pomodoro Technique for emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pomodoro.el")

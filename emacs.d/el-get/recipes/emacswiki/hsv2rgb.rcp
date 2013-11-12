@@ -1,0 +1,5 @@
+(:name hsv2rgb
+:auto-generated t
+:type emacswiki
+:description "Transformation from HSV to RGB"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hsv2rgb.el")

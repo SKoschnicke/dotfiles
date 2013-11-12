@@ -1,0 +1,5 @@
+(:name w3m-fb
+:auto-generated t
+:type emacswiki
+:description "frame-local buffers support for Emacs-w3m"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w3m-fb.el")

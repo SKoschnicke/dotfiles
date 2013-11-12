@@ -1,0 +1,5 @@
+(:name timid
+:auto-generated t
+:type emacswiki
+:description "timid completion"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/timid.el")

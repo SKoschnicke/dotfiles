@@ -1,0 +1,5 @@
+(:name mon-empty-registers
+:auto-generated t
+:type emacswiki
+:description "fill and empty register locations en masse."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-empty-registers.el")

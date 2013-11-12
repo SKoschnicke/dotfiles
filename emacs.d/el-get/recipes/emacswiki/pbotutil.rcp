@@ -1,0 +1,5 @@
+(:name pbotutil
+:auto-generated t
+:type emacswiki
+:description "interface to pbotutil.pl"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pbotutil.el")

@@ -1,0 +1,5 @@
+(:name emms-get-lyrics
+:auto-generated t
+:type emacswiki
+:description "Get the lyrics of the song emms is currently playing"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emms-get-lyrics.el")

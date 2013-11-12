@@ -1,0 +1,5 @@
+(:name vel
+:auto-generated t
+:type emacswiki
+:description "keyboard/mouse-based "self-scroller""
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vel.el")

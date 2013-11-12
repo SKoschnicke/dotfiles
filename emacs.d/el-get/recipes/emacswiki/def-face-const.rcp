@@ -1,0 +1,5 @@
+(:name def-face-const
+:auto-generated t
+:type emacswiki
+:description "Macro for defining faces & their variables."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/def-face-const.el")

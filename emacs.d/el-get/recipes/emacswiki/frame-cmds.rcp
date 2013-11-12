@@ -1,0 +1,5 @@
+(:name frame-cmds
+:auto-generated t
+:type emacswiki
+:description "Frame and window commands (interactive functions)."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/frame-cmds.el")

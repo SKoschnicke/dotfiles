@@ -1,0 +1,5 @@
+(:name vm-thread
+:auto-generated t
+:type emacswiki
+:description "Functions for collapsing threads in a VM Summary buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vm-thread.el")

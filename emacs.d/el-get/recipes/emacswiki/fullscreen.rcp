@@ -1,0 +1,5 @@
+(:name fullscreen
+:auto-generated t
+:type emacswiki
+:description "Full screen"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fullscreen.el")

@@ -1,0 +1,5 @@
+(:name rcirc-extension
+:auto-generated t
+:type emacswiki
+:description "The extensions that i collect."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc-extension.el")

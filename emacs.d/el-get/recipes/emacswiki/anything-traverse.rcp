@@ -1,0 +1,5 @@
+(:name anything-traverse
+:auto-generated t
+:type emacswiki
+:description "Use traverselisp within anything."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-traverse.el")

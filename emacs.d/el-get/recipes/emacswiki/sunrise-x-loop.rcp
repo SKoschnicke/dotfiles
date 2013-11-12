@@ -1,0 +1,5 @@
+(:name sunrise-x-loop
+:auto-generated t
+:type emacswiki
+:description "asynchronous execution of filesystem operations for the Sunrise Commander File Manager -*- lexical-binding: t -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sunrise-x-loop.el")

@@ -1,0 +1,5 @@
+(:name org-blog
+:auto-generated t
+:type emacswiki
+:description "create and publish a blog with org-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/org-blog.el")

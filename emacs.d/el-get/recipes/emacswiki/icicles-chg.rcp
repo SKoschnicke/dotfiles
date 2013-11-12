@@ -1,0 +1,5 @@
+(:name icicles-chg
+:auto-generated t
+:type emacswiki
+:description "Change logs for Icicles libraries."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-chg.el")

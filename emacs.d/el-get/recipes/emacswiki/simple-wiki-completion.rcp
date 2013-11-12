@@ -1,0 +1,5 @@
+(:name simple-wiki-completion
+:auto-generated t
+:type emacswiki
+:description ""
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/simple-wiki-completion.el")

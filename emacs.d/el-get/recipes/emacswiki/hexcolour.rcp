@@ -1,0 +1,5 @@
+(:name hexcolour
+:auto-generated t
+:type emacswiki
+:description "Highlight HTML-style colour specifications"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hexcolour.el")

@@ -1,0 +1,5 @@
+(:name ctypes
+:auto-generated t
+:type emacswiki
+:description "Enhanced Font lock support for custom defined types."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ctypes.el")

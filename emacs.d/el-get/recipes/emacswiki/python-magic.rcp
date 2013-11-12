@@ -1,0 +1,5 @@
+(:name python-magic
+:auto-generated t
+:type emacswiki
+:description "outline mode extension for python mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/python-magic.el")

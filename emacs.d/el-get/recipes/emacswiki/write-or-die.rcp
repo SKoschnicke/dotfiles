@@ -1,0 +1,5 @@
+(:name write-or-die
+:auto-generated t
+:type emacswiki
+:description "deletes word from buffer if you stop typing for to long"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/write-or-die.el")

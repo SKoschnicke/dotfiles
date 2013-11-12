@@ -1,0 +1,5 @@
+(:name volctrl
+:auto-generated t
+:type emacswiki
+:description "Elisp interface to controling audio output "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/volctrl.el")

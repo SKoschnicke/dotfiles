@@ -1,0 +1,5 @@
+(:name anaphora
+:auto-generated t
+:type emacswiki
+:description "anaphoric macros providing implicit temp variables"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anaphora.el")

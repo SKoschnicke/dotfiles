@@ -1,0 +1,5 @@
+(:name sudo-save
+:auto-generated t
+:type emacswiki
+:description "Allow saving files using sudo"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sudo-save.el")

@@ -1,0 +1,5 @@
+(:name minibuffer-complete-cycle
+:auto-generated t
+:type emacswiki
+:description "Cycle through the *Completions* buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/minibuffer-complete-cycle.el")

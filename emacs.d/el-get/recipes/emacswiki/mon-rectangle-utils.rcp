@@ -1,0 +1,5 @@
+(:name mon-rectangle-utils
+:auto-generated t
+:type emacswiki
+:description "procedures for manipulating rectangles"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-rectangle-utils.el")

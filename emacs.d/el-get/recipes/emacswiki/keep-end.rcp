@@ -1,0 +1,5 @@
+(:name keep-end
+:auto-generated t
+:type emacswiki
+:description "Keep some buffer always at end"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/keep-end.el")

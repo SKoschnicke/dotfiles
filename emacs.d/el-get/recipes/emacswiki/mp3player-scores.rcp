@@ -1,0 +1,5 @@
+(:name mp3player-scores
+:auto-generated t
+:type emacswiki
+:description "Scoring system for mp3player"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mp3player-scores.el")

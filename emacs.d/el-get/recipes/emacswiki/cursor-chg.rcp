@@ -1,0 +1,5 @@
+(:name cursor-chg
+:auto-generated t
+:type emacswiki
+:description "Change cursor dynamically, depending on the context."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cursor-chg.el")

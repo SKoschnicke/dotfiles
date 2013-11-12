@@ -1,0 +1,5 @@
+(:name smart-dnd
+:auto-generated t
+:type emacswiki
+:description "user-configurable drag-n-drop feature"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/smart-dnd.el")

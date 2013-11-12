@@ -1,0 +1,5 @@
+(:name cperl-auto-name
+:auto-generated t
+:type emacswiki
+:description "auto name pm buffers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cperl-auto-name.el")

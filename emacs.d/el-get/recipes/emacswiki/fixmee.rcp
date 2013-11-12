@@ -1,0 +1,5 @@
+(:name fixmee
+:auto-generated t
+:type emacswiki
+:description "Quickly navigate to FIXME notices in code"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fixmee.el")

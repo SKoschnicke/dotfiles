@@ -1,0 +1,5 @@
+(:name tumme
+:auto-generated t
+:type emacswiki
+:description "use dired to browse and manipulate your images"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tumme.el")

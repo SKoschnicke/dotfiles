@@ -1,0 +1,5 @@
+(:name volatile-highlights
+:auto-generated t
+:type emacswiki
+:description "Minor mode for visual feedback on some operations."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/volatile-highlights.el")

@@ -1,0 +1,5 @@
+(:name tumbl
+:auto-generated t
+:type emacswiki
+:description "Post to tumblr.com from emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tumbl.el")

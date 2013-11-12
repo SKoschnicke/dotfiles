@@ -1,0 +1,5 @@
+(:name two-mode-mode
+:auto-generated t
+:type emacswiki
+:description "switches between tcl and sgml(html) modes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/two-mode-mode.el")

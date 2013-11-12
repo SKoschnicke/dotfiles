@@ -1,0 +1,5 @@
+(:name pdftools
+:auto-generated t
+:type emacswiki
+:description "a collection of pdf tools to mimic ps-spool- functions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pdftools.el")

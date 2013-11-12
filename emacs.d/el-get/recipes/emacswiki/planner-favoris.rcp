@@ -1,0 +1,5 @@
+(:name planner-favoris
+:auto-generated t
+:type emacswiki
+:description "add some bookmarks in a planner day page"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/planner-favoris.el")

@@ -1,0 +1,5 @@
+(:name befunge-mode
+:auto-generated t
+:type emacswiki
+:description "An interpreter/debugger for the 2D Befunge programming language"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/befunge-mode.el")

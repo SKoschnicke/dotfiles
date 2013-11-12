@@ -1,0 +1,5 @@
+(:name hgw-init-wl
+:auto-generated t
+:type emacswiki
+:description "Configuration file for the Wanderlust Email client"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hgw-init-wl.el")

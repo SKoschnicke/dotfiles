@@ -1,0 +1,5 @@
+(:name menu-tree
+:auto-generated t
+:type emacswiki
+:description "Mode: Emacs-Lisp ; Coding: utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/menu-tree.el")

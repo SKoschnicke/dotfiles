@@ -1,0 +1,5 @@
+(:name embeddedchangelog
+:auto-generated t
+:type emacswiki
+:description "edit a change log embedded in a file"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/embeddedchangelog.el")

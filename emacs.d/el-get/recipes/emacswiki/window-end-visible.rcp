@@ -1,0 +1,5 @@
+(:name window-end-visible
+:auto-generated t
+:type emacswiki
+:description "Find the last visible point in a window"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/window-end-visible.el")

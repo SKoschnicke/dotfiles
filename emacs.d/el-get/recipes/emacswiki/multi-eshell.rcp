@@ -1,0 +1,5 @@
+(:name multi-eshell
+:auto-generated t
+:type emacswiki
+:description "Create and manage multiple shells within Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/multi-eshell.el")

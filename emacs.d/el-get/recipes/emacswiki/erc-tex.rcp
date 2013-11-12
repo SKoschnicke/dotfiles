@@ -1,0 +1,5 @@
+(:name erc-tex
+:auto-generated t
+:type emacswiki
+:description "LaTeX mathematical expressions rendering for ERC"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/erc-tex.el")

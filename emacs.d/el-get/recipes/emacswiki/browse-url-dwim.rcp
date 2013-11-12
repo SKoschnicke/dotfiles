@@ -1,0 +1,5 @@
+(:name browse-url-dwim
+:auto-generated t
+:type emacswiki
+:description "Context-sensitive external browse URL or Internet search"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/browse-url-dwim.el")

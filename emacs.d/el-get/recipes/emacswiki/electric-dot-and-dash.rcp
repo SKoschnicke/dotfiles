@@ -1,0 +1,5 @@
+(:name electric-dot-and-dash
+:auto-generated t
+:type emacswiki
+:description "Different way to enter brackets"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/electric-dot-and-dash.el")

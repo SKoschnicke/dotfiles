@@ -1,0 +1,5 @@
+(:name rect-extension
+:auto-generated t
+:type emacswiki
+:description "Some extensions for rect.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rect-extension.el")

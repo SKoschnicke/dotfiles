@@ -1,0 +1,5 @@
+(:name emms-mark-ext
+:auto-generated t
+:type emacswiki
+:description "Extra functions for emms-mark-mode and emms-tag-edit-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emms-mark-ext.el")

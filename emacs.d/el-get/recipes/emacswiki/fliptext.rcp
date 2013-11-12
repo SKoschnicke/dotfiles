@@ -1,0 +1,5 @@
+(:name fliptext
+:auto-generated t
+:type emacswiki
+:description "Input method for flipping characters upside down"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fliptext.el")

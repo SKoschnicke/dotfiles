@@ -1,0 +1,5 @@
+(:name otp
+:auto-generated t
+:type emacswiki
+:description "a one-time password creator for Emacs -*- emacs-lisp -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/otp.el")

@@ -1,0 +1,5 @@
+(:name java-complete
+:auto-generated t
+:type emacswiki
+:description "Java completion"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/java-complete.el")

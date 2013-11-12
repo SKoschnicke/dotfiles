@@ -1,0 +1,5 @@
+(:name mailcap-view
+:auto-generated t
+:type emacswiki
+:description "View files based on the mime-type of the file extension"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mailcap-view.el")

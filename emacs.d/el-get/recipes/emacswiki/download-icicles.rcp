@@ -1,0 +1,5 @@
+(:name download-icicles
+:auto-generated t
+:type emacswiki
+:description "Download the Icicles Package"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/download-icicles.el")

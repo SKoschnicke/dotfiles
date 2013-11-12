@@ -1,0 +1,5 @@
+(:name judge-indent
+:auto-generated t
+:type emacswiki
+:description "judge indent and tab widths"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/judge-indent.el")

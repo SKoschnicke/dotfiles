@@ -1,0 +1,5 @@
+(:name anything-gtags
+:auto-generated t
+:type emacswiki
+:description "GNU GLOBAL anything.el interface"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-gtags.el")

@@ -1,0 +1,5 @@
+(:name mouse+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `mouse.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mouse+.el")

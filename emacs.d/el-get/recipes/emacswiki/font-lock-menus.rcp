@@ -1,0 +1,5 @@
+(:name font-lock-menus
+:auto-generated t
+:type emacswiki
+:description "Font-lock menus: enhanced `font-menus.el'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/font-lock-menus.el")

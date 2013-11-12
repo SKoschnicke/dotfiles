@@ -1,0 +1,5 @@
+(:name email
+:auto-generated t
+:type emacswiki
+:description "Extensions to mail-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/email.el")

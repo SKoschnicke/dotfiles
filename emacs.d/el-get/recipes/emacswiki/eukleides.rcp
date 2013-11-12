@@ -1,0 +1,5 @@
+(:name eukleides
+:auto-generated t
+:type emacswiki
+:description "Major mode to edit eukleides files."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eukleides.el")

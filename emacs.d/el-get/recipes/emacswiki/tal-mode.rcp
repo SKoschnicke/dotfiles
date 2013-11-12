@@ -1,0 +1,5 @@
+(:name tal-mode
+:auto-generated t
+:type emacswiki
+:description "Handles the Tandem/NSK/Guardian TAL & PTAL languages."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tal-mode.el")

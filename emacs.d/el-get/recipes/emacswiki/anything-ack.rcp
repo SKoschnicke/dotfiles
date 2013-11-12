@@ -1,0 +1,5 @@
+(:name anything-ack
+:auto-generated t
+:type emacswiki
+:description "search refinement of ack result with anything"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-ack.el")

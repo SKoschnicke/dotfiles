@@ -1,0 +1,5 @@
+(:name csv-nav
+:auto-generated t
+:type emacswiki
+:description "navigate and edit CSV files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/csv-nav.el")

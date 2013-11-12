@@ -1,0 +1,5 @@
+(:name ido-preview
+:auto-generated t
+:type emacswiki
+:description "commands for viewing current option contests before opening"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ido-preview.el")

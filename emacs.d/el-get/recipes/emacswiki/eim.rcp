@@ -1,0 +1,5 @@
+(:name eim
+:auto-generated t
+:type emacswiki
+:description "emacs input method"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eim.el")

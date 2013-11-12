@@ -1,0 +1,5 @@
+(:name hidesearch
+:auto-generated t
+:type emacswiki
+:description "Incremental search while hiding non-matching lines."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hidesearch.el")

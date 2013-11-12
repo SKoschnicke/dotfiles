@@ -1,0 +1,5 @@
+(:name init-bbbd
+:auto-generated t
+:type emacswiki
+:description "Bbbd configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-bbbd.el")

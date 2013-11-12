@@ -1,0 +1,5 @@
+(:name org-oddmuse
+:auto-generated t
+:type emacswiki
+:description "Transform from Org-mode to Oddmuse Wiki format."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/org-oddmuse.el")

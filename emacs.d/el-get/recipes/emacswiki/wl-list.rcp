@@ -1,0 +1,5 @@
+(:name wl-list
+:auto-generated t
+:type emacswiki
+:description "List all W3M buffers."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wl-list.el")

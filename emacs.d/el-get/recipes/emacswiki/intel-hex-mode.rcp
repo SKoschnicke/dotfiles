@@ -1,0 +1,5 @@
+(:name intel-hex-mode
+:auto-generated t
+:type emacswiki
+:description "Mode for Intel Hex files."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/intel-hex-mode.el")

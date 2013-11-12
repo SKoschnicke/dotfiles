@@ -1,0 +1,5 @@
+(:name sequential-command
+:auto-generated t
+:type emacswiki
+:description "Many commands into one command"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sequential-command.el")

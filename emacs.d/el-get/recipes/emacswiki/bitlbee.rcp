@@ -1,0 +1,5 @@
+(:name bitlbee
+:auto-generated t
+:type emacswiki
+:description "Help get Bitlbee (http://www.bitlbee.org) up and running"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bitlbee.el")

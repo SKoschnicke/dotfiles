@@ -1,0 +1,5 @@
+(:name speedkey
+:auto-generated t
+:type emacswiki
+:description "simple keybindings with documentation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/speedkey.el")

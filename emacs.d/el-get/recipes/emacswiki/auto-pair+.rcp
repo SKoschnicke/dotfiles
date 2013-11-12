@@ -1,0 +1,5 @@
+(:name auto-pair+
+:auto-generated t
+:type emacswiki
+:description "Autopair handler to extend Autopair behavior."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-pair+.el")

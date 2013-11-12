@@ -1,0 +1,5 @@
+(:name swbuff-x
+:auto-generated t
+:type emacswiki
+:description "Modifications to David Ponce's swbuff"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/swbuff-x.el")

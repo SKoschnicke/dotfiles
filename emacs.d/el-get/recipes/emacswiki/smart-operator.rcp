@@ -1,0 +1,5 @@
+(:name smart-operator
+:auto-generated t
+:type emacswiki
+:description "Beautify the operators in codes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/smart-operator.el")

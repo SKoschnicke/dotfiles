@@ -1,0 +1,5 @@
+(:name joseph-util
+:auto-generated t
+:type emacswiki
+:description "util functions   -*- coding:utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/joseph-util.el")

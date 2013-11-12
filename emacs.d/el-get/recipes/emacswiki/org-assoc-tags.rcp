@@ -1,0 +1,5 @@
+(:name org-assoc-tags
+:auto-generated t
+:type emacswiki
+:description "Automatically associate tags when key-tagging an item"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/org-assoc-tags.el")

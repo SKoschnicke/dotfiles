@@ -1,0 +1,5 @@
+(:name init-backup
+:auto-generated t
+:type emacswiki
+:description "备份设置"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-backup.el")

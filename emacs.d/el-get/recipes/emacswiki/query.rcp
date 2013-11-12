@@ -1,0 +1,5 @@
+(:name query
+:auto-generated t
+:type emacswiki
+:description "Functions to query the user"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/query.el")

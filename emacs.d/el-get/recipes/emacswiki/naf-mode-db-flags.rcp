@@ -1,0 +1,5 @@
+(:name naf-mode-db-flags
+:auto-generated t
+:type emacswiki
+:description "keyword lists and regexps for font-locking in `naf-mode'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/naf-mode-db-flags.el")

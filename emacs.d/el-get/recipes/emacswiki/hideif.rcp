@@ -1,0 +1,5 @@
+(:name hideif
+:auto-generated t
+:type emacswiki
+:description "hides selected code within ifdef"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hideif.el")

@@ -1,0 +1,5 @@
+(:name desktop-menu
+:auto-generated t
+:type emacswiki
+:description "menu for managing Emacs desktops"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/desktop-menu.el")

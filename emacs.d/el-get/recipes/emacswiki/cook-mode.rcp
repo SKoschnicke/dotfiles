@@ -1,0 +1,5 @@
+(:name cook-mode
+:auto-generated t
+:type emacswiki
+:description "Major mode for writing cook (a make replacement) files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cook-mode.el")

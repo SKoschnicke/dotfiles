@@ -1,0 +1,5 @@
+(:name wgrep
+:auto-generated t
+:type emacswiki
+:description "Writable grep buffer and apply the changes to files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wgrep.el")

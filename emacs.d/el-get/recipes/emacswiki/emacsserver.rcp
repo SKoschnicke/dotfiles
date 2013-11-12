@@ -1,0 +1,5 @@
+(:name emacsserver
+:auto-generated t
+:type emacswiki
+:description "A server in emacs-lisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emacsserver.el")

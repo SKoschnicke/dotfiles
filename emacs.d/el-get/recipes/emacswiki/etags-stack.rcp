@@ -1,0 +1,5 @@
+(:name etags-stack
+:auto-generated t
+:type emacswiki
+:description "Navigate the tags stack"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/etags-stack.el")

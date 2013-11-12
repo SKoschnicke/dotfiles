@@ -1,0 +1,5 @@
+(:name xsocks
+:auto-generated t
+:type emacswiki
+:description "emacs sockets extender"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/xsocks.el")

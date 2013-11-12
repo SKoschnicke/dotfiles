@@ -1,0 +1,5 @@
+(:name frame-fns
+:auto-generated t
+:type emacswiki
+:description "Non-interactive frame and window functions."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/frame-fns.el")

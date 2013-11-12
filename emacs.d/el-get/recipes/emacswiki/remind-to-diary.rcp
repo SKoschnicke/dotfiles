@@ -1,0 +1,5 @@
+(:name remind-to-diary
+:auto-generated t
+:type emacswiki
+:description "convert remind `simple calendar' output to diary format"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/remind-to-diary.el")

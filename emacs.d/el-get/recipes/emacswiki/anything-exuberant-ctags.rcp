@@ -1,0 +1,5 @@
+(:name anything-exuberant-ctags
+:auto-generated t
+:type emacswiki
+:description "Exuberant ctags anything.el interface"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-exuberant-ctags.el")

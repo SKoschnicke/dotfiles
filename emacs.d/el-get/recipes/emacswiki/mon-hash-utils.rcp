@@ -1,0 +1,5 @@
+(:name mon-hash-utils
+:auto-generated t
+:type emacswiki
+:description " procedures to extend Emacs lisp hashtables"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-hash-utils.el")

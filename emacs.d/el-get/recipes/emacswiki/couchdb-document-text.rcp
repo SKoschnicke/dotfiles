@@ -1,0 +1,5 @@
+(:name couchdb-document-text
+:auto-generated t
+:type emacswiki
+:description "couchdb document as text"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/couchdb-document-text.el")

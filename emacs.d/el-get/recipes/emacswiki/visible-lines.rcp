@@ -1,0 +1,5 @@
+(:name visible-lines
+:auto-generated t
+:type emacswiki
+:description "move across visible lines instead of logic lines"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/visible-lines.el")

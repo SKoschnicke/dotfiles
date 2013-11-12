@@ -1,0 +1,5 @@
+(:name muse-tree
+:auto-generated t
+:type emacswiki
+:description "Show muse project using tree-widget"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/muse-tree.el")

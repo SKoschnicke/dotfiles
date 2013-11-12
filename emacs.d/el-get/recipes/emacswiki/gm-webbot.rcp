@@ -1,0 +1,5 @@
+(:name gm-webbot
+:auto-generated t
+:type emacswiki
+:description "An implementation of Webbots known from MS Frontpage."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gm-webbot.el")

@@ -1,0 +1,5 @@
+(:name perldb-ui
+:auto-generated t
+:type emacswiki
+:description "User Interface for perl debugger"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/perldb-ui.el")

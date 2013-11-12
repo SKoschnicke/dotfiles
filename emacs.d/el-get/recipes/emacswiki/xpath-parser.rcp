@@ -1,0 +1,5 @@
+(:name xpath-parser
+:auto-generated t
+:type emacswiki
+:description "XPATH parser"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/xpath-parser.el")

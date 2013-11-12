@@ -1,0 +1,5 @@
+(:name session
+:auto-generated t
+:type emacswiki
+:description "use variables, registers and buffer places across sessions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/session.el")

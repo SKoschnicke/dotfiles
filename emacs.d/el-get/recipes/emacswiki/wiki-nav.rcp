@@ -1,0 +1,5 @@
+(:name wiki-nav
+:auto-generated t
+:type emacswiki
+:description "Simple file navigation using [[WikiStrings]]"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wiki-nav.el")

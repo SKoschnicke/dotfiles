@@ -1,0 +1,5 @@
+(:name fsproject
+:auto-generated t
+:type emacswiki
+:description "File System Project Viewer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fsproject.el")

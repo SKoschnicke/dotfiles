@@ -1,0 +1,5 @@
+(:name save-and-dwim
+:auto-generated t
+:type emacswiki
+:description "save, then do something after saving."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/save-and-dwim.el")

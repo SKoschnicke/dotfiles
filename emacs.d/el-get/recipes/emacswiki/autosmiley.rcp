@@ -1,0 +1,5 @@
+(:name autosmiley
+:auto-generated t
+:type emacswiki
+:description "Convert smileys into their graphical representation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/autosmiley.el")

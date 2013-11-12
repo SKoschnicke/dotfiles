@@ -1,0 +1,5 @@
+(:name naf-mode-ulan-utils
+:auto-generated t
+:type emacswiki
+:description "utility fncns for converting ULAN data for naf-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/naf-mode-ulan-utils.el")

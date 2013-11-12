@@ -1,0 +1,5 @@
+(:name bug
+:auto-generated t
+:type emacswiki
+:description "A simple, alternative interface to the ant command line"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bug.el")

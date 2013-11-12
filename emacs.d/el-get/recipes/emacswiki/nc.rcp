@@ -1,0 +1,5 @@
+(:name nc
+:auto-generated t
+:type emacswiki
+:description "emulate famos ms-dog file browser"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/nc.el")

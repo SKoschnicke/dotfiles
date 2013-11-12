@@ -1,0 +1,5 @@
+(:name mu
+:auto-generated t
+:type emacswiki
+:description "play on a MUSH or MUD within Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mu.el")

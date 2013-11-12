@@ -1,0 +1,5 @@
+(:name wcy-swbuff
+:auto-generated t
+:type emacswiki
+:description "switch buffer quickly"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wcy-swbuff.el")

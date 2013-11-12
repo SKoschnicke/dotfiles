@@ -1,0 +1,5 @@
+(:name gobject-class
+:auto-generated t
+:type emacswiki
+:description "functions to easy GObject-based class developers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gobject-class.el")

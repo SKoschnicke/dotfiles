@@ -1,0 +1,5 @@
+(:name dot-mode
+:auto-generated t
+:type emacswiki
+:description "Minor mode to repeat typing or commands"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dot-mode.el")

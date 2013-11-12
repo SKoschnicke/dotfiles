@@ -1,0 +1,5 @@
+(:name constraint
+:auto-generated t
+:type emacswiki
+:description "a constraint propagation library in elisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/constraint.el")

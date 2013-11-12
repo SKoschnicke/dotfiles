@@ -1,0 +1,5 @@
+(:name mon-word-syntax-utils
+:auto-generated t
+:type emacswiki
+:description "counting things with word syntax"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-word-syntax-utils.el")

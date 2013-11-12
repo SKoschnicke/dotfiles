@@ -1,0 +1,5 @@
+(:name apply-mode-line-format
+:auto-generated t
+:type emacswiki
+:description "Return `mode-line-format' as a string"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/apply-mode-line-format.el")

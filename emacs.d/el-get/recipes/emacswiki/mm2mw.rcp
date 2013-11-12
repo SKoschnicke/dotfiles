@@ -1,0 +1,5 @@
+(:name mm2mw
+:auto-generated t
+:type emacswiki
+:description "A MoinMoin 1.2.x -> MediaWiki 1.7.x converter"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mm2mw.el")

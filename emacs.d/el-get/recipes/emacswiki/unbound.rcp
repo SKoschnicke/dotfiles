@@ -1,0 +1,5 @@
+(:name unbound
+:auto-generated t
+:type emacswiki
+:description "find convenient unbound keystrokes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/unbound.el")

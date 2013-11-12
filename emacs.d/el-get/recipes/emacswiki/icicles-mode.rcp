@@ -1,0 +1,5 @@
+(:name icicles-mode
+:auto-generated t
+:type emacswiki
+:description "Icicle Mode definition for Icicles"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-mode.el")

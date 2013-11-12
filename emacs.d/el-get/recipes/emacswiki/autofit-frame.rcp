@@ -1,0 +1,5 @@
+(:name autofit-frame
+:auto-generated t
+:type emacswiki
+:description "Automatically resize one-window frames to fit"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/autofit-frame.el")

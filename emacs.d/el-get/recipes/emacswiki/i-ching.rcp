@@ -1,0 +1,5 @@
+(:name i-ching
+:auto-generated t
+:type emacswiki
+:description "Cast an i-ching, and come up with a hexagram."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/i-ching.el")

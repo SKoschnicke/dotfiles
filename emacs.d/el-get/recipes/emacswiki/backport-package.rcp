@@ -1,0 +1,5 @@
+(:name backport-package
+:auto-generated t
+:type emacswiki
+:description "lift package.el from emacs 24 for use in emacs 23"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/backport-package.el")

@@ -1,0 +1,5 @@
+(:name ipa
+:auto-generated t
+:type emacswiki
+:description "In-place annotations"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ipa.el")

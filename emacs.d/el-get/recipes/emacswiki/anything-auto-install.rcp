@@ -1,0 +1,5 @@
+(:name anything-auto-install
+:auto-generated t
+:type emacswiki
+:description "Integrate auto-install.el with anything.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-auto-install.el")

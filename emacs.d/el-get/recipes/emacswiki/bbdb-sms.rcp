@@ -1,0 +1,5 @@
+(:name bbdb-sms
+:auto-generated t
+:type emacswiki
+:description "bbdb functions for sending SMS text messages with sms-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bbdb-sms.el")

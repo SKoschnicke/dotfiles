@@ -1,0 +1,5 @@
+(:name po-mode+
+:auto-generated t
+:type emacswiki
+:description "Extensions to GNU gettext's `po-mode.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/po-mode+.el")

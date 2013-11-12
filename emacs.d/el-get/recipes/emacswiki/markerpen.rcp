@@ -1,0 +1,5 @@
+(:name markerpen
+:auto-generated t
+:type emacswiki
+:description "Colour and highlight arbitrary sections of buffers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/markerpen.el")

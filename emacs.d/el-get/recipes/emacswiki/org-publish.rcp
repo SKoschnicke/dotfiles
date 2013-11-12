@@ -1,0 +1,5 @@
+(:name org-publish
+:auto-generated t
+:type emacswiki
+:description "publish related org-mode files as a website"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/org-publish.el")

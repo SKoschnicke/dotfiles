@@ -1,0 +1,5 @@
+(:name sunrise-x-old-checkpoints
+:auto-generated t
+:type emacswiki
+:description "backward compatibility checkpoint functions for the Sunrise Commander File Manager"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sunrise-x-old-checkpoints.el")

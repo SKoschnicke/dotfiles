@@ -1,0 +1,5 @@
+(:name rcirc-dbus
+:auto-generated t
+:type emacswiki
+:description "rcirc dbus notifications"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc-dbus.el")

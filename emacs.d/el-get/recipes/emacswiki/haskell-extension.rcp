@@ -1,0 +1,5 @@
+(:name haskell-extension
+:auto-generated t
+:type emacswiki
+:description "Some extension for haskell mode."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/haskell-extension.el")

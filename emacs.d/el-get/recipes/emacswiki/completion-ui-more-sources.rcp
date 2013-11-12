@@ -1,0 +1,5 @@
+(:name completion-ui-more-sources
+:auto-generated t
+:type emacswiki
+:description "Completion-UI more completion sources"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/completion-ui-more-sources.el")

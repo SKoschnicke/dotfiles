@@ -1,0 +1,5 @@
+(:name perl-completion
+:auto-generated t
+:type emacswiki
+:description "minor mode provides useful features for editing perl codes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/perl-completion.el")

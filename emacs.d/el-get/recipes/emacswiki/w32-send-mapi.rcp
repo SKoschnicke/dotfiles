@@ -1,0 +1,5 @@
+(:name w32-send-mapi
+:auto-generated t
+:type emacswiki
+:description "send e-mail messages using MAPI"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w32-send-mapi.el")

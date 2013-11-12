@@ -1,0 +1,5 @@
+(:name face-remap+
+:auto-generated t
+:type emacswiki
+:description "Extensions to standard library `face-remap.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/face-remap+.el")

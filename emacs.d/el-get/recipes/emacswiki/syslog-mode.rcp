@@ -1,0 +1,5 @@
+(:name syslog-mode
+:auto-generated t
+:type emacswiki
+:description "Major-mode for viewing log files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/syslog-mode.el")

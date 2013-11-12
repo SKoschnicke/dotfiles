@@ -1,0 +1,5 @@
+(:name tellicopy
+:auto-generated t
+:type emacswiki
+:description "A minor mode for saving the thing at point to `kill-ring'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tellicopy.el")

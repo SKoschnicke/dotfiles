@@ -1,0 +1,5 @@
+(:name emacs-lock+
+:auto-generated t
+:type emacswiki
+:description "extensions to standard library `emacs-lock.el'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emacs-lock+.el")

@@ -1,0 +1,5 @@
+(:name grep-ed
+:auto-generated t
+:type emacswiki
+:description "Edit the results of a grep"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/grep-ed.el")

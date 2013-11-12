@@ -1,0 +1,5 @@
+(:name point-undo
+:auto-generated t
+:type emacswiki
+:description "undo/redo position"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/point-undo.el")

@@ -1,0 +1,5 @@
+(:name ntcmd
+:auto-generated t
+:type emacswiki
+:description "major mode for editing cmd scripts"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ntcmd.el")

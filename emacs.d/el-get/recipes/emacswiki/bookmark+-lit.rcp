@@ -1,0 +1,5 @@
+(:name bookmark+-lit
+:auto-generated t
+:type emacswiki
+:description "Bookmark highlighting for Bookmark+."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bookmark+-lit.el")

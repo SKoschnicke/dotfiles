@@ -1,0 +1,5 @@
+(:name fortune-mode
+:auto-generated t
+:type emacswiki
+:description "Interface to write fortunes quickly"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fortune-mode.el")

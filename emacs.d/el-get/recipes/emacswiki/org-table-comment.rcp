@@ -1,0 +1,5 @@
+(:name org-table-comment
+:auto-generated t
+:type emacswiki
+:description " Org table comment modes."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/org-table-comment.el")

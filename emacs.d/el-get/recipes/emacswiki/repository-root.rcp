@@ -1,0 +1,5 @@
+(:name repository-root
+:auto-generated t
+:type emacswiki
+:description "deduce the repository root directory for a given file"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/repository-root.el")

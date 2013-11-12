@@ -1,0 +1,5 @@
+(:name atom-blogger
+:auto-generated t
+:type emacswiki
+:description "Utilities for Atom Blogger API"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/atom-blogger.el")

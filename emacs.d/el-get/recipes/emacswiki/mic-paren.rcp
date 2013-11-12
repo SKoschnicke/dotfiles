@@ -1,0 +1,5 @@
+(:name mic-paren
+:auto-generated t
+:type emacswiki
+:description "advanced highlighting of matching parentheses"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mic-paren.el")

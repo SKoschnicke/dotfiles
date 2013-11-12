@@ -1,0 +1,5 @@
+(:name c-toggle-dot-pointer
+:auto-generated t
+:type emacswiki
+:description "Functions for toggling a variable in a C function between pointer and non-pointer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/c-toggle-dot-pointer.el")

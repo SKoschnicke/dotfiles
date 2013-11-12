@@ -1,0 +1,5 @@
+(:name truthy
+:auto-generated t
+:type emacswiki
+:description "Test the content of a value"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/truthy.el")

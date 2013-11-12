@@ -1,0 +1,5 @@
+(:name ido-load-library
+:auto-generated t
+:type emacswiki
+:description "Load-library alternative using ido-completing-read"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ido-load-library.el")

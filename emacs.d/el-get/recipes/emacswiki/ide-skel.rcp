@@ -1,0 +1,5 @@
+(:name ide-skel
+:auto-generated t
+:type emacswiki
+:description "IDE skeleton for Emacs Lisp hackers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ide-skel.el")

@@ -1,0 +1,5 @@
+(:name fillcode
+:auto-generated t
+:type emacswiki
+:description "Fillcode minor mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fillcode.el")

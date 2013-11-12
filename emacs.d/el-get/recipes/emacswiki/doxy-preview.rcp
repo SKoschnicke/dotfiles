@@ -1,0 +1,5 @@
+(:name doxy-preview
+:auto-generated t
+:type emacswiki
+:description "Preview doxygen special commands (e.g. dot, msc)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/doxy-preview.el")

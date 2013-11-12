@@ -1,0 +1,5 @@
+(:name init-sdcv
+:auto-generated t
+:type emacswiki
+:description "Configuration file for sdcv.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-sdcv.el")

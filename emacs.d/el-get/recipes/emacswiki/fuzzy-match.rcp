@@ -1,0 +1,5 @@
+(:name fuzzy-match
+:auto-generated t
+:type emacswiki
+:description "fuzzy matching"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fuzzy-match.el")

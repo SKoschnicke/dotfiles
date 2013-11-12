@@ -1,0 +1,5 @@
+(:name nsis-mode
+:auto-generated t
+:type emacswiki
+:description "NSIS-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/nsis-mode.el")

@@ -1,0 +1,5 @@
+(:name mon-image-utils
+:auto-generated t
+:type emacswiki
+:description "interfacing with image manipulation processes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-image-utils.el")

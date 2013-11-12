@@ -1,0 +1,5 @@
+(:name anything-ipa
+:auto-generated t
+:type emacswiki
+:description "Anything interface of In Place Annotation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-ipa.el")

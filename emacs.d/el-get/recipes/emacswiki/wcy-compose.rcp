@@ -1,0 +1,5 @@
+(:name wcy-compose
+:auto-generated t
+:type emacswiki
+:description "some helper function that is not defined by default"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wcy-compose.el")

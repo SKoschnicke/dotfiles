@@ -1,0 +1,5 @@
+(:name screenplay
+:auto-generated t
+:type emacswiki
+:description "support writing of plain text screen plays"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/screenplay.el")

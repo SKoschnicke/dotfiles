@@ -1,0 +1,5 @@
+(:name warn-mail
+:auto-generated t
+:type emacswiki
+:description "warn for mails incoming"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/warn-mail.el")

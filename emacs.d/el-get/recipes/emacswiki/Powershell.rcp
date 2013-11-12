@@ -1,0 +1,5 @@
+(:name Powershell
+:auto-generated t
+:type emacswiki
+:description "run powershell as an inferior shell in emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/Powershell.el")

@@ -1,0 +1,5 @@
+(:name prev-next-buffer
+:auto-generated t
+:type emacswiki
+:description "Surrogates of `next-buffer' and `previous-buffer'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/prev-next-buffer.el")

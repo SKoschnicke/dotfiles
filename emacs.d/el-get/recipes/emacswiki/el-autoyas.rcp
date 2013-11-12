@@ -1,0 +1,5 @@
+(:name el-autoyas
+:auto-generated t
+:type emacswiki
+:description "Automatically create Emacs-Lisp Yasnippets"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/el-autoyas.el")

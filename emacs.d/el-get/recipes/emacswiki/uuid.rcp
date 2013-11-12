@@ -1,0 +1,5 @@
+(:name uuid
+:auto-generated t
+:type emacswiki
+:description "Provides uuid generating functions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/uuid.el")

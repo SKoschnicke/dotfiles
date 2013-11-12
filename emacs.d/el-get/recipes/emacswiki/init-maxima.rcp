@@ -1,0 +1,5 @@
+(:name init-maxima
+:auto-generated t
+:type emacswiki
+:description "Maxima configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-maxima.el")

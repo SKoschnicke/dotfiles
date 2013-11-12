@@ -1,0 +1,5 @@
+(:name icicles-install
+:auto-generated t
+:type emacswiki
+:description "Download and optionally byte-compile Icicles "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-install.el")

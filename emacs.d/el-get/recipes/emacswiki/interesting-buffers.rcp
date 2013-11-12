@@ -1,0 +1,5 @@
+(:name interesting-buffers
+:auto-generated t
+:type emacswiki
+:description "Add keybinding to cleanup displayed buffers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/interesting-buffers.el")

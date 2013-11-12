@@ -1,0 +1,5 @@
+(:name google-define-redux-supplemental
+:auto-generated t
+:type emacswiki
+:description "supplemental functions for google-define-redux"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/google-define-redux-supplemental.el")

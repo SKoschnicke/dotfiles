@@ -1,0 +1,5 @@
+(:name switch-to-new-buffer
+:auto-generated t
+:type emacswiki
+:description "Switch to a new buffer with default name"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/switch-to-new-buffer.el")

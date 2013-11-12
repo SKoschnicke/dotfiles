@@ -1,0 +1,5 @@
+(:name goto-last-change
+:auto-generated t
+:type emacswiki
+:description "Move point through buffer-undo-list positions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/goto-last-change.el")

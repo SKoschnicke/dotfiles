@@ -1,0 +1,5 @@
+(:name doi
+:auto-generated t
+:type emacswiki
+:description "Do Or Insert"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/doi.el")

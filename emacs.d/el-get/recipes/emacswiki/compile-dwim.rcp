@@ -1,0 +1,5 @@
+(:name compile-dwim
+:auto-generated t
+:type emacswiki
+:description "Automatic generate compile-command"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/compile-dwim.el")

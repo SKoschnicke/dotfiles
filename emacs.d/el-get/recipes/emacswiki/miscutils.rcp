@@ -1,0 +1,5 @@
+(:name miscutils
+:auto-generated t
+:type emacswiki
+:description "Miscallaneous utility functions for Editing,"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/miscutils.el")

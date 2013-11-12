@@ -1,0 +1,5 @@
+(:name mirror-mode
+:auto-generated t
+:type emacswiki
+:description "insert parens and string quotes in pairs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mirror-mode.el")

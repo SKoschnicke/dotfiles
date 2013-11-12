@@ -1,0 +1,5 @@
+(:name atim-unscroll
+:auto-generated t
+:type emacswiki
+:description "Minor mode for restoring buffer look as it was before scrolling."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/atim-unscroll.el")

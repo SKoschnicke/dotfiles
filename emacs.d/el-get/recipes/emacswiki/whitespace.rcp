@@ -1,0 +1,5 @@
+(:name whitespace
+:auto-generated t
+:type emacswiki
+:description "minor mode to visualize TAB, (HARD) SPACE, NEWLINE"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/whitespace.el")

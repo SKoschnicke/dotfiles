@@ -1,0 +1,5 @@
+(:name rdict
+:auto-generated t
+:type emacswiki
+:description "Interface to rus<->eng online dictionary."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rdict.el")

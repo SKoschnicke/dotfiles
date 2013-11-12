@@ -1,0 +1,5 @@
+(:name wn-org
+:auto-generated t
+:type emacswiki
+:description "an org-mode interface for Word Net"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wn-org.el")

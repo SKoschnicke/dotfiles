@@ -1,0 +1,5 @@
+(:name himark
+:auto-generated t
+:type emacswiki
+:description "marking text by highlighting"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/himark.el")

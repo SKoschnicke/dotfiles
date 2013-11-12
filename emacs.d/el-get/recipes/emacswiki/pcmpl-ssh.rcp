@@ -1,0 +1,5 @@
+(:name pcmpl-ssh
+:auto-generated t
+:type emacswiki
+:description "functions for completing SSH hostnames"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pcmpl-ssh.el")

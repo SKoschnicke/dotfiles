@@ -1,0 +1,5 @@
+(:name rep-words
+:auto-generated t
+:type emacswiki
+:description "find repeat words that repeat too much"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rep-words.el")

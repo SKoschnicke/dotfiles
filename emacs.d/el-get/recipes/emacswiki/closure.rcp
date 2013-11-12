@@ -1,0 +1,5 @@
+(:name closure
+:auto-generated t
+:type emacswiki
+:description "Experimental closure prototypes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/closure.el")

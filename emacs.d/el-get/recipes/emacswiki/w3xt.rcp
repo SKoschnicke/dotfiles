@@ -1,0 +1,5 @@
+(:name w3xt
+:auto-generated t
+:type emacswiki
+:description "extended MIME control in w3m"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w3xt.el")

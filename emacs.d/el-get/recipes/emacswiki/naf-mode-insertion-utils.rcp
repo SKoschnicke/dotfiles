@@ -1,0 +1,5 @@
+(:name naf-mode-insertion-utils
+:auto-generated t
+:type emacswiki
+:description "insertion procedures for working in `naf-mode' buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/naf-mode-insertion-utils.el")

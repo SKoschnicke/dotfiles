@@ -1,0 +1,5 @@
+(:name bst-mode
+:auto-generated t
+:type emacswiki
+:description "major mode for editing BibTeX style files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bst-mode.el")

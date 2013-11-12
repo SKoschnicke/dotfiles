@@ -1,0 +1,5 @@
+(:name extview
+:auto-generated t
+:type emacswiki
+:description "open files with external viewer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/extview.el")

@@ -1,0 +1,5 @@
+(:name oracle-query
+:auto-generated t
+:type emacswiki
+:description "execute sql select using sqlplus. -*- coding:utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/oracle-query.el")

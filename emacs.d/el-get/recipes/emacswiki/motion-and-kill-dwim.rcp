@@ -1,0 +1,5 @@
+(:name motion-and-kill-dwim
+:auto-generated t
+:type emacswiki
+:description "Motion and kill DWIM commands"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/motion-and-kill-dwim.el")

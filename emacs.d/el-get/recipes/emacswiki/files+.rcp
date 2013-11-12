@@ -1,0 +1,5 @@
+(:name files+
+:auto-generated t
+:type emacswiki
+:description "Enhancements of standard library `files.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/files+.el")

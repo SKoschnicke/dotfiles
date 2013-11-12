@@ -1,0 +1,5 @@
+(:name audel
+:auto-generated t
+:type emacswiki
+:description "An audtool frontend for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/audel.el")

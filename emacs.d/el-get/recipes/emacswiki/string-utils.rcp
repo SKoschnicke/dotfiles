@@ -1,0 +1,5 @@
+(:name string-utils
+:auto-generated t
+:type emacswiki
+:description "String-manipulation utilities"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/string-utils.el")

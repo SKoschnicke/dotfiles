@@ -1,0 +1,5 @@
+(:name dialog
+:auto-generated t
+:type emacswiki
+:description "dialog box interface using widgets, frames and windows"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dialog.el")

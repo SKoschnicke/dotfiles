@@ -1,0 +1,5 @@
+(:name ring+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `ring.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ring+.el")

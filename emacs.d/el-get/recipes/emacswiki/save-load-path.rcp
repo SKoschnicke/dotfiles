@@ -1,0 +1,5 @@
+(:name save-load-path
+:auto-generated t
+:type emacswiki
+:description "save load-path and reuse it to test"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/save-load-path.el")

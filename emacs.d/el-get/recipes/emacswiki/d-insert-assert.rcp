@@ -1,0 +1,5 @@
+(:name d-insert-assert
+:auto-generated t
+:type emacswiki
+:description "Automagical verbose assert insertion for D Programming Language"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/d-insert-assert.el")

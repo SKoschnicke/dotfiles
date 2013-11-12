@@ -1,0 +1,5 @@
+(:name bookmark-iterator
+:auto-generated t
+:type emacswiki
+:description "iterate through tags - similar to DevStudio"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bookmark-iterator.el")

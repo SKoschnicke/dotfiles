@@ -1,0 +1,5 @@
+(:name loops
+:auto-generated t
+:type emacswiki
+:description "detect loops in lists"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/loops.el")

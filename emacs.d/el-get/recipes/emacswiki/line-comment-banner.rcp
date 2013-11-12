@@ -1,0 +1,5 @@
+(:name line-comment-banner
+:auto-generated t
+:type emacswiki
+:description "Comment a line in a banner style."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/line-comment-banner.el")

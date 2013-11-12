@@ -1,0 +1,5 @@
+(:name popbiff2
+:auto-generated t
+:type emacswiki
+:description "Checks for mail using POP3"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/popbiff2.el")

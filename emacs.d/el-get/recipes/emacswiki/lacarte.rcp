@@ -1,0 +1,5 @@
+(:name lacarte
+:auto-generated t
+:type emacswiki
+:description "Execute menu items as commands, with completion."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lacarte.el")

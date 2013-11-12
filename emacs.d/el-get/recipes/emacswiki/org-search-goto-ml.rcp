@@ -1,0 +1,5 @@
+(:name org-search-goto-ml
+:auto-generated t
+:type emacswiki
+:description "Use multiline search to go to locations in your org buffers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/org-search-goto-ml.el")

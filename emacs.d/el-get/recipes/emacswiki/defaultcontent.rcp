@@ -1,0 +1,5 @@
+(:name defaultcontent
+:auto-generated t
+:type emacswiki
+:description "a templating tool. Fill new files with default content."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/defaultcontent.el")

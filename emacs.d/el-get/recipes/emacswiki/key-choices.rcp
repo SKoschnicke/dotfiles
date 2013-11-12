@@ -1,0 +1,5 @@
+(:name key-choices
+:auto-generated t
+:type emacswiki
+:description "Key Choices -- Also Viper has different colors in different modes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/key-choices.el")

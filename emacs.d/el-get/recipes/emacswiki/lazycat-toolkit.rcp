@@ -1,0 +1,5 @@
+(:name lazycat-toolkit
+:auto-generated t
+:type emacswiki
+:description "My toolkit"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lazycat-toolkit.el")

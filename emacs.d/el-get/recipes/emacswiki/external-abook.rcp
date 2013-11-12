@@ -1,0 +1,5 @@
+(:name external-abook
+:auto-generated t
+:type emacswiki
+:description "Enable the use of external address books from within Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/external-abook.el")

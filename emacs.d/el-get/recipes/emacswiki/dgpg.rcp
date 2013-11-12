@@ -1,0 +1,5 @@
+(:name dgpg
+:auto-generated t
+:type emacswiki
+:description "David's GPG Extensions for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dgpg.el")

@@ -1,0 +1,5 @@
+(:name dynamic-ring
+:auto-generated t
+:type emacswiki
+:description "A dynamically sized ring structure."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dynamic-ring.el")

@@ -1,0 +1,5 @@
+(:name coroutine
+:auto-generated t
+:type emacswiki
+:description "Coroutines for Emacs Lisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/coroutine.el")

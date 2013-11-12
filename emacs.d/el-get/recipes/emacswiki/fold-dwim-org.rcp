@@ -1,0 +1,5 @@
+(:name fold-dwim-org
+:auto-generated t
+:type emacswiki
+:description "Fold DWIM bound to org key-strokes."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fold-dwim-org.el")

@@ -1,0 +1,5 @@
+(:name unicode-fonts
+:auto-generated t
+:type emacswiki
+:description "Configure Unicode fonts"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/unicode-fonts.el")

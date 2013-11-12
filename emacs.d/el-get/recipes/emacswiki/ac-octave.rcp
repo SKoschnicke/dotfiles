@@ -1,0 +1,5 @@
+(:name ac-octave
+:auto-generated t
+:type emacswiki
+:description "An auto-complete source for Octave"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ac-octave.el")

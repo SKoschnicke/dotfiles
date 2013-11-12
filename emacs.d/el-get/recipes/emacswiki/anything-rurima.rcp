@@ -1,0 +1,5 @@
+(:name anything-rurima
+:auto-generated t
+:type emacswiki
+:description "Look up Japanese Ruby Reference Manual with anything.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-rurima.el")

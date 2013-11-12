@@ -1,0 +1,5 @@
+(:name hqw-goto
+:auto-generated t
+:type emacswiki
+:description "A quick way to go to specific window line and position."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hqw-goto.el")

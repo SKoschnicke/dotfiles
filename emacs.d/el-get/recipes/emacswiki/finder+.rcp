@@ -1,0 +1,5 @@
+(:name finder+
+:auto-generated t
+:type emacswiki
+:description "Extensions to standard library finder.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/finder+.el")

@@ -1,0 +1,5 @@
+(:name hide-region
+:auto-generated t
+:type emacswiki
+:description "hide regions of text using overlays"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hide-region.el")

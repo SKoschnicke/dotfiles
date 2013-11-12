@@ -1,0 +1,5 @@
+(:name abbrev-complete
+:auto-generated t
+:type emacswiki
+:description "Abbrev mode completion function"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/abbrev-complete.el")

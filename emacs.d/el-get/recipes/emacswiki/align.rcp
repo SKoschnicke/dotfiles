@@ -1,0 +1,5 @@
+(:name align
+:auto-generated t
+:type emacswiki
+:description "aling text seperated by whitespaces in columns"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/align.el")

@@ -1,0 +1,5 @@
+(:name browse-urn
+:auto-generated t
+:type emacswiki
+:description "Functionality for browsing URNs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/browse-urn.el")

@@ -1,0 +1,5 @@
+(:name one-key-dir
+:auto-generated t
+:type emacswiki
+:description "Functions for quickly navigating directory trees with one-key menus"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/one-key-dir.el")

@@ -1,0 +1,5 @@
+(:name unit-test
+:auto-generated t
+:type emacswiki
+:description "Run unit tests from Emacs with visual feedback"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/unit-test.el")

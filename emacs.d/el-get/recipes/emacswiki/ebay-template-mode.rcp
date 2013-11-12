@@ -1,0 +1,5 @@
+(:name ebay-template-mode
+:auto-generated t
+:type emacswiki
+:description "A handy template for editing auction listings."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ebay-template-mode.el")

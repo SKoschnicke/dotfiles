@@ -1,0 +1,5 @@
+(:name xcscope+
+:auto-generated t
+:type emacswiki
+:description "Providing an extension to xcscope."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/xcscope+.el")

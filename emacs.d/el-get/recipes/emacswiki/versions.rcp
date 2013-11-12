@@ -1,0 +1,5 @@
+(:name versions
+:auto-generated t
+:type emacswiki
+:description "version string comparison"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/versions.el")

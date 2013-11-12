@@ -1,0 +1,5 @@
+(:name org-extension
+:auto-generated t
+:type emacswiki
+:description "Some extensions for Org mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/org-extension.el")
