@@ -70,6 +70,8 @@
      ;; Change .pdf association directly within the alist
      (setcdr (assoc "\\.pdf\\'" org-file-apps) "acroread %s")))
 
+(setq org-export-latex-hyperref-format "\\ref{%s}")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; org mode bibtex integration
 (defun my-rtcite-export-handler (path desc format)
