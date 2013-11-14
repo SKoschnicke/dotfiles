@@ -1,0 +1,5 @@
+(:name rmime
+:auto-generated t
+:type emacswiki
+:description "read MIME messages"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rmime.el")

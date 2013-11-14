@@ -1,0 +1,5 @@
+(:name ess-edit
+:auto-generated t
+:type emacswiki
+:description "convenient editing of R code"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ess-edit.el")

@@ -1,0 +1,5 @@
+(:name rewrite
+:auto-generated t
+:type emacswiki
+:description " Utility to rewrite text files with easier regular expression handling"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rewrite.el")

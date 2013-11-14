@@ -1,0 +1,5 @@
+(:name cheezburger
+:auto-generated t
+:type emacswiki
+:description "ICanHasCheezburger.com viewer for emacs!"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cheezburger.el")

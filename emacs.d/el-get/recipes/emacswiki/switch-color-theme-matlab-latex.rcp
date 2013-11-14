@@ -1,0 +1,5 @@
+(:name switch-color-theme-matlab-latex
+:auto-generated t
+:type emacswiki
+:description "color themes for matlab"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/switch-color-theme-matlab-latex.el")

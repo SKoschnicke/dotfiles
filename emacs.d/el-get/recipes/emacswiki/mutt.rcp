@@ -1,0 +1,5 @@
+(:name mutt
+:auto-generated t
+:type emacswiki
+:description "Use Emacs 20 as an external editor for the Mutt mailer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mutt.el")

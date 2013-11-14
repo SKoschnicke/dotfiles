@@ -1,0 +1,5 @@
+(:name lnk
+:auto-generated t
+:type emacswiki
+:description "Follow Microsoft Explorer shortcuts"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lnk.el")

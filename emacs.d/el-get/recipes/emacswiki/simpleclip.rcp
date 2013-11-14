@@ -1,0 +1,5 @@
+(:name simpleclip
+:auto-generated t
+:type emacswiki
+:description "Simplified access to the system clipboard"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/simpleclip.el")

@@ -1,0 +1,5 @@
+(:name erobot
+:auto-generated t
+:type emacswiki
+:description "game with elisp functions trying to survive"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/erobot.el")

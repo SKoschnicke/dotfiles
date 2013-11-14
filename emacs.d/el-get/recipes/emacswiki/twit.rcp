@@ -1,0 +1,5 @@
+(:name twit
+:auto-generated t
+:type emacswiki
+:description "interface with twitter.com"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/twit.el")

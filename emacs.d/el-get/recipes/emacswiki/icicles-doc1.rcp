@@ -1,0 +1,5 @@
+(:name icicles-doc1
+:auto-generated t
+:type emacswiki
+:description "Minibuffer input completion and cycling."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-doc1.el")

@@ -1,0 +1,5 @@
+(:name parser
+:auto-generated t
+:type emacswiki
+:description "Elisp Macro DSL Parser Compiler"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/parser.el")

@@ -1,0 +1,5 @@
+(:name mon-color-utils
+:auto-generated t
+:type emacswiki
+:description "fncns for manipulating/examinaning color values"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-color-utils.el")

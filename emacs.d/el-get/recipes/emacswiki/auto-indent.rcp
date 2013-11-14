@@ -1,0 +1,5 @@
+(:name auto-indent
+:auto-generated t
+:type emacswiki
+:description "automatically indent source code"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-indent.el")

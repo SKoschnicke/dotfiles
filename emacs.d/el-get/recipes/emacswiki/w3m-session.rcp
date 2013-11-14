@@ -1,0 +1,5 @@
+(:name w3m-session
+:auto-generated t
+:type emacswiki
+:description "Persistent emacs-w3m sessions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w3m-session.el")

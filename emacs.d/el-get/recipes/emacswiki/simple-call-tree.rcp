@@ -1,0 +1,5 @@
+(:name simple-call-tree
+:auto-generated t
+:type emacswiki
+:description "analyze source code based on font-lock text-properties"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/simple-call-tree.el")

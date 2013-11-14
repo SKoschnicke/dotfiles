@@ -1,0 +1,5 @@
+(:name init-eldoc
+:auto-generated t
+:type emacswiki
+:description "Eldoc configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-eldoc.el")

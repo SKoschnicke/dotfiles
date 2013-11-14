@@ -1,0 +1,5 @@
+(:name kmacro-decision
+:auto-generated t
+:type emacswiki
+:description "Add conditional branching to keyboard macros"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/kmacro-decision.el")

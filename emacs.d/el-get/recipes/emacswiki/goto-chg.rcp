@@ -1,0 +1,5 @@
+(:name goto-chg
+:auto-generated t
+:type emacswiki
+:description "goto last change"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/goto-chg.el")

@@ -1,0 +1,5 @@
+(:name prand
+:auto-generated t
+:type emacswiki
+:description "generate pesudo-random number"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/prand.el")

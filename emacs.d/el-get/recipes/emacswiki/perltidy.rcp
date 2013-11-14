@@ -1,0 +1,5 @@
+(:name perltidy
+:auto-generated t
+:type emacswiki
+:description "Tidy perl code"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/perltidy.el")

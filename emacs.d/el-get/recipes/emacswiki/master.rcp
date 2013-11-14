@@ -1,0 +1,5 @@
+(:name master
+:auto-generated t
+:type emacswiki
+:description "make a buffer the master over another buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/master.el")

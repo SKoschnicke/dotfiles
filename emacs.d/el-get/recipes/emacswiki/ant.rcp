@@ -1,0 +1,5 @@
+(:name ant
+:auto-generated t
+:type emacswiki
+:description "A major mode for editing ant files."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ant.el")

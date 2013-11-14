@@ -1,0 +1,5 @@
+(:name random-idle-quote
+:auto-generated t
+:type emacswiki
+:description "display a random quote during idle"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/random-idle-quote.el")

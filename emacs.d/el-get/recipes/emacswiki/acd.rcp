@@ -1,0 +1,5 @@
+(:name acd
+:auto-generated t
+:type emacswiki
+:description "A major mode to edit emboss acd files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/acd.el")

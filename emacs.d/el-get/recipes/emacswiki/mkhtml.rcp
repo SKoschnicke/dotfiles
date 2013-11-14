@@ -1,0 +1,5 @@
+(:name mkhtml
+:auto-generated t
+:type emacswiki
+:description " Create HTML with links.  (Extensions to `htmlize.el'.)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mkhtml.el")

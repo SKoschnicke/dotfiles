@@ -1,0 +1,5 @@
+(:name di
+:auto-generated t
+:type emacswiki
+:description "Simple directory editor for GNU Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/di.el")

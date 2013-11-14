@@ -1,0 +1,5 @@
+(:name lispxmp
+:auto-generated t
+:type emacswiki
+:description "Automagic emacs lisp code annotation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lispxmp.el")

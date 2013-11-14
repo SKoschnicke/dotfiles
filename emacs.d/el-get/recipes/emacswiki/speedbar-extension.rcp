@@ -1,0 +1,5 @@
+(:name speedbar-extension
+:auto-generated t
+:type emacswiki
+:description "Some extensions for speedbar"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/speedbar-extension.el")

@@ -1,0 +1,5 @@
+(:name clibpc
+:auto-generated t
+:type emacswiki
+:description "partial complete functions for c libraries"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/clibpc.el")

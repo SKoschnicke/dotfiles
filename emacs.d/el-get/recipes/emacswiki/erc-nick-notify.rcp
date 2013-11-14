@@ -1,0 +1,5 @@
+(:name erc-nick-notify
+:auto-generated t
+:type emacswiki
+:description "Notify popup for ERC"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/erc-nick-notify.el")

@@ -1,0 +1,5 @@
+(:name irfc
+:auto-generated t
+:type emacswiki
+:description "Interface for IETF RFC document."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/irfc.el")

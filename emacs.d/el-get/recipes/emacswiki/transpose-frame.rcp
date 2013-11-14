@@ -1,0 +1,5 @@
+(:name transpose-frame
+:auto-generated t
+:type emacswiki
+:description "Transpose windows arrangement in a frame"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/transpose-frame.el")

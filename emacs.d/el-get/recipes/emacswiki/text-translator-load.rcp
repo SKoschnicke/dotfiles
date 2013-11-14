@@ -1,0 +1,5 @@
+(:name text-translator-load
+:auto-generated t
+:type emacswiki
+:description "Text Translator"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/text-translator-load.el")

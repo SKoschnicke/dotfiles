@@ -1,0 +1,5 @@
+(:name oracle-shell-query
+:auto-generated t
+:type emacswiki
+:description "execute a select sql using sqlplus . -*- coding:utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/oracle-shell-query.el")

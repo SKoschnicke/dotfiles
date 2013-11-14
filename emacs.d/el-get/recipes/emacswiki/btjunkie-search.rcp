@@ -1,0 +1,5 @@
+(:name btjunkie-search
+:auto-generated t
+:type emacswiki
+:description "brutal query engine against btjunkie.org"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/btjunkie-search.el")

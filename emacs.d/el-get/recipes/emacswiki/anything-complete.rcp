@@ -1,0 +1,5 @@
+(:name anything-complete
+:auto-generated t
+:type emacswiki
+:description "completion with anything"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-complete.el")

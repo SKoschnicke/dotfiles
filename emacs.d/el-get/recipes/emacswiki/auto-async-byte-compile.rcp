@@ -1,0 +1,5 @@
+(:name auto-async-byte-compile
+:auto-generated t
+:type emacswiki
+:description "Automatically byte-compile when saved"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-async-byte-compile.el")

@@ -1,0 +1,5 @@
+(:name gnus-alias
+:auto-generated t
+:type emacswiki
+:description "an alternative to gnus-posting-styles"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-alias.el")

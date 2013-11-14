@@ -1,0 +1,5 @@
+(:name setup-keys
+:auto-generated t
+:type emacswiki
+:description "Some key bindings."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/setup-keys.el")

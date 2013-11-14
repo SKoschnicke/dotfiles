@@ -1,0 +1,5 @@
+(:name ska-skel-matlab
+:auto-generated t
+:type emacswiki
+:description "my matlab skeletons"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ska-skel-matlab.el")

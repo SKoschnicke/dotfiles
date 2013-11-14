@@ -1,0 +1,5 @@
+(:name inertial-scroll
+:auto-generated t
+:type emacswiki
+:description "global minor mode for inertial scrolling "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/inertial-scroll.el")

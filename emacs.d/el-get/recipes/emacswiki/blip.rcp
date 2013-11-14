@@ -1,0 +1,5 @@
+(:name blip
+:auto-generated t
+:type emacswiki
+:description "interface with blip.pl"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/blip.el")

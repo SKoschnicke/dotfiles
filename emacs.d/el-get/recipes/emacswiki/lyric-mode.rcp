@@ -1,0 +1,5 @@
+(:name lyric-mode
+:auto-generated t
+:type emacswiki
+:description "Major mode for editing lyric (.lrc) files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lyric-mode.el")

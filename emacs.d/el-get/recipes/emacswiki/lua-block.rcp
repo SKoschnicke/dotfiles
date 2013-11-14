@@ -1,0 +1,5 @@
+(:name lua-block
+:auto-generated t
+:type emacswiki
+:description "highlight matching block"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lua-block.el")

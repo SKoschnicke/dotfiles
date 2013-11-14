@@ -1,0 +1,5 @@
+(:name archive-region
+:auto-generated t
+:type emacswiki
+:description "Move region to archive file instead of killing"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/archive-region.el")

@@ -1,0 +1,5 @@
+(:name scim-bridge-extension
+:auto-generated t
+:type emacswiki
+:description "Simple extension for scim-bridge.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/scim-bridge-extension.el")

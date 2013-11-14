@@ -1,0 +1,5 @@
+(:name help-macro+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `help-macro.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/help-macro+.el")

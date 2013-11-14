@@ -1,0 +1,5 @@
+(:name screenshot
+:auto-generated t
+:type emacswiki
+:description "Take a screenshot in Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/screenshot.el")

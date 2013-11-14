@@ -1,0 +1,5 @@
+(:name eoops
+:auto-generated t
+:type emacswiki
+:description "An Object Oriented Programming System in Elisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eoops.el")

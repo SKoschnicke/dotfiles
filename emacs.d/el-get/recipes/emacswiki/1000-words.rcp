@@ -1,0 +1,5 @@
+(:name 1000-words
+:auto-generated t
+:type emacswiki
+:description "limit yourself to the most common words while writing"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/1000-words.el")

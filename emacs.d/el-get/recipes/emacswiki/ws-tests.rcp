@@ -1,0 +1,5 @@
+(:name ws-tests
+:auto-generated t
+:type emacswiki
+:description "automated tests for win-switch"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ws-tests.el")

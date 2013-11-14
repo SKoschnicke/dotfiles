@@ -1,0 +1,5 @@
+(:name dbk
+:auto-generated t
+:type emacswiki
+:description "convert docbook to muse"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dbk.el")

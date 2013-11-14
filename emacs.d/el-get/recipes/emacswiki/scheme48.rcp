@@ -1,0 +1,5 @@
+(:name scheme48
+:auto-generated t
+:type emacswiki
+:description "A major mode for Scheme48 development"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/scheme48.el")

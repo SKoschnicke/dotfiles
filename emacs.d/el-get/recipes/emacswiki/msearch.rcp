@@ -1,0 +1,5 @@
+(:name msearch
+:auto-generated t
+:type emacswiki
+:description "Highlight all occurences of mouse selection"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/msearch.el")

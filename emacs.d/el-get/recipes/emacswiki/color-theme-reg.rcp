@@ -1,0 +1,5 @@
+(:name color-theme-reg
+:auto-generated t
+:type emacswiki
+:description "is modified based on color-theme-x.el, convert color themes to win32 register settings. "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/color-theme-reg.el")

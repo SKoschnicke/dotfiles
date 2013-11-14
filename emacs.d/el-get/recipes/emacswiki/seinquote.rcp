@@ -1,0 +1,5 @@
+(:name seinquote
+:auto-generated t
+:type emacswiki
+:description "Seinfeld Quotes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/seinquote.el")

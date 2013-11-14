@@ -1,0 +1,5 @@
+(:name rcirc-controls
+:auto-generated t
+:type emacswiki
+:description "control sequences"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc-controls.el")

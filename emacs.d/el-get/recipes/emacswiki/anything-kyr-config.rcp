@@ -1,0 +1,5 @@
+(:name anything-kyr-config
+:auto-generated t
+:type emacswiki
+:description "Configuration of anything-kyr.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-kyr-config.el")

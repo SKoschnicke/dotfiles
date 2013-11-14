@@ -1,0 +1,5 @@
+(:name delsel
+:auto-generated t
+:type emacswiki
+:description "Delete the region (selection) upon char insertion or DEL."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/delsel.el")

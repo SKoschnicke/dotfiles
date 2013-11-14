@@ -1,0 +1,5 @@
+(:name vector-utils
+:auto-generated t
+:type emacswiki
+:description "Vector-manipulation utility functions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vector-utils.el")

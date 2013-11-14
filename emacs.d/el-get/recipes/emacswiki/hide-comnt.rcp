@@ -1,0 +1,5 @@
+(:name hide-comnt
+:auto-generated t
+:type emacswiki
+:description "Hide/show comments in code."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hide-comnt.el")

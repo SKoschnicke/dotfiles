@@ -1,0 +1,5 @@
+(:name htmlize
+:auto-generated t
+:type emacswiki
+:description "Convert buffer text and decorations to HTML."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/htmlize.el")

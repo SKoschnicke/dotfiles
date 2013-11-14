@@ -1,0 +1,5 @@
+(:name mon-css-color
+:auto-generated t
+:type emacswiki
+:description "Highlight and edit CSS colors"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-css-color.el")

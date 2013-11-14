@@ -1,0 +1,5 @@
+(:name switch-file
+:auto-generated t
+:type emacswiki
+:description "switch from one file to another."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/switch-file.el")

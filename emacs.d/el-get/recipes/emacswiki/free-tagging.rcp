@@ -1,0 +1,5 @@
+(:name free-tagging
+:auto-generated t
+:type emacswiki
+:description "A global Status bar for emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/free-tagging.el")

@@ -1,0 +1,5 @@
+(:name kdic
+:auto-generated t
+:type emacswiki
+:description "Practice your Kanji using a dictionary."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/kdic.el")

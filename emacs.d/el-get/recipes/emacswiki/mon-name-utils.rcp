@@ -1,0 +1,5 @@
+(:name mon-name-utils
+:auto-generated t
+:type emacswiki
+:description "procedures to rotatate or permute string-like name forms"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-name-utils.el")

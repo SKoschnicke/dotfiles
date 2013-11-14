@@ -1,0 +1,5 @@
+(:name ido-gnus
+:auto-generated t
+:type emacswiki
+:description "Access gnus groups or servers using ido"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ido-gnus.el")

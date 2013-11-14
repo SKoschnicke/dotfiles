@@ -1,0 +1,5 @@
+(:name buffer-time-stamp
+:auto-generated t
+:type emacswiki
+:description "display buffer time stamps in the mode line"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/buffer-time-stamp.el")

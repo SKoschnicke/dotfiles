@@ -1,0 +1,5 @@
+(:name tie-mode
+:auto-generated t
+:type emacswiki
+:description "Tie code editing commands for GNU Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tie-mode.el")

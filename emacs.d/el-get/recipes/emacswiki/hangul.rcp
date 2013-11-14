@@ -1,0 +1,5 @@
+(:name hangul
+:auto-generated t
+:type emacswiki
+:description "Korean Hangul input method"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hangul.el")

@@ -1,0 +1,5 @@
+(:name etom
+:auto-generated t
+:type emacswiki
+:description "Emacs to Maya communication"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/etom.el")

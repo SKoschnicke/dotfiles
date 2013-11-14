@@ -1,0 +1,5 @@
+(:name bracketphobia
+:auto-generated t
+:type emacswiki
+:description "Protect the user from the Bracket Invasion"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bracketphobia.el")

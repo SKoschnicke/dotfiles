@@ -1,0 +1,5 @@
+(:name wimpy-del
+:auto-generated t
+:type emacswiki
+:description "Require confirmation for large region deletion."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wimpy-del.el")

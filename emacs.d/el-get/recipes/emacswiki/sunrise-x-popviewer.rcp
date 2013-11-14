@@ -1,0 +1,5 @@
+(:name sunrise-x-popviewer
+:auto-generated t
+:type emacswiki
+:description "floating viewer window for the Sunrise Commander -*- lexical-binding: t -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sunrise-x-popviewer.el")

@@ -1,0 +1,5 @@
+(:name planner-todo-index
+:auto-generated t
+:type emacswiki
+:description "find todos in files of project and display to planner page"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/planner-todo-index.el")

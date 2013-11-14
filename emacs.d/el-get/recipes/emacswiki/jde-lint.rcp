@@ -1,0 +1,5 @@
+(:name jde-lint
+:auto-generated t
+:type emacswiki
+:description "lint4j interface for JDE"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jde-lint.el")

@@ -1,0 +1,5 @@
+(:name ascope
+:auto-generated t
+:type emacswiki
+:description "Another cscope interface for emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ascope.el")

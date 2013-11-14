@@ -1,0 +1,5 @@
+(:name rect-mark
+:auto-generated t
+:type emacswiki
+:description "Mark a rectangle of text with highlighting."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rect-mark.el")

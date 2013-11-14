@@ -1,0 +1,5 @@
+(:name mon-default-loads
+:auto-generated t
+:type emacswiki
+:description "Constants and vars for MON system portability"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-default-loads.el")

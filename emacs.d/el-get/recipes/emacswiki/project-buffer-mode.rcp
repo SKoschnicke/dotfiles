@@ -1,0 +1,5 @@
+(:name project-buffer-mode
+:auto-generated t
+:type emacswiki
+:description "Generic mode to browse project file"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/project-buffer-mode.el")

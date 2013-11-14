@@ -1,0 +1,5 @@
+(:name org-search-goto
+:auto-generated t
+:type emacswiki
+:description "Use search to go to locations in your org buffers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/org-search-goto.el")

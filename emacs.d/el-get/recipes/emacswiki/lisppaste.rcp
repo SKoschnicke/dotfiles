@@ -1,0 +1,5 @@
+(:name lisppaste
+:auto-generated t
+:type emacswiki
+:description "Interact with the lisppaste pastebot via XML-RPC."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lisppaste.el")

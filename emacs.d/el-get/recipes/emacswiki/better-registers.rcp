@@ -1,0 +1,5 @@
+(:name better-registers
+:auto-generated t
+:type emacswiki
+:description "facilities for more powerful registers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/better-registers.el")

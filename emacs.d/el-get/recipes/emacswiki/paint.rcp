@@ -1,0 +1,5 @@
+(:name paint
+:auto-generated t
+:type emacswiki
+:description "Makes a Emacs to the Paint Tool"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/paint.el")

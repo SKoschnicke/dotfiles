@@ -1,0 +1,5 @@
+(:name anything-grep
+:auto-generated t
+:type emacswiki
+:description "search refinement of grep result with anything"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-grep.el")

@@ -1,0 +1,5 @@
+(:name key-chord
+:auto-generated t
+:type emacswiki
+:description "map pairs of simultaneously pressed keys to commands"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/key-chord.el")

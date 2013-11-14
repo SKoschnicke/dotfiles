@@ -1,0 +1,5 @@
+(:name axcess
+:auto-generated t
+:type emacswiki
+:description "Axcess and Netlinx editing support"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/axcess.el")

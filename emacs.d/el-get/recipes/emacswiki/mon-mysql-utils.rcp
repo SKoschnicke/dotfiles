@@ -1,0 +1,5 @@
+(:name mon-mysql-utils
+:auto-generated t
+:type emacswiki
+:description "procedures for extracting from MySQL query results"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-mysql-utils.el")

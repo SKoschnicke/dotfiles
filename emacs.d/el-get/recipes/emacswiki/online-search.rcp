@@ -1,0 +1,5 @@
+(:name online-search
+:auto-generated t
+:type emacswiki
+:description "Online dictionary or intelligent api search engine for developers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/online-search.el")

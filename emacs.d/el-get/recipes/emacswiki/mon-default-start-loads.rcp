@@ -1,0 +1,5 @@
+(:name mon-default-start-loads
+:auto-generated t
+:type emacswiki
+:description "fncns for initializing MON Emacs environment"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-default-start-loads.el")

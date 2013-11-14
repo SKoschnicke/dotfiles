@@ -1,0 +1,5 @@
+(:name lojban
+:auto-generated t
+:type emacswiki
+:description "regexps, functions, commands to handle lojban text"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lojban.el")

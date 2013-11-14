@@ -1,0 +1,5 @@
+(:name ada-gpr
+:auto-generated t
+:type emacswiki
+:description "major-mode for editing GNAT project files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ada-gpr.el")

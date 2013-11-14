@@ -1,0 +1,5 @@
+(:name cfml-helper-mode
+:auto-generated t
+:type emacswiki
+:description "Major mode for composing cfml files."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cfml-helper-mode.el")

@@ -1,0 +1,5 @@
+(:name jcl-command-subset
+:auto-generated t
+:type emacswiki
+:description "Like M-x but with only a subset of commands."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jcl-command-subset.el")

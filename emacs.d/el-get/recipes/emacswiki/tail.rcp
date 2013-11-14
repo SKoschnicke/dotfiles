@@ -1,0 +1,5 @@
+(:name tail
+:auto-generated t
+:type emacswiki
+:description "Tail files within Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tail.el")

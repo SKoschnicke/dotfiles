@@ -1,0 +1,5 @@
+(:name plural
+:auto-generated t
+:type emacswiki
+:description "Pluralize english nouns."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/plural.el")

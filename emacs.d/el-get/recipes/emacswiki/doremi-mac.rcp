@@ -1,0 +1,5 @@
+(:name doremi-mac
+:auto-generated t
+:type emacswiki
+:description "A macro for defining Do Re Mi commands."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/doremi-mac.el")

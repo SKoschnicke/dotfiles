@@ -1,0 +1,5 @@
+(:name shell-command-queue
+:auto-generated t
+:type emacswiki
+:description "Queue shell commands for execution"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/shell-command-queue.el")

@@ -1,0 +1,5 @@
+(:name bookmark-add
+:auto-generated t
+:type emacswiki
+:description "creates the buffer for work with bookmarks"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bookmark-add.el")

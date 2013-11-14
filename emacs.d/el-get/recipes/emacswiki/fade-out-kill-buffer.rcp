@@ -1,0 +1,5 @@
+(:name fade-out-kill-buffer
+:auto-generated t
+:type emacswiki
+:description "fade to black when killing buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fade-out-kill-buffer.el")

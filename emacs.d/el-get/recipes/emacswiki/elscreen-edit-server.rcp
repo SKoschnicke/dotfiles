@@ -1,0 +1,5 @@
+(:name elscreen-edit-server
+:auto-generated t
+:type emacswiki
+:description "work together chrome and elscreen"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/elscreen-edit-server.el")

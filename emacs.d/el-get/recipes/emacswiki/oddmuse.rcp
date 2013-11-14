@@ -1,0 +1,5 @@
+(:name oddmuse
+:auto-generated t
+:type emacswiki
+:description "edit pages on an Oddmuse wiki"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/oddmuse.el")

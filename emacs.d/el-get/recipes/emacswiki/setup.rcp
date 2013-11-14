@@ -1,0 +1,5 @@
+(:name setup
+:auto-generated t
+:type emacswiki
+:description "Startup assignments: hooks etc."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/setup.el")

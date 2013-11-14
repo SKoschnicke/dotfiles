@@ -1,0 +1,5 @@
+(:name double-char
+:auto-generated t
+:type emacswiki
+:description "Get different insertion when you hit a char twice fast enought"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/double-char.el")

@@ -1,0 +1,5 @@
+(:name xgtags
+:auto-generated t
+:type emacswiki
+:description "gtags facility for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/xgtags.el")

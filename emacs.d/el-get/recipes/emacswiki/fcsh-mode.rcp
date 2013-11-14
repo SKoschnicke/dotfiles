@@ -1,0 +1,5 @@
+(:name fcsh-mode
+:auto-generated t
+:type emacswiki
+:description "Adobe Flex Compiler Shell helper"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fcsh-mode.el")

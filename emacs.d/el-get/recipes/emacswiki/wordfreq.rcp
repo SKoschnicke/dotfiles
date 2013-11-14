@@ -1,0 +1,5 @@
+(:name wordfreq
+:auto-generated t
+:type emacswiki
+:description "Get word's frequency of usage."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wordfreq.el")

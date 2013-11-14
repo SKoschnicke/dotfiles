@@ -1,0 +1,5 @@
+(:name vline
+:auto-generated t
+:type emacswiki
+:description "show vertical line (column highlighting) mode."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vline.el")

@@ -1,0 +1,5 @@
+(:name hardhat
+:auto-generated t
+:type emacswiki
+:description "Protect against clobbering user-writable files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hardhat.el")

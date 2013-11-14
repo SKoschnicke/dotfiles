@@ -1,0 +1,5 @@
+(:name cygwin-mount
+:auto-generated t
+:type emacswiki
+:description "Teach EMACS about cygwin styles and mount points."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cygwin-mount.el")

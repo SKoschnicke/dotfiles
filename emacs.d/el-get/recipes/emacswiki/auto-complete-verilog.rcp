@@ -1,0 +1,5 @@
+(:name auto-complete-verilog
+:auto-generated t
+:type emacswiki
+:description "Auto-completion source for verilog"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-complete-verilog.el")

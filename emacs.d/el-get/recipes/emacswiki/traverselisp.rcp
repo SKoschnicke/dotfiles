@@ -1,0 +1,5 @@
+(:name traverselisp
+:auto-generated t
+:type emacswiki
+:description "walk through directories and perform actions on files."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/traverselisp.el")

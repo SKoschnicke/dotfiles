@@ -1,0 +1,5 @@
+(:name py-indent
+:auto-generated t
+:type emacswiki
+:description "Python indentation with annotations"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/py-indent.el")

@@ -1,0 +1,5 @@
+(:name lisppaste-extension
+:auto-generated t
+:type emacswiki
+:description "Some extension for lisppaste"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lisppaste-extension.el")

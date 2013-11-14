@@ -1,0 +1,5 @@
+(:name find-file-in-project
+:auto-generated t
+:type emacswiki
+:description "Find files in a project quickly."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/find-file-in-project.el")

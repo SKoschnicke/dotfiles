@@ -1,0 +1,5 @@
+(:name toggle-backslash-line
+:auto-generated t
+:type emacswiki
+:description " toggle between slashes and backslashes in the current line"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/toggle-backslash-line.el")

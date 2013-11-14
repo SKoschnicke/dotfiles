@@ -1,0 +1,5 @@
+(:name auto-indent-mode
+:auto-generated t
+:type emacswiki
+:description "Auto indent Minor mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-indent-mode.el")

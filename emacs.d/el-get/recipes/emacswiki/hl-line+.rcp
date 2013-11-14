@@ -1,0 +1,5 @@
+(:name hl-line+
+:auto-generated t
+:type emacswiki
+:description "Extensions to hl-line.el."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hl-line+.el")

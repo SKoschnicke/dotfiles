@@ -1,0 +1,5 @@
+(:name sierotki
+:auto-generated t
+:type emacswiki
+:description "Introduce tildes after single-letter words"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sierotki.el")

@@ -1,0 +1,5 @@
+(:name bf
+:auto-generated t
+:type emacswiki
+:description "BrainFuck compiler written in Emacs-Lisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bf.el")

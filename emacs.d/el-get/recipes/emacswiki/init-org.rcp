@@ -1,0 +1,5 @@
+(:name init-org
+:auto-generated t
+:type emacswiki
+:description "Org configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-org.el")

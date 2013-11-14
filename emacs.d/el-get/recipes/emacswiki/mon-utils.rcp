@@ -1,0 +1,5 @@
+(:name mon-utils
+:auto-generated t
+:type emacswiki
+:description "common utilities and BIG require for other of MON packages"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-utils.el")

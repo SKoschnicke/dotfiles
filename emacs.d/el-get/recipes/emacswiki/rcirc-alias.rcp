@@ -1,0 +1,5 @@
+(:name rcirc-alias
+:auto-generated t
+:type emacswiki
+:description "provide a local alias for nicks"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc-alias.el")

@@ -1,0 +1,5 @@
+(:name chm-view
+:auto-generated t
+:type emacswiki
+:description "View CHM file."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/chm-view.el")

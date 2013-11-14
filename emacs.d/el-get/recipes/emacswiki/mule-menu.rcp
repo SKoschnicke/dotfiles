@@ -1,0 +1,5 @@
+(:name mule-menu
+:auto-generated t
+:type emacswiki
+:description "Add multiple language support for menubar"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mule-menu.el")

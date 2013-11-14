@@ -1,0 +1,5 @@
+(:name anything-show-completion
+:auto-generated t
+:type emacswiki
+:description "Show selection in buffer for anything completion"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-show-completion.el")

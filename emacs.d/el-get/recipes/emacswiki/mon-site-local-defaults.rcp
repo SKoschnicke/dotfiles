@@ -1,0 +1,5 @@
+(:name mon-site-local-defaults
+:auto-generated t
+:type emacswiki
+:description "load/init fncns, vars, const for MON packages"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-site-local-defaults.el")

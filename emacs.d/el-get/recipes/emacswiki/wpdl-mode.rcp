@@ -1,0 +1,5 @@
+(:name wpdl-mode
+:auto-generated t
+:type emacswiki
+:description "Major mode for editing WPDL files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wpdl-mode.el")

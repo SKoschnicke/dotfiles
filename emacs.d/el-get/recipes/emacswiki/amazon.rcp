@@ -1,0 +1,5 @@
+(:name amazon
+:auto-generated t
+:type emacswiki
+:description "Emacs client for Amazon E-Commerce Service (i.e. use Emacs to search books on Amazon.com)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/amazon.el")

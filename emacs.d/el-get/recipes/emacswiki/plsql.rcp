@@ -1,0 +1,5 @@
+(:name plsql
+:auto-generated t
+:type emacswiki
+:description "Programming support for PL/SQL code"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/plsql.el")

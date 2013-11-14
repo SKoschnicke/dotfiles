@@ -1,0 +1,5 @@
+(:name one-key-config
+:auto-generated t
+:type emacswiki
+:description "Configuration for one-key.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/one-key-config.el")

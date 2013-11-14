@@ -1,0 +1,5 @@
+(:name defshell
+:auto-generated t
+:type emacswiki
+:description "Define inferior shells -*-unibyte: t; coding: iso-8859-1;-*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/defshell.el")

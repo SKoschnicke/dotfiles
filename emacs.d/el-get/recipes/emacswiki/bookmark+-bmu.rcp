@@ -1,0 +1,5 @@
+(:name bookmark+-bmu
+:auto-generated t
+:type emacswiki
+:description "Bookmark+ code for the `*Bookmark List*' (bmenu)."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bookmark+-bmu.el")

@@ -1,0 +1,5 @@
+(:name visual-basic-mode
+:auto-generated t
+:type emacswiki
+:description "A mode for editing Visual Basic programs."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/visual-basic-mode.el")

@@ -1,0 +1,5 @@
+(:name init-ide
+:auto-generated t
+:type emacswiki
+:description "IDE configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-ide.el")

@@ -1,0 +1,5 @@
+(:name w32-find-dired
+:auto-generated t
+:type emacswiki
+:description "light w32 replacement for `find-dired'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w32-find-dired.el")

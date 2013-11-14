@@ -1,0 +1,5 @@
+(:name ecmascript-mode
+:auto-generated t
+:type emacswiki
+:description "major mode for editing ECMAScript code"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ecmascript-mode.el")

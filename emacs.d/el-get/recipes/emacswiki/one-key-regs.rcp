@@ -1,0 +1,5 @@
+(:name one-key-regs
+:auto-generated t
+:type emacswiki
+:description "Code for handling registers, macros and bookmarks using one-key menus."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/one-key-regs.el")

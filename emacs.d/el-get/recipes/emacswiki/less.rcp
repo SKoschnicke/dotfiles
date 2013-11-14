@@ -1,0 +1,5 @@
+(:name less
+:auto-generated t
+:type emacswiki
+:description "less style view mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/less.el")

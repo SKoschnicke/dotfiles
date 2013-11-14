@@ -1,0 +1,5 @@
+(:name css-mode-simple
+:auto-generated t
+:type emacswiki
+:description "A (very) minimal CSS mode."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/css-mode-simple.el")

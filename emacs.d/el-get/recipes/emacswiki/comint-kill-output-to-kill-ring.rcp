@@ -1,0 +1,5 @@
+(:name comint-kill-output-to-kill-ring
+:auto-generated t
+:type emacswiki
+:description " Kill last comint output and put it in the kill ring"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/comint-kill-output-to-kill-ring.el")

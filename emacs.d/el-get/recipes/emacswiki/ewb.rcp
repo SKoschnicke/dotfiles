@@ -1,0 +1,5 @@
+(:name ewb
+:auto-generated t
+:type emacswiki
+:description "Emacs Web Browser"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ewb.el")

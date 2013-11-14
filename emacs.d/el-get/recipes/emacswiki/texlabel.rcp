@@ -1,0 +1,5 @@
+(:name texlabel
+:auto-generated t
+:type emacswiki
+:description "Auto insertion of equation labels in TeX"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/texlabel.el")

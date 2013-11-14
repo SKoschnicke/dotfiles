@@ -1,0 +1,5 @@
+(:name dired-column-widths
+:auto-generated t
+:type emacswiki
+:description "Corrects column widths after entry modification."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dired-column-widths.el")

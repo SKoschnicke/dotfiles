@@ -1,0 +1,5 @@
+(:name cexp
+:auto-generated t
+:type emacswiki
+:description "Poorman's implementation of combined expressions."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cexp.el")

@@ -1,0 +1,5 @@
+(:name el-expectations
+:auto-generated t
+:type emacswiki
+:description "minimalist unit testing framework"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/el-expectations.el")

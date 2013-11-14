@@ -1,0 +1,5 @@
+(:name delight
+:auto-generated t
+:type emacswiki
+:description "A dimmer switch for your lighter text."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/delight.el")

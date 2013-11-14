@@ -1,0 +1,5 @@
+(:name css-palette
+:auto-generated t
+:type emacswiki
+:description ""palettes" inside block comments"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/css-palette.el")

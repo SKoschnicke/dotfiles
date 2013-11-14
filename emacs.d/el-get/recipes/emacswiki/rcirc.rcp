@@ -1,0 +1,5 @@
+(:name rcirc
+:auto-generated t
+:type emacswiki
+:description "emacs irc client"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc.el")

@@ -1,0 +1,5 @@
+(:name hl-defined
+:auto-generated t
+:type emacswiki
+:description "Highlight defined or undefined symbols in Emacs-Lisp."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hl-defined.el")

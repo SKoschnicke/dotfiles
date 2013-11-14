@@ -1,0 +1,5 @@
+(:name flymake-helper
+:auto-generated t
+:type emacswiki
+:description "flymake helper methods"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/flymake-helper.el")

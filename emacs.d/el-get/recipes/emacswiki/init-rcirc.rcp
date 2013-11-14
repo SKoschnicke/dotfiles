@@ -1,0 +1,5 @@
+(:name init-rcirc
+:auto-generated t
+:type emacswiki
+:description "Rcirc init"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-rcirc.el")

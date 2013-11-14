@@ -1,0 +1,5 @@
+(:name timer+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `timer.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/timer+.el")

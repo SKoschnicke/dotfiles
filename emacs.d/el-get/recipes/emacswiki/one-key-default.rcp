@@ -1,0 +1,5 @@
+(:name one-key-default
+:auto-generated t
+:type emacswiki
+:description "one-key-ize default key bindings"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/one-key-default.el")

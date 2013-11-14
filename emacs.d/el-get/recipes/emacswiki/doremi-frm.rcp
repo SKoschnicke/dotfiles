@@ -1,0 +1,5 @@
+(:name doremi-frm
+:auto-generated t
+:type emacswiki
+:description "Incrementally adjust face attributes and frame parameters."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/doremi-frm.el")

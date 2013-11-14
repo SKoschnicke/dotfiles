@@ -1,0 +1,5 @@
+(:name buffer-extension
+:auto-generated t
+:type emacswiki
+:description "Some enhanced functions for buffer manipulate."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/buffer-extension.el")

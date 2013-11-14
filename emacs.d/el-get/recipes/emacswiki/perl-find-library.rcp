@@ -1,0 +1,5 @@
+(:name perl-find-library
+:auto-generated t
+:type emacswiki
+:description "Functions for locating perl libraries on your system"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/perl-find-library.el")

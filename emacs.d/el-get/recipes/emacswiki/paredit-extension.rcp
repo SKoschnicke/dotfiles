@@ -1,0 +1,5 @@
+(:name paredit-extension
+:auto-generated t
+:type emacswiki
+:description "Simple extension base on paredit.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/paredit-extension.el")

@@ -1,0 +1,5 @@
+(:name steersman
+:auto-generated t
+:type emacswiki
+:description "Control Emacs over XMPP/Jabber"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/steersman.el")

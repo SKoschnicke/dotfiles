@@ -1,0 +1,5 @@
+(:name perlmonks
+:auto-generated t
+:type emacswiki
+:description "A simple interface to www.perlmonks.org"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/perlmonks.el")

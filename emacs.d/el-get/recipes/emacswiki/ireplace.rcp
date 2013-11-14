@@ -1,0 +1,5 @@
+(:name ireplace
+:auto-generated t
+:type emacswiki
+:description "replace functions invoked from isearch-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ireplace.el")

@@ -1,0 +1,5 @@
+(:name tree-mode
+:auto-generated t
+:type emacswiki
+:description "A mode to manage tree widgets"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tree-mode.el")

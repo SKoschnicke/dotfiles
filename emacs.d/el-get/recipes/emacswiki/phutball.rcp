@@ -1,0 +1,5 @@
+(:name phutball
+:auto-generated t
+:type emacswiki
+:description "play phutball in Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/phutball.el")

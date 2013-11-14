@@ -1,0 +1,5 @@
+(:name sys
+:auto-generated t
+:type emacswiki
+:description "Determine which kind of system Emacs is running."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sys.el")

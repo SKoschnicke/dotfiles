@@ -1,0 +1,5 @@
+(:name interpreter-minor
+:auto-generated t
+:type emacswiki
+:description "provide navigation, clickability, folding, interpretation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/interpreter-minor.el")

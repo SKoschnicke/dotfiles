@@ -1,0 +1,5 @@
+(:name cgi+
+:auto-generated t
+:type emacswiki
+:description "Run CGI inside emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cgi+.el")

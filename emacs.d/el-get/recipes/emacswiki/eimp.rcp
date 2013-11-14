@@ -1,0 +1,5 @@
+(:name eimp
+:auto-generated t
+:type emacswiki
+:description "Emacs Image Manipulation Package"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eimp.el")

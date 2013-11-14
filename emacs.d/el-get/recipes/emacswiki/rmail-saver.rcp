@@ -1,0 +1,5 @@
+(:name rmail-saver
+:auto-generated t
+:type emacswiki
+:description "An easy way of saving mail messages to files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rmail-saver.el")

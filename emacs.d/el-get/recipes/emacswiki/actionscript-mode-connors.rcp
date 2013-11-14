@@ -1,0 +1,5 @@
+(:name actionscript-mode-connors
+:auto-generated t
+:type emacswiki
+:description "actionscript mode derived from cc-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/actionscript-mode-connors.el")

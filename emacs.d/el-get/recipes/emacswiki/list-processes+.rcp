@@ -1,0 +1,5 @@
+(:name list-processes+
+:auto-generated t
+:type emacswiki
+:description "Add process management to `list-processes'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/list-processes+.el")

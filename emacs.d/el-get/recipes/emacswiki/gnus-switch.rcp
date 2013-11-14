@@ -1,0 +1,5 @@
+(:name gnus-switch
+:auto-generated t
+:type emacswiki
+:description "Smart switch with gnus buffers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-switch.el")

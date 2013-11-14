@@ -1,0 +1,5 @@
+(:name fic-ext-mode
+:auto-generated t
+:type emacswiki
+:description "Show FIXME/TODO/BUG(...) in special face only in comments and strings"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fic-ext-mode.el")

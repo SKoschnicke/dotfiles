@@ -1,0 +1,5 @@
+(:name synonyms
+:auto-generated t
+:type emacswiki
+:description "Look up synonyms for a word or phrase in a thesaurus."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/synonyms.el")

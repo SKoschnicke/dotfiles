@@ -1,0 +1,5 @@
+(:name ps2pdf
+:auto-generated t
+:type emacswiki
+:description "Convert Postscript to PDF"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ps2pdf.el")

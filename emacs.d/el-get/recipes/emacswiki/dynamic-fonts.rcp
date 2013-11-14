@@ -1,0 +1,5 @@
+(:name dynamic-fonts
+:auto-generated t
+:type emacswiki
+:description "Set faces based on available fonts"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dynamic-fonts.el")

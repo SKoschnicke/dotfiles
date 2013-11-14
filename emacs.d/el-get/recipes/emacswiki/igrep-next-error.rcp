@@ -1,0 +1,5 @@
+(:name igrep-next-error
+:auto-generated t
+:type emacswiki
+:description "Highlight text matched by `igrep'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/igrep-next-error.el")

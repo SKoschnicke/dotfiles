@@ -1,0 +1,5 @@
+(:name smart-compile+
+:auto-generated t
+:type emacswiki
+:description "an interface to `compile' -*- folded-file: t -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/smart-compile+.el")

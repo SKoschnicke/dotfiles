@@ -1,0 +1,5 @@
+(:name poker
+:auto-generated t
+:type emacswiki
+:description "A simple poker game for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/poker.el")

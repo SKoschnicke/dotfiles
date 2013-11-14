@@ -1,0 +1,5 @@
+(:name work-timer
+:auto-generated t
+:type emacswiki
+:description "A timer so you know when telax, and when to work"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/work-timer.el")

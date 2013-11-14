@@ -1,0 +1,5 @@
+(:name wikipedia-mode
+:auto-generated t
+:type emacswiki
+:description "Mode for editing Wikipedia articles off-line"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wikipedia-mode.el")

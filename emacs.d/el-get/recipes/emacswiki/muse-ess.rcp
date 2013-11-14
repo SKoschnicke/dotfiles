@@ -1,0 +1,5 @@
+(:name muse-ess
+:auto-generated t
+:type emacswiki
+:description "emacs muse speaks statistics"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/muse-ess.el")

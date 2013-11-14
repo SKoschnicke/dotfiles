@@ -1,0 +1,5 @@
+(:name etags-table
+:auto-generated t
+:type emacswiki
+:description "Set tags table(s) based on current file"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/etags-table.el")

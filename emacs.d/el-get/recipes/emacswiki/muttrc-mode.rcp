@@ -1,0 +1,5 @@
+(:name muttrc-mode
+:auto-generated t
+:type emacswiki
+:description "Major mode to edit muttrc under Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/muttrc-mode.el")

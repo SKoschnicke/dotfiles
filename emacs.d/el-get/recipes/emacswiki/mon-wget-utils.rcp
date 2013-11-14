@@ -1,0 +1,5 @@
+(:name mon-wget-utils
+:auto-generated t
+:type emacswiki
+:description "routines for pulling files with wget "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-wget-utils.el")

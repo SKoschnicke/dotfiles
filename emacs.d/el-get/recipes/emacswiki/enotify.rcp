@@ -1,0 +1,5 @@
+(:name enotify
+:auto-generated t
+:type emacswiki
+:description "a TCP based notification system for the emacs modeline"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/enotify.el")

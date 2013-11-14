@@ -1,0 +1,5 @@
+(:name mcskels
+:auto-generated t
+:type emacswiki
+:description "C skeletons."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mcskels.el")

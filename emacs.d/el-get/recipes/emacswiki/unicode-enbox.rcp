@@ -1,0 +1,5 @@
+(:name unicode-enbox
+:auto-generated t
+:type emacswiki
+:description "Surround a string with box-drawing characters"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/unicode-enbox.el")

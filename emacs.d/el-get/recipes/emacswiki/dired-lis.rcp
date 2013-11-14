@@ -1,0 +1,5 @@
+(:name dired-lis
+:auto-generated t
+:type emacswiki
+:description "Letter isearch in dired-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dired-lis.el")

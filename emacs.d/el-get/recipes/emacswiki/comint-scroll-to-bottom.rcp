@@ -1,0 +1,5 @@
+(:name comint-scroll-to-bottom
+:auto-generated t
+:type emacswiki
+:description "Keep the comint prompt at the bottom"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/comint-scroll-to-bottom.el")

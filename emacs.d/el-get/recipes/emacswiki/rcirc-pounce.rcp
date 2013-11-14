@@ -1,0 +1,5 @@
+(:name rcirc-pounce
+:auto-generated t
+:type emacswiki
+:description "maintain a message queue for offline nicks"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc-pounce.el")

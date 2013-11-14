@@ -1,0 +1,5 @@
+(:name tagbody
+:auto-generated t
+:type emacswiki
+:description "Common Lisp `tagbody' for Emacs Lisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tagbody.el")

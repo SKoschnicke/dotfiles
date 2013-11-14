@@ -1,0 +1,5 @@
+(:name dying
+:auto-generated t
+:type emacswiki
+:description "Minor mode kills own buffer after lifetime"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dying.el")

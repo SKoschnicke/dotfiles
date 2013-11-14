@@ -1,0 +1,5 @@
+(:name procomm-mode
+:auto-generated t
+:type emacswiki
+:description "Major mode for editing PROCOMM ASPECT scripts"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/procomm-mode.el")

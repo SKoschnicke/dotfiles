@@ -1,0 +1,5 @@
+(:name oggel
+:auto-generated t
+:type emacswiki
+:description "OGG encoding for EmacsLisp "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/oggel.el")

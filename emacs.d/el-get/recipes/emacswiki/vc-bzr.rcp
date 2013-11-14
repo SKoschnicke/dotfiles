@@ -1,0 +1,5 @@
+(:name vc-bzr
+:auto-generated t
+:type emacswiki
+:description "VC backend for the bzr revision control system"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vc-bzr.el")

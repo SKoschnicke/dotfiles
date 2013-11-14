@@ -1,0 +1,5 @@
+(:name stream
+:auto-generated t
+:type emacswiki
+:description "a stream library in elisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/stream.el")

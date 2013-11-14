@@ -1,0 +1,5 @@
+(:name ddl-mode
+:auto-generated t
+:type emacswiki
+:description "Handles the Tandem-Compaq-HP DDL language."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ddl-mode.el")

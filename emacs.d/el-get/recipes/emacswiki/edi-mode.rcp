@@ -1,0 +1,5 @@
+(:name edi-mode
+:auto-generated t
+:type emacswiki
+:description "edit raw EDI files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/edi-mode.el")

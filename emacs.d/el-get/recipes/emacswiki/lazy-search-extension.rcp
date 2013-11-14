@@ -1,0 +1,5 @@
+(:name lazy-search-extension
+:auto-generated t
+:type emacswiki
+:description "Lazy Search Extension"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lazy-search-extension.el")

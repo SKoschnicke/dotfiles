@@ -1,0 +1,5 @@
+(:name emacs-wiki-finddead
+:auto-generated t
+:type emacswiki
+:description "Find dead files in your EmacsWiki"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emacs-wiki-finddead.el")

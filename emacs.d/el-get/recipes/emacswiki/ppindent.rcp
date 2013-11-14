@@ -1,0 +1,5 @@
+(:name ppindent
+:auto-generated t
+:type emacswiki
+:description "Indents C preprocessor directives"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ppindent.el")

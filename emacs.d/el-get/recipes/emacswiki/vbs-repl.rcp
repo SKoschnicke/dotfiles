@@ -1,0 +1,5 @@
+(:name vbs-repl
+:auto-generated t
+:type emacswiki
+:description "Support for VBScript programming in Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vbs-repl.el")

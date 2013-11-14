@@ -1,0 +1,5 @@
+(:name bindings+
+:auto-generated t
+:type emacswiki
+:description "Enhancements to standard library `bindings.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bindings+.el")

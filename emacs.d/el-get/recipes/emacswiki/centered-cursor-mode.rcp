@@ -1,0 +1,5 @@
+(:name centered-cursor-mode
+:auto-generated t
+:type emacswiki
+:description "cursor stays vertically centered"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/centered-cursor-mode.el")

@@ -1,0 +1,5 @@
+(:name file-template
+:auto-generated t
+:type emacswiki
+:description "File templates"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/file-template.el")

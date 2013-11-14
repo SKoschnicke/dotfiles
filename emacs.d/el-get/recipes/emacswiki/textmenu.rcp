@@ -1,0 +1,5 @@
+(:name textmenu
+:auto-generated t
+:type emacswiki
+:description "alternate text mode access to menu-bar"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/textmenu.el")

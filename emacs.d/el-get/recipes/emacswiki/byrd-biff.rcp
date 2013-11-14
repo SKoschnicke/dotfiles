@@ -1,0 +1,5 @@
+(:name byrd-biff
+:auto-generated t
+:type emacswiki
+:description "Mail notification"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/byrd-biff.el")

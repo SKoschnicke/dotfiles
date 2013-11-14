@@ -1,0 +1,5 @@
+(:name xml-parse
+:auto-generated t
+:type emacswiki
+:description "code to efficiently read/write XML data with Elisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/xml-parse.el")

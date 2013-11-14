@@ -1,0 +1,5 @@
+(:name w32-shell-execute
+:auto-generated t
+:type emacswiki
+:description "w32 specific.  execute any of the 'Explorer verbs' available for a file or directory"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w32-shell-execute.el")

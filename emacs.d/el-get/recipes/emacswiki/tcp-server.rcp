@@ -1,0 +1,5 @@
+(:name tcp-server
+:auto-generated t
+:type emacswiki
+:description "an emacs tcp server"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tcp-server.el")

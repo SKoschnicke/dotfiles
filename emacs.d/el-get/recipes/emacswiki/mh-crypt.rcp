@@ -1,0 +1,5 @@
+(:name mh-crypt
+:auto-generated t
+:type emacswiki
+:description "Manage encrypted or compressed MH messages."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mh-crypt.el")

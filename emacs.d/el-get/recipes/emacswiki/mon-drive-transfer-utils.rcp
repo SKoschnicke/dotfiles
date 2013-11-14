@@ -1,0 +1,5 @@
+(:name mon-drive-transfer-utils
+:auto-generated t
+:type emacswiki
+:description "tools for transferring backing up large harddrives."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-drive-transfer-utils.el")

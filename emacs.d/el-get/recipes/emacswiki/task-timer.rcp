@@ -1,0 +1,5 @@
+(:name task-timer
+:auto-generated t
+:type emacswiki
+:description "Simple task timer package."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/task-timer.el")

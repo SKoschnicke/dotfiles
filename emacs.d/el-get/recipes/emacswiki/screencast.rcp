@@ -1,0 +1,5 @@
+(:name screencast
+:auto-generated t
+:type emacswiki
+:description "demonstrate the capabilities of Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/screencast.el")

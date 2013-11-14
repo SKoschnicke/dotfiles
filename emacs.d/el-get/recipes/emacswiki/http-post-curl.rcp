@@ -1,0 +1,5 @@
+(:name http-post-curl
+:auto-generated t
+:type emacswiki
+:description "simple HTTP POST"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/http-post-curl.el")

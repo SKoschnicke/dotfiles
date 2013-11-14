@@ -1,0 +1,5 @@
+(:name mkhtml-htmlize
+:auto-generated t
+:type emacswiki
+:description "HTML-ize font-lock buffers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mkhtml-htmlize.el")

@@ -1,0 +1,5 @@
+(:name help-url
+:auto-generated t
+:type emacswiki
+:description "Un module pour se connecter aux aides en lignes de php ou de coldfusion"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/help-url.el")

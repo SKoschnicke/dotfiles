@@ -1,0 +1,5 @@
+(:name mon-rename-image-utils
+:auto-generated t
+:type emacswiki
+:description "utility fncns for image manipulation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-rename-image-utils.el")

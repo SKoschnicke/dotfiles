@@ -1,0 +1,5 @@
+(:name start-opt
+:auto-generated t
+:type emacswiki
+:description "Some customizations to be done at the end of startup."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/start-opt.el")

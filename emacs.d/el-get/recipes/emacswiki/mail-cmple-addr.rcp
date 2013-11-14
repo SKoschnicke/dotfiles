@@ -1,0 +1,5 @@
+(:name mail-cmple-addr
+:auto-generated t
+:type emacswiki
+:description "complete mail address or expand mail alias interactively on the header field at mail mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mail-cmple-addr.el")

@@ -1,0 +1,5 @@
+(:name ifind-mode
+:auto-generated t
+:type emacswiki
+:description "A minor mode based on isearch, for interactively finding"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ifind-mode.el")

@@ -1,0 +1,5 @@
+(:name docmap
+:auto-generated t
+:type emacswiki
+:description "display document map window"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/docmap.el")

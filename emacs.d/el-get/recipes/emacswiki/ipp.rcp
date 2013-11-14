@@ -1,0 +1,5 @@
+(:name ipp
+:auto-generated t
+:type emacswiki
+:description "implementation of the Internet Printing Protocol"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ipp.el")

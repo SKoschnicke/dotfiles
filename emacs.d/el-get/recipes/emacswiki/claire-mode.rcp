@@ -1,0 +1,5 @@
+(:name claire-mode
+:auto-generated t
+:type emacswiki
+:description "for claire, an object oriented language"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/claire-mode.el")

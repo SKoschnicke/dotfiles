@@ -1,0 +1,5 @@
+(:name anything-adaptive
+:auto-generated t
+:type emacswiki
+:description "Sort candidates by usage frequency"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-adaptive.el")

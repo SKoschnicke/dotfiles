@@ -1,0 +1,5 @@
+(:name sln-mode
+:auto-generated t
+:type emacswiki
+:description "Create a project-buffer using sln file"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sln-mode.el")

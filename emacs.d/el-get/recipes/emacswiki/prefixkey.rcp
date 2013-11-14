@@ -1,0 +1,5 @@
+(:name prefixkey
+:auto-generated t
+:type emacswiki
+:description "Prefix key processing."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/prefixkey.el")

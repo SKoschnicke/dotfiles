@@ -1,0 +1,5 @@
+(:name testr
+:auto-generated t
+:type emacswiki
+:description "Quick and easy Ruby TDD"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/testr.el")

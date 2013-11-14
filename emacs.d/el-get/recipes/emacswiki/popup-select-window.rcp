@@ -1,0 +1,5 @@
+(:name popup-select-window
+:auto-generated t
+:type emacswiki
+:description "selecting a window by popup-menu*"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/popup-select-window.el")

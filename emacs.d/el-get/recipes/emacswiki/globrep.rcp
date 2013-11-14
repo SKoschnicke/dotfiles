@@ -1,0 +1,5 @@
+(:name globrep
+:auto-generated t
+:type emacswiki
+:description "Search for and replace strings in multiple files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/globrep.el")

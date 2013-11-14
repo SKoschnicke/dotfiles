@@ -1,0 +1,5 @@
+(:name bpath
+:auto-generated t
+:type emacswiki
+:description "small bookmark tool"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bpath.el")

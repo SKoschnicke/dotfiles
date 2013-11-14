@@ -1,0 +1,5 @@
+(:name ul
+:auto-generated t
+:type emacswiki
+:description "insert/remove underlining in Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ul.el")

@@ -1,0 +1,5 @@
+(:name gb-po-mode
+:auto-generated t
+:type emacswiki
+:description " po-mode extensions and fixes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gb-po-mode.el")

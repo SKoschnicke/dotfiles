@@ -1,0 +1,5 @@
+(:name opengrok
+:auto-generated t
+:type emacswiki
+:description "Navigate source code with OpenGrok"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/opengrok.el")

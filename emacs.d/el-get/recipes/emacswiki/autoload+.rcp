@@ -1,0 +1,5 @@
+(:name autoload+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `autoload.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/autoload+.el")

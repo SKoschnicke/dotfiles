@@ -1,0 +1,5 @@
+(:name dove-ext
+:auto-generated t
+:type emacswiki
+:description "Emacs minor extensions written by David young"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dove-ext.el")

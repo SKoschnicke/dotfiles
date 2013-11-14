@@ -1,0 +1,5 @@
+(:name slurp
+:auto-generated t
+:type emacswiki
+:description "Search a file hierarchy for files with matching names"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/slurp.el")

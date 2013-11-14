@@ -1,0 +1,5 @@
+(:name one-key-yas
+:auto-generated t
+:type emacswiki
+:description "functions for using one-key menus to access yasnippets"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/one-key-yas.el")

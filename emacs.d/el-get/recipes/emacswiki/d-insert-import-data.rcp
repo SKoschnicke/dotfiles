@@ -1,0 +1,5 @@
+(:name d-insert-import-data
+:auto-generated t
+:type emacswiki
+:description "Data file of d-insert-import.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/d-insert-import-data.el")

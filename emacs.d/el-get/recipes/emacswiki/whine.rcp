@@ -1,0 +1,5 @@
+(:name whine
+:auto-generated t
+:type emacswiki
+:description "complaint generator for GNU Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/whine.el")

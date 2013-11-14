@@ -1,0 +1,5 @@
+(:name lojban-mode
+:auto-generated t
+:type emacswiki
+:description "lojban text mode w/ syntactical highlighting"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lojban-mode.el")

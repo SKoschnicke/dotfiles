@@ -1,0 +1,5 @@
+(:name sunrise-x-checkpoints
+:auto-generated t
+:type emacswiki
+:description "checkpoint bookmarks for the Sunrise Commander File Manager -*- lexical-binding: t -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sunrise-x-checkpoints.el")

@@ -1,0 +1,5 @@
+(:name anything-dabbrev-expand
+:auto-generated t
+:type emacswiki
+:description "dabbrev-expand / dabbrev-completion / partial-dabbrev using anything.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-dabbrev-expand.el")

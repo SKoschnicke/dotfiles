@@ -1,0 +1,5 @@
+(:name mon-window-utils
+:auto-generated t
+:type emacswiki
+:description "window related procedures for mon-*utils features"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-window-utils.el")

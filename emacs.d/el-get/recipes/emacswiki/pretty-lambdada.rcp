@@ -1,0 +1,5 @@
+(:name pretty-lambdada
+:auto-generated t
+:type emacswiki
+:description "Show the word `lambda' as the Greek letter."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pretty-lambdada.el")

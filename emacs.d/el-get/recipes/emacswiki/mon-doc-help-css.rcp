@@ -1,0 +1,5 @@
+(:name mon-doc-help-css
+:auto-generated t
+:type emacswiki
+:description "extends mon-doc-help-utils with CSS related docs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-doc-help-css.el")

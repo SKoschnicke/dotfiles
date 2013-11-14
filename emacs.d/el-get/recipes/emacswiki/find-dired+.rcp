@@ -1,0 +1,5 @@
+(:name find-dired+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `find-dired.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/find-dired+.el")

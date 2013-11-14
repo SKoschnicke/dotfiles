@@ -1,0 +1,5 @@
+(:name reco
+:auto-generated t
+:type emacswiki
+:description "'Reco'gnize what is playing on a streaming audio"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/reco.el")

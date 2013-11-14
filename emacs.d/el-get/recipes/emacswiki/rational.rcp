@@ -1,0 +1,5 @@
+(:name rational
+:auto-generated t
+:type emacswiki
+:description "Rational number in factorial-base format."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rational.el")

@@ -1,0 +1,5 @@
+(:name doc-view-extension
+:auto-generated t
+:type emacswiki
+:description "Simple extensions for `doc-view'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/doc-view-extension.el")

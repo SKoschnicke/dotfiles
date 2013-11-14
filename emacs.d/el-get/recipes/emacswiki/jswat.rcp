@@ -1,0 +1,5 @@
+(:name jswat
+:auto-generated t
+:type emacswiki
+:description "JDEE interface to JSwat"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jswat.el")

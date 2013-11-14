@@ -1,0 +1,5 @@
+(:name shell-history
+:auto-generated t
+:type emacswiki
+:description "integration with shell history"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/shell-history.el")

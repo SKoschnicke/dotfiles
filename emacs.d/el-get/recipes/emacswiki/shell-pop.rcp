@@ -1,0 +1,5 @@
+(:name shell-pop
+:auto-generated t
+:type emacswiki
+:description "Helps you pop up and pop out shell buffer easily."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/shell-pop.el")

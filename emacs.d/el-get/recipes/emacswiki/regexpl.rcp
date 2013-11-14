@@ -1,0 +1,5 @@
+(:name regexpl
+:auto-generated t
+:type emacswiki
+:description "Search and replace list of patterns and replacements."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/regexpl.el")

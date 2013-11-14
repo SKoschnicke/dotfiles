@@ -1,0 +1,5 @@
+(:name jde-findbugs
+:auto-generated t
+:type emacswiki
+:description "Findbugs interface for JDE"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jde-findbugs.el")

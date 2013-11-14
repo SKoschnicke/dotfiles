@@ -1,0 +1,5 @@
+(:name move-text
+:auto-generated t
+:type emacswiki
+:description "Move current line or region with M-up or M-down."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/move-text.el")

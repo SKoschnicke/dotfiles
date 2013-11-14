@@ -1,0 +1,5 @@
+(:name gnus-notify+
+:auto-generated t
+:type emacswiki
+:description "Gnus notify"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-notify+.el")

@@ -1,0 +1,5 @@
+(:name bs-ext
+:auto-generated t
+:type emacswiki
+:description "Extensions to emacs buffer-selection library (bs.el)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bs-ext.el")

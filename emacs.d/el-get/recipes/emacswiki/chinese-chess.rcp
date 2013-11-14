@@ -1,0 +1,5 @@
+(:name chinese-chess
+:auto-generated t
+:type emacswiki
+:description "Chinese Chess Game   -*- coding: utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/chinese-chess.el")

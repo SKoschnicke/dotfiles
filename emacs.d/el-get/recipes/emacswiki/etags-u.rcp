@@ -1,0 +1,5 @@
+(:name etags-u
+:auto-generated t
+:type emacswiki
+:description "(auto)updating TAGS file using etags"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/etags-u.el")

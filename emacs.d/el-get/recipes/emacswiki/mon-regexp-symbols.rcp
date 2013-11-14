@@ -1,0 +1,5 @@
+(:name mon-regexp-symbols
+:auto-generated t
+:type emacswiki
+:description "Regexp lists of common match/replace a pairs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-regexp-symbols.el")

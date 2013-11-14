@@ -1,0 +1,5 @@
+(:name amigo
+:auto-generated t
+:type emacswiki
+:description "interface with friendfeed.com"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/amigo.el")

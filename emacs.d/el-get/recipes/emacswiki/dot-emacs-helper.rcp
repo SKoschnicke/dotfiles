@@ -1,0 +1,5 @@
+(:name dot-emacs-helper
+:auto-generated t
+:type emacswiki
+:description "Some helper functions for .emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dot-emacs-helper.el")

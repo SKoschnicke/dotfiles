@@ -1,0 +1,5 @@
+(:name hachette
+:auto-generated t
+:type emacswiki
+:description "Lookup a word on the Hachette's online french dictionary."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hachette.el")

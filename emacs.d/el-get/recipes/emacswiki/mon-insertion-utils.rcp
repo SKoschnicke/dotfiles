@@ -1,0 +1,5 @@
+(:name mon-insertion-utils
+:auto-generated t
+:type emacswiki
+:description "insertion utils, licences, file templates, etc."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-insertion-utils.el")

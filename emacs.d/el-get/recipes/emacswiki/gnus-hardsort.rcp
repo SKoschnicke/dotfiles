@@ -1,0 +1,5 @@
+(:name gnus-hardsort
+:auto-generated t
+:type emacswiki
+:description "permanently sort group by date"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-hardsort.el")

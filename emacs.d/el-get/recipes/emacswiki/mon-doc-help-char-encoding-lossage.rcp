@@ -1,0 +1,5 @@
+(:name mon-doc-help-char-encoding-lossage
+:auto-generated t
+:type emacswiki
+:description "Show charset encoding lossage"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-doc-help-char-encoding-lossage.el")

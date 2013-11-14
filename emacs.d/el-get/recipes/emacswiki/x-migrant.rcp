@@ -1,0 +1,5 @@
+(:name x-migrant
+:auto-generated t
+:type emacswiki
+:description "Support for subprocesses handling remote X displays"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/x-migrant.el")

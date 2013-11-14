@@ -1,0 +1,5 @@
+(:name doit-mode
+:auto-generated t
+:type emacswiki
+:description "A major mode for organizing tasks."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/doit-mode.el")

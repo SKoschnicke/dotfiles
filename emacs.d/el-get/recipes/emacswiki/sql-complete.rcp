@@ -1,0 +1,5 @@
+(:name sql-complete
+:auto-generated t
+:type emacswiki
+:description "provide completion for tables and columns"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sql-complete.el")

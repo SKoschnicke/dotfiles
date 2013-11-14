@@ -1,0 +1,5 @@
+(:name mon-jg-directory-creator
+:auto-generated t
+:type emacswiki
+:description "utils for massive directory hierarchy creation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-jg-directory-creator.el")

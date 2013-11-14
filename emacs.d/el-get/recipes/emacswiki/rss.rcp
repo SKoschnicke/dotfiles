@@ -1,0 +1,5 @@
+(:name rss
+:auto-generated t
+:type emacswiki
+:description "Create and update RSS(version 2.0)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rss.el")

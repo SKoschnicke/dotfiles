@@ -1,0 +1,5 @@
+(:name fix-buffers-list
+:auto-generated t
+:type emacswiki
+:description "New M status and colors in buffers list"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fix-buffers-list.el")

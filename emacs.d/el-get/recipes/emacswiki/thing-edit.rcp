@@ -1,0 +1,5 @@
+(:name thing-edit
+:auto-generated t
+:type emacswiki
+:description "Extension thing edit"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/thing-edit.el")

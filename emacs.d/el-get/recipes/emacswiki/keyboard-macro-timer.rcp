@@ -1,0 +1,5 @@
+(:name keyboard-macro-timer
+:auto-generated t
+:type emacswiki
+:description "Run last keyboard macro with a timer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/keyboard-macro-timer.el")

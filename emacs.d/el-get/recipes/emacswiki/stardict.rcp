@@ -1,0 +1,5 @@
+(:name stardict
+:auto-generated t
+:type emacswiki
+:description "stardict dictionary library"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/stardict.el")

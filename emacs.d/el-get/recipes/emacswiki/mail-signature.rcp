@@ -1,0 +1,5 @@
+(:name mail-signature
+:auto-generated t
+:type emacswiki
+:description "Add context sensitive signature"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mail-signature.el")

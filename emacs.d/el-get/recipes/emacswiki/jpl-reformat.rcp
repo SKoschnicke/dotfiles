@@ -1,0 +1,5 @@
+(:name jpl-reformat
+:auto-generated t
+:type emacswiki
+:description "Reformat source code, especially parameter"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jpl-reformat.el")

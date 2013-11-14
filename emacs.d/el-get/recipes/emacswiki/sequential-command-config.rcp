@@ -1,0 +1,5 @@
+(:name sequential-command-config
+:auto-generated t
+:type emacswiki
+:description "Examples of sequential-command.el "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sequential-command-config.el")

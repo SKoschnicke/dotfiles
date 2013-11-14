@@ -1,0 +1,5 @@
+(:name enscript
+:auto-generated t
+:type emacswiki
+:description "Joel's Custom printing functions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/enscript.el")

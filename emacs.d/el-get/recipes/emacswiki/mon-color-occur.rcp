@@ -1,0 +1,5 @@
+(:name mon-color-occur
+:auto-generated t
+:type emacswiki
+:description "color-occur.el with minor patches"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-color-occur.el")

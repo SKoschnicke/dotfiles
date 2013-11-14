@@ -1,0 +1,5 @@
+(:name dvi-view
+:auto-generated t
+:type emacswiki
+:description "View a DVI file in an Emacs buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dvi-view.el")

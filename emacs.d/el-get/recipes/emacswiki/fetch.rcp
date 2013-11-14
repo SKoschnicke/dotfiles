@@ -1,0 +1,5 @@
+(:name fetch
+:auto-generated t
+:type emacswiki
+:description "Fetch a file from a java hierarchy"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fetch.el")

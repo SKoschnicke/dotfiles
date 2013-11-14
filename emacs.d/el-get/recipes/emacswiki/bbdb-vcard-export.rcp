@@ -1,0 +1,5 @@
+(:name bbdb-vcard-export
+:auto-generated t
+:type emacswiki
+:description "export BBDB as vCard files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bbdb-vcard-export.el")

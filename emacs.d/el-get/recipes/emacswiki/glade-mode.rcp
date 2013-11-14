@@ -1,0 +1,5 @@
+(:name glade-mode
+:auto-generated t
+:type emacswiki
+:description "A mode to view glade interface using tree-widget"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/glade-mode.el")

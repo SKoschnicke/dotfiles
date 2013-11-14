@@ -1,0 +1,5 @@
+(:name csv-mode
+:auto-generated t
+:type emacswiki
+:description "major mode for editing comma-separated value files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/csv-mode.el")

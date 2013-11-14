@@ -1,0 +1,5 @@
+(:name planner-hierarchy
+:auto-generated t
+:type emacswiki
+:description "Hierarchical Planning"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/planner-hierarchy.el")

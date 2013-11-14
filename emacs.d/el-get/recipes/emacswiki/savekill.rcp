@@ -1,0 +1,5 @@
+(:name savekill
+:auto-generated t
+:type emacswiki
+:description "Save kill ring to disk"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/savekill.el")

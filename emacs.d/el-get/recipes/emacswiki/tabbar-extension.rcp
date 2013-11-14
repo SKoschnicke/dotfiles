@@ -1,0 +1,5 @@
+(:name tabbar-extension
+:auto-generated t
+:type emacswiki
+:description "Some extension for tabbar."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tabbar-extension.el")

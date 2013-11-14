@@ -1,0 +1,5 @@
+(:name rmail-extras
+:auto-generated t
+:type emacswiki
+:description "remote inboxes for RMAIL, extend "time" with multiple mail flags"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rmail-extras.el")

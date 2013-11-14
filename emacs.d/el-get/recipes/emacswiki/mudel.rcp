@@ -1,0 +1,5 @@
+(:name mudel
+:auto-generated t
+:type emacswiki
+:description "The Mudel MUD Client"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mudel.el")

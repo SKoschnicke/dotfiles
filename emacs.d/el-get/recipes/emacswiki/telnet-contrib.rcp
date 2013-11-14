@@ -1,0 +1,5 @@
+(:name telnet-contrib
+:auto-generated t
+:type emacswiki
+:description "Telnet commands for Emacs on MS Windows."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/telnet-contrib.el")

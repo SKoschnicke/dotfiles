@@ -1,0 +1,5 @@
+(:name mazemax
+:auto-generated t
+:type emacswiki
+:description "labyrinth generation and exploration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mazemax.el")

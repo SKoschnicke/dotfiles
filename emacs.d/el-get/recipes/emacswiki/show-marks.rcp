@@ -1,0 +1,5 @@
+(:name show-marks
+:auto-generated t
+:type emacswiki
+:description "Navigate and visualize the mark-ring"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/show-marks.el")

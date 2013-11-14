@@ -1,0 +1,5 @@
+(:name erefactor
+:auto-generated t
+:type emacswiki
+:description "Emacs-Lisp tools"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/erefactor.el")

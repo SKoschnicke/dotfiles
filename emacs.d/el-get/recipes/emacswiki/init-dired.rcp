@@ -1,0 +1,5 @@
+(:name init-dired
+:auto-generated t
+:type emacswiki
+:description "Dired configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-dired.el")

@@ -1,0 +1,5 @@
+(:name mon-aliases
+:auto-generated t
+:type emacswiki
+:description "consolidated aliases for functions provided by MON"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-aliases.el")

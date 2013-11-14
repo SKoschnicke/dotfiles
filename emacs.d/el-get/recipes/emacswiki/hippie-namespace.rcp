@@ -1,0 +1,5 @@
+(:name hippie-namespace
+:auto-generated t
+:type emacswiki
+:description "Special treatment for namespace prefixes in hippie-expand"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hippie-namespace.el")

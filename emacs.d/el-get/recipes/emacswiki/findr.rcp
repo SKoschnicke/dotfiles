@@ -1,0 +1,5 @@
+(:name findr
+:auto-generated t
+:type emacswiki
+:description "Breadth-first file-finding facility for (X)Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/findr.el")

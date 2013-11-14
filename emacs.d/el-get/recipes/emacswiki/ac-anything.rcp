@@ -1,0 +1,5 @@
+(:name ac-anything
+:auto-generated t
+:type emacswiki
+:description "Auto Complete with Anything"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ac-anything.el")

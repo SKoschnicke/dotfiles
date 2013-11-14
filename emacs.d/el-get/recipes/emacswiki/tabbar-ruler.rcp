@@ -1,0 +1,5 @@
+(:name tabbar-ruler
+:auto-generated t
+:type emacswiki
+:description "Pretty tabbar, autohide, use both tabbar/ruler"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tabbar-ruler.el")

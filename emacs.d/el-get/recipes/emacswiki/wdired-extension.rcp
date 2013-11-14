@@ -1,0 +1,5 @@
+(:name wdired-extension
+:auto-generated t
+:type emacswiki
+:description "Some extension functions for `wdired.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wdired-extension.el")

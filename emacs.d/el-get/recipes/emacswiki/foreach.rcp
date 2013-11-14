@@ -1,0 +1,5 @@
+(:name foreach
+:auto-generated t
+:type emacswiki
+:description "simple list iteration macros."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/foreach.el")

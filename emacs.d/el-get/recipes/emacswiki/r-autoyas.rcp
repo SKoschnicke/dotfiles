@@ -1,0 +1,5 @@
+(:name r-autoyas
+:auto-generated t
+:type emacswiki
+:description "Provides automatically created yasnippets for R function argument lists."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/r-autoyas.el")

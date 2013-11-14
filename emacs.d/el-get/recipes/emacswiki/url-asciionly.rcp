@@ -1,0 +1,5 @@
+(:name url-asciionly
+:auto-generated t
+:type emacswiki
+:description "ffap url handling workaround"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/url-asciionly.el")

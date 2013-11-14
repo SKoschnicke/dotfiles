@@ -1,0 +1,5 @@
+(:name submit-wtf
+:auto-generated t
+:type emacswiki
+:description " Submit some horrible code to TheDailyWTF.com"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/submit-wtf.el")

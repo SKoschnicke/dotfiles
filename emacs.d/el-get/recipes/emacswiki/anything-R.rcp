@@ -1,0 +1,5 @@
+(:name anything-R
+:auto-generated t
+:type emacswiki
+:description "anything-sources and some utilities for GNU R."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-R.el")

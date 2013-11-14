@@ -1,0 +1,5 @@
+(:name org-readme
+:auto-generated t
+:type emacswiki
+:description "Integrates Readme.org and Commentary/Change-logs."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/org-readme.el")

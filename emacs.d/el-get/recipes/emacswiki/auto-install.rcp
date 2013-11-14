@@ -1,0 +1,5 @@
+(:name auto-install
+:auto-generated t
+:type emacswiki
+:description "Auto install elisp file"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-install.el")

@@ -1,0 +1,5 @@
+(:name bidi-table-test
+:auto-generated t
+:type emacswiki
+:description "test bidi type categories for Emacs -*- coding: iso-2022-7bit -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bidi-table-test.el")

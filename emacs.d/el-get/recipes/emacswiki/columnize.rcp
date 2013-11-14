@@ -1,0 +1,5 @@
+(:name columnize
+:auto-generated t
+:type emacswiki
+:description "Formats a list of items into columns (pillars)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/columnize.el")

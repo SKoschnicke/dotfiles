@@ -1,0 +1,5 @@
+(:name dired-sort-menu
+:auto-generated t
+:type emacswiki
+:description "provide menu/dialogue for dired sort options"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dired-sort-menu.el")

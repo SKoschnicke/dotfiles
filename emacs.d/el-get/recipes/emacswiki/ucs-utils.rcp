@@ -1,0 +1,5 @@
+(:name ucs-utils
+:auto-generated t
+:type emacswiki
+:description "Utilities for Unicode characters"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ucs-utils.el")

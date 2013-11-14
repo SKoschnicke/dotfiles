@@ -1,0 +1,5 @@
+(:name scpaste
+:auto-generated t
+:type emacswiki
+:description "Paste to the web via scp."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/scpaste.el")

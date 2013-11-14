@@ -1,0 +1,5 @@
+(:name ppm-gen
+:auto-generated t
+:type emacswiki
+:description "simple & slow ppm generation in emacs."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ppm-gen.el")

@@ -1,0 +1,5 @@
+(:name planner-frame
+:auto-generated t
+:type emacswiki
+:description "Devote a frame to the Planner"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/planner-frame.el")

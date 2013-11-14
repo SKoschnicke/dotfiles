@@ -1,0 +1,5 @@
+(:name mon-doc-help-mail
+:auto-generated t
+:type emacswiki
+:description "extends mon-doc-help-utils package with mail xrefs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-doc-help-mail.el")

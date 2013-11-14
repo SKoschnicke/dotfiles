@@ -1,0 +1,5 @@
+(:name incr
+:auto-generated t
+:type emacswiki
+:description "Increase everything as you want -*- coding: utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/incr.el")

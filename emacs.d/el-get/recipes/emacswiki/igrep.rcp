@@ -1,0 +1,5 @@
+(:name igrep
+:auto-generated t
+:type emacswiki
+:description "An improved interface to `grep` and `find`"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/igrep.el")

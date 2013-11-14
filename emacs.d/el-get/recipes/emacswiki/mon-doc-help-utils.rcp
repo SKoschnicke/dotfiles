@@ -1,0 +1,5 @@
+(:name mon-doc-help-utils
+:auto-generated t
+:type emacswiki
+:description "documentation enabling and generation extensions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-doc-help-utils.el")

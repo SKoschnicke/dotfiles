@@ -1,0 +1,5 @@
+(:name wikiarea-fixed
+:auto-generated t
+:type emacswiki
+:description "Interface to the Emacs Wiki's Elisp area"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wikiarea-fixed.el")

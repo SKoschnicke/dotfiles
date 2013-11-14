@@ -1,0 +1,5 @@
+(:name netrexx-mode
+:auto-generated t
+:type emacswiki
+:description "highlight and indent Netrexx program files."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/netrexx-mode.el")

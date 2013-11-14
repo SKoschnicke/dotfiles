@@ -1,0 +1,5 @@
+(:name duck
+:auto-generated t
+:type emacswiki
+:description "A few utilities for Scheme programming"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/duck.el")

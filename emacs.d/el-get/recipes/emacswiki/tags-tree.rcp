@@ -1,0 +1,5 @@
+(:name tags-tree
+:auto-generated t
+:type emacswiki
+:description "Display tree of TAGS"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tags-tree.el")

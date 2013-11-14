@@ -1,0 +1,5 @@
+(:name icicles-cmd2
+:auto-generated t
+:type emacswiki
+:description "Top-level commands for Icicles"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-cmd2.el")

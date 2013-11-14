@@ -1,0 +1,5 @@
+(:name jump
+:auto-generated t
+:type emacswiki
+:description "interactive function that jump directly to the thing at point"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jump.el")

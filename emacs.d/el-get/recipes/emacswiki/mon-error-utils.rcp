@@ -1,0 +1,5 @@
+(:name mon-error-utils
+:auto-generated t
+:type emacswiki
+:description "extensions for conditions and error handling"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-error-utils.el")

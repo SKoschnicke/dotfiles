@@ -1,0 +1,5 @@
+(:name smart-dabbrev
+:auto-generated t
+:type emacswiki
+:description "smarter dabbrev-expand"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/smart-dabbrev.el")

@@ -1,0 +1,5 @@
+(:name couchdb-document
+:auto-generated t
+:type emacswiki
+:description "couchdb document handler"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/couchdb-document.el")

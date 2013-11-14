@@ -1,0 +1,5 @@
+(:name google-define-redux
+:auto-generated t
+:type emacswiki
+:description "extends google-define.el "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/google-define-redux.el")

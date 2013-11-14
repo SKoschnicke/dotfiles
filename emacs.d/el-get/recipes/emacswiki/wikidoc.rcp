@@ -1,0 +1,5 @@
+(:name wikidoc
+:auto-generated t
+:type emacswiki
+:description "use elisp doc strings to make other documentation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wikidoc.el")

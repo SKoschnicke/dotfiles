@@ -1,0 +1,5 @@
+(:name w32-symlinks
+:auto-generated t
+:type emacswiki
+:description "MS Windows symbolic link (shortcut) support"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w32-symlinks.el")

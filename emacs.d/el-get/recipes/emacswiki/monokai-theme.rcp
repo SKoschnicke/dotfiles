@@ -1,0 +1,5 @@
+(:name monokai-theme
+:auto-generated t
+:type emacswiki
+:description "TextMate theme Monokai port for Emacs color-theme."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/monokai-theme.el")

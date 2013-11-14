@@ -1,0 +1,5 @@
+(:name hippie-exp-ext
+:auto-generated t
+:type emacswiki
+:description "Extension of hippie-expand"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hippie-exp-ext.el")

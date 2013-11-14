@@ -1,0 +1,5 @@
+(:name vimpulse
+:auto-generated t
+:type emacswiki
+:description "emulates Vim's most useful features -*- coding: utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vimpulse.el")

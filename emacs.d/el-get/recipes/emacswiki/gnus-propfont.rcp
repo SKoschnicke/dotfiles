@@ -1,0 +1,5 @@
+(:name gnus-propfont
+:auto-generated t
+:type emacswiki
+:description " adding faces to *Article* buffer in Gnus "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-propfont.el")

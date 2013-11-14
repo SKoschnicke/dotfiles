@@ -1,0 +1,5 @@
+(:name 1040tt
+:auto-generated t
+:type emacswiki
+:description "U.S. tax calculator for form 1040 filers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/1040tt.el")

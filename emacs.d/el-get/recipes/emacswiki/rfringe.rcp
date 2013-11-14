@@ -1,0 +1,5 @@
+(:name rfringe
+:auto-generated t
+:type emacswiki
+:description "display the relative location of the region, in the fringe."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rfringe.el")

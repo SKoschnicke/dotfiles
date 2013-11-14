@@ -1,0 +1,5 @@
+(:name mp3player
+:auto-generated t
+:type emacswiki
+:description "Interface to mpg123 or winamp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mp3player.el")

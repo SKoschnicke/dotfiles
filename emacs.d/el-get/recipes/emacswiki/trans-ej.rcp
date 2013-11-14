@@ -1,0 +1,5 @@
+(:name trans-ej
+:auto-generated t
+:type emacswiki
+:description "English-Japanese translator using web translation service -*- Coding: utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/trans-ej.el")

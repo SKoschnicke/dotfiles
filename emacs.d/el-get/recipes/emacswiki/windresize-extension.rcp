@@ -1,0 +1,5 @@
+(:name windresize-extension
+:auto-generated t
+:type emacswiki
+:description "Some extension functions for `windresize.el'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/windresize-extension.el")

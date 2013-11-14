@@ -1,0 +1,5 @@
+(:name diffstat
+:auto-generated t
+:type emacswiki
+:description "a mode for showing the summary of diff"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/diffstat.el")

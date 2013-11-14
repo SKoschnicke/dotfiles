@@ -1,0 +1,5 @@
+(:name pom-parser
+:auto-generated t
+:type emacswiki
+:description "Tools for using attributes from a Maven POM in JDE project files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pom-parser.el")

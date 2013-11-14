@@ -1,0 +1,5 @@
+(:name eiv
+:auto-generated t
+:type emacswiki
+:description "emacs image viewer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eiv.el")

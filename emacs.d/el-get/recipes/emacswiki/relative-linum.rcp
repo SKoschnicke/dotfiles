@@ -1,0 +1,5 @@
+(:name relative-linum
+:auto-generated t
+:type emacswiki
+:description "show relative line number and allow offset jumping"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/relative-linum.el")

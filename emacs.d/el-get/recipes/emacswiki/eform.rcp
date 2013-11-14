@@ -1,0 +1,5 @@
+(:name eform
+:auto-generated t
+:type emacswiki
+:description "Web form like forms"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eform.el")

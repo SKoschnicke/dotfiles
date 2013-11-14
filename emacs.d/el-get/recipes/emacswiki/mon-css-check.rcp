@@ -1,0 +1,5 @@
+(:name mon-css-check
+:auto-generated t
+:type emacswiki
+:description "optimize CSS attributes and properties with Emacs interface to csstidy"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-css-check.el")

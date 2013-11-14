@@ -1,0 +1,5 @@
+(:name english-menu
+:auto-generated t
+:type emacswiki
+:description "mule-menu template"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/english-menu.el")

@@ -1,0 +1,5 @@
+(:name guess-offset
+:auto-generated t
+:type emacswiki
+:description "Automatically determine c-basic-offset"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/guess-offset.el")

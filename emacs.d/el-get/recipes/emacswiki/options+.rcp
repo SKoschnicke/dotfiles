@@ -1,0 +1,5 @@
+(:name options+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `options.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/options+.el")

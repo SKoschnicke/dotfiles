@@ -1,0 +1,5 @@
+(:name window-number
+:auto-generated t
+:type emacswiki
+:description "Select windows by numbers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/window-number.el")

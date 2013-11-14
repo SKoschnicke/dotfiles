@@ -1,0 +1,5 @@
+(:name token-example
+:auto-generated t
+:type emacswiki
+:description "example for Parser Compiler introducing tokens."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/token-example.el")

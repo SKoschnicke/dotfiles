@@ -1,0 +1,5 @@
+(:name gst-inspect
+:auto-generated t
+:type emacswiki
+:description "wrapper for gst-inspect"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gst-inspect.el")

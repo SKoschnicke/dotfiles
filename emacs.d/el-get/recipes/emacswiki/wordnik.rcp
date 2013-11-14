@@ -1,0 +1,5 @@
+(:name wordnik
+:auto-generated t
+:type emacswiki
+:description " lookup a word on wordnik"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wordnik.el")

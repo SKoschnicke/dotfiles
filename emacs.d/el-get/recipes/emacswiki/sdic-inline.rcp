@@ -1,0 +1,5 @@
+(:name sdic-inline
+:auto-generated t
+:type emacswiki
+:description "Program to view dictionary."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sdic-inline.el")

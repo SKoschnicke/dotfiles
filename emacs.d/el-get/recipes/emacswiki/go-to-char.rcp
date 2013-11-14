@@ -1,0 +1,5 @@
+(:name go-to-char
+:auto-generated t
+:type emacswiki
+:description "Go to char"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/go-to-char.el")

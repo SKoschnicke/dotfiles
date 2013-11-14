@@ -1,0 +1,5 @@
+(:name mon-cl-compat
+:auto-generated t
+:type emacswiki
+:description "cl functions prefixed as cl::some-cl-function"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-cl-compat.el")

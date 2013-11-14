@@ -1,0 +1,5 @@
+(:name flobl
+:auto-generated t
+:type emacswiki
+:description "frame-local buffer list"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/flobl.el")

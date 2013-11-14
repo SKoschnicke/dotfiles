@@ -1,0 +1,5 @@
+(:name esh-myparser
+:auto-generated t
+:type emacswiki
+:description "Define original Eshell cmdline parser by bypassing original parser"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/esh-myparser.el")

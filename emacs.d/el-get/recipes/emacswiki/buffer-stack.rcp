@@ -1,0 +1,5 @@
+(:name buffer-stack
+:auto-generated t
+:type emacswiki
+:description "Enhanced intelligent switch-to-other-buffer replacement."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/buffer-stack.el")

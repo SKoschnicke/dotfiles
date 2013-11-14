@@ -1,0 +1,5 @@
+(:name dired-open
+:auto-generated t
+:type emacswiki
+:description "Open varoius files in dired."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dired-open.el")

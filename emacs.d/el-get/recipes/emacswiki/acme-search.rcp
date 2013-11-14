@@ -1,0 +1,5 @@
+(:name acme-search
+:auto-generated t
+:type emacswiki
+:description "right-click searching"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/acme-search.el")

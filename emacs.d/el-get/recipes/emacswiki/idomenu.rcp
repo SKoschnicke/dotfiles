@@ -1,0 +1,5 @@
+(:name idomenu
+:auto-generated t
+:type emacswiki
+:description "imenu tag selection a la ido"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/idomenu.el")

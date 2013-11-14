@@ -1,0 +1,5 @@
+(:name thumb-page
+:auto-generated t
+:type emacswiki
+:description "create a muse file with thumbs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/thumb-page.el")

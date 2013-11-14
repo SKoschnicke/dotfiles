@@ -1,0 +1,5 @@
+(:name w32-exec-predef
+:auto-generated t
+:type emacswiki
+:description "execute Start Menu shortcuts from inside Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w32-exec-predef.el")

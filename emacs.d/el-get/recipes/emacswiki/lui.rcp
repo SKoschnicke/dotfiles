@@ -1,0 +1,5 @@
+(:name lui
+:auto-generated t
+:type emacswiki
+:description "Linewise User Interface"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lui.el")

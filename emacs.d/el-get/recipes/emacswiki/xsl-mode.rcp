@@ -1,0 +1,5 @@
+(:name xsl-mode
+:auto-generated t
+:type emacswiki
+:description "XSL Mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/xsl-mode.el")

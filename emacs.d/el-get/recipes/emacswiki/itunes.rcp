@@ -1,0 +1,5 @@
+(:name itunes
+:auto-generated t
+:type emacswiki
+:description "utility functions to interact with iTunes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/itunes.el")

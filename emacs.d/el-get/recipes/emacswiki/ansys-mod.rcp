@@ -1,0 +1,5 @@
+(:name ansys-mod
+:auto-generated t
+:type emacswiki
+:description "editing Ansys log files under Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ansys-mod.el")

@@ -1,0 +1,5 @@
+(:name icomplete+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `icomplete.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/icomplete+.el")

@@ -1,0 +1,5 @@
+(:name eassist
+:auto-generated t
+:type emacswiki
+:description "EmacsAssist, C/C++/Java/Python/ELisp method/function navigator."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eassist.el")

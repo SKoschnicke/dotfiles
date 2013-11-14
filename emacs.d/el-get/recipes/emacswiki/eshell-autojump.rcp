@@ -1,0 +1,5 @@
+(:name eshell-autojump
+:auto-generated t
+:type emacswiki
+:description "autojump command for Eshell"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eshell-autojump.el")

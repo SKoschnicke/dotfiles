@@ -1,0 +1,5 @@
+(:name webgen-mode
+:auto-generated t
+:type emacswiki
+:description "webgen mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/webgen-mode.el")

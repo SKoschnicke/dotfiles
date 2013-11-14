@@ -1,0 +1,5 @@
+(:name cobol-mode
+:auto-generated t
+:type emacswiki
+:description "Handles only what little Cobol I happen to know"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cobol-mode.el")

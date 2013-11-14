@@ -1,0 +1,5 @@
+(:name random-quote
+:auto-generated t
+:type emacswiki
+:description "chooses a random quote from a file"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/random-quote.el")

@@ -1,0 +1,5 @@
+(:name record-type
+:auto-generated t
+:type emacswiki
+:description "Define record type for Emacs Lisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/record-type.el")

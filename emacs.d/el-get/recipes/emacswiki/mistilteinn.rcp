@@ -1,0 +1,5 @@
+(:name mistilteinn
+:auto-generated t
+:type emacswiki
+:description "minor-mode for mistilteinn"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mistilteinn.el")

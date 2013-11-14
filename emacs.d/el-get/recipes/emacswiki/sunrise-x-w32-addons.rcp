@@ -1,0 +1,5 @@
+(:name sunrise-x-w32-addons
+:auto-generated t
+:type emacswiki
+:description "MS-Windows-specific utilities for the Sunrise Commander File Manager -*- lexical-binding: t -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sunrise-x-w32-addons.el")

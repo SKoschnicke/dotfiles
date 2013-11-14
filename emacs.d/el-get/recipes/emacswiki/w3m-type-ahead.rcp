@@ -1,0 +1,5 @@
+(:name w3m-type-ahead
+:auto-generated t
+:type emacswiki
+:description "type ahead support for Emacs-w3m"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w3m-type-ahead.el")

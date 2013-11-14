@@ -1,0 +1,5 @@
+(:name tex-smart-umlauts
+:auto-generated t
+:type emacswiki
+:description "Smart umlaut conversion for TeX."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tex-smart-umlauts.el")

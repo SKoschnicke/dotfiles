@@ -1,0 +1,5 @@
+(:name mss
+:auto-generated t
+:type emacswiki
+:description "Make smart shortcuts to programs in your Win95/98/NT4 start menu"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mss.el")

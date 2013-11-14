@@ -1,0 +1,5 @@
+(:name auto-complete-etags
+:auto-generated t
+:type emacswiki
+:description "Auto-completion source for etags"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-complete-etags.el")

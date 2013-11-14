@@ -1,0 +1,5 @@
+(:name wide-n
+:auto-generated t
+:type emacswiki
+:description "Cycle among buffer restrictions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wide-n.el")

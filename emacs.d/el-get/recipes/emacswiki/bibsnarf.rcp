@@ -1,0 +1,5 @@
+(:name bibsnarf
+:auto-generated t
+:type emacswiki
+:description "get BibTeX format bibliography entries from the net"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bibsnarf.el")

@@ -1,0 +1,5 @@
+(:name keychain-environment
+:auto-generated t
+:type emacswiki
+:description "Loads keychain environment variables into emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/keychain-environment.el")

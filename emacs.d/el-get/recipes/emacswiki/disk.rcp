@@ -1,0 +1,5 @@
+(:name disk
+:auto-generated t
+:type emacswiki
+:description "simplified find-file, revert-file, save-buffer interface"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/disk.el")

@@ -1,0 +1,5 @@
+(:name sql-completion
+:auto-generated t
+:type emacswiki
+:description "Completion in *SQL* for mysql"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sql-completion.el")

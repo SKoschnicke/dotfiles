@@ -1,0 +1,5 @@
+(:name sticky-windows
+:auto-generated t
+:type emacswiki
+:description "Make windows stay visible"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sticky-windows.el")

@@ -1,0 +1,5 @@
+(:name button-lock
+:auto-generated t
+:type emacswiki
+:description "Clickable text defined by regular expression"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/button-lock.el")

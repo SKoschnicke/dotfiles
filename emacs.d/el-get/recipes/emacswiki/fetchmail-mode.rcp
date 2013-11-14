@@ -1,0 +1,5 @@
+(:name fetchmail-mode
+:auto-generated t
+:type emacswiki
+:description "Mode for editing .fetchmailrc files  -*- Emacs-Lisp -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fetchmail-mode.el")

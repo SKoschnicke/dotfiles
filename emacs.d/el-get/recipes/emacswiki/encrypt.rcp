@@ -1,0 +1,5 @@
+(:name encrypt
+:auto-generated t
+:type emacswiki
+:description "encrypt and decrypt using coding system"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/encrypt.el")

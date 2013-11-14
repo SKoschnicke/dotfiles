@@ -1,0 +1,5 @@
+(:name latex-math-preview
+:auto-generated t
+:type emacswiki
+:description "preview LaTeX mathematical expressions."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/latex-math-preview.el")

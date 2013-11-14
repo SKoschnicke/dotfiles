@@ -1,0 +1,5 @@
+(:name x-face-magic
+:auto-generated t
+:type emacswiki
+:description "various x-face utils"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/x-face-magic.el")

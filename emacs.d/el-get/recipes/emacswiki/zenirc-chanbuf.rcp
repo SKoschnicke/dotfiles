@@ -1,0 +1,5 @@
+(:name zenirc-chanbuf
+:auto-generated t
+:type emacswiki
+:description "zenirc one channel per buffer support"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/zenirc-chanbuf.el")

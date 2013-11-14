@@ -1,0 +1,5 @@
+(:name usage-memo
+:auto-generated t
+:type emacswiki
+:description "integration of Emacs help system and memo"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/usage-memo.el")

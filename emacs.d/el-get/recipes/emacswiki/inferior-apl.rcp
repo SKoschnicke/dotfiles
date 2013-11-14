@@ -1,0 +1,5 @@
+(:name inferior-apl
+:auto-generated t
+:type emacswiki
+:description " Basic Apl (Aplus) in a buffer functionality"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/inferior-apl.el")

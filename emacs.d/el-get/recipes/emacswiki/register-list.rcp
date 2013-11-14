@@ -1,0 +1,5 @@
+(:name register-list
+:auto-generated t
+:type emacswiki
+:description " Interactively list/edit registers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/register-list.el")

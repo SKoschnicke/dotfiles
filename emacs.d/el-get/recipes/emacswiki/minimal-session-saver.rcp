@@ -1,0 +1,5 @@
+(:name minimal-session-saver
+:auto-generated t
+:type emacswiki
+:description "Very lean session saver"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/minimal-session-saver.el")

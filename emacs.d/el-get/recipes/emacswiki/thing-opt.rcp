@@ -1,0 +1,5 @@
+(:name thing-opt
+:auto-generated t
+:type emacswiki
+:description "Thing at Point optional utilities"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/thing-opt.el")

@@ -1,0 +1,5 @@
+(:name calc-inline
+:auto-generated t
+:type emacswiki
+:description "Evaluate calc-expression within ordinary text."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/calc-inline.el")

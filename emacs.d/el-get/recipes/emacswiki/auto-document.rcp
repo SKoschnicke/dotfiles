@@ -1,0 +1,5 @@
+(:name auto-document
+:auto-generated t
+:type emacswiki
+:description "Automatic document generator of Emacs Lisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-document.el")

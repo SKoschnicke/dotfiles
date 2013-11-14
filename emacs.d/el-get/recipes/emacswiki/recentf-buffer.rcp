@@ -1,0 +1,5 @@
+(:name recentf-buffer
+:auto-generated t
+:type emacswiki
+:description "creates the buffer with the list of recently open files."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/recentf-buffer.el")

@@ -1,0 +1,5 @@
+(:name wcy-recentf
+:auto-generated t
+:type emacswiki
+:description "open recent saved file and recent opened file"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wcy-recentf.el")

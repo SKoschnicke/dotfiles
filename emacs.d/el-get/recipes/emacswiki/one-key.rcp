@@ -1,0 +1,5 @@
+(:name one-key
+:auto-generated t
+:type emacswiki
+:description "Easy access configurable popup menus to display keybindings and other things."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/one-key.el")

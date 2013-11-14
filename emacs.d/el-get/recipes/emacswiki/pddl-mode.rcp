@@ -1,0 +1,5 @@
+(:name pddl-mode
+:auto-generated t
+:type emacswiki
+:description "A Planning and Domain Definition Language editing mode    -*-coding: iso-8859-1;-*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pddl-mode.el")

@@ -1,0 +1,5 @@
+(:name init-mldonkey
+:auto-generated t
+:type emacswiki
+:description "Mldonkey 的设置"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-mldonkey.el")

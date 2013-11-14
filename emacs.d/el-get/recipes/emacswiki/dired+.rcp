@@ -1,0 +1,5 @@
+(:name dired+
+:auto-generated t
+:type emacswiki
+:description "Extensions to Dired."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dired+.el")

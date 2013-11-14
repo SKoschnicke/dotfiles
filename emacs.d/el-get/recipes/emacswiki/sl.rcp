@@ -1,0 +1,5 @@
+(:name sl
+:auto-generated t
+:type emacswiki
+:description "sl for emacs lisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sl.el")

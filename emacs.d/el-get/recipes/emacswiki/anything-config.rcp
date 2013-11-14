@@ -1,0 +1,5 @@
+(:name anything-config
+:auto-generated t
+:type emacswiki
+:description "Applications libary for `anything.el'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-config.el")

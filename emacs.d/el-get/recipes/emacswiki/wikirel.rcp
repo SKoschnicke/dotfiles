@@ -1,0 +1,5 @@
+(:name wikirel
+:auto-generated t
+:type emacswiki
+:description "Visit relevant pages on the Emacs Wiki"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wikirel.el")

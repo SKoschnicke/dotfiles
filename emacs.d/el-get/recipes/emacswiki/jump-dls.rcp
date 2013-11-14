@@ -1,0 +1,5 @@
+(:name jump-dls
+:auto-generated t
+:type emacswiki
+:description "Jump to definition of symbol using various methods"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jump-dls.el")

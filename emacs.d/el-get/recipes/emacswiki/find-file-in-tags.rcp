@@ -1,0 +1,5 @@
+(:name find-file-in-tags
+:auto-generated t
+:type emacswiki
+:description "directly open files referenced in TAGS files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/find-file-in-tags.el")

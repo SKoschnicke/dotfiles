@@ -1,0 +1,5 @@
+(:name setnu
+:auto-generated t
+:type emacswiki
+:description "vi-style line number mode for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/setnu.el")

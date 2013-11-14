@@ -1,0 +1,5 @@
+(:name wiki
+:auto-generated t
+:type emacswiki
+:description "hypertext authoring the WikiWay"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wiki.el")

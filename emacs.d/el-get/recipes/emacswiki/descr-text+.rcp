@@ -1,0 +1,5 @@
+(:name descr-text+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `descr-text.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/descr-text+.el")

@@ -1,0 +1,5 @@
+(:name pushy
+:auto-generated t
+:type emacswiki
+:description "pushy completion"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pushy.el")

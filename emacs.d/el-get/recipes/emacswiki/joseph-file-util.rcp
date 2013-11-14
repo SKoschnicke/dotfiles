@@ -1,0 +1,5 @@
+(:name joseph-file-util
+:auto-generated t
+:type emacswiki
+:description "Function library about file and directory."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/joseph-file-util.el")

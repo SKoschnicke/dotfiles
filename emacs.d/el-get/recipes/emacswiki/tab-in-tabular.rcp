@@ -1,0 +1,5 @@
+(:name tab-in-tabular
+:auto-generated t
+:type emacswiki
+:description "Treat ampersands like table field separators"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tab-in-tabular.el")

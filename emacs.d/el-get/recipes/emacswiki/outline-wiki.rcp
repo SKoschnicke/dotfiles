@@ -1,0 +1,5 @@
+(:name outline-wiki
+:auto-generated t
+:type emacswiki
+:description "An outline-based wiki-like mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/outline-wiki.el")

@@ -1,0 +1,5 @@
+(:name sqled-mode
+:auto-generated t
+:type emacswiki
+:description "Major Mode for editing sql, sqlplus and pl/sql code"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sqled-mode.el")

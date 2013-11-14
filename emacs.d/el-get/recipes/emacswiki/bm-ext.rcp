@@ -1,0 +1,5 @@
+(:name bm-ext
+:auto-generated t
+:type emacswiki
+:description "List all bookmarks in all buffers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bm-ext.el")

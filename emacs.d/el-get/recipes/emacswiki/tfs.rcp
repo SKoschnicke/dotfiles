@@ -1,0 +1,5 @@
+(:name tfs
+:auto-generated t
+:type emacswiki
+:description "MS Team Foundation Server commands for Emacs."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tfs.el")

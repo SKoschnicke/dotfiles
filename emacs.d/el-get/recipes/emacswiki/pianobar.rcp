@@ -1,0 +1,5 @@
+(:name pianobar
+:auto-generated t
+:type emacswiki
+:description "Run Pandora as an inferior process in emacs by using pianobar"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pianobar.el")

@@ -1,0 +1,5 @@
+(:name protbuf
+:auto-generated t
+:type emacswiki
+:description "protect buffers from accidental killing"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/protbuf.el")

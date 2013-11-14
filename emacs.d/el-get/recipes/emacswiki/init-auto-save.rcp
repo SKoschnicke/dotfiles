@@ -1,0 +1,5 @@
+(:name init-auto-save
+:auto-generated t
+:type emacswiki
+:description "自动保存的设置"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-auto-save.el")

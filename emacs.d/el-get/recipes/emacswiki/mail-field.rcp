@@ -1,0 +1,5 @@
+(:name mail-field
+:auto-generated t
+:type emacswiki
+:description "Emulate Sun mailtool field movement"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mail-field.el")

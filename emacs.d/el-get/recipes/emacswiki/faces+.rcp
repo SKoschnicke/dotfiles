@@ -1,0 +1,5 @@
+(:name faces+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `faces.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/faces+.el")

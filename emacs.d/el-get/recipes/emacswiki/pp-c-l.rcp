@@ -1,0 +1,5 @@
+(:name pp-c-l
+:auto-generated t
+:type emacswiki
+:description "Display Control-l characters in a pretty way"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pp-c-l.el")

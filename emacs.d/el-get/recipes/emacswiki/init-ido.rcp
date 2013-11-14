@@ -1,0 +1,5 @@
+(:name init-ido
+:auto-generated t
+:type emacswiki
+:description "Ido configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-ido.el")

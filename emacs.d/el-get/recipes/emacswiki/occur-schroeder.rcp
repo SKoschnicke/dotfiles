@@ -1,0 +1,5 @@
+(:name occur-schroeder
+:auto-generated t
+:type emacswiki
+:description "Invoke occur from within isearch"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/occur-schroeder.el")

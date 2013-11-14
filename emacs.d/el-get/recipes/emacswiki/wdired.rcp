@@ -1,0 +1,5 @@
+(:name wdired
+:auto-generated t
+:type emacswiki
+:description "Rename files editing their names in dired buffers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wdired.el")

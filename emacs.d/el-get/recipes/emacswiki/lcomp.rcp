@@ -1,0 +1,5 @@
+(:name lcomp
+:auto-generated t
+:type emacswiki
+:description "list completion hacks!"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lcomp.el")

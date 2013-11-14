@@ -1,0 +1,5 @@
+(:name mon-buffer-utils
+:auto-generated t
+:type emacswiki
+:description "buffer related procedures for mon-*utils features"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-buffer-utils.el")

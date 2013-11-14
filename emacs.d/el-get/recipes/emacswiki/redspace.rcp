@@ -1,0 +1,5 @@
+(:name redspace
+:auto-generated t
+:type emacswiki
+:description "a minor mode for highlighting empty space at end of lines"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/redspace.el")

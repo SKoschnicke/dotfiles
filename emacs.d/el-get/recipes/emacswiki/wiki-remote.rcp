@@ -1,0 +1,5 @@
+(:name wiki-remote
+:auto-generated t
+:type emacswiki
+:description "edit pages on a remote wiki"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wiki-remote.el")

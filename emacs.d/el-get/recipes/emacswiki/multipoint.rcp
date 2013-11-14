@@ -1,0 +1,5 @@
+(:name multipoint
+:auto-generated t
+:type emacswiki
+:description "A minor mode for multiple simultaneous regions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/multipoint.el")

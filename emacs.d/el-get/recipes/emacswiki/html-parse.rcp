@@ -1,0 +1,5 @@
+(:name html-parse
+:auto-generated t
+:type emacswiki
+:description "html parser for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/html-parse.el")

@@ -1,0 +1,5 @@
+(:name mon-macs
+:auto-generated t
+:type emacswiki
+:description "macros for use with mon-*utils features"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-macs.el")

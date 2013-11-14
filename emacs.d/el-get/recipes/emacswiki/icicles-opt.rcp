@@ -1,0 +1,5 @@
+(:name icicles-opt
+:auto-generated t
+:type emacswiki
+:description "User options (customizable variables) for Icicles"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-opt.el")

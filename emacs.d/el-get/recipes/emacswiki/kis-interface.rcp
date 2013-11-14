@@ -1,0 +1,5 @@
+(:name kis-interface
+:auto-generated t
+:type emacswiki
+:description "Extensions for kis-mode."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/kis-interface.el")

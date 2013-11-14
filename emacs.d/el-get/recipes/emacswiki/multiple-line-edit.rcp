@@ -1,0 +1,5 @@
+(:name multiple-line-edit
+:auto-generated t
+:type emacswiki
+:description "Edit multiple line at a time."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/multiple-line-edit.el")

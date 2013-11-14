@@ -1,0 +1,5 @@
+(:name puzzle
+:auto-generated t
+:type emacswiki
+:description "slide puzzle for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/puzzle.el")

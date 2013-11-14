@@ -1,0 +1,5 @@
+(:name ecasound
+:auto-generated t
+:type emacswiki
+:description "Interactive and programmatic interface to Ecasound"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ecasound.el")

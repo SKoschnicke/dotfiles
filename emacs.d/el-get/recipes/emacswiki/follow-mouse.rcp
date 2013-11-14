@@ -1,0 +1,5 @@
+(:name follow-mouse
+:auto-generated t
+:type emacswiki
+:description "Automatically select the window under the mouse -*-unibyte: t; coding: iso-8859-1;-*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/follow-mouse.el")

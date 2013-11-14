@@ -1,0 +1,5 @@
+(:name init-predictive
+:auto-generated t
+:type emacswiki
+:description "Predictive configuration"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-predictive.el")

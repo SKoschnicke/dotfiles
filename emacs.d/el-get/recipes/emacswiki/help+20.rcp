@@ -1,0 +1,5 @@
+(:name help+20
+:auto-generated t
+:type emacswiki
+:description "Extensions to `help.el' for Emacs 20."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/help+20.el")

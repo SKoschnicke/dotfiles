@@ -1,0 +1,5 @@
+(:name multi-shell
+:auto-generated t
+:type emacswiki
+:description "Multi-Shell Manager"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/multi-shell.el")

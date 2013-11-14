@@ -1,0 +1,5 @@
+(:name lively
+:auto-generated t
+:type emacswiki
+:description "Interactively updating text"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lively.el")

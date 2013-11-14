@@ -1,0 +1,5 @@
+(:name use-package
+:auto-generated t
+:type emacswiki
+:description "Arrange use of an elisp package"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/use-package.el")

@@ -1,0 +1,5 @@
+(:name faith
+:auto-generated t
+:type emacswiki
+:description "hepls spreading the true faith"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/faith.el")

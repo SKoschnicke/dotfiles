@@ -1,0 +1,5 @@
+(:name timeclock-x
+:auto-generated t
+:type emacswiki
+:description "Extra features for John Wiegley's timeclock package"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/timeclock-x.el")

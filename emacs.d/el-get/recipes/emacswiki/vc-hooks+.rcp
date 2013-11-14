@@ -1,0 +1,5 @@
+(:name vc-hooks+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `vc-hooks.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vc-hooks+.el")

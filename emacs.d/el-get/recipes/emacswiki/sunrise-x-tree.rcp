@@ -1,0 +1,5 @@
+(:name sunrise-x-tree
+:auto-generated t
+:type emacswiki
+:description "Tree View for the Sunrise Commander File Manager -*- lexical-binding: t -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sunrise-x-tree.el")

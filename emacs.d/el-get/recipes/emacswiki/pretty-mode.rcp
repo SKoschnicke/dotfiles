@@ -1,0 +1,5 @@
+(:name pretty-mode
+:auto-generated t
+:type emacswiki
+:description "redisplay parts of the buffer as pretty symbols"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pretty-mode.el")

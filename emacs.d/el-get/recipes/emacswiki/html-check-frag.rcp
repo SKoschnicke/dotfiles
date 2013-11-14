@@ -1,0 +1,5 @@
+(:name html-check-frag
+:auto-generated t
+:type emacswiki
+:description "Check html-fragments"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/html-check-frag.el")

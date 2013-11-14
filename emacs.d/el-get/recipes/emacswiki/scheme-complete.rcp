@@ -1,0 +1,5 @@
+(:name scheme-complete
+:auto-generated t
+:type emacswiki
+:description "Smart tab completion for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/scheme-complete.el")

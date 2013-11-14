@@ -1,0 +1,5 @@
+(:name jde-eclipse-compiler-server
+:auto-generated t
+:type emacswiki
+:description "Eclipse compiler as a compile server for JDEE."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jde-eclipse-compiler-server.el")

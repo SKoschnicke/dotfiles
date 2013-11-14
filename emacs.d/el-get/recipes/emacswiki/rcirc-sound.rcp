@@ -1,0 +1,5 @@
+(:name rcirc-sound
+:auto-generated t
+:type emacswiki
+:description "CTCP SOUND support for rcirc "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc-sound.el")

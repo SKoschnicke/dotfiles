@@ -1,0 +1,5 @@
+(:name spell-number
+:auto-generated t
+:type emacswiki
+:description "Spell out an integer or currency in words.  -*- coding: utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/spell-number.el")

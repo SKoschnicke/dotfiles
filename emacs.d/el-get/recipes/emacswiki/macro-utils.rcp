@@ -1,0 +1,5 @@
+(:name macro-utils
+:auto-generated t
+:type emacswiki
+:description "Utilities for writing macros."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/macro-utils.el")

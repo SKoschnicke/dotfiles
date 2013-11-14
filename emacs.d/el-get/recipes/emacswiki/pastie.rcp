@@ -1,0 +1,5 @@
+(:name pastie
+:auto-generated t
+:type emacswiki
+:description "Emacs integration for pastie.org"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pastie.el")

@@ -1,0 +1,5 @@
+(:name mo-rot13
+:auto-generated t
+:type emacswiki
+:description "convert text buffer to and from ROT13"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mo-rot13.el")

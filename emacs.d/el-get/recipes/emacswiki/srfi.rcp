@@ -1,0 +1,5 @@
+(:name srfi
+:auto-generated t
+:type emacswiki
+:description "View Scheme requests for implementation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/srfi.el")

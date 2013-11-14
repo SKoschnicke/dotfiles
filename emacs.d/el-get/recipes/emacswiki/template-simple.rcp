@@ -1,0 +1,5 @@
+(:name template-simple
+:auto-generated t
+:type emacswiki
+:description "Simple template functions and utils"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/template-simple.el")

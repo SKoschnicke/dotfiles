@@ -1,0 +1,5 @@
+(:name palette
+:auto-generated t
+:type emacswiki
+:description "Color palette useful with RGB, HSV, and color names"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/palette.el")

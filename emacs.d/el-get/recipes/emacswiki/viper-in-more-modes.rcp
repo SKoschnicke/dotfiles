@@ -1,0 +1,5 @@
+(:name viper-in-more-modes
+:auto-generated t
+:type emacswiki
+:description "vi-like keybindings for various Emacs modes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/viper-in-more-modes.el")

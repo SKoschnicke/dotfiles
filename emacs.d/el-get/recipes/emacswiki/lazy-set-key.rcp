@@ -1,0 +1,5 @@
+(:name lazy-set-key
+:auto-generated t
+:type emacswiki
+:description "Lazy set keystroke."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lazy-set-key.el")

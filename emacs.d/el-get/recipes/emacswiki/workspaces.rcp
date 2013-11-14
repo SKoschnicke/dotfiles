@@ -1,0 +1,5 @@
+(:name workspaces
+:auto-generated t
+:type emacswiki
+:description "implemented using registers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/workspaces.el")

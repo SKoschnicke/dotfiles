@@ -1,0 +1,5 @@
+(:name siunitx
+:auto-generated t
+:type emacswiki
+:description "AUCTeX style for `siunitx.sty' version 2.5q."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/siunitx.el")

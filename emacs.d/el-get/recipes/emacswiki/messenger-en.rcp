@@ -1,0 +1,5 @@
+(:name messenger-en
+:auto-generated t
+:type emacswiki
+:description "MSN Messenger on Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/messenger-en.el")

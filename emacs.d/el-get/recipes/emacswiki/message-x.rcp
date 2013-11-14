@@ -1,0 +1,5 @@
+(:name message-x
+:auto-generated t
+:type emacswiki
+:description "customizable completion in message headers"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/message-x.el")

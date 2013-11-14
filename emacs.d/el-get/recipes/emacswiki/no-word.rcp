@@ -1,0 +1,5 @@
+(:name no-word
+:auto-generated t
+:type emacswiki
+:description "use antiword program to view word documents in emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/no-word.el")

@@ -1,0 +1,5 @@
+(:name mon-event-utils
+:auto-generated t
+:type emacswiki
+:description "event related procedures for mon-*utils features"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-event-utils.el")

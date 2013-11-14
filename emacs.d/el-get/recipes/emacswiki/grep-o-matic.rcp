@@ -1,0 +1,5 @@
+(:name grep-o-matic
+:auto-generated t
+:type emacswiki
+:description "auto grep word under cursor"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/grep-o-matic.el")

@@ -1,0 +1,5 @@
+(:name file-props
+:auto-generated t
+:type emacswiki
+:description "Add file properties to your files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/file-props.el")

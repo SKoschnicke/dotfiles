@@ -1,0 +1,5 @@
+(:name per-window-point
+:auto-generated t
+:type emacswiki
+:description "persisent per-window values of point"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/per-window-point.el")

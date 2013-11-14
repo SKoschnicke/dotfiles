@@ -1,0 +1,5 @@
+(:name typopunct
+:auto-generated t
+:type emacswiki
+:description "Automatic typographical punctuation marks"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/typopunct.el")

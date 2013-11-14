@@ -1,0 +1,5 @@
+(:name sdcv
+:auto-generated t
+:type emacswiki
+:description "Interface for sdcv (StartDict console version)."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sdcv.el")

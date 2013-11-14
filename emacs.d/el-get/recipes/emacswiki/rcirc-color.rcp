@@ -1,0 +1,5 @@
+(:name rcirc-color
+:auto-generated t
+:type emacswiki
+:description "color nicks"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc-color.el")

@@ -1,0 +1,5 @@
+(:name color-theme-maker
+:auto-generated t
+:type emacswiki
+:description "install color themes"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/color-theme-maker.el")

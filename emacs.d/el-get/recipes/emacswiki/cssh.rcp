@@ -1,0 +1,5 @@
+(:name cssh
+:auto-generated t
+:type emacswiki
+:description "clusterssh implementation for emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cssh.el")

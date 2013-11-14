@@ -1,0 +1,5 @@
+(:name php-doc
+:auto-generated t
+:type emacswiki
+:description "Php document helper"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/php-doc.el")

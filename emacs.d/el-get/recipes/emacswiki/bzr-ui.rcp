@@ -1,0 +1,5 @@
+(:name bzr-ui
+:auto-generated t
+:type emacswiki
+:description "Utility functions to navigate a working copy of a bazaar repository"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bzr-ui.el")

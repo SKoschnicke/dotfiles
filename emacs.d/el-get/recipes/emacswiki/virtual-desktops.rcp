@@ -1,0 +1,5 @@
+(:name virtual-desktops
+:auto-generated t
+:type emacswiki
+:description "allows you to save/restore a frame configuration: windows and buffers."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/virtual-desktops.el")

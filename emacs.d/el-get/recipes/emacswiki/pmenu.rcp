@@ -1,0 +1,5 @@
+(:name pmenu
+:auto-generated t
+:type emacswiki
+:description "Easily customizable paged menu system"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pmenu.el")

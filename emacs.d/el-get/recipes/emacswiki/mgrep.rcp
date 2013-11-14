@@ -1,0 +1,5 @@
+(:name mgrep
+:auto-generated t
+:type emacswiki
+:description "Search in the directory previously specified"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mgrep.el")

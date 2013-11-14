@@ -1,0 +1,5 @@
+(:name completion-selection
+:auto-generated t
+:type emacswiki
+:description "Completion mechanism selection for completion-ui"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/completion-selection.el")

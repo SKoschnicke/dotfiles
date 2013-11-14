@@ -1,0 +1,5 @@
+(:name ecasound-ewf
+:auto-generated t
+:type emacswiki
+:description "Ecasound .ewf major mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ecasound-ewf.el")

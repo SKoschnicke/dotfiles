@@ -1,0 +1,5 @@
+(:name rcirc-notify+
+:auto-generated t
+:type emacswiki
+:description "Rcirc notify library"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc-notify+.el")

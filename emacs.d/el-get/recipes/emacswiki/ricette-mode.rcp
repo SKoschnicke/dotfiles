@@ -1,0 +1,5 @@
+(:name ricette-mode
+:auto-generated t
+:type emacswiki
+:description "vedere ricette"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ricette-mode.el")

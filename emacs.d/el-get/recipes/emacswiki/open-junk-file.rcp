@@ -1,0 +1,5 @@
+(:name open-junk-file
+:auto-generated t
+:type emacswiki
+:description "Open a junk (memo) file to try-and-error"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/open-junk-file.el")

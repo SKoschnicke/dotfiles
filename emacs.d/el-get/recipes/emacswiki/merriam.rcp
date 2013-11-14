@@ -1,0 +1,5 @@
+(:name merriam
+:auto-generated t
+:type emacswiki
+:description "Look up a word in WWW Merriam-Webster dictionary"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/merriam.el")

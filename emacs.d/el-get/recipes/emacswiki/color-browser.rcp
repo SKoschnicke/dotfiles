@@ -1,0 +1,5 @@
+(:name color-browser
+:auto-generated t
+:type emacswiki
+:description "A utility for designing Emacs color themes."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/color-browser.el")

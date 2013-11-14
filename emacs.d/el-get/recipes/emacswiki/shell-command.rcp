@@ -1,0 +1,5 @@
+(:name shell-command
+:auto-generated t
+:type emacswiki
+:description "enables tab-completion for `shell-command'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/shell-command.el")

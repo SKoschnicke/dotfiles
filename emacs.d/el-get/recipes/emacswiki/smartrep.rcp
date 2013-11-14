@@ -1,0 +1,5 @@
+(:name smartrep
+:auto-generated t
+:type emacswiki
+:description "Support sequential operation which omitted prefix keys."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/smartrep.el")

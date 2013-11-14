@@ -1,0 +1,5 @@
+(:name font-lock+
+:auto-generated t
+:type emacswiki
+:description "Enhancements to standard library `font-lock.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/font-lock+.el")

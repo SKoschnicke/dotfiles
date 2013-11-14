@@ -1,0 +1,5 @@
+(:name organizer-mode
+:auto-generated t
+:type emacswiki
+:description "major mode for editing organizer list files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/organizer-mode.el")

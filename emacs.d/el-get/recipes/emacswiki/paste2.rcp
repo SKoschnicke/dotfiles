@@ -1,0 +1,5 @@
+(:name paste2
+:auto-generated t
+:type emacswiki
+:description "Simple interface for paste2.org"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/paste2.el")

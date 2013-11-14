@@ -1,0 +1,5 @@
+(:name mysql-query
+:auto-generated t
+:type emacswiki
+:description "execute sql select using mysql. -*- coding:utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mysql-query.el")

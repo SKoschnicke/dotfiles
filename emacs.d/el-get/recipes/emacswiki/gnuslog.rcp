@@ -1,0 +1,5 @@
+(:name gnuslog
+:auto-generated t
+:type emacswiki
+:description "Gnus Splitting Log Facility"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnuslog.el")

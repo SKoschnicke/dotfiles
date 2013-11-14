@@ -1,0 +1,5 @@
+(:name corba
+:auto-generated t
+:type emacswiki
+:description "A Client Side CORBA Implementation for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/corba.el")

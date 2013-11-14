@@ -1,0 +1,5 @@
+(:name ac-R
+:auto-generated t
+:type emacswiki
+:description "Autocompletion routines for R"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ac-R.el")

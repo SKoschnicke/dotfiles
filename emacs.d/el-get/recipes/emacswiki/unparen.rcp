@@ -1,0 +1,5 @@
+(:name unparen
+:auto-generated t
+:type emacswiki
+:description "show elisp code without parenthesis'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/unparen.el")

@@ -1,0 +1,5 @@
+(:name longlines-jp
+:auto-generated t
+:type emacswiki
+:description "automatically wrap long lines in Japanese text  -*- coding:utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/longlines-jp.el")

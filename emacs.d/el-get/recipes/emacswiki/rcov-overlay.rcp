@@ -1,0 +1,5 @@
+(:name rcov-overlay
+:auto-generated t
+:type emacswiki
+:description "colorize untested ruby code"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcov-overlay.el")

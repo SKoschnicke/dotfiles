@@ -1,0 +1,5 @@
+(:name naf-mode-dates
+:auto-generated t
+:type emacswiki
+:description "regexp variables for matching dates in naf-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/naf-mode-dates.el")

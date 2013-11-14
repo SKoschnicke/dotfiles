@@ -1,0 +1,5 @@
+(:name anything-eproject
+:auto-generated t
+:type emacswiki
+:description "Anything integration for eproject."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-eproject.el")

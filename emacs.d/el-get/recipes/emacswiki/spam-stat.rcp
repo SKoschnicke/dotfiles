@@ -1,0 +1,5 @@
+(:name spam-stat
+:auto-generated t
+:type emacswiki
+:description "detecting spam based on statistics"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/spam-stat.el")

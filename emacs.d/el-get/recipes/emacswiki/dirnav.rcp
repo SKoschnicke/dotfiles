@@ -1,0 +1,5 @@
+(:name dirnav
+:auto-generated t
+:type emacswiki
+:description "Navigate folders and files with TAB"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dirnav.el")

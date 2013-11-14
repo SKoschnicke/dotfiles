@@ -1,0 +1,5 @@
+(:name golb
+:auto-generated t
+:type emacswiki
+:description "A simple blog and webpage generator"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/golb.el")

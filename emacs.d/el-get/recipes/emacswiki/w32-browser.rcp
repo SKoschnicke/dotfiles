@@ -1,0 +1,5 @@
+(:name w32-browser
+:auto-generated t
+:type emacswiki
+:description "Run Windows application associated with a file."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w32-browser.el")

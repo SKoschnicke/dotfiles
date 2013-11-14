@@ -1,0 +1,5 @@
+(:name buffer-ring
+:auto-generated t
+:type emacswiki
+:description "A torus for buffer navigation. A ring of buffers, and a ring of buffer rings."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/buffer-ring.el")

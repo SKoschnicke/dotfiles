@@ -1,0 +1,5 @@
+(:name wajig
+:auto-generated t
+:type emacswiki
+:description "an interface for wajig"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wajig.el")

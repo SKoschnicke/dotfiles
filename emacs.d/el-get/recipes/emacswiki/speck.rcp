@@ -1,0 +1,5 @@
+(:name speck
+:auto-generated t
+:type emacswiki
+:description "minor mode for spell checking    -*- coding: utf-8; -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/speck.el")

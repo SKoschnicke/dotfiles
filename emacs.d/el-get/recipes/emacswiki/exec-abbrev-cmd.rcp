@@ -1,0 +1,5 @@
+(:name exec-abbrev-cmd
+:auto-generated t
+:type emacswiki
+:description "Execute commands by giving an abbreviation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/exec-abbrev-cmd.el")

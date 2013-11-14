@@ -1,0 +1,5 @@
+(:name simple-call-tree+
+:auto-generated t
+:type emacswiki
+:description "Extensions to simple-call-tree"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/simple-call-tree+.el")

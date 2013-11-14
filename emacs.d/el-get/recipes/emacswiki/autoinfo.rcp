@@ -1,0 +1,5 @@
+(:name autoinfo
+:auto-generated t
+:type emacswiki
+:description "show automatic information for the current selection"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/autoinfo.el")

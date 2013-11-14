@@ -1,0 +1,5 @@
+(:name erlang-dired-mode
+:auto-generated t
+:type emacswiki
+:description "erlang dired mode    -*- coding:utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/erlang-dired-mode.el")

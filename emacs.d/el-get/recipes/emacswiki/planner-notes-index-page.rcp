@@ -1,0 +1,5 @@
+(:name planner-notes-index-page
+:auto-generated t
+:type emacswiki
+:description "create index of notes in a particular page"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/planner-notes-index-page.el")

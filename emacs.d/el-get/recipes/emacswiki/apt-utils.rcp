@@ -1,0 +1,5 @@
+(:name apt-utils
+:auto-generated t
+:type emacswiki
+:description "Emacs interface to APT (Debian package management)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/apt-utils.el")

@@ -1,0 +1,5 @@
+(:name linum-ace
+:auto-generated t
+:type emacswiki
+:description "display line number as character like ace-jump-line-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/linum-ace.el")

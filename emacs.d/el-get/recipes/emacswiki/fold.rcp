@@ -1,0 +1,5 @@
+(:name fold
+:auto-generated t
+:type emacswiki
+:description "Folding"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fold.el")

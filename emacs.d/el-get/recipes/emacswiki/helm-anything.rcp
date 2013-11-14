@@ -1,0 +1,5 @@
+(:name helm-anything
+:auto-generated t
+:type emacswiki
+:description "Bridge between anything and helm"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/helm-anything.el")

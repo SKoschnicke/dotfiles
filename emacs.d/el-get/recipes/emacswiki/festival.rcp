@@ -1,0 +1,5 @@
+(:name festival
+:auto-generated t
+:type emacswiki
+:description "emacs interface into festival."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/festival.el")

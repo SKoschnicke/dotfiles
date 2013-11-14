@@ -1,0 +1,5 @@
+(:name legalese
+:auto-generated t
+:type emacswiki
+:description "Add legalese to your program files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/legalese.el")

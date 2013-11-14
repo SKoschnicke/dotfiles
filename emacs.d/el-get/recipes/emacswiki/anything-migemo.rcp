@@ -1,0 +1,5 @@
+(:name anything-migemo
+:auto-generated t
+:type emacswiki
+:description "Migemo plug-in for anything"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-migemo.el")

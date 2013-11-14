@@ -1,0 +1,5 @@
+(:name java-class-doc
+:auto-generated t
+:type emacswiki
+:description "Open the documentation for a Java class"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/java-class-doc.el")

@@ -1,0 +1,5 @@
+(:name any-ini-mode
+:auto-generated t
+:type emacswiki
+:description "keyword highlighting for .ini files etc based on a 'source of truth'"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/any-ini-mode.el")

@@ -1,0 +1,5 @@
+(:name read-float
+:auto-generated t
+:type emacswiki
+:description "Read float values in binary format from literal buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/read-float.el")

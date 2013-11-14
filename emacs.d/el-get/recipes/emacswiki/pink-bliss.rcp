@@ -1,0 +1,5 @@
+(:name pink-bliss
+:auto-generated t
+:type emacswiki
+:description "a pink color theme for Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pink-bliss.el")

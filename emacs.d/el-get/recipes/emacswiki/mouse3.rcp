@@ -1,0 +1,5 @@
+(:name mouse3
+:auto-generated t
+:type emacswiki
+:description "Customizable behavior for `mouse-3'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mouse3.el")

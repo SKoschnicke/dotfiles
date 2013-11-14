@@ -1,0 +1,5 @@
+(:name pmenu-config
+:auto-generated t
+:type emacswiki
+:description "Customisation file. Pairs with pmenu.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pmenu-config.el")

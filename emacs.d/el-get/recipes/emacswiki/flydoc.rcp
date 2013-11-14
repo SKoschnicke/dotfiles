@@ -1,0 +1,5 @@
+(:name flydoc
+:auto-generated t
+:type emacswiki
+:description "on-the-fly documentation -*- coding: utf-8 -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/flydoc.el")

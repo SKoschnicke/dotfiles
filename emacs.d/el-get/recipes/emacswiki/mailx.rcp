@@ -1,0 +1,5 @@
+(:name mailx
+:auto-generated t
+:type emacswiki
+:description "A front-end to mailx"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mailx.el")

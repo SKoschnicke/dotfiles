@@ -1,0 +1,5 @@
+(:name xs-mode
+:auto-generated t
+:type emacswiki
+:description "A simple major mode for write perl XS code"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/xs-mode.el")

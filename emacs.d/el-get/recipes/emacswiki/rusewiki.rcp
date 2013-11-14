@@ -1,0 +1,5 @@
+(:name rusewiki
+:auto-generated t
+:type emacswiki
+:description "edit pages on an RuseWiki wiki using curl"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rusewiki.el")

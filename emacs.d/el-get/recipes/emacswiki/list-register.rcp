@@ -1,0 +1,5 @@
+(:name list-register
+:auto-generated t
+:type emacswiki
+:description "List register"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/list-register.el")

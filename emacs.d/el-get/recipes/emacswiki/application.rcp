@@ -1,0 +1,5 @@
+(:name application
+:auto-generated t
+:type emacswiki
+:description "start application for files matching entries from application-caller-list"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/application.el")

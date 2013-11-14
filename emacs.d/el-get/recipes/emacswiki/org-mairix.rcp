@@ -1,0 +1,5 @@
+(:name org-mairix
+:auto-generated t
+:type emacswiki
+:description "Support for hooking mairix search into Org for different MUAs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/org-mairix.el")

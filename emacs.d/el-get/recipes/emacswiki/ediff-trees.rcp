@@ -1,0 +1,5 @@
+(:name ediff-trees
+:auto-generated t
+:type emacswiki
+:description "Recursively ediff two directory trees "
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ediff-trees.el")

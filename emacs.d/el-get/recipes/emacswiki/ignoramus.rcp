@@ -1,0 +1,5 @@
+(:name ignoramus
+:auto-generated t
+:type emacswiki
+:description "Ignore backups, build files, et al."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ignoramus.el")

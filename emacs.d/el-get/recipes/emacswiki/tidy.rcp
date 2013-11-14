@@ -1,0 +1,5 @@
+(:name tidy
+:auto-generated t
+:type emacswiki
+:description "Interface to the HTML Tidy program"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tidy.el")

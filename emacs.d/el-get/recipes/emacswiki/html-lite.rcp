@@ -1,0 +1,5 @@
+(:name html-lite
+:auto-generated t
+:type emacswiki
+:description "Construct html with sexp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/html-lite.el")

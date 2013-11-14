@@ -1,0 +1,5 @@
+(:name bookmark+-chg
+:auto-generated t
+:type emacswiki
+:description "Change logs for Bookmark+ libraries."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bookmark+-chg.el")

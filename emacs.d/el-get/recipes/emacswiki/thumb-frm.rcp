@@ -1,0 +1,5 @@
+(:name thumb-frm
+:auto-generated t
+:type emacswiki
+:description "Commands for thumbnail frames."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/thumb-frm.el")

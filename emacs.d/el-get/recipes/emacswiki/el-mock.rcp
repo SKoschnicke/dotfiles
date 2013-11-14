@@ -1,0 +1,5 @@
+(:name el-mock
+:auto-generated t
+:type emacswiki
+:description "Tiny Mock and Stub framework in Emacs Lisp"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/el-mock.el")

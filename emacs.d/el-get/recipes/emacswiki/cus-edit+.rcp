@@ -1,0 +1,5 @@
+(:name cus-edit+
+:auto-generated t
+:type emacswiki
+:description "Enhancements to `cus-edit.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cus-edit+.el")

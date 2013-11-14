@@ -1,0 +1,5 @@
+(:name mon-doc-help-tidy
+:auto-generated t
+:type emacswiki
+:description "extends mon-doc-help-utils package with HTML tidy docs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-doc-help-tidy.el")

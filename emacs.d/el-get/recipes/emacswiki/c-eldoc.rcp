@@ -1,0 +1,5 @@
+(:name c-eldoc
+:auto-generated t
+:type emacswiki
+:description "helpful description of the arguments to C functions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/c-eldoc.el")

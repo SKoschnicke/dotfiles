@@ -1,0 +1,5 @@
+(:name mail-notify
+:auto-generated t
+:type emacswiki
+:description "Notify you when have new mail."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mail-notify.el")

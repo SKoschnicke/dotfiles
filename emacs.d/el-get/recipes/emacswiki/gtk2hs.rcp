@@ -1,0 +1,5 @@
+(:name gtk2hs
+:auto-generated t
+:type emacswiki
+:description "This is tools package for gtk2hs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gtk2hs.el")

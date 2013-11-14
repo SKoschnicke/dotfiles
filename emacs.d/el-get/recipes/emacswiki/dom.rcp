@@ -1,0 +1,5 @@
+(:name dom
+:auto-generated t
+:type emacswiki
+:description "DOM implementation"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dom.el")

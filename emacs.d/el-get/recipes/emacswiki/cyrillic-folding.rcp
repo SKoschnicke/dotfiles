@@ -1,0 +1,5 @@
+(:name cyrillic-folding
+:auto-generated t
+:type emacswiki
+:description "support for Cyrillic -*- coding: iso-2022-7bit; -*-"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cyrillic-folding.el")

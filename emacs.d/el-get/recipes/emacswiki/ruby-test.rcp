@@ -1,0 +1,5 @@
+(:name ruby-test
+:auto-generated t
+:type emacswiki
+:description "Test runner for ruby unit tests."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ruby-test.el")

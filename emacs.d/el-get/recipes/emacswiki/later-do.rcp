@@ -1,0 +1,5 @@
+(:name later-do
+:auto-generated t
+:type emacswiki
+:description "execute lisp code ... later"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/later-do.el")

@@ -1,0 +1,5 @@
+(:name unicode-whitespace
+:auto-generated t
+:type emacswiki
+:description "teach whitespace-mode about fancy characters"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/unicode-whitespace.el")

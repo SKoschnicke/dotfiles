@@ -1,0 +1,5 @@
+(:name syntactic-sugar
+:auto-generated t
+:type emacswiki
+:description "Effect-free forms such as if/then/else"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/syntactic-sugar.el")

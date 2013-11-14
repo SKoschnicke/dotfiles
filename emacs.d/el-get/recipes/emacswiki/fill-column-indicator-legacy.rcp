@@ -1,0 +1,5 @@
+(:name fill-column-indicator-legacy
+:auto-generated t
+:type emacswiki
+:description "graphically indicate the fill column"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/fill-column-indicator-legacy.el")

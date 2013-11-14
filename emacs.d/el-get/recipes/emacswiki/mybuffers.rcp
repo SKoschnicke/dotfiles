@@ -1,0 +1,5 @@
+(:name mybuffers
+:auto-generated t
+:type emacswiki
+:description "Switch buffers with Ctrl-Tab (or another keystroke)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mybuffers.el")

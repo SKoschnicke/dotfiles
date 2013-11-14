@@ -1,0 +1,5 @@
+(:name sms
+:auto-generated t
+:type emacswiki
+:description "major mode for composing and sending SMS text messages"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sms.el")

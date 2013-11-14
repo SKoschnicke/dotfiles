@@ -1,0 +1,5 @@
+(:name popup-pos-tip
+:auto-generated t
+:type emacswiki
+:description "pos-tip.el wrapper library for programs using popup.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/popup-pos-tip.el")

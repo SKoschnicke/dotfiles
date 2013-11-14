@@ -1,0 +1,5 @@
+(:name auto-mark
+:auto-generated t
+:type emacswiki
+:description "Mark automatically"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-mark.el")

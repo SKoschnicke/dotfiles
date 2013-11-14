@@ -1,0 +1,5 @@
+(:name pangu-spacing
+:auto-generated t
+:type emacswiki
+:description "Minor-mode to add space between Chinese and English characters."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pangu-spacing.el")

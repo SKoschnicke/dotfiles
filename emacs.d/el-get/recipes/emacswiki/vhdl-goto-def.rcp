@@ -1,0 +1,5 @@
+(:name vhdl-goto-def
+:auto-generated t
+:type emacswiki
+:description "Jumps to definition of signal, constant or function"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vhdl-goto-def.el")

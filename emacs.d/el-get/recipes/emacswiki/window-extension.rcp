@@ -1,0 +1,5 @@
+(:name window-extension
+:auto-generated t
+:type emacswiki
+:description "Some extension functions manipulate window."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/window-extension.el")

@@ -1,0 +1,5 @@
+(:name drill-instructor
+:auto-generated t
+:type emacswiki
+:description " Enforce key-bind of Emacs."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/drill-instructor.el")

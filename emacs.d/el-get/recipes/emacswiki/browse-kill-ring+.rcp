@@ -1,0 +1,5 @@
+(:name browse-kill-ring+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `browse-kill-ring.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/browse-kill-ring+.el")

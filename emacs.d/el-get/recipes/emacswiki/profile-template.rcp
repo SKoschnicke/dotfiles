@@ -1,0 +1,5 @@
+(:name profile-template
+:auto-generated t
+:type emacswiki
+:description ""
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/profile-template.el")

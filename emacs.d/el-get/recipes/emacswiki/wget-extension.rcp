@@ -1,0 +1,5 @@
+(:name wget-extension
+:auto-generated t
+:type emacswiki
+:description "Some enhanced functions for wget.el"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wget-extension.el")

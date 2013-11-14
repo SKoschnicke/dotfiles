@@ -1,0 +1,5 @@
+(:name w32-utl
+:auto-generated t
+:type emacswiki
+:description "small utility functions implemented using vbscript"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/w32-utl.el")

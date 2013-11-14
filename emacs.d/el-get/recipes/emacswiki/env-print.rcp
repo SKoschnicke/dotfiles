@@ -1,0 +1,5 @@
+(:name env-print
+:auto-generated t
+:type emacswiki
+:description "print an envelope"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/env-print.el")

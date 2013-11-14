@@ -1,0 +1,5 @@
+(:name pmx-mode
+:auto-generated t
+:type emacswiki
+:description "Generic mode for font-lock support and pmx."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pmx-mode.el")

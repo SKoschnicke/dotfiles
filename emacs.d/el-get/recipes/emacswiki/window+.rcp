@@ -1,0 +1,5 @@
+(:name window+
+:auto-generated t
+:type emacswiki
+:description "Extensions to `window.el'."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/window+.el")

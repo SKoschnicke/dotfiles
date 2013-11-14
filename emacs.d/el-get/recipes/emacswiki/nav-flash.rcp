@@ -1,0 +1,5 @@
+(:name nav-flash
+:auto-generated t
+:type emacswiki
+:description "Briefly highlight the current line"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/nav-flash.el")

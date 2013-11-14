@@ -1,0 +1,5 @@
+(:name dict
+:auto-generated t
+:type emacswiki
+:description "Emacs interface to dict client"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dict.el")

@@ -1,0 +1,5 @@
+(:name tempo-x
+:auto-generated t
+:type emacswiki
+:description "More elements for tempo"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tempo-x.el")

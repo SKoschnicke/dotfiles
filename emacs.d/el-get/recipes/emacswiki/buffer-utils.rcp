@@ -1,0 +1,5 @@
+(:name buffer-utils
+:auto-generated t
+:type emacswiki
+:description "Buffer-manipulation utility functions"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/buffer-utils.el")

@@ -1,0 +1,5 @@
+(:name cycle-buffer
+:auto-generated t
+:type emacswiki
+:description "select buffer by cycling through"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cycle-buffer.el")

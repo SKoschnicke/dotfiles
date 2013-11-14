@@ -1,0 +1,5 @@
+(:name eim-extension
+:auto-generated t
+:type emacswiki
+:description "Some extension for eim (Emacs Input Method)"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eim-extension.el")

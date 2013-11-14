@@ -68,7 +68,7 @@
 (eval-after-load "org"
   '(progn
      ;; Change .pdf association directly within the alist
-     (setcdr (assoc "\\.pdf\\'" org-file-apps) "acroread %s")))
+     (setcdr (assoc "\\.pdf\\'" org-file-apps) "open %s")))
 
 (setq org-export-latex-hyperref-format "\\ref{%s}")
 
@@ -197,3 +197,5 @@
 (org-agenda-list)
 (delete-other-windows)
 
+; enable evil mode
+(evil-mode 1)

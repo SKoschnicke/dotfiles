@@ -1,0 +1,5 @@
+(:name teco
+:auto-generated t
+:type emacswiki
+:description "Dale Worley's teco-in-elisp interpreter"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/teco.el")

@@ -1,0 +1,5 @@
+(:name eval-sexp-fu
+:auto-generated t
+:type emacswiki
+:description "Tiny functionality enhancements for evaluating sexps."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/eval-sexp-fu.el")

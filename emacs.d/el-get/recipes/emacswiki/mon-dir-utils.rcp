@@ -1,0 +1,5 @@
+(:name mon-dir-utils
+:auto-generated t
+:type emacswiki
+:description "functions and commands for directories and files"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mon-dir-utils.el")

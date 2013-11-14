@@ -1,0 +1,5 @@
+(:name icicles-mcmd
+:auto-generated t
+:type emacswiki
+:description "Minibuffer commands for Icicles"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/icicles-mcmd.el")

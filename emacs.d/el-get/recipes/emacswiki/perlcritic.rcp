@@ -1,0 +1,5 @@
+(:name perlcritic
+:auto-generated t
+:type emacswiki
+:description "Call perlcritic in Emacs"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/perlcritic.el")

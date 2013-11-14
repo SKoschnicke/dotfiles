@@ -1,0 +1,5 @@
+(:name face-list
+:auto-generated t
+:type emacswiki
+:description "convenience functions for face customization"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/face-list.el")

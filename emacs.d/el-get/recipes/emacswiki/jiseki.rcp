@@ -1,0 +1,5 @@
+(:name jiseki
+:auto-generated t
+:type emacswiki
+:description "Desktop for emacs."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jiseki.el")

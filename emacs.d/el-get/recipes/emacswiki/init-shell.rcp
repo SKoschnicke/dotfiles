@@ -1,0 +1,5 @@
+(:name init-shell
+:auto-generated t
+:type emacswiki
+:description "Some configuration for shell-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-shell.el")
