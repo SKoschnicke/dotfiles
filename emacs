@@ -20,6 +20,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; agenda and orgmode config
+
+(add-to-list 'load-path "~/org-mode/lisp")
+
 (setq org-agenda-files (list "~/documents/promotion/gedanken.org"
                              "~/Dropbox/uni/uni-plan.org"
                              "~/Dropbox/privat.org"
