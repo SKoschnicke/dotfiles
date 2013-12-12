@@ -4,7 +4,7 @@
 "colorscheme solarized
 "colorscheme github
 colorscheme proton
-set guifont=Inconsolata\ Medium\ 11
+set guifont=Inconsolata\ Medium\ 9
 
 " no right scrollbars
 set guioptions=-R
@@ -42,6 +42,8 @@ set list listchars=tab:\|_,trail:~
 "set laststatus=2
 set textwidth=80
 set wrap
+
+set encoding=utf-8
 
 " use css syntax highlighting for .less files
 au BufRead,BufNewFile *.less setfiletype css
