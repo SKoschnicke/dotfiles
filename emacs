@@ -38,6 +38,9 @@
       org-log-done t
       org-pretty-entities t
       org-pretty-entities-include-sub-superscripts t
+      org-agenda-span 21
+      org-agenda-skip-deadline-if-done t
+      org-agenda-skip-scheduled-if-done t
 )
 (setq org-default-notes-file "~/Dropbox/notes.org")
 (global-set-key "\C-cl" 'org-store-link)
