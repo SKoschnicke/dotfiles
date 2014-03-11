@@ -3,7 +3,9 @@
 "set background=dark " because of strange xresources, this means actually light
 "colorscheme solarized
 "colorscheme github
-colorscheme proton
+let g:molokai_original=1
+"colorscheme proton
+colorscheme molokai
 set guifont=Inconsolata\ Medium\ 9
 
 " no right scrollbars
