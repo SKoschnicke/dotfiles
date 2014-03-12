@@ -44,6 +44,7 @@ set list listchars=tab:\|_,trail:~
 "set laststatus=2
 set textwidth=80
 set wrap
+set tags=tags;/
 
 set encoding=utf-8
 
