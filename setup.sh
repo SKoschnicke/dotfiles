@@ -9,3 +9,4 @@ ln -s ~/.dotfiles/Xresources ~/.Xresources
 ln -s ~/.dotfiles/emacs ~/.emacs
 ln -s ~/.dotfiles/el-get-emacs-packages ~/.emacs.d/el-get-init-files
 ln -s ~/.dotfiles/.emacs.d/ess-site ~/.emacs.d/ess-site
+ln -s ~/.dotfiles/zshrc ~/.zshrc
