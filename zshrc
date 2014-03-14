@@ -50,3 +50,5 @@ DEFAULT_USER="svk"
 
 # enable rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+export EDITOR=vim

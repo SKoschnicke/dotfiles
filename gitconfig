@@ -1,0 +1,8 @@
+[user]
+	name = Sven Koschnicke
+	email = s.koschnicke@gfxpro.com
+[alias]
+  s = status
+  cma = commit -a -m
+[push]
+	default = simple
