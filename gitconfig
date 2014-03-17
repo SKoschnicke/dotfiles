@@ -4,5 +4,6 @@
 [alias]
   s = status
   cma = commit -a -m
+  co = checkout
 [push]
 	default = simple

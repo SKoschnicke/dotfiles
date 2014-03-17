@@ -21,6 +21,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; agenda and orgmode config
 
+(setq diary-file "~/Dropbox/diary")
+
 (add-to-list 'load-path "~/org-mode/lisp")
 
 (setq org-agenda-files (list "~/documents/promotion/gedanken.org"
