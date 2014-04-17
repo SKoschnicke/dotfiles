@@ -10,3 +10,5 @@
   l = log --all --graph --decorate --oneline --abbrev-commit
 [push]
   default = simple
+[color]
+  ui = 1
