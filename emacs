@@ -60,6 +60,9 @@
 
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
+(setq org-todo-keywords
+  '((sequence "TODO" "WAITING" "|" "DONE")))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; latex export
 (setq ieeetran-class
@@ -250,3 +253,5 @@
 
 ; enable evil mode
 (evil-mode 1)
+
+
