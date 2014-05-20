@@ -146,6 +146,44 @@
                    'org-bibtex-open
                    'my-rtcite-export-handler)
 
+; function to insert code block in org-mode
+(defun org-insert-src-block (src-code-type)
+  "Insert a `SRC-CODE-TYPE' type source code block in org-mode."
+  (interactive
+   (let ((src-code-types
+          '("emacs-lisp" "python" "C" "sh" "java" "js" "clojure" "C++" "css"
+            "calc" "asymptote" "dot" "gnuplot" "ledger" "lilypond" "mscgen"
+            "octave" "oz" "plantuml" "R" "sass" "screen" "sql" "awk" "ditaa"
+            "haskell" "latex" "lisp" "matlab" "ocaml" "org" "perl" "ruby"
+            "scheme" "sqlite" "javascript")))
+     (list (ido-completing-read "Source code type: " src-code-types))))
+  (progn
+    (newline-and-indent)
+    (insert (format "#+BEGIN_SRC %s\n" src-code-type))
+    (newline-and-indent)
+    (insert "#+END_SRC\n")
+    (previous-line 2)
+    (org-edit-src-code)))
+
+; key binding for above
+(add-hook 'org-mode-hook '(lambda ()
+                            ;; turn on flyspell-mode by default
+                            (flyspell-mode 1)
+                            ;; C-TAB for expanding
+                            (local-set-key (kbd "C-<tab>")
+                                           'yas/expand-from-trigger-key)
+                            ;; keybinding for editing source code blocks
+                            (local-set-key (kbd "C-c s e")
+                                           'org-edit-src-code)
+                            ;; keybinding for inserting code blocks
+                            (local-set-key (kbd "C-c s i")
+                                           'org-insert-src-block)
+                            ))
+
+; enable syntax highlighting in soruce blocks
+(setq org-src-fontify-natively t)
+
+
 ; ESS emacs speaks statistics
 (add-to-list 'load-path "~/.emacs.d/ess-site/lisp")
 (require 'ess-site)
@@ -203,6 +241,17 @@
      '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "adobe" :family "Source Code Pro")))))
 )
 
+; cycle through spelling dictionaries
+(defun fd-switch-dictionary()
+(interactive)
+(let* ((dic ispell-current-dictionary)
+   (change (if (string= dic "de_DE") "english" "de_DE")))
+  (ispell-change-dictionary change)
+  (message "Dictionary switched from %s to %s" dic change)
+  ))
+
+(global-set-key (kbd "<f8>")   'fd-switch-dictionary)
+
 ; insert spaces when pressing tab
 (setq-default indent-tabs-mode nil)
 ; set indenting width
@@ -240,8 +289,8 @@
 ; disable toolbar
 (tool-bar-mode -1)
 
-; disable menubar
-(menu-bar-mode -1)
+; disable menubar (available as popup on C-mouse-3)
+(menu-bar-mode -99)
 
 ; disable scrollbar
 (scroll-bar-mode -1)
@@ -253,5 +302,4 @@
 
 ; enable evil mode
 (evil-mode 1)
-
 
