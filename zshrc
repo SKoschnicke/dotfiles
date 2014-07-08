@@ -49,8 +49,10 @@ source $ZSH/oh-my-zsh.sh
 DEFAULT_USER="svk"
 
 # enable rvm
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 export EDITOR=vim
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+PATH=$PATH:/usr/local/eclipse # Path to eclipse

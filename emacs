@@ -22,6 +22,10 @@
 (when (< emacs-major-version 24)
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
+; init installed packages
+; this should avoid "definition void" errors on startup
+(package-initialize)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; agenda and orgmode config
 
@@ -59,6 +63,7 @@
     (R . t)
     (ruby . t)
     (haskell . t)
+    (C . t)
    )
 )
 
@@ -69,6 +74,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; latex export
+
+(require 'ox-latex)
 (setq ieeetran-class
       '("IEEEtran"
         "\\documentclass[11pt]{IEEEtran}"
@@ -87,12 +94,45 @@
         ("\\paragraph{%s}" . "\\paragraph*{%s}")
         ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
+(setq beamer-class
+  '("beamer"
+"\\documentclass{beamer}
+\\usepackage[german]{babel}
+\\usepackage{listings}
+\\usepackage{color}
 
-(require 'org-latex)
+\\definecolor{red}{rgb}{0.6,0,0} % for strings
+\\definecolor{green}{rgb}{0.25,0.5,0.35} % comments
+\\definecolor{purple}{rgb}{0.5,0,0.35} % keywords
+\\definecolor{docblue}{rgb}{0.25,0.35,0.75} % doc
+ 
+\\lstset{basicstyle=\\small\\ttfamily,
+keywordstyle=\\color{purple},
+stringstyle=\\color{red},
+commentstyle=\\color{green},
+morecomment=[s][\\color{docblue}]{/**}{*/},
+numbers=left,
+numberstyle=\\tiny\\color{gray},
+stepnumber=1,
+numbersep=10pt,
+tabsize=2,
+showspaces=false,
+showstringspaces=false,
+otherkeywords={define,include,\\#}}
+\\usetheme{hsrm}
+     [NO-DEFAULT-PACKAGES]
+     [NO-PACKAGES]"
+        ("\\section{%s}" . "\\section*{%s}")
+        ("\\subsection{%s}" . "\\subsection*{%s}")
+        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+        ("\\paragraph{%s}" . "\\paragraph*{%s}")
+        ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
 (unless (boundp 'org-latex-classes)
   (setq org-latex-classes nil))
 (add-to-list 'org-latex-classes ieeetran-class t)
 (add-to-list 'org-latex-classes article-class t)
+(add-to-list 'org-latex-classes beamer-class t)
 
 (add-to-list 'org-latex-classes
   '("djcb-org-article"
@@ -119,6 +159,9 @@
      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
      ("\\paragraph{%s}" . "\\paragraph*{%s}")
      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+(require 'ox-beamer)
+
 (setq org-latex-pdf-process 
   '("xelatex -interaction nonstopmode %f"
      "xelatex -interaction nonstopmode %f")) ;; for multiple passes
@@ -126,9 +169,10 @@
 (eval-after-load "org"
   '(progn
      ;; Change .pdf association directly within the alist
-     (setcdr (assoc "\\.pdf\\'" org-file-apps) "open %s")))
+     (setcdr (assoc "\\.pdf\\'" org-file-apps) "evince %s")))
 
 (setq org-export-latex-hyperref-format "\\ref{%s}")
+(setq org-latex-listings t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; org mode bibtex integration
@@ -193,10 +237,13 @@
 (require 'ess-site)
 
 
-; solarized theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(add-to-list 'load-path "~/.emacs.d/")
-(load-theme 'solarized-light t)
+; color theme
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;(add-to-list 'load-path "~/.emacs.d/")
+;(load-theme 'solarized-light t)
+;(load-theme 'molokai t)
+(load "~/.emacs.d/plugins/color-theme-molokai.el")
+(color-theme-molokai)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; calendar and diary
@@ -227,8 +274,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("007b69ffec046a5842e34fea287b23c49175dfd6c6d5a0d9cdf150a2e8a8979f" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(ido-enable-flex-matching t)
+ '(minimap-always-recenter t)
+ '(minimap-hide-fringes t)
+ '(minimap-update-delay 0.3)
  '(pivotal-api-token "28249de15fafe38c0351196088262df5"))
 (if macosx-p
     (custom-set-faces
@@ -236,14 +285,14 @@
      ;; If you edit it by hand, you could mess it up, so be careful.
      ;; Your init file should contain only one such instance.
      ;; If there is more than one, they won't work right.
-     '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "adobe" :family "Source Code Pro")))))
+     '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "adobe" :family "Source Code Pro")))))
     ; else
     (custom-set-faces
      ;; custom-set-faces was added by Custom.
      ;; If you edit it by hand, you could mess it up, so be careful.
      ;; Your init file should contain only one such instance.
      ;; If there is more than one, they won't work right.
-     '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "adobe" :family "Source Code Pro")))))
+     '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "adobe" :family "Source Code Pro")))))
 )
 
 ; cycle through spelling dictionaries
@@ -262,8 +311,8 @@
 ; set indenting width
 (setq tab-width 2)
 ; set other offsets to tab-width
-(defvaralias 'c-basic-offset 'tab-width)
-(defvaralias 'cperl-indent-level 'tab-width)
+(setq-default c-basic-offset tab-width)
+(setq-default cperl-indent-level tab-width)
 
 ; put temp files in temp dir
 (setq backup-directory-alist
@@ -308,9 +357,17 @@
 ; enable evil mode
 (evil-mode 1)
 
+(require 'evil-surround)
+(global-evil-surround-mode 1)
+
+(minimap-mode 1)
+
+; helm
+(global-set-key (kbd "C-c h") 'helm-mini)
+(helm-mode 1)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "adobe" :family "Source Code Pro")))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "adobe" :family "Source Code Pro")))))
