@@ -1,5 +1,5 @@
-(:name emacsbug+
-:auto-generated t
-:type emacswiki
-:description "Extensions to `emacsbug.el'."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emacsbug+.el")
+	(:name emacsbug+
+	:auto-generated t
+	:type emacswiki
+	:description "Extensions to `emacsbug.el'."
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emacsbug+.el")

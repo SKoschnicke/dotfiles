@@ -1,5 +1,0 @@
-(:name cursor-in-brackets
-:auto-generated t
-:type emacswiki
-:description "move cursor in brackets/quotes when right bracket/quote is inserted"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cursor-in-brackets.el")

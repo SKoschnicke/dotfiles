@@ -1,5 +1,5 @@
-(:name erc-highlight-nicknames-xemacs
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/erc-highlight-nicknames-xemacs.el")
+	(:name erc-highlight-nicknames-xemacs
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/erc-highlight-nicknames-xemacs.el")

@@ -1,5 +1,0 @@
-(:name look-dired
-:auto-generated t
-:type emacswiki
-:description "Extensions to look-mode for dired buffers"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/look-dired.el")

@@ -1,5 +1,5 @@
-(:name widen-window
-:auto-generated t
-:type emacswiki
-:description "Widening selecting window"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/widen-window.el")
+	(:name widen-window
+	:auto-generated t
+	:type emacswiki
+	:description "Widening selecting window"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/widen-window.el")

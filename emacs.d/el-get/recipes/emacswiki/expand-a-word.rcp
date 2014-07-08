@@ -1,5 +1,5 @@
-(:name expand-a-word
-:auto-generated t
-:type emacswiki
-:description "expand-a-word"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/expand-a-word.el")
+	(:name expand-a-word
+	:auto-generated t
+	:type emacswiki
+	:description "expand-a-word"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/expand-a-word.el")

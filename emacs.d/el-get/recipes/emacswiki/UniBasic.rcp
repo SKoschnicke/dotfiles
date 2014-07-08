@@ -1,5 +1,5 @@
-(:name UniBasic
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/UniBasic.el")
+	(:name UniBasic
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/UniBasic.el")

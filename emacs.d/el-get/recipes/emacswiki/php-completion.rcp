@@ -1,5 +1,5 @@
-(:name php-completion
-:auto-generated t
-:type emacswiki
-:description "complete everything PHP with Anything.el"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/php-completion.el")
+	(:name php-completion
+	:auto-generated t
+	:type emacswiki
+	:description "complete everything PHP with Anything.el"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/php-completion.el")

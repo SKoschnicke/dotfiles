@@ -1,5 +1,5 @@
-(:name dos
-:auto-generated t
-:type emacswiki
-:description "Major mode for editing Dos scripts"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dos.el")
+	(:name dos
+	:auto-generated t
+	:type emacswiki
+	:description "major mode for editing Dos scripts (batch files)"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dos.el")

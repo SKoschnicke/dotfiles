@@ -1,5 +1,5 @@
-(:name powerline
-:auto-generated t
-:type emacswiki
-:description "fancy statusline"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/powerline.el")
+	(:name powerline
+	:auto-generated t
+	:type emacswiki
+	:description "fancy statusline"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/powerline.el")

@@ -1,5 +1,5 @@
-(:name framemove
-:auto-generated t
-:type emacswiki
-:description "directional frame selection routines"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/framemove.el")
+	(:name framemove
+	:auto-generated t
+	:type emacswiki
+	:description "directional frame selection routines"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/framemove.el")

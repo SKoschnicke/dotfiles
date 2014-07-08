@@ -1,5 +1,5 @@
-(:name plt-completions
-:auto-generated t
-:type emacswiki
-:description "Completion for PLT Scheme"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/plt-completions.el")
+	(:name plt-completions
+	:auto-generated t
+	:type emacswiki
+	:description "Completion for PLT Scheme"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/plt-completions.el")

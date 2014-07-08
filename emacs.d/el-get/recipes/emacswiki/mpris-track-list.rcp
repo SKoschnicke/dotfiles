@@ -1,5 +1,5 @@
-(:name mpris-track-list
-:auto-generated t
-:type emacswiki
-:description "MPRIS track list"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mpris-track-list.el")
+	(:name mpris-track-list
+	:auto-generated t
+	:type emacswiki
+	:description "MPRIS track list"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mpris-track-list.el")

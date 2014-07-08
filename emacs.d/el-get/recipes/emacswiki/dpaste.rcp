@@ -1,5 +1,5 @@
-(:name dpaste
-:auto-generated t
-:type emacswiki
-:description "Emacs integration for dpaste.com"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dpaste.el")
+	(:name dpaste
+	:auto-generated t
+	:type emacswiki
+	:description "Emacs integration for dpaste.com"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dpaste.el")

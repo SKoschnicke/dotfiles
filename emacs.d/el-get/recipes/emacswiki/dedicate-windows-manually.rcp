@@ -1,5 +1,0 @@
-(:name dedicate-windows-manually
-:auto-generated t
-:type emacswiki
-:description "Manually (un)dedicate windows"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dedicate-windows-manually.el")

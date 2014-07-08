@@ -1,5 +1,5 @@
-(:name bidi
-:auto-generated t
-:type emacswiki
-:description "bidi support for Emacs"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bidi.el")
+	(:name bidi
+	:auto-generated t
+	:type emacswiki
+	:description "bidi support for Emacs"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bidi.el")

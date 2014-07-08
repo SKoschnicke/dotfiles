@@ -1,5 +1,5 @@
-(:name bitly
-:auto-generated t
-:type emacswiki
-:description "Shorten URLs with bit.ly from emacs"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bitly.el")
+	(:name bitly
+	:auto-generated t
+	:type emacswiki
+	:description "Shorten URLs with bit.ly from emacs"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bitly.el")

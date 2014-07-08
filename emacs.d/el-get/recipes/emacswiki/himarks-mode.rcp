@@ -1,5 +1,5 @@
-(:name himarks-mode
-:auto-generated t
-:type emacswiki
-:description "Highlight marks in buffer."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/himarks-mode.el")
+	(:name himarks-mode
+	:auto-generated t
+	:type emacswiki
+	:description "Highlight marks in buffer."
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/himarks-mode.el")

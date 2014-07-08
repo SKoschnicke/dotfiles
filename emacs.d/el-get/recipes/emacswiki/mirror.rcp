@@ -1,5 +1,5 @@
-(:name mirror
-:auto-generated t
-:type emacswiki
-:description "Maintain a (remote) copy of a (local) file"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mirror.el")
+	(:name mirror
+	:auto-generated t
+	:type emacswiki
+	:description "Maintain a (remote) copy of a (local) file"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mirror.el")

@@ -1,5 +1,0 @@
-(:name psvn
-:auto-generated t
-:type emacswiki
-:description "Subversion interface for emacs"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/psvn.el")

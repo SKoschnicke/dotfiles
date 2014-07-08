@@ -1,5 +1,5 @@
-(:name init-predicate
-:auto-generated t
-:type emacswiki
-:description "Predicate configuration"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-predicate.el")
+	(:name init-predicate
+	:auto-generated t
+	:type emacswiki
+	:description "Predicate configuration"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-predicate.el")

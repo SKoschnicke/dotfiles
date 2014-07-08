@@ -232,11 +232,6 @@ otherkeywords={define,include,\\#}}
 (setq org-src-fontify-natively t)
 
 
-; ESS emacs speaks statistics
-(add-to-list 'load-path "~/.emacs.d/ess-site/lisp")
-(require 'ess-site)
-
-
 ; color theme
 ;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 ;(add-to-list 'load-path "~/.emacs.d/")
@@ -359,8 +354,6 @@ otherkeywords={define,include,\\#}}
 
 (require 'evil-surround)
 (global-evil-surround-mode 1)
-
-(minimap-mode 1)
 
 ; helm
 (global-set-key (kbd "C-c h") 'helm-mini)

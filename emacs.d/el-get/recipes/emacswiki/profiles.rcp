@@ -1,5 +1,5 @@
-(:name profiles
-:auto-generated t
-:type emacswiki
-:description "profile management system"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/profiles.el")
+	(:name profiles
+	:auto-generated t
+	:type emacswiki
+	:description "profile management system"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/profiles.el")

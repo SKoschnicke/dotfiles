@@ -1,5 +1,5 @@
-(:name mailrc
-:auto-generated t
-:type emacswiki
-:description "edit mailrc aliases"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mailrc.el")
+	(:name mailrc
+	:auto-generated t
+	:type emacswiki
+	:description "edit mailrc aliases"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mailrc.el")

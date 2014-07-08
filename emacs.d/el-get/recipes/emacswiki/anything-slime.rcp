@@ -1,5 +1,5 @@
-(:name anything-slime
-:auto-generated t
-:type emacswiki
-:description "anything-sources and some utilities for SLIME."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-slime.el")
+	(:name anything-slime
+	:auto-generated t
+	:type emacswiki
+	:description "anything-sources and some utilities for SLIME."
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-slime.el")

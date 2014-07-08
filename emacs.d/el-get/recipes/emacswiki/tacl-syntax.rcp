@@ -1,5 +1,5 @@
-(:name tacl-syntax
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tacl-syntax.el")
+	(:name tacl-syntax
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tacl-syntax.el")

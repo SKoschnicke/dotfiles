@@ -1,5 +1,5 @@
-(:name cl-array
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cl-array.el")
+	(:name cl-array
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cl-array.el")

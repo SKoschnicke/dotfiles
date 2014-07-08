@@ -1,5 +1,5 @@
-(:name popwin
-:auto-generated t
-:type emacswiki
-:description "Popup Window Manager."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/popwin.el")
+	(:name popwin
+	:auto-generated t
+	:type emacswiki
+	:description "Popup Window Manager."
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/popwin.el")

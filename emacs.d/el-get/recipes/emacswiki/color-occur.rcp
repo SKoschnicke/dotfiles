@@ -1,5 +1,5 @@
-(:name color-occur
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/color-occur.el")
+	(:name color-occur
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/color-occur.el")

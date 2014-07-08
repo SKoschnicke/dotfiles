@@ -1,5 +1,5 @@
-(:name pom
-:auto-generated t
-:type emacswiki
-:description "Utility functions for dealing with maven project.xml files"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pom.el")
+	(:name pom
+	:auto-generated t
+	:type emacswiki
+	:description "Utility functions for dealing with maven project.xml files"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/pom.el")

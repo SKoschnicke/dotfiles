@@ -1,5 +1,5 @@
-(:name auto-yasnippet
-:auto-generated t
-:type emacswiki
-:description "Quickly create disposable yasnippets"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-yasnippet.el")
+	(:name auto-yasnippet
+	:auto-generated t
+	:type emacswiki
+	:description "Quickly create disposable yasnippets"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-yasnippet.el")

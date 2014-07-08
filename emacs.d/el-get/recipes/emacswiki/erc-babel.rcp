@@ -1,5 +1,5 @@
-(:name erc-babel
-:auto-generated t
-:type emacswiki
-:description "Communicate with ERC in different languages using online translation services"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/erc-babel.el")
+	(:name erc-babel
+	:auto-generated t
+	:type emacswiki
+	:description "communicate in different languages with ERC, using automatic translation"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/erc-babel.el")

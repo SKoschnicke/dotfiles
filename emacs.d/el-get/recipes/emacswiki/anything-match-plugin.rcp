@@ -1,5 +1,5 @@
-(:name anything-match-plugin
-:auto-generated t
-:type emacswiki
-:description "Multiple regexp matching methods for anything"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-match-plugin.el")
+	(:name anything-match-plugin
+	:auto-generated t
+	:type emacswiki
+	:description "Multiple regexp matching methods for anything"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-match-plugin.el")

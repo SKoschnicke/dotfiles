@@ -1,5 +1,5 @@
-(:name wcy-complete
-:auto-generated t
-:type emacswiki
-:description "extremely simple version of tempo, not as powerful as tempo. "
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wcy-complete.el")
+	(:name wcy-complete
+	:auto-generated t
+	:type emacswiki
+	:description "extremely simple version of tempo, not as powerful as tempo. "
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wcy-complete.el")

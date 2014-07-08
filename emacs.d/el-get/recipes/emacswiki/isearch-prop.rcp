@@ -1,5 +1,0 @@
-(:name isearch-prop
-:auto-generated t
-:type emacswiki
-:description "Search text-property or overlay-property contexts."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/isearch-prop.el")

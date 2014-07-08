@@ -1,5 +1,5 @@
-(:name langtool
-:auto-generated t
-:type emacswiki
-:description "Grammer check utility using LanguageTool"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/langtool.el")
+	(:name langtool
+	:auto-generated t
+	:type emacswiki
+	:description "Grammer check utility using LanguageTool"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/langtool.el")

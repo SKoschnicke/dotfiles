@@ -1,5 +1,5 @@
-(:name anything-startup
-:auto-generated t
-:type emacswiki
-:description "anything.el startup file"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-startup.el")
+	(:name anything-startup
+	:auto-generated t
+	:type emacswiki
+	:description "anything.el startup file"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-startup.el")

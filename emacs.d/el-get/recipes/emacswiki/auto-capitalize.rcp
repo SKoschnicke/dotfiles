@@ -1,5 +1,5 @@
-(:name auto-capitalize
-:auto-generated t
-:type emacswiki
-:description "Automatically capitalize (or upcase) words"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-capitalize.el")
+	(:name auto-capitalize
+	:auto-generated t
+	:type emacswiki
+	:description "Automatically capitalize (or upcase) words"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-capitalize.el")

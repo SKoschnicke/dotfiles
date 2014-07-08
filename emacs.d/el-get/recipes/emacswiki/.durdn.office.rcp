@@ -1,5 +1,5 @@
-(:name .durdn.office
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/.durdn.office.el")
+	(:name .durdn.office
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/.durdn.office.el")

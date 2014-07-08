@@ -1,5 +1,5 @@
-(:name bk
-:auto-generated t
-:type emacswiki
-:description "Emacs support for BitKeeper configuration management"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bk.el")
+	(:name bk
+	:auto-generated t
+	:type emacswiki
+	:description "Emacs support for BitKeeper configuration management"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bk.el")

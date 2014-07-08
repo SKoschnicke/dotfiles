@@ -1,5 +1,5 @@
-(:name hexrgb
-:auto-generated t
-:type emacswiki
-:description "Functions to manipulate colors, including RGB hex strings."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hexrgb.el")
+	(:name hexrgb
+	:auto-generated t
+	:type emacswiki
+	:description "Functions to manipulate colors, including RGB hex strings."
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/hexrgb.el")

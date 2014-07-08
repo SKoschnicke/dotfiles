@@ -1,5 +1,5 @@
-(:name globalff
-:auto-generated t
-:type emacswiki
-:description "Global find file"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/globalff.el")
+	(:name globalff
+	:auto-generated t
+	:type emacswiki
+	:description "Global find file"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/globalff.el")

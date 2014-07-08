@@ -1,5 +1,0 @@
-(:name light
-:auto-generated t
-:type emacswiki
-:description "lightning completion"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/light.el")

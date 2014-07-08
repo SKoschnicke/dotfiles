@@ -1,5 +1,5 @@
-(:name conx
-:auto-generated t
-:type emacswiki
-:description "Yet another dissociater"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/conx.el")
+	(:name conx
+	:auto-generated t
+	:type emacswiki
+	:description "Yet another dissociater"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/conx.el")

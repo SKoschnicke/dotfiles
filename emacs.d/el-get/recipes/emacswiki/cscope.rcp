@@ -1,5 +1,5 @@
-(:name cscope
-:auto-generated t
-:type emacswiki
-:description "Interface to cscope browser"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cscope.el")
+	(:name cscope
+	:auto-generated t
+	:type emacswiki
+	:description "Interface to cscope browser"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cscope.el")

@@ -1,5 +1,5 @@
-(:name apropos-fn+var
-:auto-generated t
-:type emacswiki
-:description "Apropos for functions and variables"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/apropos-fn+var.el")
+	(:name apropos-fn+var
+	:auto-generated t
+	:type emacswiki
+	:description "Apropos for functions and variables"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/apropos-fn+var.el")

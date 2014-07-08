@@ -1,5 +1,0 @@
-(:name highlight-fns
-:auto-generated t
-:type emacswiki
-:description "Highlight called Lisp functions."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/highlight-fns.el")

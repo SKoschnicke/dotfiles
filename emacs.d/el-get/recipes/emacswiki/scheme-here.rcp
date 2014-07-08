@@ -1,5 +1,5 @@
-(:name scheme-here
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/scheme-here.el")
+	(:name scheme-here
+	:auto-generated t
+	:type emacswiki
+	:description "cmuscheme extension for multiple inferior processes"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/scheme-here.el")

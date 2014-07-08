@@ -1,5 +1,5 @@
-(:name tabbar
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tabbar.el")
+	(:name tabbar
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/tabbar.el")

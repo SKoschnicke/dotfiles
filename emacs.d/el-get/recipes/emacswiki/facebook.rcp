@@ -1,5 +1,5 @@
-(:name facebook
-:auto-generated t
-:type emacswiki
-:description "Access the Facebook API from emacs"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/facebook.el")
+	(:name facebook
+	:auto-generated t
+	:type emacswiki
+	:description "Access the Facebook API from emacs"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/facebook.el")
