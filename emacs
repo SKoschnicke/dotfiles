@@ -67,6 +67,8 @@
    )
 )
 
+(load "~/.emacs.d/plugins/cdlatex.el")
+(require 'cdlatex)
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
 (setq org-todo-keywords
@@ -233,8 +235,8 @@ otherkeywords={define,include,\\#}}
 
 
 ; color theme
-;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(add-to-list 'load-path "~/.emacs.d/")
 ;(load-theme 'solarized-light t)
 ;(load-theme 'molokai t)
 (load "~/.emacs.d/plugins/color-theme-molokai.el")
@@ -354,8 +356,12 @@ otherkeywords={define,include,\\#}}
 
 (require 'evil-surround)
 (global-evil-surround-mode 1)
+; nerd commenter
+(global-evil-leader-mode 1)
 
 ; helm
+(require 'helm-cmd-t)
+(global-set-key (kbd "M-p") 'helm-cmd-t)
 (global-set-key (kbd "C-c h") 'helm-mini)
 (helm-mode 1)
 (custom-set-faces
@@ -364,3 +370,24 @@ otherkeywords={define,include,\\#}}
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "adobe" :family "Source Code Pro")))))
+
+; haskell-mode
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(custom-set-variables
+  '(haskell-process-suggest-remove-import-lines t)
+  '(haskell-process-auto-import-loaded-modules t)
+  '(haskell-process-log t)
+  '(haskell-process-type 'cabal-repl))
+(define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+(define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+(define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+(define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+(define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+(define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+(define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
+(define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
+;(define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
+;(define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+;(define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+;(define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
