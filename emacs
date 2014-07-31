@@ -100,27 +100,10 @@
   '("beamer"
 "\\documentclass{beamer}
 \\usepackage[german]{babel}
-\\usepackage{listings}
+\\usepackage[fontsize=\small]{minted}
+\\usemintedstyle{pastie}
 \\usepackage{color}
 
-\\definecolor{red}{rgb}{0.6,0,0} % for strings
-\\definecolor{green}{rgb}{0.25,0.5,0.35} % comments
-\\definecolor{purple}{rgb}{0.5,0,0.35} % keywords
-\\definecolor{docblue}{rgb}{0.25,0.35,0.75} % doc
- 
-\\lstset{basicstyle=\\small\\ttfamily,
-keywordstyle=\\color{purple},
-stringstyle=\\color{red},
-commentstyle=\\color{green},
-morecomment=[s][\\color{docblue}]{/**}{*/},
-numbers=left,
-numberstyle=\\tiny\\color{gray},
-stepnumber=1,
-numbersep=10pt,
-tabsize=2,
-showspaces=false,
-showstringspaces=false,
-otherkeywords={define,include,\\#}}
 \\usetheme{hsrm}
      [NO-DEFAULT-PACKAGES]
      [NO-PACKAGES]"
@@ -165,8 +148,8 @@ otherkeywords={define,include,\\#}}
 (require 'ox-beamer)
 
 (setq org-latex-pdf-process 
-  '("xelatex -interaction nonstopmode %f"
-     "xelatex -interaction nonstopmode %f")) ;; for multiple passes
+  '("xelatex -interaction nonstopmode -shell-escape %f"
+     "xelatex -interaction nonstopmode -shell-escape %f")) ;; for multiple passes
 
 (eval-after-load "org"
   '(progn
@@ -219,7 +202,7 @@ otherkeywords={define,include,\\#}}
 (add-hook 'org-mode-hook '(lambda ()
                             ;; turn on flyspell-mode by default
                             (flyspell-mode 1)
-                            ;; C-TAB for expanding
+                            ;; C-TAB for expanding (yasnippets)
                             (local-set-key (kbd "C-<tab>")
                                            'yas/expand-from-trigger-key)
                             ;; keybinding for editing source code blocks
@@ -232,6 +215,10 @@ otherkeywords={define,include,\\#}}
 
 ; enable syntax highlighting in soruce blocks
 (setq org-src-fontify-natively t)
+
+; use minted for code listings in latex export
+(setq org-latex-listings 'minted)
+(add-to-list 'org-latex-packages-alist '("" "minted"))
 
 
 ; color theme
@@ -271,6 +258,11 @@ otherkeywords={define,include,\\#}}
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-path-cabal "/home/svk/.cabal/bin/cabal")
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl))
  '(ido-enable-flex-matching t)
  '(minimap-always-recenter t)
  '(minimap-hide-fringes t)
@@ -374,11 +366,7 @@ otherkeywords={define,include,\\#}}
 ; haskell-mode
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-(custom-set-variables
-  '(haskell-process-suggest-remove-import-lines t)
-  '(haskell-process-auto-import-loaded-modules t)
-  '(haskell-process-log t)
-  '(haskell-process-type 'cabal-repl))
+
 (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
 (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
 (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
@@ -391,3 +379,12 @@ otherkeywords={define,include,\\#}}
 ;(define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
 ;(define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
 ;(define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
+
+; autocomplete in org mode
+(require 'org-ac)
+;; Make config suit for you. About the config item, eval the following sexp.
+;; (customize-group "org-ac")
+(org-ac/config-default)
+
+; save state on quit and reload on start
+(desktop-save-mode 1)
