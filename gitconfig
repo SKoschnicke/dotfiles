@@ -1,0 +1,14 @@
+[user]
+  name = Sven Koschnicke
+  email = s.koschnicke@gfxpro.com
+[alias]
+  s = status -sb
+  st = status
+  cm = commit -m
+  cma = commit -a -m
+  co = checkout
+  l = log --all --graph --decorate --oneline --abbrev-commit
+[push]
+  default = upstream
+[color]
+  ui = 1

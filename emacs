@@ -17,9 +17,19 @@
 ;;; emacs own package system
 (require 'package)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives
+               '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(when (< emacs-major-version 24)
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+
+; init installed packages
+; this should avoid "definition void" errors on startup
+(package-initialize)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; agenda and orgmode config
+
+(setq diary-file "~/Dropbox/diary")
 
 (add-to-list 'load-path "~/org-mode/lisp")
 
@@ -35,9 +45,13 @@
                              )
       org-agenda-include-all-todo t
       org-agenda-include-diary t
+      org-agenda-log-mode-items (list 'closed 'clock 'state)
       org-log-done t
       org-pretty-entities t
       org-pretty-entities-include-sub-superscripts t
+      org-agenda-span 21
+      org-agenda-skip-deadline-if-done t
+      org-agenda-skip-scheduled-if-done t
 )
 (setq org-default-notes-file "~/Dropbox/notes.org")
 (global-set-key "\C-cl" 'org-store-link)
@@ -49,13 +63,19 @@
     (R . t)
     (ruby . t)
     (haskell . t)
+    (C . t)
    )
 )
 
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
+(setq org-todo-keywords
+  '((sequence "TODO" "WAITING" "|" "DONE")))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; latex export
+
+(require 'ox-latex)
 (setq ieeetran-class
       '("IEEEtran"
         "\\documentclass[11pt]{IEEEtran}"
@@ -65,15 +85,94 @@
         ("\\paragraph{%s}" . "\\paragraph*{%s}")
         ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-(require 'org-latex)
-(add-to-list 'org-export-latex-classes ieeetran-class t)
+(setq article-class
+      '("article"
+        "\\documentclass[11pt]{article}"
+        ("\\section{%s}" . "\\section*{%s}")
+        ("\\subsection{%s}" . "\\subsection*{%s}")
+        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+        ("\\paragraph{%s}" . "\\paragraph*{%s}")
+        ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+(setq beamer-class
+  '("beamer"
+"\\documentclass{beamer}
+\\usepackage[german]{babel}
+\\usepackage{listings}
+\\usepackage{color}
+
+\\definecolor{red}{rgb}{0.6,0,0} % for strings
+\\definecolor{green}{rgb}{0.25,0.5,0.35} % comments
+\\definecolor{purple}{rgb}{0.5,0,0.35} % keywords
+\\definecolor{docblue}{rgb}{0.25,0.35,0.75} % doc
+ 
+\\lstset{basicstyle=\\small\\ttfamily,
+keywordstyle=\\color{purple},
+stringstyle=\\color{red},
+commentstyle=\\color{green},
+morecomment=[s][\\color{docblue}]{/**}{*/},
+numbers=left,
+numberstyle=\\tiny\\color{gray},
+stepnumber=1,
+numbersep=10pt,
+tabsize=2,
+showspaces=false,
+showstringspaces=false,
+otherkeywords={define,include,\\#}}
+\\usetheme{hsrm}
+     [NO-DEFAULT-PACKAGES]
+     [NO-PACKAGES]"
+        ("\\section{%s}" . "\\section*{%s}")
+        ("\\subsection{%s}" . "\\subsection*{%s}")
+        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+        ("\\paragraph{%s}" . "\\paragraph*{%s}")
+        ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+(unless (boundp 'org-latex-classes)
+  (setq org-latex-classes nil))
+(add-to-list 'org-latex-classes ieeetran-class t)
+(add-to-list 'org-latex-classes article-class t)
+(add-to-list 'org-latex-classes beamer-class t)
+
+(add-to-list 'org-latex-classes
+  '("djcb-org-article"
+"\\documentclass[11pt,a4paper]{article}
+\\usepackage[T1]{fontenc}
+\\usepackage{fontspec}
+\\usepackage{graphicx} 
+\\usepackage{hyperref} 
+\\defaultfontfeatures{Mapping=tex-text}
+\\setromanfont{Gentium}
+\\setromanfont [BoldFont={Gentium Basic Bold},
+                ItalicFont={Gentium Basic Italic}]{Gentium Basic}
+\\setsansfont{Charis SIL}
+\\setmonofont[Scale=0.8]{DejaVu Sans Mono}
+\\usepackage{geometry}
+\\geometry{a4paper, textwidth=6.5in, textheight=10in,
+            marginparsep=7pt, marginparwidth=.6in}
+\\pagestyle{empty}
+\\title{}
+      [NO-DEFAULT-PACKAGES]
+      [NO-PACKAGES]"
+     ("\\section{%s}" . "\\section*{%s}")
+     ("\\subsection{%s}" . "\\subsection*{%s}")
+     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+     ("\\paragraph{%s}" . "\\paragraph*{%s}")
+     ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+(require 'ox-beamer)
+
+(setq org-latex-pdf-process 
+  '("xelatex -interaction nonstopmode %f"
+     "xelatex -interaction nonstopmode %f")) ;; for multiple passes
 
 (eval-after-load "org"
   '(progn
      ;; Change .pdf association directly within the alist
-     (setcdr (assoc "\\.pdf\\'" org-file-apps) "open %s")))
+     (setcdr (assoc "\\.pdf\\'" org-file-apps) "evince %s")))
 
 (setq org-export-latex-hyperref-format "\\ref{%s}")
+(setq org-latex-listings t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; org mode bibtex integration
@@ -95,15 +194,56 @@
                    'org-bibtex-open
                    'my-rtcite-export-handler)
 
+; function to insert code block in org-mode
+(defun org-insert-src-block (src-code-type)
+  "Insert a `SRC-CODE-TYPE' type source code block in org-mode."
+  (interactive
+   (let ((src-code-types
+          '("emacs-lisp" "python" "C" "sh" "java" "js" "clojure" "C++" "css"
+            "calc" "asymptote" "dot" "gnuplot" "ledger" "lilypond" "mscgen"
+            "octave" "oz" "plantuml" "R" "sass" "screen" "sql" "awk" "ditaa"
+            "haskell" "latex" "lisp" "matlab" "ocaml" "org" "perl" "ruby"
+            "scheme" "sqlite" "javascript")))
+     (list (ido-completing-read "Source code type: " src-code-types))))
+  (progn
+    (newline-and-indent)
+    (insert (format "#+BEGIN_SRC %s\n" src-code-type))
+    (newline-and-indent)
+    (insert "#+END_SRC\n")
+    (previous-line 2)
+    (org-edit-src-code)))
+
+; key binding for above
+(add-hook 'org-mode-hook '(lambda ()
+                            ;; turn on flyspell-mode by default
+                            (flyspell-mode 1)
+                            ;; C-TAB for expanding
+                            (local-set-key (kbd "C-<tab>")
+                                           'yas/expand-from-trigger-key)
+                            ;; keybinding for editing source code blocks
+                            (local-set-key (kbd "C-c s e")
+                                           'org-edit-src-code)
+                            ;; keybinding for inserting code blocks
+                            (local-set-key (kbd "C-c s i")
+                                           'org-insert-src-block)
+                            ))
+
+; enable syntax highlighting in soruce blocks
+(setq org-src-fontify-natively t)
+
+
 ; ESS emacs speaks statistics
 (add-to-list 'load-path "~/.emacs.d/ess-site/lisp")
 (require 'ess-site)
 
 
-; solarized theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(add-to-list 'load-path "~/.emacs.d/")
-(load-theme 'solarized-light t)
+; color theme
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;(add-to-list 'load-path "~/.emacs.d/")
+;(load-theme 'solarized-light t)
+;(load-theme 'molokai t)
+(load "~/.emacs.d/plugins/color-theme-molokai.el")
+(color-theme-molokai)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; calendar and diary
@@ -138,29 +278,45 @@
  '(custom-safe-themes (quote ("007b69ffec046a5842e34fea287b23c49175dfd6c6d5a0d9cdf150a2e8a8979f" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(ido-enable-flex-matching t)
  '(standard-indent 2))
+ '(ido-enable-flex-matching t)
+ '(minimap-always-recenter t)
+ '(minimap-hide-fringes t)
+ '(minimap-update-delay 0.3)
+ '(pivotal-api-token "28249de15fafe38c0351196088262df5"))
 (if macosx-p
     (custom-set-faces
      ;; custom-set-faces was added by Custom.
      ;; If you edit it by hand, you could mess it up, so be careful.
      ;; Your init file should contain only one such instance.
      ;; If there is more than one, they won't work right.
-     '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "adobe" :family "Source Code Pro")))))
+     '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "adobe" :family "Source Code Pro")))))
     ; else
     (custom-set-faces
      ;; custom-set-faces was added by Custom.
      ;; If you edit it by hand, you could mess it up, so be careful.
      ;; Your init file should contain only one such instance.
      ;; If there is more than one, they won't work right.
-     '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "adobe" :family "Source Code Pro")))))
+     '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "adobe" :family "Source Code Pro")))))
 )
+
+; cycle through spelling dictionaries
+(defun fd-switch-dictionary()
+(interactive)
+(let* ((dic ispell-current-dictionary)
+   (change (if (string= dic "de_DE") "english" "de_DE")))
+  (ispell-change-dictionary change)
+  (message "Dictionary switched from %s to %s" dic change)
+  ))
+
+(global-set-key (kbd "<f8>")   'fd-switch-dictionary)
 
 ; insert spaces when pressing tab
 (setq-default indent-tabs-mode nil)
 ; set indenting width
 (setq tab-width 2)
 ; set other offsets to tab-width
-(defvaralias 'c-basic-offset 'tab-width)
-(defvaralias 'cperl-indent-level 'tab-width)
+(setq-default c-basic-offset tab-width)
+(setq-default cperl-indent-level tab-width)
 
 ; put temp files in temp dir
 (setq backup-directory-alist
@@ -191,8 +347,8 @@
 ; disable toolbar
 (tool-bar-mode -1)
 
-; disable menubar
-(menu-bar-mode -1)
+; disable menubar (available as popup on C-mouse-3)
+(menu-bar-mode -99)
 
 ; disable scrollbar
 (scroll-bar-mode -1)
@@ -204,6 +360,21 @@
 
 ; enable evil mode
 (evil-mode 1)
+
+(require 'evil-surround)
+(global-evil-surround-mode 1)
+
+(minimap-mode 1)
+
+; helm
+(global-set-key (kbd "C-c h") 'helm-mini)
+(helm-mode 1)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "adobe" :family "Source Code Pro")))))
 (setq org-src-fontify-natively t)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -3,8 +3,10 @@
 "set background=dark " because of strange xresources, this means actually light
 "colorscheme solarized
 "colorscheme github
-colorscheme proton
-set guifont=Inconsolata\ Medium\ 11
+let g:molokai_original=1
+"colorscheme proton
+colorscheme molokai
+set guifont=Inconsolata\ Medium\ 9
 
 " no right scrollbars
 set guioptions=-R
@@ -40,8 +42,13 @@ helptags ~/.vim/doc
 set list listchars=tab:\|_,trail:~
 "highlight SpecialKey ctermfg=DarkGray
 "set laststatus=2
-set textwidth=80
-set wrap
+" set 78 character long lines with soft-wrap for text files
+autocmd FileType text setlocal wrap
+autocmd FileType text setlocal textwidth=78
+
+set tags=tags;/
+
+set encoding=utf-8
 
 " use css syntax highlighting for .less files
 au BufRead,BufNewFile *.less setfiletype css
