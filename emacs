@@ -242,8 +242,8 @@ otherkeywords={define,include,\\#}}
 ;(add-to-list 'load-path "~/.emacs.d/")
 ;(load-theme 'solarized-light t)
 ;(load-theme 'molokai t)
-(load "~/.emacs.d/plugins/color-theme-molokai.el")
-(color-theme-molokai)
+;(load "~/.emacs.d/plugins/color-theme-molokai.el")
+;(color-theme-molokai)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; calendar and diary
@@ -277,7 +277,7 @@ otherkeywords={define,include,\\#}}
  '(c-basic-offset 2)
  '(custom-safe-themes (quote ("007b69ffec046a5842e34fea287b23c49175dfd6c6d5a0d9cdf150a2e8a8979f" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(ido-enable-flex-matching t)
- '(standard-indent 2))
+ '(standard-indent 2)
  '(ido-enable-flex-matching t)
  '(minimap-always-recenter t)
  '(minimap-hide-fringes t)
@@ -361,8 +361,8 @@ otherkeywords={define,include,\\#}}
 ; enable evil mode
 (evil-mode 1)
 
-(require 'evil-surround)
-(global-evil-surround-mode 1)
+;(require 'evil-surround)
+;(global-evil-surround-mode 1)
 
 (minimap-mode 1)
 
