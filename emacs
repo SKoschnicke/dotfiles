@@ -42,6 +42,7 @@
                              "~/Dropbox/pav-plan.org"
                              "~/Dropbox/getdigital.org"
                              "~/documents/promotion/qantrade.org"
+                             "~/Dropbox/plan.org"
                              )
       org-agenda-include-all-todo t
       org-agenda-include-diary t
@@ -364,7 +365,7 @@ otherkeywords={define,include,\\#}}
 ;(require 'evil-surround)
 ;(global-evil-surround-mode 1)
 
-(minimap-mode 1)
+;(minimap-mode 1)
 
 ; helm
 (global-set-key (kbd "C-c h") 'helm-mini)
