@@ -1,5 +1,5 @@
-(:name text-translator-vars
-:auto-generated t
-:type emacswiki
-:description "Text Translator"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/text-translator-vars.el")
+	(:name text-translator-vars
+	:auto-generated t
+	:type emacswiki
+	:description "Text Translator"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/text-translator-vars.el")

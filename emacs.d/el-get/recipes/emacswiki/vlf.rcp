@@ -1,5 +1,5 @@
-(:name vlf
-:auto-generated t
-:type emacswiki
-:description "View Large Files"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vlf.el")
+	(:name vlf
+	:auto-generated t
+	:type emacswiki
+	:description "View Large Files"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/vlf.el")

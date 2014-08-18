@@ -1,5 +1,0 @@
-(:name dired-dups
-:auto-generated t
-:type emacswiki
-:description "Find duplicate files and display them in a dired buffer"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dired-dups.el")

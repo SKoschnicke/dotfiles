@@ -1,5 +1,5 @@
-(:name dim-google
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dim-google.el")
+	(:name dim-google
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/dim-google.el")

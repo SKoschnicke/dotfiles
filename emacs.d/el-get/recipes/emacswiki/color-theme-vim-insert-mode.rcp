@@ -1,5 +1,5 @@
-(:name color-theme-vim-insert-mode
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/color-theme-vim-insert-mode.el")
+	(:name color-theme-vim-insert-mode
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/color-theme-vim-insert-mode.el")

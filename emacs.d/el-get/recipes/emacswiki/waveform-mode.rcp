@@ -1,5 +1,5 @@
-(:name waveform-mode
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/waveform-mode.el")
+	(:name waveform-mode
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/waveform-mode.el")

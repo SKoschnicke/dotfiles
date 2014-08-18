@@ -1,5 +1,5 @@
-(:name monDOTemacs
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/monDOTemacs.el")
+	(:name monDOTemacs
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/monDOTemacs.el")

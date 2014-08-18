@@ -68,6 +68,8 @@
    )
 )
 
+(load "~/.emacs.d/plugins/cdlatex.el")
+(require 'cdlatex)
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
 (setq org-todo-keywords
@@ -164,8 +166,8 @@ otherkeywords={define,include,\\#}}
 (require 'ox-beamer)
 
 (setq org-latex-pdf-process 
-  '("xelatex -interaction nonstopmode %f"
-     "xelatex -interaction nonstopmode %f")) ;; for multiple passes
+  '("xelatex -interaction nonstopmode -shell-escape %f"
+     "xelatex -interaction nonstopmode -shell-escape %f")) ;; for multiple passes
 
 (eval-after-load "org"
   '(progn
@@ -218,7 +220,7 @@ otherkeywords={define,include,\\#}}
 (add-hook 'org-mode-hook '(lambda ()
                             ;; turn on flyspell-mode by default
                             (flyspell-mode 1)
-                            ;; C-TAB for expanding
+                            ;; C-TAB for expanding (yasnippets)
                             (local-set-key (kbd "C-<tab>")
                                            'yas/expand-from-trigger-key)
                             ;; keybinding for editing source code blocks
@@ -232,19 +234,18 @@ otherkeywords={define,include,\\#}}
 ; enable syntax highlighting in soruce blocks
 (setq org-src-fontify-natively t)
 
-
-; ESS emacs speaks statistics
-(add-to-list 'load-path "~/.emacs.d/ess-site/lisp")
-(require 'ess-site)
+; use minted for code listings in latex export
+(setq org-latex-listings 'minted)
+(add-to-list 'org-latex-packages-alist '("" "minted"))
 
 
 ; color theme
-;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(add-to-list 'load-path "~/.emacs.d/")
 ;(load-theme 'solarized-light t)
 ;(load-theme 'molokai t)
-;(load "~/.emacs.d/plugins/color-theme-molokai.el")
-;(color-theme-molokai)
+(load "~/.emacs.d/plugins/color-theme-molokai.el")
+(color-theme-molokai)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; calendar and diary
@@ -275,10 +276,11 @@ otherkeywords={define,include,\\#}}
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(c-basic-offset 2)
- '(custom-safe-themes (quote ("007b69ffec046a5842e34fea287b23c49175dfd6c6d5a0d9cdf150a2e8a8979f" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
- '(ido-enable-flex-matching t)
- '(standard-indent 2)
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-path-cabal "/home/svk/.cabal/bin/cabal")
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl))
  '(ido-enable-flex-matching t)
  '(minimap-always-recenter t)
  '(minimap-hide-fringes t)
@@ -362,8 +364,8 @@ otherkeywords={define,include,\\#}}
 ; enable evil mode
 (evil-mode 1)
 
-;(require 'evil-surround)
-;(global-evil-surround-mode 1)
+(require 'evil-surround)
+(global-evil-surround-mode 1)
 
 ;(minimap-mode 1)
 
@@ -376,10 +378,3 @@ otherkeywords={define,include,\\#}}
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "adobe" :family "Source Code Pro")))))
-(setq org-src-fontify-natively t)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "adobe" :family "Source Code Pro")))))

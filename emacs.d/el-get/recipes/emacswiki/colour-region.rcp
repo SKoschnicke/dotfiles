@@ -1,5 +1,0 @@
-(:name colour-region
-:auto-generated t
-:type emacswiki
-:description "Toggle regions of the buffer with different text snippets"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/colour-region.el")

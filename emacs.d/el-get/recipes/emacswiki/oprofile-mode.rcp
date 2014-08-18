@@ -1,5 +1,5 @@
-(:name oprofile-mode
-:auto-generated t
-:type emacswiki
-:description "An oprofile callgraph viewer"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/oprofile-mode.el")
+	(:name oprofile-mode
+	:auto-generated t
+	:type emacswiki
+	:description "An oprofile callgraph viewer"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/oprofile-mode.el")

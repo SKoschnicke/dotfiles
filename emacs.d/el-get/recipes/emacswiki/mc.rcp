@@ -1,5 +1,5 @@
-(:name mc
-:auto-generated t
-:type emacswiki
-:description "Midnight Commander emulation for emacs using dired"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mc.el")
+	(:name mc
+	:auto-generated t
+	:type emacswiki
+	:description "Midnight Commander emulation for emacs using dired"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mc.el")

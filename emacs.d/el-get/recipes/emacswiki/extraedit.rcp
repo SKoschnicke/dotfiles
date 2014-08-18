@@ -1,5 +1,5 @@
-(:name extraedit
-:auto-generated t
-:type emacswiki
-:description "Extra useful edit functions and macros"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/extraedit.el")
+	(:name extraedit
+	:auto-generated t
+	:type emacswiki
+	:description "Extra useful edit functions and macros"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/extraedit.el")

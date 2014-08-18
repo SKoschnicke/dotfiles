@@ -1,5 +1,5 @@
-(:name topsongs
-:auto-generated t
-:type emacswiki
-:description "a song database for the lazy emacser"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/topsongs.el")
+	(:name topsongs
+	:auto-generated t
+	:type emacswiki
+	:description "a song database for the lazy emacser"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/topsongs.el")

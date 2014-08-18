@@ -1,5 +1,5 @@
-(:name emms-extension
-:auto-generated t
-:type emacswiki
-:description "Some extensions for emms"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emms-extension.el")
+	(:name emms-extension
+	:auto-generated t
+	:type emacswiki
+	:description "Some extensions for emms"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emms-extension.el")

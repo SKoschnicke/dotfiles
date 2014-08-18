@@ -1,5 +1,5 @@
-(:name abc-mode
-:auto-generated t
-:type emacswiki
-:description "Major mode for editing abc music files"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/abc-mode.el")
+	(:name abc-mode
+	:auto-generated t
+	:type emacswiki
+	:description "Major mode for editing abc music files"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/abc-mode.el")

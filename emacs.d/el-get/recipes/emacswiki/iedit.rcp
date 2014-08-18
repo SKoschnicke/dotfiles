@@ -1,5 +1,5 @@
-(:name iedit
-:auto-generated t
-:type emacswiki
-:description "Edit multiple regions in the same way simultaneously."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/iedit.el")
+	(:name iedit
+	:auto-generated t
+	:type emacswiki
+	:description "Edit multiple regions in the same way simultaneously."
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/iedit.el")

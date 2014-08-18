@@ -1,5 +1,5 @@
-(:name gnus-extension
-:auto-generated t
-:type emacswiki
-:description "Simple description"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-extension.el")
+	(:name gnus-extension
+	:auto-generated t
+	:type emacswiki
+	:description "Simple description"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-extension.el")

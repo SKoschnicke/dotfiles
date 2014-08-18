@@ -1,5 +1,0 @@
-(:name cmds-menu
-:auto-generated t
-:type emacswiki
-:description "`Recent Commands' submenu for the menu-bar `Tools' menu."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cmds-menu.el")

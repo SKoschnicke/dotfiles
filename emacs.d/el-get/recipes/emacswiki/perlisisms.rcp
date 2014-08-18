@@ -1,5 +1,5 @@
-(:name perlisisms
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/perlisisms.el")
+	(:name perlisisms
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/perlisisms.el")

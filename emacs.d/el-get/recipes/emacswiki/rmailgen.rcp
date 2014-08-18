@@ -1,5 +1,5 @@
-(:name rmailgen
-:auto-generated t
-:type emacswiki
-:description "generates guesses for RMAIL output files and FCC files."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rmailgen.el")
+	(:name rmailgen
+	:auto-generated t
+	:type emacswiki
+	:description "generates guesses for RMAIL output files and FCC files."
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rmailgen.el")

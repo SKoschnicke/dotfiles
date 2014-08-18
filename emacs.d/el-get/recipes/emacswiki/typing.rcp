@@ -1,5 +1,5 @@
-(:name typing
-:auto-generated t
-:type emacswiki
-:description "The Typing Of Emacs"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/typing.el")
+	(:name typing
+	:auto-generated t
+	:type emacswiki
+	:description "The Typing Of Emacs"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/typing.el")

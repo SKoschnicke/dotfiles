@@ -1,5 +1,5 @@
-(:name lazy-search
-:auto-generated t
-:type emacswiki
-:description "Lazy Search"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lazy-search.el")
+	(:name lazy-search
+	:auto-generated t
+	:type emacswiki
+	:description "Lazy Search"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/lazy-search.el")

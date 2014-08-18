@@ -1,5 +1,5 @@
-(:name bookmark+-key
-:auto-generated t
-:type emacswiki
-:description "Bookmark+ key and menu bindings."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bookmark+-key.el")
+	(:name bookmark+-key
+	:auto-generated t
+	:type emacswiki
+	:description "Bookmark+ key and menu bindings."
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bookmark+-key.el")

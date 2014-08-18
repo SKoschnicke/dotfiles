@@ -1,5 +1,5 @@
-(:name yaoddmuse-extension
-:auto-generated t
-:type emacswiki
-:description "Some enhanced functions for yaoddmuse.el"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/yaoddmuse-extension.el")
+	(:name yaoddmuse-extension
+	:auto-generated t
+	:type emacswiki
+	:description "Some enhanced functions for yaoddmuse.el"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/yaoddmuse-extension.el")

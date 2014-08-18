@@ -1,5 +1,5 @@
-(:name init-wget
-:auto-generated t
-:type emacswiki
-:description "Wget configuration"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-wget.el")
+	(:name init-wget
+	:auto-generated t
+	:type emacswiki
+	:description "Wget configuration"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-wget.el")

@@ -1,5 +1,0 @@
-(:name gnus-spotlight
-:auto-generated t
-:type emacswiki
-:description "Search mail with Spotlight"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-spotlight.el")

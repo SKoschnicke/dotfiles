@@ -1,0 +1,5 @@
+	(:name outline-magic
+	:auto-generated t
+	:type emacswiki
+	:description "outline mode extensions for Emacs"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/outline-magic.el")

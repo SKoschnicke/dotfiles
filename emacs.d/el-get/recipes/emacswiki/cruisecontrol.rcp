@@ -1,5 +1,5 @@
-(:name cruisecontrol
-:auto-generated t
-:type emacswiki
-:description "Talking to a cruisecontrol server with emacs"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cruisecontrol.el")
+	(:name cruisecontrol
+	:auto-generated t
+	:type emacswiki
+	:description "Talking to a cruisecontrol server with emacs"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/cruisecontrol.el")

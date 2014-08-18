@@ -1,5 +1,5 @@
-(:name portage
-:auto-generated t
-:type emacswiki
-:description "search and install Gentoo packages"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/portage.el")
+	(:name portage
+	:auto-generated t
+	:type emacswiki
+	:description "search and install Gentoo packages"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/portage.el")

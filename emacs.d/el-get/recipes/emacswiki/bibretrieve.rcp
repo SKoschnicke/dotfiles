@@ -1,5 +1,5 @@
-(:name bibretrieve
-:auto-generated t
-:type emacswiki
-:description "Retrieve BibTeX entries from the web."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bibretrieve.el")
+	(:name bibretrieve
+	:auto-generated t
+	:type emacswiki
+	:description "Retrieve BibTeX entries from the web."
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bibretrieve.el")

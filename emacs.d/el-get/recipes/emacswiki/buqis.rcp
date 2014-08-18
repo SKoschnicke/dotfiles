@@ -1,5 +1,5 @@
-(:name buqis
-:auto-generated t
-:type emacswiki
-:description "Quick buffers switcher."
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/buqis.el")
+	(:name buqis
+	:auto-generated t
+	:type emacswiki
+	:description "Quick buffers switcher."
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/buqis.el")

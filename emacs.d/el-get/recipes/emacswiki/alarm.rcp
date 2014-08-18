@@ -1,5 +1,5 @@
-(:name alarm
-:auto-generated t
-:type emacswiki
-:description "Alarm"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/alarm.el")
+	(:name alarm
+	:auto-generated t
+	:type emacswiki
+	:description "Alarm"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/alarm.el")

@@ -1,5 +1,5 @@
-(:name mysql
-:auto-generated t
-:type emacswiki
-:description "mysql front-end"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mysql.el")
+	(:name mysql
+	:auto-generated t
+	:type emacswiki
+	:description "mysql front-end"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/mysql.el")

@@ -1,5 +1,0 @@
-(:name helm-helm-commands
-:auto-generated t
-:type emacswiki
-:description "List all helm commands with helm"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/helm-helm-commands.el")

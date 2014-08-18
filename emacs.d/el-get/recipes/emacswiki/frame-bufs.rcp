@@ -1,5 +1,5 @@
-(:name frame-bufs
-:auto-generated t
-:type emacswiki
-:description "a minor mode for frame-relative buffer lists"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/frame-bufs.el")
+	(:name frame-bufs
+	:auto-generated t
+	:type emacswiki
+	:description "a minor mode for frame-relative buffer lists"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/frame-bufs.el")

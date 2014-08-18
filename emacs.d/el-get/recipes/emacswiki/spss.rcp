@@ -1,5 +1,0 @@
-(:name spss
-:auto-generated t
-:type emacswiki
-:description "Major-mode for editing SPSS program files"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/spss.el")

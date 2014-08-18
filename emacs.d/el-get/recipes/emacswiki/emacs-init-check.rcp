@@ -1,5 +1,5 @@
-(:name emacs-init-check
-:auto-generated t
-:type emacswiki
-:description "Automatic init file checker"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emacs-init-check.el")
+	(:name emacs-init-check
+	:auto-generated t
+	:type emacswiki
+	:description "Automatic init file checker"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/emacs-init-check.el")

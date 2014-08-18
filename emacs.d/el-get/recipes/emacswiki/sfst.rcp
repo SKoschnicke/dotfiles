@@ -1,5 +1,5 @@
-(:name sfst
-:auto-generated t
-:type emacswiki
-:description "major mode for editing SFST files"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sfst.el")
+	(:name sfst
+	:auto-generated t
+	:type emacswiki
+	:description "major mode for editing SFST files"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/sfst.el")

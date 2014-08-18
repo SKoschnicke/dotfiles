@@ -1,5 +1,5 @@
-(:name anything-obsolete
-:auto-generated t
-:type emacswiki
-:description "obsolete functions of anything"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-obsolete.el")
+	(:name anything-obsolete
+	:auto-generated t
+	:type emacswiki
+	:description "obsolete functions of anything"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-obsolete.el")

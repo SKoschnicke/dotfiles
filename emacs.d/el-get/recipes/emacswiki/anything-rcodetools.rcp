@@ -1,5 +1,5 @@
-(:name anything-rcodetools
-:auto-generated t
-:type emacswiki
-:description "accurate Ruby method completion with anything"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-rcodetools.el")
+	(:name anything-rcodetools
+	:auto-generated t
+	:type emacswiki
+	:description "accurate Ruby method completion with anything"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/anything-rcodetools.el")

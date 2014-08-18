@@ -56,3 +56,5 @@ export EDITOR=vim
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 PATH=$PATH:/usr/local/eclipse # Path to eclipse
+
+PATH=$PATH:$HOME/.cabal/bin # Path to cabal

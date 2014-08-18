@@ -1,5 +1,5 @@
-(:name jabber-encrypt
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jabber-encrypt.el")
+	(:name jabber-encrypt
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/jabber-encrypt.el")

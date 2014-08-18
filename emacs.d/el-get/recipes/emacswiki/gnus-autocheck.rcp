@@ -1,5 +1,5 @@
-(:name gnus-autocheck
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-autocheck.el")
+	(:name gnus-autocheck
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-autocheck.el")

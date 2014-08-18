@@ -1,5 +1,5 @@
-(:name rcirc-random-names
-:auto-generated t
-:type emacswiki
-:description "randomize names"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc-random-names.el")
+	(:name rcirc-random-names
+	:auto-generated t
+	:type emacswiki
+	:description "randomize names"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/rcirc-random-names.el")

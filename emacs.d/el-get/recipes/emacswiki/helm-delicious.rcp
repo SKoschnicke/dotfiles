@@ -1,5 +1,0 @@
-(:name helm-delicious
-:auto-generated t
-:type emacswiki
-:description "helm extensions for delicious bookmarks"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/helm-delicious.el")

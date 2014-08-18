@@ -1,5 +1,0 @@
-(:name bbdb-ext
-:auto-generated t
-:type emacswiki
-:description "Extra commands for BBDB"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/bbdb-ext.el")

@@ -1,5 +1,5 @@
-(:name init-gnus
-:auto-generated t
-:type emacswiki
-:description "Configuration file for gnus"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-gnus.el")
+	(:name init-gnus
+	:auto-generated t
+	:type emacswiki
+	:description "Configuration file for gnus"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/init-gnus.el")

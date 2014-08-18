@@ -1,5 +1,0 @@
-(:name apt-utils-ido
-:auto-generated t
-:type emacswiki
-:description "Ido commands for apt-utils"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/apt-utils-ido.el")

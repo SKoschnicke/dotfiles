@@ -1,5 +1,5 @@
-(:name repdet
-:auto-generated t
-:type emacswiki
-:description "detect repetition in user activity"
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/repdet.el")
+	(:name repdet
+	:auto-generated t
+	:type emacswiki
+	:description "detect repetition in user activity"
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/repdet.el")

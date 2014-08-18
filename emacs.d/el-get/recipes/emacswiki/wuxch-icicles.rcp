@@ -1,5 +1,5 @@
-(:name wuxch-icicles
-:auto-generated t
-:type emacswiki
-:description ""
-:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wuxch-icicles.el")
+	(:name wuxch-icicles
+	:auto-generated t
+	:type emacswiki
+	:description ""
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/wuxch-icicles.el")
