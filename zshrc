@@ -51,8 +51,8 @@ DEFAULT_USER="svk"
 # enable rvm
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-EDITOR=vim
+export EDITOR=vim
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-PATH=$PATH:/usr/local/eclipse # Path to eclipse
+export PATH=$PATH:/usr/local/eclipse # Path to eclipse
