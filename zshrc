@@ -58,3 +58,4 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/eclipse # Path to eclipse
 
 PATH=$PATH:$HOME/.cabal/bin # Path to cabal
+PATH=$PATH:./.cabal-sandbox/bin # Path to project specific cabal sandbox
