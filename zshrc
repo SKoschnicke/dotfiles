@@ -41,19 +41,22 @@ ZSH_THEME="agnoster"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(nyan rvm web-search lol last-working-dir history-substring-search rails bundler ruby git cap command-not-found gem git-extras github screen vagrant vi-mode)
+plugins=(nyan rvm web-search lol last-working-dir history-substring-search rails bundler ruby git cap command-not-found gem git-extras github screen vagrant vi-mode wd)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 DEFAULT_USER="svk"
 
+autoload -U zmv
+alias mmv='noglob zmv -W'
+
 # enable rvm
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 export EDITOR=vim
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 PATH=$PATH:/usr/local/eclipse # Path to eclipse
 

@@ -366,6 +366,12 @@ otherkeywords={define,include,\\#}}
 
 (require 'evil-surround)
 (global-evil-surround-mode 1)
+<<<<<<< HEAD
+=======
+; nerd commenter
+(global-evil-leader-mode 1)
+;(require 'evil-surround)
+;(global-evil-surround-mode 1)
 
 ;(minimap-mode 1)
 
@@ -378,3 +384,32 @@ otherkeywords={define,include,\\#}}
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "adobe" :family "Source Code Pro")))))
+
+; haskell-mode
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(custom-set-variables
+  '(haskell-process-suggest-remove-import-lines t)
+  '(haskell-process-auto-import-loaded-modules t)
+  '(haskell-process-log t)
+  '(haskell-process-type 'cabal-repl))
+(define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+(define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+(define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+(define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+(define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+(define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+(define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
+(define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
+;(define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
+;(define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+;(define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+;(define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
+(setq org-src-fontify-natively t)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "adobe" :family "Source Code Pro")))))
+>>>>>>> 8789e012242485bd1fab8c7c4e5bb8e3b05e1c41
