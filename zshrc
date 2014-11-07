@@ -48,6 +48,9 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 DEFAULT_USER="svk"
 
+autoload -U zmv
+alias mmv='noglob zmv -W'
+
 # enable rvm
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
