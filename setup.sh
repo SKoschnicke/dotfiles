@@ -14,7 +14,9 @@ ln -s ~/.dotfiles/Xresources ~/.Xresources
 ln -s ~/.dotfiles/emacs ~/.emacs
 ln -s ~/.dotfiles/emacs.d ~/.emacs.d
 ln -s ~/.dotfiles/zshrc ~/.zshrc
-mkdir -p ~/.xmonad
+mkdir -p ~/.xmonad/bin
+ln -s ~/.dotfiles/bin/keyboard-layout ~/.xmonad/bin/keyboard-layout
+ln -s ~/.dotfiles/bin/select-screenshot ~/.xmonad/bin/select-screenshot
 ln -s ~/.dotfiles/xmonad.hs ~/.xmonad/xmonad.hs
 ln -s ~/.dotfiles/xmobar.hs ~/.xmonad/xmobar.hs
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig

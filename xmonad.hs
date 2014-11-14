@@ -1,7 +1,7 @@
 -- xmonad config used by Vic Fryzel
 -- Author: Vic Fryzel
 -- http://github.com/vicfryzel/xmonad-config
- 
+
 import System.IO
 import System.Exit
 import XMonad
@@ -136,6 +136,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Lock the screen using xscreensaver.
   , ((modMask .|. controlMask, xK_l),
      spawn "xscreensaver-command -lock")
+
+  -- switch between keyboard layouts
+  , ((modMask .|. controlMask, xK_k),
+     spawn "keyboard-layout")
 
   -- Launch dmenu via yeganesh.
   -- Use this to launch programs without a key binding.
