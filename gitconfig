@@ -12,3 +12,5 @@
   default = upstream
 [color]
   ui = 1
+[core]
+	longpaths = true

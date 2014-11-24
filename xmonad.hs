@@ -1,7 +1,7 @@
 -- xmonad config used by Vic Fryzel
 -- Author: Vic Fryzel
 -- http://github.com/vicfryzel/xmonad-config
- 
+
 import System.IO
 import System.Exit
 import XMonad
@@ -14,8 +14,10 @@ import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
+import XMonad.Prompt
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Actions.Search(SearchEngine, intelligent, multi,  promptSearch, searchEngine, selectSearch , (!>))
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -106,6 +108,11 @@ xmobarCurrentWorkspaceColor = "#CEFFAC"
 -- Width of the window border in pixels.
 myBorderWidth = 1
 
+hayoo :: SearchEngine
+hayoo = searchEngine "hayoo" "http://holumbus.fh-wedel.de/hayoo/hayoo.html?query="
+
+dictcc :: SearchEngine
+dictcc = searchEngine "dictcc" "http://www.dict.cc/?=DEEN&s="
 
 ------------------------------------------------------------------------
 -- Key bindings
@@ -129,6 +136,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Lock the screen using xscreensaver.
   , ((modMask .|. controlMask, xK_l),
      spawn "xscreensaver-command -lock")
+
+  -- switch between keyboard layouts
+  , ((modMask .|. controlMask, xK_k),
+     spawn "keyboard-layout")
 
   -- Launch dmenu via yeganesh.
   -- Use this to launch programs without a key binding.
@@ -173,6 +184,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Eject CD tray.
   , ((0, 0x1008FF2C),
      spawn "eject -T")
+
+  -- search
+  , ((modMask, xK_s),
+     promptSearch defaultXPConfig $ intelligent $ hayoo !> dictcc !> multi)
 
   --------------------------------------------------------------------
   -- "Standard" xmonad key bindings
@@ -264,7 +279,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
   -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
-  [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+ [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
       | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
  

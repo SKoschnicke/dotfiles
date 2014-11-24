@@ -1,0 +1,20 @@
+#!/bin/zsh
+# LICENSE: PUBLIC DOMAIN
+# switch between my layouts
+
+export DISPLAY=:0
+# If an explicit layout is provided as an argument, use it. Otherwise, select the next layout from
+# the set [us, de].
+if [[ -n "$1" ]]; then
+    setxkbmap -layout $1
+else
+    layout=$(setxkbmap -query | grep layout | awk 'END{print $2}')
+    case $layout in
+        us)
+                setxkbmap -layout de
+            ;;
+        *)
+                setxkbmap -layout us
+            ;;
+    esac
+fi
