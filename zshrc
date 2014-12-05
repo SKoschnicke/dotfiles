@@ -46,6 +46,12 @@ plugins=(nyan rvm web-search lol last-working-dir history-substring-search rails
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+
+# fix for history-substring-search, see https://github.com/robbyrussell/oh-my-zsh/issues/1433#issuecomment-38266082
+zmodload zsh/terminfo
+bindkey "$terminfo[cuu1]" history-substring-search-up
+bindkey "$terminfo[cud1]" history-substring-search-down
+
 DEFAULT_USER="svk"
 
 autoload -U zmv
