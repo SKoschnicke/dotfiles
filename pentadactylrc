@@ -23,7 +23,7 @@ colorscheme solarized-dark
 
 " Use characters for hints,
 set hintkeys=asdflkj
-hi -a Hint font-size: 9pt !important;
+hi -a Hint font-size: 12pt !important;
 
 
 " vim: set ft=pentadactyl:
