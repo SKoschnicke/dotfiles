@@ -139,7 +139,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- switch between keyboard layouts
   , ((modMask .|. controlMask, xK_k),
-     spawn "keyboard-layout")
+     spawn "~/.xmonad/bin/keyboard-layout")
 
   -- Launch dmenu via yeganesh.
   -- Use this to launch programs without a key binding.
@@ -150,7 +150,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- After pressing this key binding, click a window, or draw a rectangle with
   -- the mouse.
   , ((modMask .|. shiftMask, xK_p),
-     spawn "select-screenshot")
+     spawn "~/.xmonad/bin/select-screenshot")
 
   -- Take full screenshot in multi-head mode.
   -- That is, take a screenshot of everything you see.

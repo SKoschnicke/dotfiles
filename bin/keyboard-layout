@@ -12,9 +12,11 @@ else
     case $layout in
         us)
                 setxkbmap -layout de
+                notify-send "switched to german (DE) keyboard layout"
             ;;
         *)
                 setxkbmap -layout us
+                notify-send "switched to english (US) keyboard layout"
             ;;
     esac
 fi

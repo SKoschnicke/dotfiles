@@ -60,6 +60,9 @@ alias mmv='noglob zmv -W'
 # enable rvm
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
+# tell Java that XMonad is non-reparenting (prevents blank windows of java applications)
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 export EDITOR=vim
 
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
@@ -68,3 +71,5 @@ PATH=$PATH:/usr/local/eclipse # Path to eclipse
 
 PATH=$PATH:$HOME/.cabal/bin # Path to cabal
 PATH=$PATH:./.cabal-sandbox/bin # Path to project specific cabal sandbox
+PATH=$PATH:./.dotfiles/bin # Path to own scripts
+alias kb=keyboard-layout
