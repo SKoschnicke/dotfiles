@@ -23,5 +23,5 @@ ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/pentadactylrc ~/.pentadactylrc
 mkdir -p ~/.pentadactyl
 ln -s ~/.dotfiles/pentadactyl/colors ~/.pentadactyl/colors
-mkdir -p ~/.config/parcellite
-ln -s ~/.dotfiles/parcelliterc ~/.config/parcellite/parcelliterc
+mkdir -p ~/.config/clipit
+ln -s ~/.dotfiles/clipitrc ~/.config/clipit/clipitrc

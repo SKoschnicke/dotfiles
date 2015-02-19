@@ -15,7 +15,7 @@ setxkbmap -layout "us"
 xmodmap -e "keycode 119 = Tab Delete" # remap Delete to Tab (and Shift-Delete to Delete)
 xinput set-prop "Wacom Bamboo Connect Pen stylus" --type=float "Coordinate Transformation Matrix" 0.5 0 0.5 0 1 0 0 0 1
 update-notifier &
-parcellite &
+clipit &
 dropbox start
 xterm -e tmux &
 firefox &
