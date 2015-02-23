@@ -4,7 +4,8 @@ loadplugins '\.(js|penta)$'
 group user
 
 " pass through for github (to use t and s keys and other shortcuts, view with ?)
-autocmd LocationChange github.com :normal! <C-z>
+" autocmd LocationChange github.com :normal! <C-z>
+" disabled because never used it and got in the way
 
 " C-e invokes editor in text fields
 set editor="emacsclient"
