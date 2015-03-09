@@ -2,24 +2,26 @@
 -- Author: Vic Fryzel
 -- http://github.com/vicfryzel/xmonad-config
 
-import System.IO
-import System.Exit
-import XMonad
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.SetWMName
-import XMonad.Hooks.EwmhDesktops
-import XMonad.Layout.Fullscreen
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Spiral
-import XMonad.Layout.Tabbed
-import XMonad.Prompt
-import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
-import XMonad.Actions.Search(SearchEngine, intelligent, multi,  promptSearch, searchEngine, selectSearch , (!>))
-import qualified XMonad.StackSet as W
-import qualified Data.Map        as M
+import qualified Data.Map                   as M
+import           System.Exit
+import           System.IO
+import           XMonad
+import           XMonad.Actions.Search      (SearchEngine, intelligent, multi,
+                                             promptSearch, searchEngine,
+                                             selectSearch, (!>))
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.EwmhDesktops
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.ManageHelpers
+import           XMonad.Hooks.SetWMName
+import           XMonad.Layout.Fullscreen
+import           XMonad.Layout.NoBorders
+import           XMonad.Layout.Spiral
+import           XMonad.Layout.Tabbed
+import           XMonad.Prompt
+import qualified XMonad.StackSet            as W
+import           XMonad.Util.EZConfig       (additionalKeys)
+import           XMonad.Util.Run            (spawnPipe)
 
 
 ------------------------------------------------------------------------
@@ -35,7 +37,7 @@ myTerminal = "/usr/bin/xterm"
 -- The default number of workspaces (virtual screens) and their names.
 --
 myWorkspaces = ["1:editor","2:web","3:term","4:mail","5:emacs","6:messenger"] ++ map show [7..9]
- 
+
 
 ------------------------------------------------------------------------
 -- Window rules
@@ -59,6 +61,7 @@ myManageHook = composeAll
     , className =? "Emacs24"           --> doShift "5:emacs"
     , className =? "Pidgin"          --> doShift "6:messenger"
     , className =? "MPlayer"        --> doFloat
+    , className =? "Qshutdown"      --> doFloat
     , className =? "VirtualBox"     --> doShift "8"
     , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
 
@@ -123,7 +126,7 @@ dictcc = searchEngine "dictcc" "http://www.dict.cc/?=DEEN&s="
 -- "windows key" is usually mod4Mask.
 --
 myModMask = mod4Mask
- 
+
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   ----------------------------------------------------------------------
   -- Custom key bindings
@@ -134,12 +137,16 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      spawn $ XMonad.terminal conf)
 
   -- Lock the screen using xscreensaver.
-  , ((modMask .|. controlMask, xK_l),
+  , ((modMask .|. shiftMask, xK_l),
      spawn "xscreensaver-command -lock")
 
+  -- Shutdown
+  , ((modMask .|. shiftMask, xK_s),
+     spawn "qshutdown")
+
   -- switch between keyboard layouts
-  , ((modMask .|. controlMask, xK_k),
-     spawn "keyboard-layout")
+  , ((modMask .|. shiftMask, xK_o),
+     spawn "~/.xmonad/bin/keyboard-layout")
 
   -- Launch dmenu via yeganesh.
   -- Use this to launch programs without a key binding.
@@ -150,40 +157,19 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- After pressing this key binding, click a window, or draw a rectangle with
   -- the mouse.
   , ((modMask .|. shiftMask, xK_p),
-     spawn "select-screenshot")
-
-  -- Take full screenshot in multi-head mode.
-  -- That is, take a screenshot of everything you see.
-  , ((modMask .|. controlMask .|. shiftMask, xK_p),
-     spawn "screenshot")
+     spawn "~/.xmonad/bin/select-screenshot")
 
   -- Mute volume.
-  , ((modMask .|. controlMask, xK_m),
+  , ((modMask .|. shiftMask, xK_F10),
      spawn "amixer -q set Master toggle")
 
   -- Decrease volume.
-  , ((modMask .|. controlMask, xK_j),
+  , ((modMask .|. shiftMask, xK_F11),
      spawn "amixer -q set Master 10%-")
 
   -- Increase volume.
-  , ((modMask .|. controlMask, xK_k),
+  , ((modMask .|. shiftMask, xK_F12),
      spawn "amixer -q set Master 10%+")
-
-  -- Audio previous.
-  , ((0, 0x1008FF16),
-     spawn "")
-
-  -- Play/pause.
-  , ((0, 0x1008FF14),
-     spawn "")
-
-  -- Audio next.
-  , ((0, 0x1008FF17),
-     spawn "")
-
-  -- Eject CD tray.
-  , ((0, 0x1008FF2C),
-     spawn "eject -T")
 
   -- search
   , ((modMask, xK_s),
@@ -269,7 +255,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      restart "xmonad" True)
   ]
   ++
- 
+
   -- mod-[1..9], Switch to workspace N
   -- mod-shift-[1..9], Move client to workspace N
   [((m .|. modMask, k), windows $ f i)
@@ -282,8 +268,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
  [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
       | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
- 
- 
+
+
 ------------------------------------------------------------------------
 -- Mouse bindings
 --
@@ -291,24 +277,24 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- True if your focus should follow your mouse cursor.
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
- 
+
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
   [
     -- mod-button1, Set the window to floating mode and move by dragging
     ((modMask, button1),
      (\w -> focus w >> mouseMoveWindow w))
- 
+
     -- mod-button2, Raise the window to the top of the stack
     , ((modMask, button2),
        (\w -> focus w >> windows W.swapMaster))
- 
+
     -- mod-button3, Set the window to floating mode and resize by dragging
     , ((modMask, button3),
        (\w -> focus w >> mouseResizeWindow w))
- 
+
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
   ]
- 
+
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -319,7 +305,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 --
 -- > logHook = dynamicLogDzen
 --
- 
+
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -329,7 +315,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 --
 -- By default, do nothing.
 myStartupHook = return ()
- 
+
 
 ------------------------------------------------------------------------
 -- Run xmonad with all the defaults we set up.
@@ -346,14 +332,14 @@ main = do
       , startupHook = setWMName "LG3D"
       , handleEventHook = handleEventHook defaultConfig <+> XMonad.Hooks.EwmhDesktops.fullscreenEventHook
   }
- 
+
 
 ------------------------------------------------------------------------
 -- Combine it all together
 -- A structure containing your configuration settings, overriding
--- fields in the default config. Any you don't override, will 
+-- fields in the default config. Any you don't override, will
 -- use the defaults defined in xmonad/XMonad/Config.hs
--- 
+--
 -- No need to modify this.
 --
 defaults = defaultConfig {
@@ -365,11 +351,11 @@ defaults = defaultConfig {
     workspaces         = myWorkspaces,
     normalBorderColor  = myNormalBorderColor,
     focusedBorderColor = myFocusedBorderColor,
- 
+
     -- key bindings
     keys               = myKeys,
     mouseBindings      = myMouseBindings,
- 
+
     -- hooks, layouts
     layoutHook         = smartBorders $ myLayout,
     manageHook         = myManageHook,

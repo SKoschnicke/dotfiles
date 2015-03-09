@@ -44,11 +44,17 @@ ZSH_THEME="agnoster"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(nyan rvm web-search lol last-working-dir history-substring-search rails bundler ruby git cap command-not-found gem git-extras github screen vagrant vi-mode wd)
+plugins=(nyan rvm web-search lol last-working-dir history-substring-search rails bundler ruby git cap command-not-found gem git-extras github screen vagrant vi-mode wd autojump fabric)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+
+# fix for history-substring-search, see https://github.com/robbyrussell/oh-my-zsh/issues/1433#issuecomment-38266082
+zmodload zsh/terminfo
+bindkey "$terminfo[cuu1]" history-substring-search-up
+bindkey "$terminfo[cud1]" history-substring-search-down
+
 DEFAULT_USER="svk"
 
 autoload -U zmv
@@ -56,6 +62,9 @@ alias mmv='noglob zmv -W'
 
 # enable rvm
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+# tell Java that XMonad is non-reparenting (prevents blank windows of java applications)
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 export EDITOR=vim
 
@@ -65,3 +74,5 @@ PATH=$PATH:/usr/local/eclipse # Path to eclipse
 
 PATH=$PATH:$HOME/.cabal/bin # Path to cabal
 PATH=$PATH:./.cabal-sandbox/bin # Path to project specific cabal sandbox
+PATH=$PATH:./.dotfiles/bin # Path to own scripts
+alias kb=keyboard-layout

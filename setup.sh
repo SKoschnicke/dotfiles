@@ -20,3 +20,8 @@ ln -s ~/.dotfiles/bin/select-screenshot ~/.xmonad/bin/select-screenshot
 ln -s ~/.dotfiles/xmonad.hs ~/.xmonad/xmonad.hs
 ln -s ~/.dotfiles/xmobar.hs ~/.xmonad/xmobar.hs
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
+ln -s ~/.dotfiles/pentadactylrc ~/.pentadactylrc
+mkdir -p ~/.pentadactyl
+ln -s ~/.dotfiles/pentadactyl/colors ~/.pentadactyl/colors
+mkdir -p ~/.config/clipit
+ln -s ~/.dotfiles/clipitrc ~/.config/clipit/clipitrc

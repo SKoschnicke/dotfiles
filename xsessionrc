@@ -1,0 +1,26 @@
+#!/bin/sh
+
+xrdb -merge $HOME/.Xresources
+xscreensaver &
+# This must be started before seahorse-daemon.
+eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export GNOME_KEYRING_CONTROL
+export GNOME_KEYRING_PID
+export SSH_AUTH_SOCK
+feh --no-fehbg --no-xinerama --bg-scale ~/backgrounds/current.jpg
+#/home/svk/network.sh
+#/home/svk/key.sh
+#setxkbmap -layout "us, de" -option "grp:caps_toggle"
+setxkbmap -layout "us"
+xinput set-prop "Wacom Bamboo Connect Pen stylus" --type=float "Coordinate Transformation Matrix" 0.5 0 0.5 0 1 0 0 0 1
+update-notifier &
+clipit &
+dropbox start
+xterm -e tmux &
+firefox &
+thunderbird &
+pidgin &
+#emacs &
+# remap Delete to Tab (and Shift-Delete to Delete)
+xmodmap -e "keycode 119 = Tab Delete"
+xmonad

@@ -1,0 +1,30 @@
+"hg7127
+
+loadplugins '\.(js|penta)$'
+group user
+
+" pass through for github (to use t and s keys and other shortcuts, view with ?)
+" autocmd LocationChange github.com :normal! <C-z>
+" disabled because never used it and got in the way
+
+" C-e invokes editor in text fields
+set editor="emacsclient"
+
+" Show pattern matches as you type,
+set incfind
+
+" Highlight previous search pattern matches,
+set hlfind
+
+" Ignore case in search unless pattern has uppercase chars,
+set findcase=smart
+
+" Color Scheme,
+colorscheme solarized-dark
+
+" Use characters for hints,
+set hintkeys=asdflkj
+hi -a Hint font-size: 12pt !important;
+
+
+" vim: set ft=pentadactyl:

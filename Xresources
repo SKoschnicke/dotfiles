@@ -92,3 +92,9 @@ XTerm*color7: S_base02
 !*color15: S_base03
 
 XTerm*rightScrollBar: false
+
+! xscreensaver settings
+xscreensaver.fade: False
+xscreensaver.grabDesktopImages: False
+xscreensaver.grabVideoFrames: False
+xscreensaver.unfade: False
