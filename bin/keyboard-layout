@@ -20,3 +20,4 @@ else
             ;;
     esac
 fi
+xmodmap -e "keycode 119 = Tab Delete"
