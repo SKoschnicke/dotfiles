@@ -47,11 +47,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-# fix for history-substring-search, see https://github.com/robbyrussell/oh-my-zsh/issues/1433#issuecomment-38266082
-zmodload zsh/terminfo
-bindkey "$terminfo[cuu1]" history-substring-search-up
-bindkey "$terminfo[cud1]" history-substring-search-down
-
 DEFAULT_USER="svk"
 
 autoload -U zmv
@@ -63,7 +58,6 @@ alias mmv='noglob zmv -W'
 # tell Java that XMonad is non-reparenting (prevents blank windows of java applications)
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-export EDITOR=vim
 
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
@@ -73,3 +67,12 @@ PATH=$PATH:$HOME/.cabal/bin # Path to cabal
 PATH=$PATH:./.cabal-sandbox/bin # Path to project specific cabal sandbox
 PATH=$PATH:./.dotfiles/bin # Path to own scripts
 alias kb=keyboard-layout
+
+export EDITOR=vim
+
+# fix for history-substring-search, see https://github.com/robbyrussell/oh-my-zsh/issues/1433#issuecomment-38266082
+zmodload zsh/terminfo
+bindkey "$terminfo[cuu1]" history-substring-search-up
+bindkey "$terminfo[cud1]" history-substring-search-down
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
