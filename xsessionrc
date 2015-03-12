@@ -2,11 +2,7 @@
 
 xrdb -merge $HOME/.Xresources
 xscreensaver &
-# This must be started before seahorse-daemon.
-eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export GNOME_KEYRING_CONTROL
-export GNOME_KEYRING_PID
-export SSH_AUTH_SOCK
+eval $(ssh-agent)
 feh --no-fehbg --no-xinerama --bg-scale ~/backgrounds/current.jpg
 #/home/svk/network.sh
 #/home/svk/key.sh
