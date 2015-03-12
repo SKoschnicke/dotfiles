@@ -1,3 +1,6 @@
+# avoid problems with emacs tramp
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
