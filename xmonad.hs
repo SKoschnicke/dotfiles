@@ -109,7 +109,7 @@ xmobarTitleColor = "#FFB6B0"
 xmobarCurrentWorkspaceColor = "#CEFFAC"
 
 -- Width of the window border in pixels.
-myBorderWidth = 1
+myBorderWidth = 3
 
 hayoo :: SearchEngine
 hayoo = searchEngine "hayoo" "http://holumbus.fh-wedel.de/hayoo/hayoo.html?query="

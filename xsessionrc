@@ -3,7 +3,7 @@
 xrdb -merge $HOME/.Xresources
 xscreensaver &
 eval $(ssh-agent)
-feh --no-fehbg --no-xinerama --bg-scale ~/backgrounds/current.jpg
+feh --no-fehbg --bg-center ~/backgrounds/current-left.jpg ~/backgrounds/current-right.jpg
 #/home/svk/network.sh
 #/home/svk/key.sh
 #setxkbmap -layout "us, de" -option "grp:caps_toggle"
