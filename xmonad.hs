@@ -150,8 +150,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Launch dmenu via yeganesh.
   -- Use this to launch programs without a key binding.
-  , ((modMask, xK_p),
-     spawn "dmenu_run")
+--  , ((modMask, xK_p),
+--     spawn "dmenu_run")
 
   -- Take a screenshot in select mode.
   -- After pressing this key binding, click a window, or draw a rectangle with
@@ -263,10 +263,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
   ++
 
-  -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
-  -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
+  -- mod-{w,e,r,t}, Switch to physical/Xinerama screens 1, 2, 3 or 4
+  -- mod-shift-{w,e,r,t}, Move client to screen 1, 2, 3 or 4
  [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-      | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+      | (key, sc) <- zip [xK_w, xK_e, xK_r, xK_t] [0..]
       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 

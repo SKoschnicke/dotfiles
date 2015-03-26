@@ -16,6 +16,7 @@ xterm -e tmux &
 firefox &
 thunderbird &
 pidgin &
+kupfer &
 #emacs &
 # remap Delete to Tab (and Shift-Delete to Delete)
 xmodmap -e "keycode 119 = Tab Delete"
