@@ -44,7 +44,7 @@ ZSH_THEME="agnoster"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(nyan rvm web-search lol last-working-dir history-substring-search rails bundler ruby git cap command-not-found gem git-extras github screen vagrant vi-mode wd autojump fabric)
+plugins=(nyan rvm web-search lol last-working-dir history-substring-search rails bundler ruby git cap command-not-found gem git-extras github screen vagrant vi-mode wd autojump fabric docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -67,8 +67,8 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/eclipse # Path to eclipse
 
 PATH=$PATH:$HOME/.cabal/bin # Path to cabal
-PATH=$PATH:./.cabal-sandbox/bin # Path to project specific cabal sandbox
-PATH=$PATH:./.dotfiles/bin # Path to own scripts
+PATH=$PATH:$HOME/.cabal-sandbox/bin # Path to project specific cabal sandbox
+PATH=$PATH:$HOME/.dotfiles/bin # Path to own scripts
 alias kb=keyboard-layout
 
 export EDITOR=vim
@@ -79,3 +79,7 @@ bindkey "$terminfo[cuu1]" history-substring-search-up
 bindkey "$terminfo[cud1]" history-substring-search-down
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
+
+alias dockercleancontainers="docker ps -a -f status=exited -q | xargs docker rm"
+alias dockercleanimages="docker images -f dangling=true -q | xargs docker rmi"
+alias dockerclean="dockercleancontainers && dockercleanimages"
