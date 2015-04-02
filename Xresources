@@ -6,10 +6,11 @@
 
 !xterm*font:     -Misc-Fixed-Medium-R-Normal--20-200-75-75-C-100-ISO10646-1
 !xterm*faceName: Inconsolata
-xterm*faceName: DejaVu Sans Mono for Powerline
+!xterm*faceName: DejaVu Sans Mono for Powerline
+xterm*faceName: Source Code Pro for Powerline
 !xterm*faceName: Anonymous Pro
 !xterm*faceName: Monospace
-xterm*faceSize: 9
+xterm*faceSize: 8
 !xterm*font:        -misc-fixed-medium-r-normal--18-*-*-*-*-*-iso10646-1
 !xterm*iconPixmap: ...
 !XTerm*iconName: terminal
