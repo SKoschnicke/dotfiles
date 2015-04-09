@@ -83,3 +83,5 @@ bindkey '^S' history-incremental-search-forward
 alias dockercleancontainers="docker ps -a -f status=exited -q | xargs docker rm"
 alias dockercleanimages="docker images -f dangling=true -q | xargs docker rmi"
 alias dockerclean="dockercleancontainers && dockercleanimages"
+alias ps="ps aux"
+alias pg="ps aux | grep -v grep | grep -i "
