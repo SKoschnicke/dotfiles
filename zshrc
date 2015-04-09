@@ -83,5 +83,14 @@ bindkey '^S' history-incremental-search-forward
 alias dockercleancontainers="docker ps -a -f status=exited -q | xargs docker rm"
 alias dockercleanimages="docker images -f dangling=true -q | xargs docker rmi"
 alias dockerclean="dockercleancontainers && dockercleanimages"
-alias ps="ps aux"
-alias pg="ps aux | grep -v grep | grep -i "
+
+# ps + grep.
+# see https://github.com/blueyed/oh-my-zsh/blob/a08181210b47625efdc8480e628b0155bff392c9/lib/aliases.zsh#L10-L18
+pg() {
+  local pids
+  pids=$(pgrep -f $@)
+  if ! [[ $pids ]]; then
+    echo "No processes found." >&2; return 1
+  fi
+  ps up $(pgrep -f $@)
+}
