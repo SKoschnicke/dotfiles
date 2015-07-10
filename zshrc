@@ -89,7 +89,7 @@ alias dockerclean="dockercleancontainers && dockercleanimages"
 pg() {
   local pids
   pids=$(pgrep -f $@)
-  if ! [[ $pids ]]; then
+  if [[ ! -n $pids ]]; then
     echo "No processes found." >&2; return 1
   fi
   ps up $(pgrep -f $@)
