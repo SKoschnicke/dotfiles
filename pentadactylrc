@@ -26,5 +26,15 @@ colorscheme solarized-dark
 set hintkeys=asdflkj
 hi -a Hint font-size: 12pt !important;
 
+" capture link to emacs org mode
+command capture-link -description "Capture current page in emacs kill ring as org-link" -javascript <<EOF
+  var emacs_client = "/usr/bin/emacsclient";
+  var url ='org-protocol://capture://'+
+      encodeURIComponent(location.href)+'/'+
+      encodeURIComponent(document.title)+'/'+
+      encodeURIComponent(window.getSelection());
+  var command = emacs_client + ' "' + url + '"';
+  CommandExMode().open("!" + command);
+EOF
 
 " vim: set ft=pentadactyl:

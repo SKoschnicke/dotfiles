@@ -29,7 +29,7 @@ import           XMonad.Util.Run            (spawnPipe)
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "/usr/bin/xterm"
+myTerminal = "/usr/bin/urxvt"
 
 
 ------------------------------------------------------------------------
@@ -162,15 +162,15 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Mute volume.
   , ((modMask .|. shiftMask, xK_F10),
-     spawn "amixer -q set Master toggle")
+     spawn "amixer -D pulse set Master toggle")
 
   -- Decrease volume.
   , ((modMask .|. shiftMask, xK_F11),
-     spawn "amixer -q set Master 10%-")
+     spawn "amixer -q set Master playback 10%-")
 
   -- Increase volume.
   , ((modMask .|. shiftMask, xK_F12),
-     spawn "amixer -q set Master 10%+")
+     spawn "amixer -q set Master playback 10%+")
 
   -- search
   , ((modMask, xK_s),
@@ -267,7 +267,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- mod-{w,e,r,t}, Switch to physical/Xinerama screens 1, 2, 3 or 4
   -- mod-shift-{w,e,r,t}, Move client to screen 1, 2, 3 or 4
  [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-      | (key, sc) <- zip [xK_w, xK_e, xK_r, xK_t] [0..]
+      | (key, sc) <- zip [xK_w, xK_e] [0..]
       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 
