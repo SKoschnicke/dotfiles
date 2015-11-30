@@ -45,7 +45,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # NOTE that autojump needs the executable autojump installed
-plugins=(nyan rvm web-search lol last-working-dir history-substring-search rails bundler ruby git cap command-not-found gem git-extras github screen vagrant vi-mode wd autojump fabric docker)
+plugins=(zsh-navigation-tools rvm web-search last-working-dir rails bundler ruby git gem git-extras github vi-mode wd fabric docker tmux archlinux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -56,6 +56,7 @@ DEFAULT_USER="svk"
 autoload -U zmv
 alias mmv='noglob zmv -W'
 
+bindkey "^R" znt-history-widget
 # enable rvm
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
@@ -70,16 +71,9 @@ PATH=$PATH:/usr/local/eclipse # Path to eclipse
 PATH=$PATH:$HOME/.cabal/bin # Path to cabal
 PATH=$PATH:$HOME/.cabal-sandbox/bin # Path to project specific cabal sandbox
 PATH=$PATH:$HOME/.dotfiles/bin # Path to own scripts
-alias kb=keyboard-layout
+PATH=$PATH:`gem environment gemdir`/bin # Path to Ruby gems
 
 export EDITOR=vim
-
-# fix for history-substring-search, see https://github.com/robbyrussell/oh-my-zsh/issues/1433#issuecomment-38266082
-zmodload zsh/terminfo
-bindkey "$terminfo[cuu1]" history-substring-search-up
-bindkey "$terminfo[cud1]" history-substring-search-down
-bindkey '^R' history-incremental-search-backward
-bindkey '^S' history-incremental-search-forward
 
 alias dockercleancontainers="docker ps -a -f status=exited -q | xargs docker rm"
 alias dockercleanimages="docker images -f dangling=true -q | xargs docker rmi"
