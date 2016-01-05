@@ -30,6 +30,9 @@ set mail_check = 120
 # Always use UTF8.
 set send_charset="utf-8"
 
+# Colorscheme
+source /usr/share/doc/mutt/colors/solarized/mutt-colors-solarized-dark-256.muttrc
+
 # key bindings
 bind pager j next-line
 bind pager k previous-line
