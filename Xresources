@@ -33,65 +33,6 @@ XTerm*utf8:    2
 *customization: -color
 XTerm*termName:  xterm-256color
 
-#define Foreground_color #000000
-#define Background_color #FFFFFF
-
-#define S_base03 #002b36
-#define S_base02 #073642
-#define S_base01 #586e75
-#define S_base00 #657b83
-#define S_base0 #839496
-#define S_base1 #93a1a1
-#define S_base2 #eee8d5
-#define S_base3 #fdf6e3
-#define S_yellow #b58900
-#define S_orange #cb4b16
-#define S_red #dc322f
-#define S_magenta #d33682
-#define S_violet #6c71c4
-#define S_blue #268bd2
-#define S_cyan #2aa198
-#define S_green #859900
-
-XTerm*background:  Background_color
-XTerm*foreground:  Foreground_color
-XTerm*borderColor: Foreground_color
-XTerm*scrollColor: Foreground_color
-XTerm*color0: Background_color
-XTerm*color15: Foreground_color
-
-!! black dark/light
-!*color0: S_base2
-XTerm*color8: S_base3
-
-!! red dark/light
-XTerm*color1: S_red
-XTerm*color9: S_orange
-
-!! green dark/light
-XTerm*color2: S_green
-XTerm*color10: S_base1
-
-!! yellow dark/light
-XTerm*color3: S_yellow
-XTerm*color11: S_base0
-
-!! blue dark/light
-XTerm*color4: S_blue
-XTerm*color12: S_base00
-
-!! magenta dark/light
-XTerm*color5: S_magenta
-XTerm*color13: S_violet
-
-!! cyan dark/light
-XTerm*color6: S_cyan
-XTerm*color14: S_base01
-
-!! white dark/light
-XTerm*color7: S_base02
-!*color15: S_base03
-
 XTerm*rightScrollBar: false
 
 ! xscreensaver settings
@@ -103,39 +44,6 @@ Emacs.FontBackend: xft
 
 Xft.dpi: 180
 
-URxvt*color0: Background_color
-URxvt*color15: Foreground_color
-
-!! black dark/light
-!*color0: S_base2
-URxvt*color8: S_base3
-
-!! red dark/light
-URxvt*color1: S_red
-URxvt*color9: S_orange
-
-!! green dark/light
-URxvt*color2: S_green
-URxvt*color10: S_base1
-
-!! yellow dark/light
-URxvt*color3: S_yellow
-URxvt*color11: S_base0
-
-!! blue dark/light
-URxvt*color4: S_blue
-URxvt*color12: S_base00
-
-!! magenta dark/light
-URxvt*color5: S_magenta
-URxvt*color13: S_violet
-
-!! cyan dark/light
-URxvt*color6: S_cyan
-URxvt*color14: S_base01
-
-!! white dark/light
-URxvt*color7: S_base02
 !*color15: S_base03
 ! URxvt*termName:                       string
 ! URxvt*geometry:                       geometry
@@ -164,7 +72,7 @@ URxvt*scrollBar:                      false
 ! URxvt*fadeColor:                      color
 ! URxvt*utmpInhibit:                    boolean
 ! URxvt*urgentOnBell:                   boolean
-! URxvt*visualBell:                     boolean
+URxvt*visualBell:                     true
 ! URxvt*mapAlert:                       boolean
 ! URxvt*meta8:                          boolean
 ! URxvt*mouseWheelScrollPage:           boolean
@@ -173,8 +81,6 @@ URxvt*scrollBar:                      false
 ! URxvt*cursorUnderline:                boolean
 ! URxvt*cursorBlink:                    boolean
 ! URxvt*pointerBlank:                   boolean
-URxvt*background:                     #FFFFFF
-URxvt*foreground:                     #000000
 ! URxvt*color0:                         color
 ! URxvt*color1:                         color
 ! URxvt*color2:                         color
@@ -210,7 +116,7 @@ URxvt*font:                           xft:Source Code Pro:size=8
 ! URxvt*boldFont:                       fontname
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname
-! URxvt*intensityStyles:                boolean
+URxvt*intensityStyles:                false
 ! URxvt*inputMethod:                    name
 ! URxvt*preeditType:                    style
 ! URxvt*imLocale:                       string
@@ -269,3 +175,59 @@ URxvt*letterSpace:                    -1
 ! URxvt*tabbar-bg:                      colour
 ! URxvt*tabbar-fg:                      colour
 ! URxvt*url-launcher:                   string
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+
+*background:            S_base3
+*foreground:            S_base00
+*fadeColor:             S_base3
+*cursorColor:           S_base01
+*pointerColorBackground:S_base1
+*pointerColorForeground:S_base01
+
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+!! black dark/light
+*color0:                S_base02
+*color8:                S_base03
+
+!! red dark/light
+*color1:                S_red
+*color9:                S_orange
+
+!! green dark/light
+*color2:                S_green
+*color10:               S_base01
+
+!! yellow dark/light
+*color3:                S_yellow
+*color11:               S_base00
+
+!! blue dark/light
+*color4:                S_blue
+*color12:               S_base0
+
+!! magenta dark/light
+*color5:                S_magenta
+*color13:               S_violet
+
+!! cyan dark/light
+*color6:                S_cyan
+*color14:               S_base1
+
+!! white dark/light
+*color7:                S_base2
+*color15:               S_base3

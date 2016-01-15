@@ -27,3 +27,4 @@ ln -s ~/.dotfiles/pentadactyl/colors ~/.pentadactyl/colors
 mkdir -p ~/.config/clipit
 ln -s ~/.dotfiles/clipitrc ~/.config/clipit/clipitrc
 ln -s ~/.dotfiles/yaourtrc ~/.yaourtrc
+ln -s ~/.dotfiles/muttrc ~/.muttrc

@@ -1,11 +1,11 @@
 "let moria_style = 'white'
 "colorscheme moria
 "set background=dark " because of strange xresources, this means actually light
-"colorscheme solarized
+colorscheme solarized
 "colorscheme github
 let g:molokai_original=1
 "colorscheme proton
-colorscheme molokai
+"colorscheme molokai
 set guifont=Inconsolata\ Medium\ 9
 
 " no right scrollbars
