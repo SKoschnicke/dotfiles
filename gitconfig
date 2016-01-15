@@ -9,7 +9,7 @@
   co = checkout
   l = log --all --graph --decorate --oneline --abbrev-commit
 [push]
-  default = upstream
+	default = current
 [color]
   ui = 1
 [core]
