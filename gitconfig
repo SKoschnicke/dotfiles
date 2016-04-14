@@ -20,3 +20,5 @@
   required = true
 [rerere]
   enabled = 1
+[diff]
+	algorithm = patience
