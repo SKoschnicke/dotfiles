@@ -28,3 +28,4 @@ mkdir -p ~/.config/clipit
 ln -s ~/.dotfiles/clipitrc ~/.config/clipit/clipitrc
 ln -s ~/.dotfiles/yaourtrc ~/.yaourtrc
 ln -s ~/.dotfiles/muttrc ~/.muttrc
+ln -s ~/.dotfiles/spacemacs ~/.spacemacs
