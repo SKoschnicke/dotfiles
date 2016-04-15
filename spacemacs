@@ -103,10 +103,10 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light
-                         solarized-light
+   dotspacemacs-themes '(solarized-light
                          solarized-dark
+                         spacemacs-dark
+                         spacemacs-light
                          leuven
                          monokai
                          zenburn)
@@ -438,7 +438,23 @@ you should place you code here."
                 ("h" "Habit" entry (file "~/SpiderOak Hive/org/refile.org")
                  "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
-  (setq-default git-enable-magit-svn-plugin t)
+  (setq-default git-magit-status-fullscreen t)
+
+  ; use 2 spaces in web mode for everything (instead of 4)
+  (setq-default js2-basic-offset 2)
+  (setq-default js-indent-level 2)
+  (setq-default web-mode-markup-indent-offset 2)
+  (setq-default web-mode-css-indent-offset 2)
+  (setq-default web-mode-code-indent-offset 2)
+  (setq-default web-mode-indent-style 2)
+  ; NOTE that indent when using beautify (SPC m =) is determined by the external
+  ; .jsbeautifyrc file, see https://github.com/yasuyk/web-beautify
+
+  ; never indent with tabs
+  (setq-default indent-tabs-mode nil)
+
+  ; how can the default config not set this?!
+  (global-set-key (kbd "C-i") 'evil-jump-forward)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
