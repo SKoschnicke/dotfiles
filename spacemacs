@@ -24,6 +24,8 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      auto-completion
+     typography
+     emoji
      emacs-lisp
      git
      github
@@ -238,7 +240,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'trailing
    ))
 
 (defun dotspacemacs/user-init ()
@@ -258,185 +260,304 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
-  (setq org-log-done t
-        org-completion-use-ido t
-        org-edit-timestamp-down-means-later t
-        org-agenda-start-on-weekday nil
-        org-agenda-start-day "-1d"
-        org-agenda-span 14
-        org-agenda-include-diary t
-        org-agenda-window-setup 'current-window
-        org-fast-tag-selection-single-key 'expert
-        org-export-kill-product-buffer-when-displayed t
-        org-pretty-entities t
-        org-pretty-entities-include-sub-superscripts t
-        org-agenda-log-mode-items (list 'clock 'state)
-        org-agenda-start-with-log-mode t
-        org-agenda-skip-deadline-if-done t
-        org-agenda-skip-scheduled-if-done t
-        org-tags-column 80
-        org-enforce-todo-dependencies t
-        org-agenda-dim-blocked-tasks t
-        org-src-fontify-natively t)
+  (with-eval-after-load 'org
+
+    (setq org-log-done t
+          org-completion-use-ido t
+          org-edit-timestamp-down-means-later t
+          org-agenda-start-on-weekday nil
+          org-agenda-start-day "-1d"
+          org-agenda-span 14
+          org-agenda-include-diary t
+          org-agenda-window-setup 'current-window
+          org-fast-tag-selection-single-key 'expert
+          org-export-kill-product-buffer-when-displayed t
+          org-pretty-entities t
+          org-pretty-entities-include-sub-superscripts t
+          org-agenda-log-mode-items (list 'clock 'state)
+          org-agenda-start-with-log-mode t
+          org-agenda-skip-deadline-if-done t
+          org-agenda-skip-scheduled-if-done t
+          org-tags-column 80
+          org-enforce-todo-dependencies t
+          org-agenda-dim-blocked-tasks t
+          org-src-fontify-natively t)
 
                                         ; Refile targets include this file and any file contributing to the agenda - up to 5 levels deep
-  (setq org-refile-targets (quote ((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5))))
+    (setq org-refile-targets (quote ((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5))))
                                         ; Targets start with the file name - allows creating level 1 tasks
-  (setq org-refile-use-outline-path (quote file))
+    (setq org-refile-use-outline-path (quote file))
                                         ; Targets complete in steps so we start with filename, TAB shows the next level of targets etc
-  (setq org-outline-path-complete-in-steps t)
+    (setq org-outline-path-complete-in-steps t)
 
 
-  (setq org-todo-keywords
-        (quote ((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "|" "DONE(d!/!)")
-                (sequence "WAITING(w@/!)" "SOMEDAY(S)" "HOLD(h)" "|" "CANCELLED(c@/!)"))))
+    (setq org-todo-keywords
+          (quote ((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "|" "DONE(d!/!)")
+                  (sequence "WAITING(w@/!)" "SOMEDAY(S)" "HOLD(h)" "|" "CANCELLED(c@/!)"))))
 
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; Org clock
+    ;; Org clock
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  ;; Save the running clock and all clock history when exiting Emacs, load it on startup
-  (setq org-clock-persistence-insinuate t)
-  (setq org-clock-persist t)
-  (setq org-clock-in-resume t)
+    ;; Save the running clock and all clock history when exiting Emacs, load it on startup
+    (setq org-clock-persistence-insinuate t)
+    (setq org-clock-persist t)
+    (setq org-clock-in-resume t)
 
-  ;; Change task state to STARTED when clocking in
-  (setq org-clock-in-switch-to-state "STARTED")
-  ;; Save clock data and notes in the LOGBOOK drawer
-  (setq org-clock-into-drawer t)
-  ;; Removes clocked tasks with 0:00 duration
-  (setq org-clock-out-remove-zero-time-clocks t)
+    ;; Change task state to STARTED when clocking in
+    (setq org-clock-in-switch-to-state "STARTED")
+    ;; Save clock data and notes in the LOGBOOK drawer
+    (setq org-clock-into-drawer t)
+    ;; Removes clocked tasks with 0:00 duration
+    (setq org-clock-out-remove-zero-time-clocks t)
 
-  ;; Show clock sums as hours and minutes, not "n days" etc.
-  (setq org-time-clocksum-format
-        '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+    ;; Show clock sums as hours and minutes, not "n days" etc.
+    (setq org-time-clocksum-format
+          '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
 
-  ;; CUSTOM AGENDA
-  ;; Custom agenda command definitions
-  (setq org-agenda-custom-commands
-        (quote (("N" "Notes" tags "NOTE"
-                 ((org-agenda-overriding-header "Notes")
-                  (org-tags-match-list-sublevels t)))
-                ;; ("h" "Habits" tags-todo "STYLE=\"habit\""
-                ;;  ((org-agenda-overriding-header "Habits")
-                ;;   (org-agenda-sorting-strategy
-                ;;    '(todo-state-down effort-up category-keep))))
-                ("A" "Agenda"
-                 ((agenda "" ((org-agenda-span 2) (org-agenda-start-day "0d")))
-                  (tags-todo "-CANCELLED/!STARTED"
-                             ((org-agenda-overriding-header "Started Tasks")
-                              (org-tags-match-list-sublevels t)
-                              (org-agenda-sorting-strategy
-                               '(todo-state-down effort-up category-keep))))
-                  (tags-todo "-CANCELLED/!NEXT"
-                             ((org-agenda-overriding-header "Next Tasks")
-                              (org-tags-match-list-sublevels t)
-                              (org-agenda-sorting-strategy
-                               '(todo-state-down effort-up category-keep))))
-                  (tags "REFILE"
-                        ((org-agenda-overriding-header "Tasks to Refile")
-                         (org-tags-match-list-sublevels nil)))
-                  (tags-todo "-CANCELLED+WAITING|HOLD/!"
-                             ((org-agenda-overriding-header "Waiting and Postponed Tasks")
-                              (org-tags-match-list-sublevels nil))
-                             nil)))
-                ("O" "Overview" agenda ""
-                 ((org-agenda-span 14) (org-agenda-start-day "-1d")
-                  )))))
+    ;; CUSTOM AGENDA
+    ;; Custom agenda command definitions
+    (setq org-agenda-custom-commands
+          (quote (("N" "Notes" tags "NOTE"
+                   ((org-agenda-overriding-header "Notes")
+                    (org-tags-match-list-sublevels t)))
+                  ;; ("h" "Habits" tags-todo "STYLE=\"habit\""
+                  ;;  ((org-agenda-overriding-header "Habits")
+                  ;;   (org-agenda-sorting-strategy
+                  ;;    '(todo-state-down effort-up category-keep))))
+                  ("A" "Agenda"
+                   ((agenda "" ((org-agenda-span 2) (org-agenda-start-day "0d")))
+                    (tags-todo "-CANCELLED/!STARTED"
+                               ((org-agenda-overriding-header "Started Tasks")
+                                (org-tags-match-list-sublevels t)
+                                (org-agenda-sorting-strategy
+                                 '(todo-state-down effort-up category-keep))))
+                    (tags-todo "-CANCELLED/!NEXT"
+                               ((org-agenda-overriding-header "Next Tasks")
+                                (org-tags-match-list-sublevels t)
+                                (org-agenda-sorting-strategy
+                                 '(todo-state-down effort-up category-keep))))
+                    (tags "REFILE"
+                          ((org-agenda-overriding-header "Tasks to Refile")
+                           (org-tags-match-list-sublevels nil)))
+                    (tags-todo "-CANCELLED+WAITING|HOLD/!"
+                               ((org-agenda-overriding-header "Waiting and Postponed Tasks")
+                                (org-tags-match-list-sublevels nil))
+                               nil)))
+                  ("O" "Overview" agenda ""
+                   ((org-agenda-span 14) (org-agenda-start-day "-1d")
+                    )))))
+    ;; ;; CUSTOM AGENDA END
 
-  ;; ;; CUSTOM AGENDA END
-  ;;   (org-babel-do-load-languages
-  ;;    'org-babel-load-languages
-  ;;    '((R . t)
-  ;;      (ditaa . t)
-  ;;      (dot . t)
-  ;;      (emacs-lisp . t)
-  ;;      (gnuplot . t)
-  ;;      (haskell . nil)
-  ;;      (latex . t)
-  ;;      (ledger . t)
-  ;;      (ocaml . nil)
-  ;;      (octave . t)
-  ;;      (python . t)
-  ;;      (ruby . t)
-  ;;      (screen . nil)
-  ;;      (sh . t)
-  ;;      (sql . nil)
-  ;;      (sqlite . t)))
+    ;;   (org-babel-do-load-languages
+    ;;    'org-babel-load-languages
+    ;;    '((R . t)
+    ;;      (ditaa . t)
+    ;;      (dot . t)
+    ;;      (emacs-lisp . t)
+    ;;      (gnuplot . t)
+    ;;      (haskell . nil)
+    ;;      (latex . t)
+    ;;      (ledger . t)
+    ;;      (ocaml . nil)
+    ;;      (octave . t)
+    ;;      (python . t)
+    ;;      (ruby . t)
+    ;;      (screen . nil)
+    ;;      (sh . t)
+    ;;      (sql . nil)
+    ;;      (sqlite . t)))
 
-  ; function to insert code block in org-mode
-  (defun org-insert-src-block (src-code-type)
-    "Insert a `SRC-CODE-TYPE' type source code block in org-mode."
-    (interactive
-     (let ((src-code-types
-            '("emacs-lisp" "python" "C" "sh" "java" "js" "clojure" "C++" "css"
-              "calc" "asymptote" "dot" "gnuplot" "ledger" "lilypond" "mscgen"
-              "octave" "oz" "plantuml" "R" "sass" "screen" "sql" "awk" "ditaa"
-              "haskell" "latex" "lisp" "matlab" "ocaml" "org" "perl" "ruby"
-              "scheme" "sqlite" "javascript" "scala")))
-       (list (ido-completing-read "Source code type: " src-code-types))))
-    (progn
-      (newline-and-indent)
-      (insert (format "#+BEGIN_SRC %s\n" src-code-type))
-      (newline-and-indent)
-      (insert "#+END_SRC\n")
-      (previous-line 2)
-      (org-edit-src-code)))
+    ; function to insert code block in org-mode
+    (defun org-insert-src-block (src-code-type)
+      "Insert a `SRC-CODE-TYPE' type source code block in org-mode."
+      (interactive
+       (let ((src-code-types
+              '("emacs-lisp" "python" "C" "sh" "java" "js" "clojure" "C++" "css"
+                "calc" "asymptote" "dot" "gnuplot" "ledger" "lilypond" "mscgen"
+                "octave" "oz" "plantuml" "R" "sass" "screen" "sql" "awk" "ditaa"
+                "haskell" "latex" "lisp" "matlab" "ocaml" "org" "perl" "ruby"
+                "scheme" "sqlite" "javascript" "scala")))
+         (list (ido-completing-read "Source code type: " src-code-types))))
+      (progn
+        (newline-and-indent)
+        (insert (format "#+BEGIN_SRC %s\n" src-code-type))
+        (newline-and-indent)
+        (insert "#+END_SRC\n")
+        (previous-line 2)
+        (org-edit-src-code)))
 
-;;;;;;;;;;;;;;;;;;;;;;
-;;; calendar and diary
-  (eval-after-load "calendar"
-    '(european-calendar))
-  (setq diary-number-of-entries 5
-        calendar-mark-diary-entries-flag t
-        calendar-offset -1
-        calendar-location-name "Kiel"
-        calendar-latitude 54.33
-        calendar-longitude 10.13
-        calendar-time-display-form '(24-hours ":" minutes
-                                              (if time-zone " (")
-                                              time-zone
-                                              (if time-zone ")"))
-        calendar-holidays '((holiday-fixed 01 01 "Gesetzlicher Feiertag (Neujahr)")
-                            (holiday-fixed 05 01 "Gesetzlicher Feiertag (Maifeiertag)")
-                            (holiday-fixed 10 03 "Gesetzlicher Feiertag (Tag der Deutschen Einheit)")
-                            (holiday-fixed 12 25 "Gesetzlicher Feiertag (1. Weihnachtstag)")
-                            (holiday-fixed 12 26 "Gesetzlicher Feiertag (2. Weihnachtstag)")
-                            (holiday-easter-etc -2 "Gesetzlicher Feiertag (Karfreitag)")
-                            (holiday-easter-etc  1 "Gesetzlicher Feiertag (Ostermontag)")
-                            (holiday-easter-etc 39 "Gesetzlicher Feiertag (Christi Himmelfahrt)")
-                            (holiday-easter-etc 50 "Gesetzlicher Feiertag (Pfingstmontag)")))
+    (when (file-accessible-directory-p "~/SpiderOak Hive/org")
+      (setq diary-file "~/SpiderOak Hive/org/diary"))
 
-  (when (file-accessible-directory-p "~/SpiderOak Hive/org")
-    (setq diary-file "~/SpiderOak Hive/org/diary"))
+    (when (file-accessible-directory-p "~/SpiderOak Hive/org")
+      (setq org-agenda-files (list "~/SpiderOak Hive/org"))
+      (setq org-directory "~/SpiderOak Hive/org")
+      (setq org-default-notes-file "~/SpiderOak Hive/org/refile.org")
+      (setq org-mobile-directory "~/SpiderOak Hive/MobileOrg")
+      (setq org-mobile-inbox-for-pull "~/SpiderOak Hive/org/from-mobile.org"))
 
-  (when (file-accessible-directory-p "~/SpiderOak Hive/org")
-    (setq org-agenda-files (list "~/SpiderOak Hive/org"))
-    (setq org-directory "~/SpiderOak Hive/org")
-    (setq org-default-notes-file "~/SpiderOak Hive/org/refile.org")
-    (setq org-mobile-directory "~/SpiderOak Hive/MobileOrg")
-    (setq org-mobile-inbox-for-pull "~/SpiderOak Hive/org/from-mobile.org"))
+    ;; I use C-c c to start capture mode
+    (global-set-key (kbd "C-c c") 'org-capture)
 
-  ;; I use C-c c to start capture mode
-  (global-set-key (kbd "C-c c") 'org-capture)
+    ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
+    (setq org-capture-templates
+          (quote (("t" "todo" entry (file "~/SpiderOak Hive/org/refile.org")
+                   "* TODO %?\n%U\n%a\n")
+                  ("r" "respond" entry (file "~/SpiderOak Hive/org/refile.org")
+                   "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n")
+                  ("n" "note" entry (file "~/SpiderOak Hive/org/refile.org")
+                   "* %? :NOTE:\n%U\n%a\n")
+                  ("j" "Journal" entry (file+datetree "~/SpiderOak Hive/org/diary.org")
+                   "* %?\n%U\n")
+                  ("m" "Meeting" entry (file "~/SpiderOak Hive/org/refile.org")
+                   "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+                  ("p" "Phone call" entry (file "~/SpiderOak Hive/org/refile.org")
+                   "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
+                  ("h" "Habit" entry (file "~/SpiderOak Hive/org/refile.org")
+                   "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
-  ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
-  (setq org-capture-templates
-        (quote (("t" "todo" entry (file "~/SpiderOak Hive/org/refile.org")
-                 "* TODO %?\n%U\n%a\n")
-                ("r" "respond" entry (file "~/SpiderOak Hive/org/refile.org")
-                 "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n")
-                ("n" "note" entry (file "~/SpiderOak Hive/org/refile.org")
-                 "* %? :NOTE:\n%U\n%a\n")
-                ("j" "Journal" entry (file+datetree "~/SpiderOak Hive/org/diary.org")
-                 "* %?\n%U\n")
-                ("m" "Meeting" entry (file "~/SpiderOak Hive/org/refile.org")
-                 "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
-                ("p" "Phone call" entry (file "~/SpiderOak Hive/org/refile.org")
-                 "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
-                ("h" "Habit" entry (file "~/SpiderOak Hive/org/refile.org")
-                 "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
+    ;;; org mode beamer
+
+
+    (setq ieeetran-class
+          '("IEEEtran"
+            "\\documentclass[11pt]{IEEEtran}"
+            ("\\section{%s}" . "\\section*{%s}")
+            ("\\subsection{%s}" . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}" . "\\paragraph*{%s}")
+            ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+    (setq article-class
+          '("article"
+            "\\documentclass[11pt]{article}"
+            ("\\section{%s}" . "\\section*{%s}")
+            ("\\subsection{%s}" . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}" . "\\paragraph*{%s}")
+            ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+    (setq beamer-class
+          '("beamer"
+            "\\documentclass{beamer}
+\\usepackage[german]{babel}
+\\usepackage{listings}
+\\usepackage{color}
+
+\\definecolor{red}{rgb}{0.6,0,0} % for strings
+\\definecolor{green}{rgb}{0.25,0.5,0.35} % comments
+\\definecolor{purple}{rgb}{0.5,0,0.35} % keywords
+\\definecolor{docblue}{rgb}{0.25,0.35,0.75} % doc
+
+\\lstset{basicstyle=\\small\\ttfamily,
+keywordstyle=\\color{purple},
+stringstyle=\\color{red},
+commentstyle=\\color{green},
+morecomment=[s][\\color{docblue}]{/**}{*/},
+numbers=left,
+numberstyle=\\tiny\\color{gray},
+stepnumber=1,
+numbersep=10pt,
+tabsize=2,
+showspaces=false,
+showstringspaces=false,
+otherkeywords={define,include,\\#}}
+\\usetheme{hsrm}
+     [NO-DEFAULT-PACKAGES]
+     [NO-PACKAGES]"
+            ("\\section{%s}" . "\\section*{%s}")
+            ("\\subsection{%s}" . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}" . "\\paragraph*{%s}")
+            ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+    (unless (boundp 'org-latex-classes)
+      (setq org-latex-classes nil))
+    (add-to-list 'org-latex-classes ieeetran-class t)
+    (add-to-list 'org-latex-classes article-class t)
+    (add-to-list 'org-latex-classes beamer-class t)
+
+    (add-to-list 'org-latex-classes
+                 '("djcb-org-article"
+                   "\\documentclass[11pt,a4paper]{article}
+\\usepackage[T1]{fontenc}
+\\usepackage{fontspec}
+\\usepackage{graphicx}
+\\usepackage{hyperref}
+\\defaultfontfeatures{Mapping=tex-text}
+\\setromanfont{Gentium}
+\\setromanfont [BoldFont={Gentium Basic Bold},
+                ItalicFont={Gentium Basic Italic}]{Gentium Basic}
+\\setsansfont{Charis SIL}
+\\setmonofont[Scale=0.8]{DejaVu Sans Mono}
+\\usepackage{geometry}
+\\geometry{a4paper, textwidth=6.5in, textheight=10in,
+            marginparsep=7pt, marginparwidth=.6in}
+\\pagestyle{empty}
+\\title{}
+      [NO-DEFAULT-PACKAGES]
+      [NO-PACKAGES]"
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+    (setq org-latex-pdf-process
+          '("xelatex -interaction nonstopmode -shell-escape %f"
+            "xelatex -interaction nonstopmode -shell-escape %f")) ;; for multiple passes
+
+    (setq org-export-latex-hyperref-format "\\ref{%s}")
+    (setq org-latex-listings t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; org mode bibtex integration
+    (defun my-rtcite-export-handler (path desc format)
+      (message "my-rtcite-export-handler is called : path = %s, desc = %s, format = %s" path desc format)
+      (let* ((search (when (string-match "::#?\\(.+\\)\\'" path)
+                       (match-string 1 path)))
+             (path (substring path 0 (match-beginning 0))))
+        (cond ((eq format 'latex)
+               (if (or (not desc)
+                       (equal 0 (search "rtcite:" desc)))
+                   (format "\\cite{%s}" search)
+                 (format "\\cite[%s]{%s}" desc search))))))
+
+
+    (org-add-link-type "rtcite"
+                       'org-bibtex-open
+                       'my-rtcite-export-handler)
+    )
+  ;;;;;;;;;;;; org-mode end
+
+  (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+
+  ;;;;;;;;;;;;;;;;;;;;;;
+  ;;; calendar and diary
+  (add-hook 'calendar-load-hook
+            (lambda ()
+              (calendar-set-date-style 'european)
+              (setq diary-number-of-entries 5
+                    calendar-mark-diary-entries-flag t
+                    calendar-offset -1
+                    calendar-location-name "Kiel"
+                    calendar-latitude 54.33
+                    calendar-longitude 10.13
+                    calendar-time-display-form '(24-hours ":" minutes
+                                                          (if time-zone " (")
+                                                          time-zone
+                                                          (if time-zone ")"))
+                    calendar-holidays '((holiday-fixed 01 01 "Gesetzlicher Feiertag (Neujahr)")
+                                        (holiday-fixed 05 01 "Gesetzlicher Feiertag (Maifeiertag)")
+                                        (holiday-fixed 10 03 "Gesetzlicher Feiertag (Tag der Deutschen Einheit)")
+                                        (holiday-fixed 12 25 "Gesetzlicher Feiertag (1. Weihnachtstag)")
+                                        (holiday-fixed 12 26 "Gesetzlicher Feiertag (2. Weihnachtstag)")
+                                        (holiday-easter-etc -2 "Gesetzlicher Feiertag (Karfreitag)")
+                                        (holiday-easter-etc  1 "Gesetzlicher Feiertag (Ostermontag)")
+                                        (holiday-easter-etc 39 "Gesetzlicher Feiertag (Christi Himmelfahrt)")
+                                        (holiday-easter-etc 50 "Gesetzlicher Feiertag (Pfingstmontag)")))))
 
   (setq-default git-magit-status-fullscreen t)
 
@@ -455,6 +576,15 @@ you should place you code here."
 
   ; how can the default config not set this?!
   (global-set-key (kbd "C-i") 'evil-jump-forward)
+
+  ; DocView renders PDFs as PNGs to display them. The default resolution (DPI)
+  ; for this makes the PDFs look rasterized on hiDPI displays.
+  '(doc-view-resolution 300)
+
+  ; Reload document when it changes on disk
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  ;(define-key evil-insert-state-map <deletechar> 'evil-normal-state)
+  ;(define-key evil-visual-state-map <deletechar> 'evil-normal-state)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -464,7 +594,8 @@ you should place you code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ensime-sbt-command "/usr/bin/activator"))
+ '(ensime-sbt-command "/usr/bin/activator")
+ '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
