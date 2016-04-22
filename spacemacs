@@ -45,6 +45,7 @@ values."
      yaml
      asciidoc
      markdown
+     shell
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -348,6 +349,7 @@ you should place you code here."
                   ("O" "Overview" agenda ""
                    ((org-agenda-span 14) (org-agenda-start-day "-1d")
                     )))))
+
     ;; ;; CUSTOM AGENDA END
 
     ;;   (org-babel-do-load-languages
@@ -530,9 +532,15 @@ otherkeywords={define,include,\\#}}
                        'org-bibtex-open
                        'my-rtcite-export-handler)
     )
-  ;;;;;;;;;;;; org-mode end
 
-  (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+  ; This enables binding the custom agenda to keys and showing it on startup.
+  ; Has to be defined outside of org mode hook, or else it would not be
+  ; available until org mode was loaded by opening an org buffer.
+  (defun org-agenda-show-mine (&optional arg)
+    (interactive "P")
+    (org-agenda arg "A"))
+
+  ;;;;;;;;;;;; org-mode end
 
   ;;;;;;;;;;;;;;;;;;;;;;
   ;;; calendar and diary
@@ -579,13 +587,19 @@ otherkeywords={define,include,\\#}}
 
   ; DocView renders PDFs as PNGs to display them. The default resolution (DPI)
   ; for this makes the PDFs look rasterized on hiDPI displays.
-  '(doc-view-resolution 300)
+  (setq-default doc-view-resolution 300)
 
   ; Reload document when it changes on disk
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   ;(define-key evil-insert-state-map <deletechar> 'evil-normal-state)
   ;(define-key evil-visual-state-map <deletechar> 'evil-normal-state)
-  )
+
+  ; bind custom agenda to SPC-A
+  (spacemacs/set-leader-keys "A" 'org-agenda-show-mine)
+
+  ; show custom agenda after start
+  (add-hook 'after-init-hook 'org-agenda-show-mine)
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
