@@ -411,6 +411,8 @@ you should place you code here."
                    "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n")
                   ("n" "note" entry (file "~/SpiderOak Hive/org/refile.org")
                    "* %? :NOTE:\n%U\n%a\n")
+                  ("b" "bug" entry (file "~/SpiderOak Hive/org/bugs.org")
+                   "* %?\n%U\n%a\n\n** Symptom\n\n** Ursache\n\n** Wie gefunden\n\n** Fix\n\n** Projekt\n\n** Commit\n\n** Bug selbst verursacht?\n\n** Zeit bis zum Fix\n\n** Lektionen\n")
                   ("j" "Journal" entry (file+datetree "~/SpiderOak Hive/org/diary.org")
                    "* %?\n%U\n")
                   ("m" "Meeting" entry (file "~/SpiderOak Hive/org/refile.org")
