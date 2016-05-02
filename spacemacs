@@ -394,7 +394,7 @@ you should place you code here."
       (defconst my-org-file-path "~/SpiderOak Hive/org"))
     (when (string= system-name "palanthas")
       (defconst my-org-file-path "~/SpiderOak Hive/org"))
-    (when (string= system-name "losarcum")
+    (when (string-prefix-p "losarcum" system-name)
       (defconst my-org-file-path "~/mainsync/org"))
 
     (when (file-accessible-directory-p my-org-file-path)
