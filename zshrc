@@ -90,3 +90,5 @@ pg() {
   fi
   ps up $(pgrep -f $@)
 }
+
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
