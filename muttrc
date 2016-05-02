@@ -4,6 +4,20 @@ source /etc/Muttrc.gpg.dist
 # Load encrypted passwords.
 source "gpg2 -dq $HOME/.mail-passwords.gpg |"
 
+# hooks for every account
+#macro index <F5> '<sync-mailbox><enter-command>source "$HOME/.mutt-uni-account"<enter><change-folder>!<enter>'
+#macro index <F6> '<sync-mailbox><enter-command>source "$HOME/.mutt-gxp-account"<enter><change-folder>!<enter>'
+macro index <F5> '<change-folder>imaps://imap.informatik.uni-kiel.de<enter>'
+macro index <F6> '<change-folder>imaps://mail.jpberlin.de<enter>'
+macro index <F7> '<change-folder>imaps://sslin.df.eu<enter>'
+folder-hook 'imap.informatik.uni-kiel.de' 'source "$HOME/.mutt-uni-account"'
+folder-hook 'mail.jpberlin.de' 'source "$HOME/.mutt-gxp-account"'
+folder-hook 'sslin.df.eu' 'source "$HOME/.mutt-prv-account"'
+account-hook 'imap.informatik.uni-kiel.de' 'set imap_user=svk imap_pass=$my_pw_uni'
+account-hook 'mail.jpberlin.de' 'set imap_user=s.koschnicke@gfxpro.com imap_pass=$my_pw_gxp'
+account-hook 'sslin.df.eu' 'set imap_user=sven@koschnicke.de imap_pass=$my_pw_prv'
+
+# default account to load on startup:
 source "$HOME/.mutt-uni-account"
 
 # Store message headers locally to speed things up.
@@ -31,7 +45,7 @@ set mail_check = 120
 set send_charset="utf-8"
 
 # Colorscheme
-source /usr/share/doc/mutt/colors/solarized/mutt-colors-solarized-light-256.muttrc
+#source /usr/share/doc/mutt/colors/solarized/mutt-colors-solarized-light-256.muttrc
 
 # key bindings
 bind pager j next-line
