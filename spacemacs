@@ -618,6 +618,9 @@ otherkeywords={define,include,\\#}}
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ensime-sbt-command "/usr/bin/activator")
+ '(js2-missing-semi-one-line-override t)
+ '(js2-strict-missing-semi-warning nil)
+ '(org-list-allow-alphabetical t)
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
