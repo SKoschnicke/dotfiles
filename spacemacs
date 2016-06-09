@@ -52,7 +52,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(yafolding)
+   dotspacemacs-additional-packages '(yafolding key-chord)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -606,6 +606,9 @@ otherkeywords={define,include,\\#}}
 
   ; bind custom agenda to SPC-A
   (spacemacs/set-leader-keys "A" 'org-agenda-show-mine)
+
+  (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
+  (key-chord-mode 1)
 
   ; show custom agenda after start
   (add-hook 'after-init-hook 'org-agenda-show-mine)
