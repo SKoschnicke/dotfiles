@@ -9,11 +9,13 @@
   co = checkout
   l = log --all --graph --decorate --oneline --abbrev-commit
 [push]
-	default = current
+  default = current
 [color]
   ui = 1
 [core]
   longpaths = true
+  autocrlf = input
+  pager = "diff-so-fancy | less --tabs=4 -RFX" # requires diff-so-fancy: npm install -g diff-so-fancy / yaourt diff-so-fancy / brew update && brew install diff-so-fancy
 [filter "lfs"]
   clean = git lfs clean %f
   smudge = git lfs smudge %f
@@ -21,4 +23,8 @@
 [rerere]
   enabled = 1
 [diff]
-	algorithm = patience
+  algorithm = patience
+  compactionHeuristic = true # better diffs (since 2.9)
+[submodule]
+  fetchJobs = 3 # parallel cloning, updating, fetching of submodules (sice 2.9)
+
