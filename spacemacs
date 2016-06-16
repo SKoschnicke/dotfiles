@@ -624,6 +624,7 @@ otherkeywords={define,include,\\#}}
  '(ensime-sbt-command "/usr/bin/activator")
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
+ '(org-babel-load-languages (quote ((ruby . t) (emacs-lisp . t))))
  '(org-list-allow-alphabetical t)
  '(paradox-github-token t))
 (custom-set-faces
