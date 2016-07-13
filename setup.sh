@@ -11,7 +11,7 @@ ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ln -s ~/.dotfiles/screenrc ~/.screenrc
 ln -s ~/.dotfiles/Xresources ~/.Xresources
-ln -s ~/.dotfiles/xsessionrc ~/.xsessionrc
+ln -s ~/.dotfiles/xsessionrc ~/.xinitrc
 #ln -s ~/.dotfiles/emacs ~/.emacs
 #ln -s ~/.dotfiles/emacs.d ~/.emacs.d
 ln -s ~/.dotfiles/zshrc ~/.zshrc
@@ -29,3 +29,4 @@ ln -s ~/.dotfiles/clipitrc ~/.config/clipit/clipitrc
 ln -s ~/.dotfiles/yaourtrc ~/.yaourtrc
 ln -s ~/.dotfiles/muttrc ~/.muttrc
 ln -s ~/.dotfiles/spacemacs ~/.spacemacs
+ln -s ~/.dotfiles/dunstrc ~/.dunstrc
