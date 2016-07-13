@@ -47,7 +47,9 @@ values."
      markdown
      shell
      c-c++
-     )
+     (mu4e :variables
+           mu4e-installation-path "/usr/share/emacs/site-lisp")
+   )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -612,6 +614,8 @@ otherkeywords={define,include,\\#}}
 
   ; show custom agenda after start
   (add-hook 'after-init-hook 'org-agenda-show-mine)
+
+  (setq mu4e-maildir "~/Mail/Uni")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

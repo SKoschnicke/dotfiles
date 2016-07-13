@@ -30,3 +30,4 @@ ln -s ~/.dotfiles/yaourtrc ~/.yaourtrc
 ln -s ~/.dotfiles/muttrc ~/.muttrc
 ln -s ~/.dotfiles/spacemacs ~/.spacemacs
 ln -s ~/.dotfiles/dunstrc ~/.dunstrc
+ln -s ~/.dotfiles/offlineimaprc ~/.offlineimaprc
