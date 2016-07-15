@@ -72,7 +72,7 @@
 #
 # Always use ASCII characters only.
 #
-accounts = Uni
+accounts = Uni, GFXpro
 
 
 # This option stands in the [general] section.
@@ -438,6 +438,14 @@ remoterepository = RemoteUni
 #
 #proxy = SOCKS5:IP:9999
 
+[Account GFXpro]
+
+# These settings specify the two folders that you will be syncing.
+# You'll need to have a "Repository ..." section for each one.
+
+localrepository = LocalGFXpro
+remoterepository = RemoteGFXpro
+
 [Repository LocalUni]
 
 # Each repository requires a "type" declaration. The types supported for
@@ -557,6 +565,22 @@ localfolders = ~/Mail/Uni
 #customflag_c = NonJunk
 #customflag_d = ToDo
 
+[Repository LocalGFXpro]
+
+# Each repository requires a "type" declaration. The types supported for
+# local repositories are Maildir, GmailMaildir and IMAP.
+#
+type = Maildir
+
+
+# This option stands in the [Repository LocalExample] section.
+#
+# Specify local repository.  Your IMAP folders will be synchronized
+# to maildirs created under this path.  OfflineIMAP will create the
+# maildirs for you as needed.
+#
+localfolders = ~/Mail/GFXpro
+
 [Repository GmailLocalExample]
 
 # This type of repository enables syncing of Gmail. All Maildir
@@ -665,7 +689,7 @@ ssl = yes
 #
 # get with:
 # $ openssl s_client -CApath /etc/ssl/certs -connect ${hostname}:imaps -showcerts | perl -ne 'print if /BEGIN/../END/; print STDERR if /return/' > $sslcacertfile
-sslcacertfile = ~/uni-imap.cert
+sslcacertfile = ~/.dotfiles/certs/uni-imap.cert
 
 
 # This option stands in the [Repository RemoteExample] section.
@@ -1104,6 +1128,14 @@ folderfilter = lambda foldername: foldername not in ['Draft']
 #
 #readonly = False
 
+[Repository RemoteGFXpro]
+
+type = IMAP
+remotehost = mail.jpberlin.de
+ssl = yes
+#sslcacertfile = ~/.dotfiles/certs/jpberlin.cert
+cert_fingerprint = 7dda4982e4c87209d866f273faac21244c523ab3
+remoteuser = s.koschnicke@gfxpro.com
 
 [Repository GmailExample]
 
