@@ -615,7 +615,10 @@ otherkeywords={define,include,\\#}}
   ; show custom agenda after start
   (add-hook 'after-init-hook 'org-agenda-show-mine)
 
-  (setq mu4e-maildir "~/Mail")
+  (setq mu4e-maildir "~/Mail"
+        mu4e-get-mail-command "offlineimap"
+        mu4e-update-interval 300 ;; in seconds
+        )
 
   (setq mu4e-sent-folder "/GFXpro/INBOX.Sent"
         mu4e-drafts-folder "/GFXpro/INBOX.Drafts"
@@ -636,7 +639,7 @@ otherkeywords={define,include,\\#}}
        (smtpmail-local-domain "gfxpro.com")
        (smtpmail-smtp-server "mail.jpberlin.de")
        (smtpmail-smtp-service 465)
-       (smtpmail-stream-type 'ssl)
+       (smtpmail-stream-type ssl)
        (smtpmail-auth-credentials "~/.netrc"))
       ("Uni"
        (mu4e-sent-folder "/Uni/sent")
@@ -645,7 +648,7 @@ otherkeywords={define,include,\\#}}
        (smtpmail-local-domain "informatik.uni-kiel.de")
        (smtpmail-smtp-server "mail.informatik.uni-kiel.de")
        (smtpmail-smtp-service 587)
-       (smtpmail-stream-type 'starttls)
+       (smtpmail-stream-type starttls)
        (smtpmail-auth-credentials "~/.netrc"))
        )
   )
