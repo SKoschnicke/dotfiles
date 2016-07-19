@@ -47,7 +47,9 @@ values."
      markdown
      shell
      c-c++
-     )
+     (mu4e :variables
+           mu4e-installation-path "/usr/share/emacs/site-lisp")
+   )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -614,6 +616,65 @@ otherkeywords={define,include,\\#}}
 
   ; show custom agenda after start
   (add-hook 'after-init-hook 'org-agenda-show-mine)
+
+  (setq mu4e-maildir "~/Mail"
+        mu4e-get-mail-command "offlineimap"
+        mu4e-update-interval 300 ;; in seconds
+        )
+
+  (setq mu4e-sent-folder "/GFXpro/INBOX.Sent"
+        mu4e-drafts-folder "/GFXpro/INBOX.Drafts"
+        user-mail-address "s.koschnicke@gfxpro.com"
+        smtpmail-local-domain "gfxpro.com"
+        smtpmail-smtp-server "mail.jpberlin.de"
+        smtpmail-smtp-service 465
+        smtpmail-stream-type 'ssl
+        smtpmail-auth-credentials "~/.netrc"
+        message-send-mail-function 'smtpmail-send-it
+        )
+
+  (defvar my-mu4e-account-alist
+    '(("GFXpro"
+       (mu4e-sent-folder "/GFXpro/Saved Items")
+       (mu4e-drafts-folder "/GFXpro/Drafts")
+       (user-mail-address "s.koschnicke@gfxpro.com")
+       (smtpmail-local-domain "gfxpro.com")
+       (smtpmail-smtp-server "mail.jpberlin.de")
+       (smtpmail-smtp-service 465)
+       (smtpmail-stream-type ssl)
+       (smtpmail-auth-credentials "~/.netrc"))
+      ("Uni"
+       (mu4e-sent-folder "/Uni/sent")
+       (mu4e-drafts-folder "/Uni/drafts")
+       (user-mail-address "svk@informatik.uni-kiel.de")
+       (smtpmail-local-domain "informatik.uni-kiel.de")
+       (smtpmail-smtp-server "mail.informatik.uni-kiel.de")
+       (smtpmail-smtp-service 587)
+       (smtpmail-stream-type starttls)
+       (smtpmail-auth-credentials "~/.netrc"))
+       )
+  )
+
+  (defun my-mu4e-set-account ()
+    "Set the account for composing a message."
+    (let* ((account
+            (if mu4e-compose-parent-message
+                (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                  (string-match "/\\(.*?\\)/" maildir)
+                  (match-string 1 maildir))
+              (completing-read (format "Compose with account: (%s) "
+                                       (mapconcat #'(lambda (var) (car var))
+                                                  my-mu4e-account-alist "/"))
+                               (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                               nil t nil nil (caar my-mu4e-account-alist))))
+           (account-vars (cdr (assoc account my-mu4e-account-alist))))
+      (if account-vars
+          (mapc #'(lambda (var)
+                    (set (car var) (cadr var)))
+                account-vars)
+        (error "No email account found"))))
+
+  (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
