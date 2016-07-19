@@ -397,6 +397,8 @@ you should place you code here."
       (defconst my-org-file-path "~/SpiderOak Hive/org"))
     (when (string-prefix-p "losarcum" system-name)
       (defconst my-org-file-path "~/mainsync/org"))
+    (when (string= system-name "daltigoth")
+      (defconst my-org-file-path "~/sync/org"))
 
     (when (file-accessible-directory-p my-org-file-path)
       (setq diary-file (concat my-org-file-path "/diary")))
