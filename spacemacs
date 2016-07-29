@@ -673,6 +673,10 @@ otherkeywords={define,include,\\#}}
         (error "No email account found"))))
 
   (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+
+  (add-to-list 'mu4e-bookmarks
+               '("flag:flagged" "Flagged messages" ?f)
+  )
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -685,6 +689,8 @@ otherkeywords={define,include,\\#}}
  '(ensime-sbt-command "/usr/bin/activator")
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
+ '(mu4e-view-show-addresses t)
+ '(mu4e-view-show-images t)
  '(org-babel-load-languages (quote ((ruby . t) (emacs-lisp . t))))
  '(org-list-allow-alphabetical t)
  '(paradox-github-token t))
