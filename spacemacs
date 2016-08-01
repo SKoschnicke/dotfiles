@@ -39,6 +39,7 @@ values."
      version-control
      scala
      ruby
+     ruby-on-rails
      html
      javascript
      haskell
@@ -615,6 +616,8 @@ otherkeywords={define,include,\\#}}
   ; show custom agenda after start
   (add-hook 'after-init-hook 'org-agenda-show-mine)
 
+  (setq rubocop-check-command "rbenc exec bundle exec rubocop --format emacs")
+
   (setq mu4e-maildir "~/Mail"
         mu4e-get-mail-command "offlineimap"
         mu4e-update-interval 300 ;; in seconds
@@ -677,6 +680,7 @@ otherkeywords={define,include,\\#}}
   (add-to-list 'mu4e-bookmarks
                '("flag:flagged" "Flagged messages" ?f)
   )
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
