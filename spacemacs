@@ -39,6 +39,7 @@ values."
      version-control
      scala
      ruby
+     ruby-on-rails
      html
      javascript
      haskell
@@ -617,6 +618,8 @@ otherkeywords={define,include,\\#}}
   ; show custom agenda after start
   (add-hook 'after-init-hook 'org-agenda-show-mine)
 
+  (setq rubocop-check-command "rbenc exec bundle exec rubocop --format emacs")
+
   (setq mu4e-maildir "~/Mail"
         mu4e-get-mail-command "offlineimap"
         mu4e-update-interval 300 ;; in seconds
@@ -675,6 +678,11 @@ otherkeywords={define,include,\\#}}
         (error "No email account found"))))
 
   (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+
+  (add-to-list 'mu4e-bookmarks
+               '("flag:flagged" "Flagged messages" ?f)
+  )
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -687,6 +695,8 @@ otherkeywords={define,include,\\#}}
  '(ensime-sbt-command "/usr/bin/activator")
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
+ '(mu4e-view-show-addresses t)
+ '(mu4e-view-show-images t)
  '(org-babel-load-languages (quote ((ruby . t) (emacs-lisp . t))))
  '(org-list-allow-alphabetical t)
  '(paradox-github-token t))
