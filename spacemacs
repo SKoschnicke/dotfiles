@@ -677,6 +677,7 @@ otherkeywords={define,include,\\#}}
 
   (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 
+  (require 'mu4e)
   (add-to-list 'mu4e-bookmarks
                '("flag:flagged" "Flagged messages" ?f)
   )
