@@ -63,6 +63,9 @@ zle -N znt-cd-widget
 bindkey "^J" znt-cd-widget
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
+znt_cd_hotlist=( "~/development/pa/rho" "~/development/pa/psi" "~/development/sc/webapp"
+                 "~/development/sc/graphical_client" "~/development/sc/client_server"
+               )
 # enable rvm
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 

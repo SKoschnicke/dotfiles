@@ -29,7 +29,8 @@ values."
      emacs-lisp
      git
      github
-     org
+     (org :variables
+          org-enable-github-support t)
      evil-snipe
      ;; (shell :variables
      ;;        shell-default-height 30
