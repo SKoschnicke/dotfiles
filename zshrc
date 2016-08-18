@@ -45,7 +45,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # NOTE that autojump needs the executable autojump installed
-plugins=(zsh-navigation-tools rvm web-search last-working-dir rails bundler ruby git gem git-extras github vi-mode wd fabric docker tmux archlinux)
+plugins=(zsh-navigation-tools rvm web-search last-working-dir rails bundler ruby git gem git-extras github vi-mode wd fabric docker tmux archlinux colorize compleat)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -56,7 +56,16 @@ DEFAULT_USER="svk"
 autoload -U zmv
 alias mmv='noglob zmv -W'
 
+autoload znt-history-widget
+zle -N znt-history-widget
 bindkey "^R" znt-history-widget
+zle -N znt-cd-widget
+bindkey "^J" znt-cd-widget
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+znt_cd_hotlist=( "~/development/pa/rho" "~/development/pa/psi" "~/development/sc/webapp"
+                 "~/development/sc/graphical_client" "~/development/sc/client_server"
+               )
 # enable rvm
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 

@@ -29,7 +29,8 @@ values."
      emacs-lisp
      git
      github
-     org
+     (org :variables
+          org-enable-github-support t)
      evil-snipe
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -680,6 +681,7 @@ otherkeywords={define,include,\\#}}
 
   (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 
+  (require 'mu4e)
   (add-to-list 'mu4e-bookmarks
                '("flag:flagged" "Flagged messages" ?f)
   )
