@@ -160,6 +160,18 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. shiftMask, xK_p),
      spawn "~/.xmonad/bin/select-screenshot")
 
+  -- Play/Pause
+  , ((modMask .|. shiftMask, xK_F8),
+     spawn "playerctl play-pause")
+
+  -- Next Track
+  , ((modMask .|. shiftMask, xK_F9),
+     spawn "playerctl next")
+
+  -- Previous Track
+  , ((modMask .|. shiftMask, xK_F7),
+     spawn "playerctl previous")
+
   -- Mute volume.
   , ((modMask .|. shiftMask, xK_F10),
      spawn "amixer -D pulse set Master toggle")
