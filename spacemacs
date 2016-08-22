@@ -43,6 +43,7 @@ values."
      ruby-on-rails
      html
      javascript
+     java
      haskell
      yaml
      asciidoc
@@ -56,7 +57,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(yafolding key-chord)
+   dotspacemacs-additional-packages '(yafolding key-chord company-emacs-eclim)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -692,6 +693,14 @@ otherkeywords={define,include,\\#}}
               ;; try to emulate some of the eww key-bindings
               (local-set-key (kbd "<tab>") 'shr-next-link)
               (local-set-key (kbd "<backtab>") 'shr-previous-link)))
+
+  (setq eclim-eclipse-dirs "/usr/lib/eclipse"
+        eclim-executable "/usr/lib/eclipse/eclim"
+        eclim-default-workspace "~/eclipse_workspaces")
+
+  ;; https://github.com/senny/emacs-eclim/issues/232
+  (add-hook 'java-mode-hook
+            (lambda () (setq eclim-project-name (eclim-project-name))))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
