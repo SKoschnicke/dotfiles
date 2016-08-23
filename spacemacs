@@ -619,7 +619,7 @@ otherkeywords={define,include,\\#}}
   ; show custom agenda after start
   (add-hook 'after-init-hook 'org-agenda-show-mine)
 
-  (setq rubocop-check-command "rbenc exec bundle exec rubocop --format emacs")
+  (setq rubocop-check-command "rbenv exec rubocop --format emacs")
 
   (require 'mu4e)
   (setq mu4e-maildir "~/Mail"
@@ -692,6 +692,10 @@ otherkeywords={define,include,\\#}}
               ;; try to emulate some of the eww key-bindings
               (local-set-key (kbd "<tab>") 'shr-next-link)
               (local-set-key (kbd "<backtab>") 'shr-previous-link)))
+
+  ;; use ensime in java mode (requires installed sbt)
+  ;(add-hook 'java-mode-hook 'scala/configure-ensime)
+  ;(add-hook 'java-mode-hook 'scala/maybe-start-ensime)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
