@@ -73,16 +73,6 @@ znt_cd_hotlist=( "~/development/pa/rho" "~/development/pa/psi" "~/development/sc
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-PATH=$PATH:/usr/local/eclipse # Path to eclipse
-
-PATH=$PATH:$HOME/.cabal/bin # Path to cabal
-PATH=$PATH:$HOME/.cabal-sandbox/bin # Path to project specific cabal sandbox
-PATH=$PATH:$HOME/.dotfiles/bin # Path to own scripts
-PATH=$PATH:`gem environment gemdir`/bin # Path to Ruby gems
-PATH=$PATH:$HOME/bin # Path to local binaries
-
 export EDITOR=vim
 
 alias dockercleancontainers="docker ps -a -f status=exited -q | xargs docker rm"

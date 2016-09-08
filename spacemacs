@@ -620,7 +620,8 @@ otherkeywords={define,include,\\#}}
   ; show custom agenda after start
   (add-hook 'after-init-hook 'org-agenda-show-mine)
 
-  (setq rubocop-check-command "rbenv exec rubocop --format emacs")
+  ;(setq rubocop-check-command "rbenv exec rubocop --format emacs")
+  (setq rubocop-check-command "rubocop --format emacs")
 
   (require 'mu4e)
   (setq mu4e-maildir "~/Mail"

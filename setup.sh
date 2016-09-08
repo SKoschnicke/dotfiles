@@ -15,6 +15,7 @@ ln -s ~/.dotfiles/xsessionrc ~/.xinitrc
 #ln -s ~/.dotfiles/emacs ~/.emacs
 #ln -s ~/.dotfiles/emacs.d ~/.emacs.d
 ln -s ~/.dotfiles/zshrc ~/.zshrc
+ln -s ~/.dotfiles/zshenv ~/.zshenv
 mkdir -p ~/.xmonad/bin
 ln -s ~/.dotfiles/bin/keyboard-layout ~/.xmonad/bin/keyboard-layout
 ln -s ~/.dotfiles/bin/select-screenshot ~/.xmonad/bin/select-screenshot

@@ -14,7 +14,7 @@ clipit &
 dropbox-cli start
 urxvt -e tmux &
 firefox &
-thunderbird &
+#thunderbird &
 pidgin &
 #kupfer &
 emacs &
