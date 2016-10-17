@@ -53,6 +53,8 @@ values."
      markdown
      shell
      c-c++
+     sql
+     typescript
      (mu4e :variables
            mu4e-installation-path "/usr/share/emacs/site-lisp")
    )
