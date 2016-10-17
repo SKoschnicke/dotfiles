@@ -709,6 +709,10 @@ otherkeywords={define,include,\\#}}
   ;; https://github.com/senny/emacs-eclim/issues/232
   (add-hook 'java-mode-hook
             (lambda () (setq eclim-project-name (eclim-project-name))))
+
+  ;; to avoid "The TLS connection was non-properly terminated"
+  ;; see https://github.com/syl20bnr/spacemacs/issues/6638
+  (setq dotspacemacs-elpa-https nil)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
