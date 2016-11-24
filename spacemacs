@@ -26,7 +26,7 @@ values."
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage)
+                      auto-completion-enable-sort-by-usage t)
      typography
      emoji
      emacs-lisp
@@ -55,6 +55,7 @@ values."
      c-c++
      sql
      typescript
+     (gtags :variables gtags-enable-by-default t)
      (mu4e :variables
            mu4e-installation-path "/usr/share/emacs/site-lisp")
    )
