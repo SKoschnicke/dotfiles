@@ -736,6 +736,9 @@ otherkeywords={define,include,\\#}}
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ensime-sbt-command "/usr/bin/activator")
+ '(exec-path
+   (quote
+    ("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin")))
  '(flycheck-disabled-checkers (quote (ruby ruby-rubylint)))
  '(flycheck-ruby-rubocop-executable nil)
  '(js2-missing-semi-one-line-override t)

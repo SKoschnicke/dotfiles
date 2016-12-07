@@ -6,3 +6,4 @@ PATH=$PATH:$HOME/.dotfiles/bin # Path to own scripts
 PATH=$PATH:`gem environment gemdir`/bin # Path to Ruby gems
 PATH=$PATH:$HOME/bin # Path to local binaries
 export PATH
+export NODE_ENV="development"
