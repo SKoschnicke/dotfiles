@@ -41,7 +41,10 @@ values."
      spell-checking
      syntax-checking
      version-control
-     scala
+     (scala :variables
+            scala-auto-insert-asterisk-in-comments t
+            scala-use-unicode-arrows t
+            scala-auto-start-ensime t)
      ruby
      ruby-on-rails
      html
@@ -263,6 +266,10 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  ; set ensime to stable version, see https://github.com/syl20bnr/spacemacs/issues/6531
+  (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer--elpa-archives)
+  (push '(ensime . "melpa-stable") package-pinned-packages)
   )
 
 (defun dotspacemacs/user-config ()
@@ -716,6 +723,9 @@ otherkeywords={define,include,\\#}}
   ;; to avoid "The TLS connection was non-properly terminated"
   ;; see https://github.com/syl20bnr/spacemacs/issues/6638
   (setq dotspacemacs-elpa-https nil)
+
+  ;; needs scalastyle installed
+  (setq-default flycheck-scalastylerc "~/development/pa/psi/conf/scalastyle_config.xml")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
