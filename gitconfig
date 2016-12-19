@@ -16,6 +16,7 @@
   longpaths = true
   autocrlf = input
   pager = "diff-so-fancy | less --tabs=4 -RFX" # requires diff-so-fancy: npm install -g diff-so-fancy / yaourt diff-so-fancy / brew update && brew install diff-so-fancy
+  excludesfile = ~/.gitignore-global
 [filter "lfs"]
   clean = git lfs clean %f
   smudge = git lfs smudge %f
