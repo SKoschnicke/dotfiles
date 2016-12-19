@@ -35,3 +35,9 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Tag Files #
+#############
+GTAGS
+GRTAGS
+GPATH
