@@ -18,6 +18,8 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     php
+     python
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -49,7 +51,7 @@ values."
      ruby-on-rails
      html
      javascript
-     java
+     ;java
      haskell
      yaml
      asciidoc
@@ -372,6 +374,8 @@ you should place you code here."
 
     ;; ;; CUSTOM AGENDA END
 
+    (require 'ob-ruby)
+    (org-babel-do-load-languages 'org-babel-do-load-languages '((ruby . t)))
     ;;   (org-babel-do-load-languages
     ;;    'org-babel-load-languages
     ;;    '((R . t)
@@ -645,6 +649,8 @@ otherkeywords={define,include,\\#}}
 
   (setq mu4e-sent-folder "/GFXpro/INBOX.Sent"
         mu4e-drafts-folder "/GFXpro/INBOX.Drafts"
+        mu4e-trash-folder "/GFXpro/INBOX.Trash"
+        mu4e-refile-folder "/GFXpro/INBOX.Archive"
         user-mail-address "s.koschnicke@gfxpro.com"
         smtpmail-local-domain "gfxpro.com"
         smtpmail-smtp-server "mail.jpberlin.de"
@@ -656,8 +662,10 @@ otherkeywords={define,include,\\#}}
 
   (defvar my-mu4e-account-alist
     '(("GFXpro"
-       (mu4e-sent-folder "/GFXpro/Saved Items")
-       (mu4e-drafts-folder "/GFXpro/Drafts")
+       (mu4e-sent-folder "/GFXpro/INBOX.Sent")
+       (mu4e-drafts-folder "/GFXpro/INBOX.Drafts")
+       (mu4e-trash-folder "/GFXpro/INBOX.Trash")
+       (mu4e-refile-folder "/GFXpro/INBOX.Archive")
        (user-mail-address "s.koschnicke@gfxpro.com")
        (smtpmail-local-domain "gfxpro.com")
        (smtpmail-smtp-server "mail.jpberlin.de")
@@ -667,6 +675,8 @@ otherkeywords={define,include,\\#}}
       ("Uni"
        (mu4e-sent-folder "/Uni/sent")
        (mu4e-drafts-folder "/Uni/drafts")
+       (mu4e-trash-folder "/Uni/trash")
+       (mu4e-refile-folder "/Uni/archive")
        (user-mail-address "svk@informatik.uni-kiel.de")
        (smtpmail-local-domain "informatik.uni-kiel.de")
        (smtpmail-smtp-server "mail.informatik.uni-kiel.de")

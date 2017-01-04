@@ -72,7 +72,7 @@
 #
 # Always use ASCII characters only.
 #
-accounts = Uni, GFXpro
+accounts = GFXpro
 
 
 # This option stands in the [general] section.

@@ -94,3 +94,4 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # initialize rbenv (ruby version manager)
 eval "$(rbenv init -)"
+alias cherry="xmodmap ~/.Xmodmap_cherry"

@@ -10,7 +10,7 @@
 xterm*faceName: Source Code Pro
 !xterm*faceName: Anonymous Pro
 !xterm*faceName: Monospace
-xterm*faceSize: 8
+xterm*faceSize: 11
 !xterm*font:        -misc-fixed-medium-r-normal--18-*-*-*-*-*-iso10646-1
 !xterm*iconPixmap: ...
 !XTerm*iconName: terminal
@@ -112,7 +112,7 @@ URxvt*visualBell:                     true
 ! URxvt*pointerColor2:                  color
 ! URxvt*borderColor:                    color
 ! URxvt*iconFile:                       file
-URxvt*font:                           xft:Source Code Pro:size=8
+URxvt*font:                           xft:Source Code Pro:size=11
 ! URxvt*boldFont:                       fontname
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname

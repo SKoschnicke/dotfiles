@@ -3,7 +3,7 @@
 xrdb -merge $HOME/.Xresources
 xscreensaver &
 eval $(ssh-agent)
-feh --no-fehbg --bg-center ~/backgrounds/current-left.jpg ~/backgrounds/current-right.jpg
+feh --no-fehbg --bg-center ~/backgrounds/current.jpg
 #/home/svk/network.sh
 #/home/svk/key.sh
 #setxkbmap -layout "us, de" -option "grp:caps_toggle"
@@ -18,7 +18,7 @@ firefox &
 pidgin &
 #kupfer &
 emacs &
-dunst -conf /home/svk/.dunstrc &
+dunst -conf /home/sven/.dunstrc &
 # remap Delete to Tab (and Shift-Delete to Delete)
 xmodmap -e "keycode 134 = Tab Delete"
 exec xmonad
