@@ -62,6 +62,7 @@ values."
      (gtags :variables gtags-enable-by-default t)
      (mu4e :variables
            mu4e-installation-path "/usr/share/emacs/site-lisp")
+                                        ;spacemacs-purpose seems not to be available yet
    )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -727,6 +728,13 @@ otherkeywords={define,include,\\#}}
 
   ;; needs scalastyle installed
   (setq-default flycheck-scalastylerc "~/development/pa/psi/conf/scalastyle_config.xml")
+
+  ;; to avoid "void-variable ensime-mode-key-prefix"
+  ;; see https://github.com/syl20bnr/spacemacs/issues/6578
+  (require 'ensime)
+
+  ;; Does not work yet, have to use M-/
+  ;(evil-define-key 'insert org-mode-map (kbd "TAB") 'hippie-expand)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
