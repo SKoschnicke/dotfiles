@@ -45,7 +45,8 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # NOTE that autojump needs the executable autojump installed
-plugins=(zsh-navigation-tools rvm web-search last-working-dir rails bundler ruby git gem git-extras github vi-mode wd fabric docker tmux archlinux colorize compleat)
+# NOTE do NOT enable the tmux plugin! It breaks the last-working-dir functionality
+plugins=(last-working-dir zsh-navigation-tools rvm web-search rails bundler ruby git gem git-extras github vi-mode wd fabric docker archlinux colorize)
 
 source $ZSH/oh-my-zsh.sh
 
