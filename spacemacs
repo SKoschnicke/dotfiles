@@ -46,7 +46,8 @@ values."
             scala-auto-insert-asterisk-in-comments t
             scala-use-unicode-arrows t
             scala-auto-start-ensime t)
-     ruby
+     (ruby :variables
+           ruby-version-manager 'rbenv)
      ruby-on-rails
      html
      javascript
