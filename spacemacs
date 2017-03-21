@@ -430,7 +430,7 @@ you should place you code here."
       (setq org-agenda-files (list my-org-file-path))
       (setq org-directory my-org-file-path)
       (setq org-default-notes-file (concat my-org-file-path "/refile.org"))
-      (setq org-mobile-directory (concat my-org-file-path "/MobileOrg"))
+      (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
       (setq org-mobile-inbox-for-pull (concat my-org-file-path "/from-mobile.org")))
 
     ;; I use C-c c to start capture mode
