@@ -95,3 +95,4 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # initialize rbenv (ruby version manager)
 eval "$(rbenv init -)"
+unalias gr # zsh git plugin defines this alias but we want to use the gr tool
