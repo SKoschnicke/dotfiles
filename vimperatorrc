@@ -1,0 +1,7 @@
+"3.16.0 (created: 2017/02/01 00:55:15)
+
+highlight Hint font-size:200%;color:white;background-color:red;padding:2px;
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+source! /home/svk/.vimperatorrc.local
+
+" vim: set ft=vimperator:
