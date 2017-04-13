@@ -12,7 +12,7 @@ setxkbmap -layout "us"
 #update-notifier &
 clipit &
 dropbox-cli start
-urxvt -e tmux &
+st -e tmux &
 firefox &
 #thunderbird &
 pidgin &

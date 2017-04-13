@@ -41,3 +41,8 @@ Thumbs.db
 GTAGS
 GRTAGS
 GPATH
+
+# IDE / Editor Files #
+######################
+.idea
+*.iml
