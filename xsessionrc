@@ -2,7 +2,6 @@
 
 xrdb -merge $HOME/.Xresources
 xscreensaver &
-eval $(ssh-agent)
 feh --no-fehbg --bg-center ~/backgrounds/current-left.jpg ~/backgrounds/current-right.jpg
 #/home/svk/network.sh
 #/home/svk/key.sh
