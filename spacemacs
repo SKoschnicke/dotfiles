@@ -641,6 +641,10 @@ otherkeywords={define,include,\\#}}
   ;(setq rubocop-check-command "rbenv exec rubocop --format emacs")
   (setq rubocop-check-command "rubocop --format emacs")
 
+  ; set simple shell to speed up / fix projectile, see
+  ; https://github.com/syl20bnr/spacemacs/issues/4207
+  (setq shell-file-name "/bin/sh")
+
   (require 'mu4e)
   (setq mu4e-maildir "~/Mail"
         mu4e-get-mail-command "offlineimap"
