@@ -7,3 +7,4 @@ PATH=$PATH:`gem environment gemdir`/bin # Path to Ruby gems
 PATH=$PATH:$HOME/bin # Path to local binaries
 export PATH
 export NODE_ENV="development"
+export CUPS_SERVER=printhost.informatik.uni-kiel.de:631
