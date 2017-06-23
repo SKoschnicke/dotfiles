@@ -12,7 +12,7 @@ setxkbmap -layout "us"
 clipit &
 dropbox-cli start
 st -e tmux &
-firefox &
+firefox-beta &
 #thunderbird &
 pidgin &
 #kupfer &

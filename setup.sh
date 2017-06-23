@@ -35,3 +35,4 @@ ln -s ~/.dotfiles/offlineimaprc ~/.offlineimaprc
 ln -s ~/.dotfiles/eclimrc ~/.eclimrc
 ln -s ~/.dotfiles/gitignore ~/.gitignore-global
 ln -s ~/.dotfiles/vimperatorrc ~/.vimperatorrc
+ln -s ~/.dotfiles/yaourtrc ~/.yaourtrc

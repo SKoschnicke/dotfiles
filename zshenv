@@ -8,3 +8,6 @@ PATH=$PATH:$HOME/bin # Path to local binaries
 PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
 export NODE_ENV="development"
 export -U PATH # -U for deduplication
+if [[ $HOST == "sven-uni" ]]; then
+  export CUPS_SERVER=printhost.informatik.uni-kiel.de:631
+fi
