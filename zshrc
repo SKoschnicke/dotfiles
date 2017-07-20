@@ -68,9 +68,20 @@ bindkey "^R" znt-history-widget
 #bindkey "^J" znt-cd-widget
 
 # call ranger file manager with Ctrl-J
+# jumps to the selected directory when quit
 start_ranger() {
-  exec </dev/tty
-  ranger
+  if [ -z "$RANGER_LEVEL" ]; then
+    local tempfile="$(mktemp -t tmp.XXXXXXX)"
+    exec</dev/tty
+    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+    test -f "$tempfile" &&
+    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
+        cd "$(cat "$tempfile")"
+    fi
+    rm -f -- "$tempfile"
+  else
+    exit
+  fi
   zle reset-prompt
 }
 zle -N start_ranger
