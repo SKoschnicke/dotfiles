@@ -46,7 +46,7 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # NOTE that autojump needs the executable autojump installed
 # NOTE do NOT enable the tmux plugin! It breaks the last-working-dir functionality
-plugins=(last-working-dir zsh-navigation-tools rvm web-search rails bundler ruby git gem git-extras github vi-mode wd fabric docker archlinux colorize)
+plugins=(last-working-dir zsh-navigation-tools rvm web-search rails bundler ruby git gem git-extras github vi-mode wd fabric docker archlinux colorize alias-tips tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -57,14 +57,24 @@ DEFAULT_USER="svk"
 autoload -U zmv
 alias mmv='noglob zmv -W'
 
-#autoload znt-history-widget
-#zle -N znt-history-widget
-#bindkey "^R" znt-history-widget
-#zle -N znt-cd-widget
-#bindkey "^J" znt-cd-widget
+# Settings for the zsh-navigation-tools
+autoload znt-history-widget
+zle -N znt-history-widget
+bindkey "^R" znt-history-widget
 #znt_cd_hotlist=( "~/development/pa/rho" "~/development/pa/psi" "~/development/sc/webapp"
                  #"~/development/sc/graphical_client" "~/development/sc/client_server"
                #)
+#zle -N znt-cd-widget
+#bindkey "^J" znt-cd-widget
+
+# call ranger file manager with Ctrl-J
+start_ranger() {
+  exec </dev/tty
+  ranger
+  zle reset-prompt
+}
+zle -N start_ranger
+bindkey "^J" start_ranger
 
 # always do pushd when cding, so you can always navigate back by calling popd (even multiple times, which doesn't work with cd -)
 setopt AUTO_PUSHD
