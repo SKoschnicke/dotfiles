@@ -1,5 +1,5 @@
 [global]
-    font = DejaVu Sans 16
+    font = DejaVu Sans 12
     
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -11,7 +11,7 @@
     # <http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>.
     # If markup is not allowed, those tags will be stripped out of the
     # message.
-    allow_markup = yes
+    markup = yes
     
     # The format of the message.  Possible variables are:
     #   %a  appname
@@ -139,7 +139,7 @@
     dmenu = /usr/bin/dmenu -p dunst:
     
     # Browser for opening urls in context menu.
-    browser = /usr/bin/firefox -new-tab
+    browser = /usr/bin/firefox-beta -new-tab
 
     # Align icons left/right/off
     icon_position = left
@@ -147,9 +147,8 @@
     # Paths to default icons.
     icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
-[frame]
-    width = 3
-    color = "#aaaaaa"
+    frame_width = 3
+    frame_color = "#aaaaaa"
 
 [shortcuts]
 

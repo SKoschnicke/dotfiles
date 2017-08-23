@@ -118,5 +118,7 @@ pg() {
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # initialize rbenv (ruby version manager)
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 unalias gr # zsh git plugin defines this alias but we want to use the gr tool
