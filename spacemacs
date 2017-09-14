@@ -611,6 +611,7 @@ otherkeywords={define,include,\\#}}
   (setq-default web-mode-css-indent-offset 2)
   (setq-default web-mode-code-indent-offset 2)
   (setq-default web-mode-indent-style 2)
+  (setq-default typescript-indent-level 2)
   ; NOTE that indent when using beautify (SPC m =) is determined by the external
   ; .jsbeautifyrc file, see https://github.com/yasuyk/web-beautify
 
