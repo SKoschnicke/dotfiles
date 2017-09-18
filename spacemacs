@@ -742,6 +742,10 @@ otherkeywords={define,include,\\#}}
 
   ;; Keybindings for string inflection package
   (define-key evil-normal-state-map (kbd "C-w C-c") 'string-inflection-ruby-style-cycle)
+
+  ;; 2017-09-18 workaround for issue https://github.com/syl20bnr/spacemacs/issues/9549 may be removed soon
+  (require 'helm-bookmark)
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
