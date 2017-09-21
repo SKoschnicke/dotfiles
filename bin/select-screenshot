@@ -5,5 +5,5 @@
 
 
 #sleep 0.2; scrot -s "$HOME/screenshots/%Y-%m-%d-%H%M%S_\$wx\$h.jpg" -e "xloadimage \$f"
-#sleep 0.2; shutter -s --output="$HOME/screenshots/%Y-%m-%d-%H%M%S_\$wx\$h.jpg" 
-sleep 0.2; hotshots -s --output="$HOME/screenshots/%Y-%m-%d-%H%M%S_\$wx\$h.jpg"
+sleep 0.2; shutter -s --output="$HOME/screenshots/%Y-%m-%d-%H%M%S_\$wx\$h.jpg" 
+#sleep 0.2; hotshots -s --output="$HOME/screenshots/%Y-%m-%d-%H%M%S_\$wx\$h.jpg"
