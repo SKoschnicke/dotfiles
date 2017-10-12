@@ -16,6 +16,7 @@ firefox-beta &
 #thunderbird &
 pidgin &
 #kupfer &
+run_keybase
 emacs &
 dunst -conf /home/svk/.dunstrc &
 # remap Delete to Tab (and Shift-Delete to Delete)
