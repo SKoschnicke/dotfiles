@@ -440,21 +440,21 @@ you should place you code here."
 
     ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
     (setq org-capture-templates
-          (quote (("t" "todo" entry (file (concat my-org-file-path "/refile.org"))
+          (quote (("t" "todo" entry (file "refile.org")
                    "* TODO %?\n%U\n%a\n")
-                  ("r" "respond" entry (file (concat my-org-file-path "/refile.org"))
+                  ("r" "respond" entry (file "refile.org")
                    "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n")
-                  ("n" "note" entry (file (concat my-org-file-path "/refile.org"))
+                  ("n" "note" entry (file "refile.org")
                    "* %? :NOTE:\n%U\n%a\n")
-                  ("b" "bug" entry (file (concat my-org-file-path "/bugs.org"))
+                  ("b" "bug" entry (file "bugs.org")
                    "* %?\n%U\n%a\n\n** Symptom\n\n** Ursache\n\n** Wie gefunden\n\n** Fix\n\n** Projekt\n\n** Commit\n\n** Bug selbst verursacht?\n\n** Zeit bis zum Fix\n\n** Lektionen\n")
-                  ("j" "Journal" entry (file+datetree (concat my-org-file-path "/diary.org"))
+                  ("j" "Journal" entry (file+datetree "diary.org")
                    "* %?\n%U\n")
-                  ("m" "Meeting" entry (file (concat my-org-file-path "/refile.org"))
+                  ("m" "Meeting" entry (file "refile.org")
                    "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
-                  ("p" "Phone call" entry (file (concat my-org-file-path "/refile.org"))
+                  ("p" "Phone call" entry (file "refile.org")
                    "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
-                  ("h" "Habit" entry (file (concat my-org-file-path "/refile.org"))
+                  ("h" "Habit" entry (file "refile.org")
                    "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
     ;;; org mode beamer
