@@ -104,6 +104,9 @@ alias dockercleanimages="docker images -f dangling=true -q | xargs docker rmi"
 alias dockerclean="dockercleancontainers && dockercleanimages"
 alias dc="docker-compose"
 
+alias pa="cd $HOME/development/pa"
+alias sc="cd $HOME/development/sc"
+
 # ps + grep.
 # see https://github.com/blueyed/oh-my-zsh/blob/a08181210b47625efdc8480e628b0155bff392c9/lib/aliases.zsh#L10-L18
 pg() {
