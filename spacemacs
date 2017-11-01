@@ -498,7 +498,8 @@ you should place you code here."
       (setq org-directory my-org-file-path)
       (setq org-default-notes-file (concat my-org-file-path "/refile.org"))
       (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-      (setq org-mobile-inbox-for-pull (concat my-org-file-path "/from-mobile.org")))
+      (setq org-mobile-inbox-for-pull (concat my-org-file-path "/from-mobile.org"))
+      (setq org-download-method 'attach))
 
     ;; I use C-c c to start capture mode
     (global-set-key (kbd "C-c c") 'org-capture)
