@@ -106,6 +106,8 @@ alias dc="docker-compose"
 
 alias pa="cd $HOME/development/pa"
 alias sc="cd $HOME/development/sc"
+alias ls="TERM=xterm-256color exa"
+alias lls="TERM=xterm-256color exa --git -l"
 
 # ps + grep.
 # see https://github.com/blueyed/oh-my-zsh/blob/a08181210b47625efdc8480e628b0155bff392c9/lib/aliases.zsh#L10-L18
