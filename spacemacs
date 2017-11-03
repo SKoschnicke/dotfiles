@@ -286,7 +286,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
-
+  (require 'helm-bookmark) ; workaround until https://github.com/syl20bnr/spacemacs/issues/9549 is fixed in stable
   (with-eval-after-load 'org
 
     (setq org-log-done t
@@ -610,6 +610,7 @@ otherkeywords={define,include,\\#}}
   ; use 2 spaces in web mode for everything (instead of 4)
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
+  (setq-default typescript-indent-level 2)
   (setq-default web-mode-markup-indent-offset 2)
   (setq-default web-mode-css-indent-offset 2)
   (setq-default web-mode-code-indent-offset 2)
@@ -749,6 +750,7 @@ otherkeywords={define,include,\\#}}
   ;; 2017-09-18 workaround for issue https://github.com/syl20bnr/spacemacs/issues/9549 may be removed soon
   (require 'helm-bookmark)
 
+  (setq helm-ag-base-command "rg --vimgrep --no-heading")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -803,6 +805,7 @@ This function is called at the very end of Spacemacs initialization."
     ("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin")))
  '(flycheck-disabled-checkers (quote (ruby ruby-rubylint javascript-jshint)))
  '(haskell-tags-on-save t)
+ '(helm-ag-base-command "rg --vimgrep --no-heading")
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
  '(mu4e-view-show-addresses t)
