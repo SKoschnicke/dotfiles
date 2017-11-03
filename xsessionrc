@@ -3,19 +3,14 @@
 xrdb -merge $HOME/.Xresources
 xscreensaver &
 feh --no-fehbg --bg-center ~/backgrounds/current.jpg
-#/home/svk/network.sh
-#/home/svk/key.sh
 #setxkbmap -layout "us, de" -option "grp:caps_toggle"
 setxkbmap -layout "us"
 #xinput set-prop "Wacom Bamboo Connect Pen stylus" --type=float "Coordinate Transformation Matrix" 0.5 0 0.5 0 1 0 0 0 1
-#update-notifier &
 clipit &
-dropbox-cli start
+#dropbox-cli start
 st -e tmux &
 firefox-beta &
-#thunderbird &
 pidgin &
-#kupfer &
 emacs &
 dunst -conf /home/sven/.dunstrc &
 # remap Delete to Tab (and Shift-Delete to Delete)
