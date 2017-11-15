@@ -273,10 +273,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-
-  ; set ensime to stable version, see https://github.com/syl20bnr/spacemacs/issues/6531
-  (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer--elpa-archives)
-  (push '(ensime . "melpa-stable") package-pinned-packages)
   )
 
 (defun dotspacemacs/user-config ()
@@ -734,10 +730,6 @@ otherkeywords={define,include,\\#}}
   ;; needs scalastyle installed
   (setq-default flycheck-scalastylerc "~/development/pa/psi/conf/scalastyle_config.xml")
 
-  ;; to avoid "void-variable ensime-mode-key-prefix"
-  ;; see https://github.com/syl20bnr/spacemacs/issues/6578
-  (require 'ensime)
-
   ;; Does not work yet, have to use M-/
   ;(evil-define-key 'insert org-mode-map (kbd "TAB") 'hippie-expand)
 
@@ -765,8 +757,6 @@ otherkeywords={define,include,\\#}}
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 2)
- '(ensime-sbt-command "/usr/bin/activator")
- '(ensime-startup-notification nil)
  '(exec-path
    (quote
     ("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin")))
