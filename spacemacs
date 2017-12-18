@@ -452,7 +452,10 @@ you should place you code here."
                   ("p" "Phone call" entry (file "refile.org")
                    "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
                   ("h" "Habit" entry (file "refile.org")
-                   "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
+                   "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
+                  ("B" "Brain" plain (function org-brain-goto-end)
+                   "* %i%?" :empty-lines 1)
+                  )))
 
     ;;; org mode beamer
 
