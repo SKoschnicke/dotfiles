@@ -127,3 +127,6 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 unalias gr # zsh git plugin defines this alias but we want to use the gr tool
+
+export GOPATH=$HOME/go
+export PATH="$PATH:$GOPATH/bin"
