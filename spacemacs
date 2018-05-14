@@ -59,7 +59,9 @@ values."
      yaml
      asciidoc
      markdown
-     shell
+     (shell :variables
+            shell-default-shell 'eshell
+            shell-enable-smart-eshell t)
      c-c++
      sql
      typescript
