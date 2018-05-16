@@ -37,3 +37,4 @@ ln -s ~/.dotfiles/gitignore ~/.gitignore-global
 ln -s ~/.dotfiles/vimperatorrc ~/.vimperatorrc
 ln -s ~/.dotfiles/yaourtrc ~/.yaourtrc
 ln -s ~/.dotfiles/ranger.conf ~/.config/ranger/rc.conf
+ln -s ~/.dotfiles/shell-startup.sh ~/.shell-startup.sh
