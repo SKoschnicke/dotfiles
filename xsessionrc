@@ -7,13 +7,17 @@ feh --no-fehbg --bg-center ~/backgrounds/current.jpg
 setxkbmap -layout "us"
 #xinput set-prop "Wacom Bamboo Connect Pen stylus" --type=float "Coordinate Transformation Matrix" 0.5 0 0.5 0 1 0 0 0 1
 clipit &
-#dropbox-cli start
-st -e tmux &
+dropbox-cli start
+st -e ~/.shell-startup.sh &
 firefox-beta &
-pidgin &
+#thunderbird &
+#pidgin &
+#kupfer &
+run_keybase
 emacs &
-dunst -conf /home/sven/.dunstrc &
+dunst -conf ~/.dunstrc &
 # remap Delete to Tab (and Shift-Delete to Delete)
 xmodmap -e "keycode 134 = Tab Delete"
 exec xmonad
 #exec metacity
+#exec dwm

@@ -104,6 +104,8 @@ alias dockercleanimages="docker images -f dangling=true -q | xargs docker rmi"
 alias dockerclean="dockercleancontainers && dockercleanimages"
 alias dc="docker-compose"
 
+alias pa="cd $HOME/development/pa"
+alias sc="cd $HOME/development/sc"
 alias ls="TERM=xterm-256color exa"
 alias lls="TERM=xterm-256color exa --git -l"
 
@@ -121,6 +123,11 @@ pg() {
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # initialize rbenv (ruby version manager)
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 alias cherry="xmodmap ~/.Xmodmap_cherry"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 unalias gr # zsh git plugin defines this alias but we want to use the gr tool
+
+export GOPATH=$HOME/go
+export PATH="$PATH:$GOPATH/bin"

@@ -30,4 +30,4 @@
   fetchJobs = 3 # parallel cloning, updating, fetching of submodules (sice 2.9)
 
 [github]
-	user = SKoschnicke
+  user = SKoschnicke
