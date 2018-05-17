@@ -147,7 +147,7 @@ type = IMAP
 remotehost = mail.jpberlin.de
 ssl = yes
 #sslcacertfile = ~/.dotfiles/certs/jpberlin.cert
-cert_fingerprint = 7dda4982e4c87209d866f273faac21244c523ab3
+cert_fingerprint = d73353101ff45bdb113dd0e15dbe11e961634557
 remoteuser = s.koschnicke@gfxpro.com
 
 
