@@ -658,6 +658,7 @@ otherkeywords={define,include,\\#}}
         mu4e-get-mail-command "offlineimap"
         mu4e-update-interval 300 ;; in seconds
         mu4e-compose-format-flowed t
+        mu4e-view-show-images t
         )
 
   (setq mu4e-sent-folder "/GFXpro/INBOX.Sent"
