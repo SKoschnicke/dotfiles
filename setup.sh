@@ -20,7 +20,7 @@ mkdir -p ~/.xmonad/bin
 ln -s ~/.dotfiles/bin/keyboard-layout ~/.xmonad/bin/keyboard-layout
 ln -s ~/.dotfiles/bin/select-screenshot ~/.xmonad/bin/select-screenshot
 ln -s ~/.dotfiles/xmonad.hs ~/.xmonad/xmonad.hs
-ln -s ~/.dotfiles/xmobar.hs ~/.xmonad/xmobar.hs
+ln -s ~/.dotfiles/xmobar.hs.`hostname` ~/.xmonad/xmobar.hs
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/pentadactylrc ~/.pentadactylrc
 mkdir -p ~/.pentadactyl
