@@ -6,7 +6,7 @@ Config {
     font = "xft:DejaVu Sans Mono-10",
     bgColor = "#000000",
     fgColor = "#ffffff",
-    position = Static { xpos = 0, ypos = 2848, width = 5120, height = 32 },
+    position = Static { xpos = 0, ypos = 3808, width = 2160, height = 32 },
     lowerOnStart = False,
     persistent = True,
     overrideRedirect = True,
