@@ -2,7 +2,10 @@
 
 xrdb -merge $HOME/.Xresources
 xscreensaver &
-feh --no-fehbg --bg-center ~/backgrounds/current.jpg
+case $HOSTNAME in
+  (daltigoth) feh --no-fehbg --bg-center ~/backgrounds/current.jpg;;
+  (sven-uni)   feh --no-fehbg --bg-center ~/backgrounds/current-left.jpg ~/backgrounds/current-right.jpg;;
+esac
 #setxkbmap -layout "us, de" -option "grp:caps_toggle"
 setxkbmap -layout "us"
 #xinput set-prop "Wacom Bamboo Connect Pen stylus" --type=float "Coordinate Transformation Matrix" 0.5 0 0.5 0 1 0 0 0 1
