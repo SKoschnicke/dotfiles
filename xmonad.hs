@@ -37,7 +37,7 @@ myTerminal = "/usr/bin/st"
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
-myWorkspaces = ["1:editor","2:web","3:term","4:mail","5:emacs","6:messenger"] ++ map show [7..9]
+myWorkspaces = ["1:term","2:web","3:editor","4:free","5:emacs"] ++ map show [6..9]
 
 
 ------------------------------------------------------------------------
@@ -57,13 +57,10 @@ myWorkspaces = ["1:editor","2:web","3:term","4:mail","5:emacs","6:messenger"] ++
 myManageHook = composeAll
     [ className =? "Firefox"  --> doShift "2:web"
     , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "XTerm"       --> doShift "3:term"
-    , className =? "Thunderbird"  --> doShift "4:mail"
-    , className =? "Emacs24"           --> doShift "5:emacs"
-    , className =? "Pidgin"          --> doShift "6:messenger"
+    , resource  =? "st-256color"       --> doShift "1:term"
+    , className =? "Emacs"           --> doShift "5:emacs"
     , className =? "MPlayer"        --> doFloat
     , className =? "Qshutdown"      --> doFloat
-    , className =? "VirtualBox"     --> doShift "8"
     , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
 
 

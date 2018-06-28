@@ -12,15 +12,14 @@ setxkbmap -layout "us"
 clipit &
 dropbox-cli start
 st -e ~/.shell-startup.sh &
-firefox-beta &
+firefox &
 #thunderbird &
 #pidgin &
 #kupfer &
-run_keybase
 emacs &
 dunst -conf ~/.dunstrc &
 # remap Delete to Tab (and Shift-Delete to Delete)
-xmodmap -e "keycode 134 = Tab Delete"
+#xmodmap -e "keycode 134 = Tab Delete"
 exec xmonad
 #exec metacity
 #exec dwm
