@@ -376,9 +376,21 @@ you should place you code here."
                                ((org-agenda-overriding-header "Waiting and Postponed Tasks")
                                 (org-tags-match-list-sublevels nil))
                                nil)))
-                  ("O" "Overview" agenda ""
-                   ((org-agenda-span 14) (org-agenda-start-day "-1d")
-                    ))
+                  ("t" todo-tree "TODO")
+                  ("T" tags-todo "/TODO|NEXT" ((org-agenda-todo-ignore-scheduled 'future)
+                                               (org-agenda-tags-todo-honor-ignore-options t)
+                                               (org-agenda-todo-list-sublevels t)))
+                  ("s" todo-tree "STARTED")
+                  ("w" todo-tree "WAITING")
+                  ("p" . "Project Agendas")
+                  ("pp" "Perfavo" ((tags-todo "pav/STARTED" ((org-agenda-overriding-header "Started Tasks")))
+                                   (tags-todo "pav/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                  ))
+                  ("ps" "Software-Challenge" ((tags-todo "swc/STARTED" ((org-agenda-overriding-header "Started Tasks")))
+                                   (tags-todo "swc/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                                   ))
+                  ("ps" tags-todo "+swc")
+                  ("pg" tags-todo "+gxp")
 ; Weekly Review block agenda
   ("r" . "Weekly Review")
   ("r1" "Get Clear: Collect loose materials and process Inbox"
@@ -841,6 +853,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auth-sources '("~/.authinfo.gpg" "~/.netrc"))
  '(c-basic-offset 2)
  '(exec-path
    '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin"))
