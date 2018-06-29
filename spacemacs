@@ -398,9 +398,10 @@ you should place you code here."
     ((org-agenda-overriding-header "Inbox items to process:")
      (org-agenda-prefix-format "")))
   ("r2" "Get Current: Review Next Actions\n    Archive completed actions, review for further action steps."
-    ((todo "DONE|DROPPED|COMPLETE" ((org-agenda-overriding-header "Done/Dropped Items (to archive):")
-                                    (org-agenda-cmp-user-defined (cmp-date-property "CLOSED"))
-                                    (org-agenda-sorting-strategy '(user-defined-up))))
+    (;(todo "DONE|DROPPED|COMPLETE" ((org-agenda-overriding-header "Done/Dropped Items (to archive):")
+     ;                               (org-agenda-cmp-user-defined (cmp-date-property "CLOSED"))
+     ;                               (org-agenda-sorting-strategy '(user-defined-up))))
+    ; (above gives error because cmp-date-property doesn't exist)
      (tags-todo "-sm/NEXT" ((org-agenda-overriding-header "Next Actions:")
                             (org-agenda-sorting-strategy '(time-up category-up alpha-up))
                             (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))
@@ -855,6 +856,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(auth-sources '("~/.authinfo.gpg" "~/.netrc"))
  '(c-basic-offset 2)
+ '(debug-on-error t)
  '(exec-path
    '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin"))
  '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
