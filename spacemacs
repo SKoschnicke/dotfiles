@@ -31,7 +31,9 @@ values."
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage t)
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle)
      typography
      emoji
      emacs-lisp
@@ -65,7 +67,8 @@ values."
             shell-enable-smart-eshell t)
      c-c++
      sql
-     typescript
+     (typescript :variables
+                 company-tooltip-align-annotations t)
      python
      (gtags :variables gtags-enable-by-default t)
      (mu4e :variables
@@ -382,15 +385,23 @@ you should place you code here."
                                                (org-agenda-todo-list-sublevels t)))
                   ("s" todo-tree "STARTED")
                   ("w" todo-tree "WAITING")
+                  ("R" tags "REFILE")
                   ("p" . "Project Agendas")
                   ("pp" "Perfavo" ((tags-todo "pav/STARTED" ((org-agenda-overriding-header "Started Tasks")))
                                    (tags-todo "pav/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                                   (tags-todo "pav/WAITING" ((org-agenda-overriding-header "Waiting")))
+                                   (tags-todo "pav/TODO" ((org-agenda-overriding-header "Open Tasks")))
                   ))
                   ("ps" "Software-Challenge" ((tags-todo "swc/STARTED" ((org-agenda-overriding-header "Started Tasks")))
                                    (tags-todo "swc/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                                   (tags-todo "swc/WAITING" ((org-agenda-overriding-header "Waiting")))
+                                   (tags-todo "swc/TODO" ((org-agenda-overriding-header "Open Tasks")))
                                    ))
-                  ("ps" tags-todo "+swc")
-                  ("pg" tags-todo "+gxp")
+                  ("pg" "GFXpro" ((tags-todo "gxp/STARTED" ((org-agenda-overriding-header "Started Tasks")))
+                                              (tags-todo "gxp/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                                              (tags-todo "gxp/WAITING" ((org-agenda-overriding-header "Waiting")))
+                                              (tags-todo "gxp/TODO" ((org-agenda-overriding-header "Open Tasks")))
+                                              ))
 ; Weekly Review block agenda
   ("r" . "Weekly Review")
   ("r1" "Get Clear: Collect loose materials and process Inbox"
@@ -856,7 +867,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(auth-sources '("~/.authinfo.gpg" "~/.netrc"))
  '(c-basic-offset 2)
- '(debug-on-error t)
+ '(debug-on-error f)
  '(exec-path
    '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin"))
  '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
@@ -868,7 +879,7 @@ This function is called at the very end of Spacemacs initialization."
  '(org-babel-load-languages '((ruby . t) (emacs-lisp . t)))
  '(org-list-allow-alphabetical t)
  '(package-selected-packages
-   '(restclient-helm ob-restclient ob-http company-restclient restclient know-your-http-well org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir flycheck-mix alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-tern company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
+   '(zenburn-theme yasnippet-snippets symon spaceline-all-the-icons all-the-icons memoize ruby-refactor ruby-hash-syntax restclient-helm pippel pipenv password-generator overseer org-mime org-brain ob-restclient ob-http nameless mvn monokai-theme meghanada maven-test-mode magithub ghub+ apiwrap magit-svn json-navigator hierarchy importmagic epc ctable concurrent deferred impatient-mode helm-xref helm-rtags helm-purpose window-purpose imenu-list helm-mu groovy-mode groovy-imports gradle-mode google-c-style godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gitignore-templates flycheck-rtags flycheck-gometalinter evil-org ghub evil-lion evil-goggles evil-cleverparens paredit emojify editorconfig dante lcr csv-mode counsel-projectile counsel swiper ivy company-rtags rtags company-restclient restclient know-your-http-well company-php ac-php-core xcscope company-go go-mode company-emacs-eclim centered-cursor-mode browse-at-remote dash font-lock+ dotenv-mode org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir flycheck-mix alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-tern company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
  '(paradox-github-token t)
  '(rbenv-modeline-function 'rbenv--modeline-plain))
 (custom-set-faces
