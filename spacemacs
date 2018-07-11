@@ -352,6 +352,10 @@ you should place you code here."
 
     ;; CUSTOM AGENDA
     ;; Custom agenda command definitions
+
+    (defun my/org-agenda-skip-scheduled ()
+      (org-agenda-skip-entry-if 'scheduled 'deadline 'regexp "\n]+>"))
+
     (setq org-agenda-custom-commands
           (quote (("N" "Notes" tags "NOTE"
                    ((org-agenda-overriding-header "Notes")
@@ -386,21 +390,22 @@ you should place you code here."
                   ("s" todo-tree "STARTED")
                   ("w" todo-tree "WAITING")
                   ("R" tags "REFILE")
+                  ("o" tags-todo "-pav-swc-gxp/TODO")
                   ("p" . "Project Agendas")
                   ("pp" "Perfavo" ((tags-todo "pav/STARTED" ((org-agenda-overriding-header "Started Tasks")))
                                    (tags-todo "pav/NEXT" ((org-agenda-overriding-header "Next Tasks")))
                                    (tags-todo "pav/WAITING" ((org-agenda-overriding-header "Waiting")))
-                                   (tags-todo "pav/TODO" ((org-agenda-overriding-header "Open Tasks")))
+                                   (tags-todo "pav/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
                   ))
                   ("ps" "Software-Challenge" ((tags-todo "swc/STARTED" ((org-agenda-overriding-header "Started Tasks")))
                                    (tags-todo "swc/NEXT" ((org-agenda-overriding-header "Next Tasks")))
                                    (tags-todo "swc/WAITING" ((org-agenda-overriding-header "Waiting")))
-                                   (tags-todo "swc/TODO" ((org-agenda-overriding-header "Open Tasks")))
+                                   (tags-todo "swc/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
                                    ))
                   ("pg" "GFXpro" ((tags-todo "gxp/STARTED" ((org-agenda-overriding-header "Started Tasks")))
                                               (tags-todo "gxp/NEXT" ((org-agenda-overriding-header "Next Tasks")))
                                               (tags-todo "gxp/WAITING" ((org-agenda-overriding-header "Waiting")))
-                                              (tags-todo "gxp/TODO" ((org-agenda-overriding-header "Open Tasks")))
+                                              (tags-todo "gxp/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
                                               ))
 ; Weekly Review block agenda
   ("r" . "Weekly Review")
