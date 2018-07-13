@@ -392,6 +392,24 @@ you should place you code here."
                   ("R" tags "REFILE")
                   ("o" tags-todo "-pav-swc-gxp/TODO")
                   ("p" . "Project Agendas")
+
+        ;;           (mapcar (lambda (l)
+        ;;                     (let ((first-member (car l))
+        ;;                           (second-member (cadr l))
+        ;;                           (third-member (nth 2 l) ))
+        ;;                       `(,first-member ,second-member ;;First and second
+        ;;                                       ( (tags-todo ,(concat third-member "/STARTED")
+        ;;                                                     `((org-agenda-overriding-header "Started Tasks")))
+        ;;                                         (tags-todo ,(concat third-member "/NEXT")
+        ;;                                                     `((org-agenda-overriding-header "Next Tasks")))
+        ;;                                         (tags-todo ,(concat third-member "/WAITING")
+        ;;                                                     `((org-agenda-overriding-header "Waiting")))
+        ;;                                         (tags-todo ,(concat third-member "/TODO")
+        ;;                                                     `((org-agenda-overriding-header "Unscheduled Tasks")
+        ;;                                                       (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))))))
+        ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;                   '( ("pp" "Perfavo" "pav") ("ps" "Software-Challenge" "swc")))
+
                   ("pp" "Perfavo" ((tags-todo "pav/STARTED" ((org-agenda-overriding-header "Started Tasks")))
                                    (tags-todo "pav/NEXT" ((org-agenda-overriding-header "Next Tasks")))
                                    (tags-todo "pav/WAITING" ((org-agenda-overriding-header "Waiting")))
