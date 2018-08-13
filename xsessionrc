@@ -1,6 +1,10 @@
 #!/bin/sh
 
 xrdb -merge $HOME/.Xresources
+xrandr --dpi 183 --fb 7152x3840 \
+  --output DP-2.8 --mode 1920x2160 --pos 0x1920 \
+  --output DP-2.9 --mode 1920x2160 \
+  --output DP-4 --scale 1.3x1.3 --mode 3840x2160 --pos 2160x805
 xscreensaver &
 feh --no-fehbg --bg-center ~/backgrounds/current-left.jpg ~/backgrounds/current-right.jpg
 #/home/svk/network.sh
