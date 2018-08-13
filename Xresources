@@ -10,7 +10,7 @@
 xterm*faceName: Source Code Pro
 !xterm*faceName: Anonymous Pro
 !xterm*faceName: Monospace
-xterm*faceSize: 11
+xterm*faceSize: 10
 !xterm*font:        -misc-fixed-medium-r-normal--18-*-*-*-*-*-iso10646-1
 !xterm*iconPixmap: ...
 !XTerm*iconName: terminal
@@ -42,7 +42,7 @@ xscreensaver.grabVideoFrames: False
 xscreensaver.unfade: False
 Emacs.FontBackend: xft
 
-Xft.dpi: 180
+Xft.dpi: 183
 
 !*color15: S_base03
 ! URxvt*termName:                       string
@@ -112,7 +112,7 @@ URxvt*visualBell:                     true
 ! URxvt*pointerColor2:                  color
 ! URxvt*borderColor:                    color
 ! URxvt*iconFile:                       file
-URxvt*font:                           xft:Source Code Pro:size=11
+URxvt*font:                           xft:Source Code Pro:size=10
 ! URxvt*boldFont:                       fontname
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname
