@@ -1,0 +1,7 @@
+clear lock
+clear control
+keycode 66 = Control_L
+keycode 37 = Super_L
+keycode 133 = Alt_L
+keycode 64 = Alt_L
+add control = Control_L Control_R

@@ -1,0 +1,7 @@
+clear lock
+clear control
+keycode 37 = Control_L
+keycode 133 = Super_L
+keycode 134 = Tab
+keycode 119 = Escape
+add control = Control_L Control_R
