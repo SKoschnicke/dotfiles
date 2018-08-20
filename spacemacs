@@ -327,7 +327,7 @@ you should place you code here."
 
     (setq org-todo-keywords
           (quote ((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "|" "DONE(d!/!)")
-                  (sequence "WAITING(w@/!)" "SOMEDAY(S)" "HOLD(h)" "|" "CANCELLED(c@/!)"))))
+                  (sequence "WAITING(w@/!)" "SOMEDAY(S)" "MAYBE(m)" "HOLD(h)" "|" "CANCELLED(c@/!)"))))
 
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -393,6 +393,7 @@ you should place you code here."
                   ("o" tags-todo "-pav-swc-gxp/TODO")
                   ("p" . "Project Agendas")
 
+
         ;;           (mapcar (lambda (l)
         ;;                     (let ((first-member (car l))
         ;;                           (second-member (cadr l))
@@ -409,6 +410,7 @@ you should place you code here."
         ;;                                                       (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))))))
         ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ;;                   '( ("pp" "Perfavo" "pav") ("ps" "Software-Challenge" "swc")))
+
 
                   ("pp" "Perfavo" ((tags-todo "pav/STARTED" ((org-agenda-overriding-header "Started Tasks")))
                                    (tags-todo "pav/NEXT" ((org-agenda-overriding-header "Next Tasks")))
@@ -830,8 +832,7 @@ otherkeywords={define,include,\\#}}
   ;; Does not work yet, have to use M-/
   ;(evil-define-key 'insert org-mode-map (kbd "TAB") 'hippie-expand)
 
-  (with-eval-after-load 'helm-org-rifle
-    (spacemacs/set-leader-keys "aos" 'helm-org-rifle))
+  (spacemacs/set-leader-keys "aos" 'helm-org-rifle)
 
   ;; Keybindings for string inflection package
   (define-key evil-normal-state-map (kbd "C-w C-c") 'string-inflection-ruby-style-cycle)
@@ -888,11 +889,14 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auth-sources '("~/.authinfo.gpg" "~/.netrc"))
  '(c-basic-offset 2)
+ '(debug-on-error f)
  '(exec-path
    '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin"))
  '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
  '(haskell-tags-on-save t)
+ '(helm-ag-fuzzy-match t)
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
  '(mu4e-view-show-addresses t)
