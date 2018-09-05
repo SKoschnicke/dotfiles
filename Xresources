@@ -42,7 +42,7 @@ xscreensaver.grabVideoFrames: False
 xscreensaver.unfade: False
 Emacs.FontBackend: xft
 
-Xft.dpi: 183
+Xft.dpi: 138
 
 !*color15: S_base03
 ! URxvt*termName:                       string

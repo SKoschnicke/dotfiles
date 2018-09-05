@@ -1,10 +1,10 @@
 #!/bin/sh
 
 xrdb -merge $HOME/.Xresources
-xrandr --dpi 183 --fb 7152x3840 \
-  --output DP-2.8 --mode 1920x2160 --pos 0x1920 \
-  --output DP-2.9 --mode 1920x2160 \
-  --output DP-4 --scale 1.3x1.3 --mode 3840x2160 --pos 2160x805
+#xrandr --dpi 183 --fb 7152x3840 \
+  #--output DP-2.8 --mode 1920x2160 --pos 0x1920 \
+  #--output DP-2.9 --mode 1920x2160 \
+  #--output DP-4 --scale 1.3x1.3 --mode 3840x2160 --pos 2160x805
 xscreensaver &
 case $HOSTNAME in
   (daltigoth) feh --no-fehbg --bg-center ~/backgrounds/current.jpg;;
@@ -24,6 +24,7 @@ emacs &
 dunst -conf ~/.dunstrc &
 # remap Delete to Tab (and Shift-Delete to Delete)
 #xmodmap -e "keycode 134 = Tab Delete"
+$HOME/bin/ergo
 exec xmonad
 #exec metacity
 #exec dwm

@@ -110,6 +110,10 @@ alias ls="TERM=xterm-256color exa"
 alias lls="TERM=xterm-256color exa --git -l"
 alias db="dropbox-cli"
 
+alias cat=bat
+alias find=fd
+alias man=tldr
+
 # ps + grep.
 # see https://github.com/blueyed/oh-my-zsh/blob/a08181210b47625efdc8480e628b0155bff392c9/lib/aliases.zsh#L10-L18
 pg() {
