@@ -42,4 +42,4 @@ ln -s ~/.dotfiles/shell-startup.sh ~/.shell-startup.sh
 mkdir -p ~/.config/trizen
 ln -s ~/.dotfiles/trizen.conf ~/.config/trizen/trizen.conf
 mkdir -p ~/.config/kitty
-ln -s ~/.dotfiles/kitty.conf ~/.config/kitty/trizen.conf
+ln -s ~/.dotfiles/kitty.conf ~/.config/kitty/kitty.conf
