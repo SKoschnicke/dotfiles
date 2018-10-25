@@ -15,7 +15,7 @@ setxkbmap -layout "us"
 #xinput set-prop "Wacom Bamboo Connect Pen stylus" --type=float "Coordinate Transformation Matrix" 0.5 0 0.5 0 1 0 0 0 1
 clipit &
 dropbox-cli start
-kitty &
+kitty --session ~/.dotfiles/kitty-session.conf &
 firefox &
 #thunderbird &
 #pidgin &
