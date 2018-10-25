@@ -157,9 +157,9 @@ export BAT_THEME="Monokai Extended Light"
 
 export TLDR_COLOR_BLANK="white"
 export TLDR_COLOR_NAME="cyan"
-export TLDR_COLOR_DESCRIPTION="white"
+export TLDR_COLOR_DESCRIPTION="yellow"
 export TLDR_COLOR_EXAMPLE="green"
-export TLDR_COLOR_COMMAND="red"
-export TLDR_COLOR_PARAMETER="white"
+export TLDR_COLOR_COMMAND="blue"
+export TLDR_COLOR_PARAMETER="magenta"
 export TLDR_CACHE_ENABLED=1
 export TLDR_CACHE_MAX_AGE=720
