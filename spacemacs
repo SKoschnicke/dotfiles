@@ -32,8 +32,11 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t
-                      auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'cycle)
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence "jk"
+                      auto-completion-complete-with-key-sequence-delay 0.1
+                      )
      typography
      emoji
      emacs-lisp
@@ -706,6 +709,17 @@ otherkeywords={define,include,\\#}}
   ; never indent with tabs
   (setq-default indent-tabs-mode nil)
 
+  ;; Enable JavaScript completion between <script>...</script> etc.
+  (advice-add 'company-tern :before
+              #'(lambda (&rest _)
+                  (if (equal major-mode 'web-mode)
+                      (let ((web-mode-cur-language
+                             (web-mode-language-at-pos)))
+                        (if (or (string= web-mode-cur-language "javascript")
+                                (string= web-mode-cur-language "jsx"))
+                            (unless tern-mode (tern-mode))
+                          (if tern-mode (tern-mode -1)))))))
+
   ; how can the default config not set this?!
   (global-set-key (kbd "C-i") 'evil-jump-forward)
 
@@ -734,79 +748,85 @@ otherkeywords={define,include,\\#}}
   ; https://github.com/syl20bnr/spacemacs/issues/4207
   (setq shell-file-name "/bin/sh")
 
-  (require 'mu4e)
   (setq mu4e-maildir "~/Mail"
         mu4e-get-mail-command "offlineimap"
         mu4e-update-interval 300 ;; in seconds
         mu4e-compose-format-flowed t
         )
 
-  (setq mu4e-sent-folder "/GFXpro/INBOX.Sent"
-        mu4e-drafts-folder "/GFXpro/INBOX.Drafts"
-        user-mail-address "s.koschnicke@gfxpro.com"
-        smtpmail-local-domain "gfxpro.com"
-        smtpmail-smtp-server "mail.jpberlin.de"
-        smtpmail-smtp-service 465
-        smtpmail-stream-type 'ssl
-        smtpmail-auth-credentials "~/.netrc"
-        message-send-mail-function 'smtpmail-send-it
+  (setq mu4e-contexts
+        `( ,(make-mu4e-context
+             :name "Privat"
+             :enter-func (lambda () (mu4e-message "Switch to the Private context"))
+             ;; leave-func not defined
+             :match-func (lambda (msg)
+                           (when msg
+                             (mu4e-message-contact-field-matches msg
+                                                                 :to "sven@koschnicke.de")))
+             :vars '(  ( user-mail-address      . "sven@koschnicke.de"  )
+                       ( user-full-name     . "Sven Koschnicke" )
+                       ( mu4e-compose-signature .
+                                                (concat
+                                                 "Viele Gruesse\n"
+                                                 "Sven Koschnicke\n"))
+                       (mu4e-sent-folder . "/Privat/INBOX.Sent")
+                       (mu4e-drafts-folder . "/Privat/INBOX.Drafts")
+                       (mu4e-trash-folder . "/Privat/INBOX.Trash")
+                       (mu4e-refile-folder . "/Privat/INBOX.Archive")
+                       (smtpmail-local-domain . "koschnicke.de")
+                       (smtpmail-smtp-server . "sslout.df.eu")
+                       (smtpmail-smtp-service . 587)
+                       (smtpmail-stream-type . starttls)
+                       (smtpmail-auth-credentials . "~/.netrc")))
+           ,(make-mu4e-context
+             :name "GFXpro"
+             :enter-func (lambda () (mu4e-message "Switch to the GFXpro context"))
+             ;; leave-fun not defined
+             :match-func (lambda (msg)
+                           (when msg
+                             (mu4e-message-contact-field-matches msg
+                                                                 :to "s.koschnicke@gfxpro.com")))
+             :vars '(  ( user-mail-address      . "s.koschnicke@gfxpro.com" )
+                       ( user-full-name     . "Sven Koschnicke" )
+                       ( mu4e-compose-signature .
+                                                (concat
+                                                 "Viele Gruesse\n"
+                                                 "Sven Koschnicke\n"))
+                       (mu4e-sent-folder . "/GFXpro/Saved Items")
+                       (mu4e-drafts-folder . "/GFXpro/Drafts")
+                       (smtpmail-local-domain . "gfxpro.com")
+                       (smtpmail-smtp-server . "mail.jpberlin.de")
+                       (smtpmail-smtp-service . 465)
+                       (smtpmail-stream-type . ssl)
+                       (smtpmail-auth-credentials . "~/.netrc"))
+             )
+           ,(make-mu4e-context
+             :name "Uni"
+             :enter-func (lambda () (mu4e-message "Switch to the Uni context"))
+             ;; leave-fun not defined
+             :match-func (lambda (msg)
+                           (when msg
+                             (mu4e-message-contact-field-matches msg
+                                                                 :to "svk@informatik.uni-kiel.de")))
+             :vars '(  ( user-mail-address      . "svk@informatik.uni-kiel.de" )
+                       ( user-full-name     . "Sven Koschnicke" )
+                       ( mu4e-compose-signature .
+                                                (concat
+                                                 "Viele Gruesse\n"
+                                                 "Sven Koschnicke\n"))
+                       (mu4e-sent-folder . "/Uni/sent")
+                       (mu4e-drafts-folder . "/Uni/drafts")
+                       (user-mail-address . "svk@informatik.uni-kiel.de")
+                       (smtpmail-local-domain . "informatik.uni-kiel.de")
+                       (smtpmail-smtp-server . "mail.informatik.uni-kiel.de")
+                       (smtpmail-smtp-service . 587)
+                       (smtpmail-stream-type . starttls)
+                       (smtpmail-auth-credentials . "~/.netrc"))
+             )
+           )
         )
 
-  (defvar my-mu4e-account-alist
-    '(("GFXpro"
-       (mu4e-sent-folder "/GFXpro/Saved Items")
-       (mu4e-drafts-folder "/GFXpro/Drafts")
-       (user-mail-address "s.koschnicke@gfxpro.com")
-       (smtpmail-local-domain "gfxpro.com")
-       (smtpmail-smtp-server "mail.jpberlin.de")
-       (smtpmail-smtp-service 465)
-       (smtpmail-stream-type ssl)
-       (smtpmail-auth-credentials "~/.netrc"))
-      ("Uni"
-       (mu4e-sent-folder "/Uni/sent")
-       (mu4e-drafts-folder "/Uni/drafts")
-       (user-mail-address "svk@informatik.uni-kiel.de")
-       (smtpmail-local-domain "informatik.uni-kiel.de")
-       (smtpmail-smtp-server "mail.informatik.uni-kiel.de")
-       (smtpmail-smtp-service 587)
-       (smtpmail-stream-type starttls)
-       (smtpmail-auth-credentials "~/.netrc"))
-      ("Privat"
-       (mu4e-sent-folder "/Privat/INBOX.Sent")
-       (mu4e-drafts-folder "/Privat/INBOX.Drafts")
-       (mu4e-trash-folder "/Privat/INBOX.Trash")
-       (mu4e-refile-folder "/Privat/INBOX.Archive")
-       (user-mail-address "sven@koschnicke.de")
-       (smtpmail-local-domain "koschnicke.de")
-       (smtpmail-smtp-server "sslout.df.eu")
-       (smtpmail-smtp-service 587)
-       (smtpmail-stream-type starttls)
-       (smtpmail-auth-credentials "~/.netrc"))
-      )
-    )
 
-  (defun my-mu4e-set-account ()
-    "Set the account for composing a message."
-    (let* ((account
-            (if mu4e-compose-parent-message
-                (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-                  (string-match "/\\(.*?\\)/" maildir)
-                  (match-string 1 maildir))
-              (completing-read (format "Compose with account: (%s) "
-                                       (mapconcat #'(lambda (var) (car var))
-                                                  my-mu4e-account-alist "/"))
-                               (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
-                               nil t nil nil (caar my-mu4e-account-alist))))
-           (account-vars (cdr (assoc account my-mu4e-account-alist))))
-      (if account-vars
-          (mapc #'(lambda (var)
-                    (set (car var) (cadr var)))
-                account-vars)
-        (error "No email account found"))))
-
-  (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
-
-  (require 'mu4e)
   (add-to-list 'mu4e-bookmarks
                '("flag:flagged" "Flagged messages" ?f)
   )
@@ -889,24 +909,22 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auth-sources '("~/.authinfo.gpg" "~/.netrc"))
  '(c-basic-offset 2)
- '(debug-on-error f)
  '(exec-path
    '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin"))
  '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
  '(haskell-tags-on-save t)
- '(helm-ag-fuzzy-match t)
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
  '(mu4e-view-show-addresses t)
- '(mu4e-view-show-images t t)
+ '(mu4e-view-show-images t)
  '(org-babel-load-languages '((ruby . t) (emacs-lisp . t)))
  '(org-list-allow-alphabetical t)
  '(package-selected-packages
-   '(restclient-helm ob-restclient ob-http csv-mode company-restclient restclient know-your-http-well org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir flycheck-mix alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-tern company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
+   '(org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir flycheck-mix alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-tern company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
  '(paradox-github-token t)
- '(rbenv-modeline-function 'rbenv--modeline-plain))
+ '(rbenv-modeline-function 'rbenv--modeline-plain)
+ '(send-mail-function 'smtpmail-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
