@@ -30,7 +30,7 @@ import XMonad.Config.Desktop
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "/usr/bin/st"
+myTerminal = "/usr/bin/kitty"
 
 
 ------------------------------------------------------------------------
