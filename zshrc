@@ -96,6 +96,22 @@ setopt PUSHD_IGNORE_DUPS
 # tell Java that XMonad is non-reparenting (prevents blank windows of java applications)
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+function powerline_precmd() {
+    PS1="$(powerline-go -error $? -shell zsh -theme $HOME/.dotfiles/theme.json)"
+}
+
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" ]; then
+    install_powerline_precmd
+fi
 
 export EDITOR=vim
 
@@ -109,6 +125,10 @@ alias sc="cd $HOME/development/sc"
 alias ls="TERM=xterm-256color exa"
 alias lls="TERM=xterm-256color exa --git -l"
 alias db="dropbox-cli"
+
+alias cat=bat
+alias find=fd
+alias man=tldr
 
 # ps + grep.
 # see https://github.com/blueyed/oh-my-zsh/blob/a08181210b47625efdc8480e628b0155bff392c9/lib/aliases.zsh#L10-L18
@@ -132,3 +152,14 @@ unalias gr # zsh git plugin defines this alias but we want to use the gr tool
 
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
+
+export BAT_THEME="Monokai Extended Light"
+
+export TLDR_COLOR_BLANK="white"
+export TLDR_COLOR_NAME="cyan"
+export TLDR_COLOR_DESCRIPTION="yellow"
+export TLDR_COLOR_EXAMPLE="green"
+export TLDR_COLOR_COMMAND="blue"
+export TLDR_COLOR_PARAMETER="magenta"
+export TLDR_CACHE_ENABLED=1
+export TLDR_CACHE_MAX_AGE=720

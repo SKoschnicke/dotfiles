@@ -36,6 +36,10 @@ ln -s ~/.dotfiles/eclimrc ~/.eclimrc
 ln -s ~/.dotfiles/gitignore ~/.gitignore-global
 ln -s ~/.dotfiles/vimperatorrc ~/.vimperatorrc
 ln -s ~/.dotfiles/yaourtrc ~/.yaourtrc
+mkdir -p ~/.config/ranger
 ln -s ~/.dotfiles/ranger.conf ~/.config/ranger/rc.conf
 ln -s ~/.dotfiles/shell-startup.sh ~/.shell-startup.sh
+mkdir -p ~/.config/trizen
 ln -s ~/.dotfiles/trizen.conf ~/.config/trizen/trizen.conf
+mkdir -p ~/.config/kitty
+ln -s ~/.dotfiles/kitty.conf ~/.config/kitty/kitty.conf
