@@ -6,7 +6,7 @@
 #
 # Always use ASCII characters only.
 #
-accounts = GFXpro,Privat
+accounts = GFXpro,Uni
 
 [Account Uni]
 
