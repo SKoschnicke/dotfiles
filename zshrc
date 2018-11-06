@@ -46,7 +46,7 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # NOTE that autojump needs the executable autojump installed
 # NOTE do NOT enable the tmux plugin! It breaks the last-working-dir functionality
-plugins=(last-working-dir zsh-navigation-tools rvm web-search rails bundler ruby git gem git-extras github vi-mode wd fabric docker archlinux colorize alias-tips tmux)
+plugins=(last-working-dir zsh-navigation-tools rvm web-search rails bundler ruby git gem git-extras github vi-mode wd fabric docker archlinux colorize alias-tips tmux fasd)
 
 source $ZSH/oh-my-zsh.sh
 
