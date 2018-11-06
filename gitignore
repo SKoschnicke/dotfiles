@@ -46,7 +46,13 @@ GPATH
 ######################
 .idea
 *.iml
+.meghanada
+.ac-php-conf.json
+
+# Build Tools #
+###############
+.gradle
 
 # Project specific #
 ####################
-~/development/sc/webflow-site/deploy.sh
+/**/development/sc/webflow-site/deploy.sh
