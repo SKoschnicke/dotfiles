@@ -748,96 +748,99 @@ otherkeywords={define,include,\\#}}
   ; https://github.com/syl20bnr/spacemacs/issues/4207
   (setq shell-file-name "/bin/sh")
 
-  (setq mu4e-maildir "~/Mail"
-        mu4e-get-mail-command "offlineimap"
-        mu4e-update-interval 300 ;; in seconds
-        mu4e-compose-format-flowed t
-        )
+  (with-eval-after-load 'mu4e
 
-  (setq mu4e-contexts
-        `( ,(make-mu4e-context
-             :name "Privat"
-             :enter-func (lambda () (mu4e-message "Switch to the Private context"))
-             ;; leave-func not defined
-             :match-func (lambda (msg)
-                           (when msg
-                             (mu4e-message-contact-field-matches msg
-                                                                 :to "sven@koschnicke.de")))
-             :vars '(  ( user-mail-address      . "sven@koschnicke.de"  )
-                       ( user-full-name     . "Sven Koschnicke" )
-                       ( mu4e-compose-signature .
-                                                (concat
-                                                 "Viele Gruesse\n"
-                                                 "Sven Koschnicke\n"))
-                       (mu4e-sent-folder . "/Privat/INBOX.Sent")
-                       (mu4e-drafts-folder . "/Privat/INBOX.Drafts")
-                       (mu4e-trash-folder . "/Privat/INBOX.Trash")
-                       (mu4e-refile-folder . "/Privat/INBOX.Archive")
-                       (smtpmail-local-domain . "koschnicke.de")
-                       (smtpmail-smtp-server . "sslout.df.eu")
-                       (smtpmail-smtp-service . 587)
-                       (smtpmail-stream-type . starttls)
-                       (smtpmail-auth-credentials . "~/.netrc")))
-           ,(make-mu4e-context
-             :name "GFXpro"
-             :enter-func (lambda () (mu4e-message "Switch to the GFXpro context"))
-             ;; leave-fun not defined
-             :match-func (lambda (msg)
-                           (when msg
-                             (mu4e-message-contact-field-matches msg
-                                                                 :to "s.koschnicke@gfxpro.com")))
-             :vars '(  ( user-mail-address      . "s.koschnicke@gfxpro.com" )
-                       ( user-full-name     . "Sven Koschnicke" )
-                       ( mu4e-compose-signature .
-                                                (concat
-                                                 "Viele Gruesse\n"
-                                                 "Sven Koschnicke\n"))
-                       (mu4e-sent-folder . "/GFXpro/Saved Items")
-                       (mu4e-drafts-folder . "/GFXpro/Drafts")
-                       (smtpmail-local-domain . "gfxpro.com")
-                       (smtpmail-smtp-server . "mail.jpberlin.de")
-                       (smtpmail-smtp-service . 465)
-                       (smtpmail-stream-type . ssl)
-                       (smtpmail-auth-credentials . "~/.netrc"))
+    (setq mu4e-maildir "~/Mail"
+          mu4e-get-mail-command "offlineimap"
+          mu4e-update-interval 300 ;; in seconds
+          mu4e-compose-format-flowed t
+          )
+
+    (setq mu4e-contexts
+          `( ,(make-mu4e-context
+               :name "Privat"
+               :enter-func (lambda () (mu4e-message "Switch to the Private context"))
+               ;; leave-func not defined
+               :match-func (lambda (msg)
+                             (when msg
+                               (mu4e-message-contact-field-matches msg
+                                                                   :to "sven@koschnicke.de")))
+               :vars '(  ( user-mail-address      . "sven@koschnicke.de"  )
+                         ( user-full-name     . "Sven Koschnicke" )
+                         ( mu4e-compose-signature .
+                                                  (concat
+                                                   "Viele Gruesse\n"
+                                                   "Sven Koschnicke\n"))
+                         (mu4e-sent-folder . "/Privat/INBOX.Sent")
+                         (mu4e-drafts-folder . "/Privat/INBOX.Drafts")
+                         (mu4e-trash-folder . "/Privat/INBOX.Trash")
+                         (mu4e-refile-folder . "/Privat/INBOX.Archive")
+                         (smtpmail-local-domain . "koschnicke.de")
+                         (smtpmail-smtp-server . "sslout.df.eu")
+                         (smtpmail-smtp-service . 587)
+                         (smtpmail-stream-type . starttls)
+                         (smtpmail-auth-credentials . "~/.netrc")))
+             ,(make-mu4e-context
+               :name "GFXpro"
+               :enter-func (lambda () (mu4e-message "Switch to the GFXpro context"))
+               ;; leave-fun not defined
+               :match-func (lambda (msg)
+                             (when msg
+                               (mu4e-message-contact-field-matches msg
+                                                                   :to "s.koschnicke@gfxpro.com")))
+               :vars '(  ( user-mail-address      . "s.koschnicke@gfxpro.com" )
+                         ( user-full-name     . "Sven Koschnicke" )
+                         ( mu4e-compose-signature .
+                                                  (concat
+                                                   "Viele Gruesse\n"
+                                                   "Sven Koschnicke\n"))
+                         (mu4e-sent-folder . "/GFXpro/Saved Items")
+                         (mu4e-drafts-folder . "/GFXpro/Drafts")
+                         (smtpmail-local-domain . "gfxpro.com")
+                         (smtpmail-smtp-server . "mail.jpberlin.de")
+                         (smtpmail-smtp-service . 465)
+                         (smtpmail-stream-type . ssl)
+                         (smtpmail-auth-credentials . "~/.netrc"))
+               )
+             ,(make-mu4e-context
+               :name "Uni"
+               :enter-func (lambda () (mu4e-message "Switch to the Uni context"))
+               ;; leave-fun not defined
+               :match-func (lambda (msg)
+                             (when msg
+                               (mu4e-message-contact-field-matches msg
+                                                                   :to "svk@informatik.uni-kiel.de")))
+               :vars '(  ( user-mail-address      . "svk@informatik.uni-kiel.de" )
+                         ( user-full-name     . "Sven Koschnicke" )
+                         ( mu4e-compose-signature .
+                                                  (concat
+                                                   "Viele Gruesse\n"
+                                                   "Sven Koschnicke\n"))
+                         (mu4e-sent-folder . "/Uni/sent")
+                         (mu4e-drafts-folder . "/Uni/drafts")
+                         (user-mail-address . "svk@informatik.uni-kiel.de")
+                         (smtpmail-local-domain . "informatik.uni-kiel.de")
+                         (smtpmail-smtp-server . "mail.informatik.uni-kiel.de")
+                         (smtpmail-smtp-service . 587)
+                         (smtpmail-stream-type . starttls)
+                         (smtpmail-auth-credentials . "~/.netrc"))
+               )
              )
-           ,(make-mu4e-context
-             :name "Uni"
-             :enter-func (lambda () (mu4e-message "Switch to the Uni context"))
-             ;; leave-fun not defined
-             :match-func (lambda (msg)
-                           (when msg
-                             (mu4e-message-contact-field-matches msg
-                                                                 :to "svk@informatik.uni-kiel.de")))
-             :vars '(  ( user-mail-address      . "svk@informatik.uni-kiel.de" )
-                       ( user-full-name     . "Sven Koschnicke" )
-                       ( mu4e-compose-signature .
-                                                (concat
-                                                 "Viele Gruesse\n"
-                                                 "Sven Koschnicke\n"))
-                       (mu4e-sent-folder . "/Uni/sent")
-                       (mu4e-drafts-folder . "/Uni/drafts")
-                       (user-mail-address . "svk@informatik.uni-kiel.de")
-                       (smtpmail-local-domain . "informatik.uni-kiel.de")
-                       (smtpmail-smtp-server . "mail.informatik.uni-kiel.de")
-                       (smtpmail-smtp-service . 587)
-                       (smtpmail-stream-type . starttls)
-                       (smtpmail-auth-credentials . "~/.netrc"))
-             )
-           )
-        )
+          )
 
 
-  (add-to-list 'mu4e-bookmarks
-               '("flag:flagged" "Flagged messages" ?f)
+    (add-to-list 'mu4e-bookmarks
+                 '("flag:flagged" "Flagged messages" ?f)
+                 )
+    ;(require 'mu4e-contrib)
+    (setq mu4e-html2text-command 'mu4e-shr2text)
+    (add-hook 'mu4e-view-mode-hook
+              (lambda()
+                ;; try to emulate some of the eww key-bindings
+                (local-set-key (kbd "<tab>") 'shr-next-link)
+                (local-set-key (kbd "<backtab>") 'shr-previous-link)))
+
   )
-  (require 'mu4e-contrib)
-  (setq mu4e-html2text-command 'mu4e-shr2text)
-  (add-hook 'mu4e-view-mode-hook
-            (lambda()
-              ;; try to emulate some of the eww key-bindings
-              (local-set-key (kbd "<tab>") 'shr-next-link)
-              (local-set-key (kbd "<backtab>") 'shr-previous-link)))
-
   ;; use ensime in java mode (requires installed sbt)
   ;(add-hook 'java-mode-hook 'scala/configure-ensime)
   ;(add-hook 'java-mode-hook 'scala/maybe-start-ensime)
@@ -912,6 +915,7 @@ This function is called at the very end of Spacemacs initialization."
  '(c-basic-offset 2)
  '(exec-path
    '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin"))
+ '(flycheck-checker-error-threshold 2000)
  '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
  '(haskell-tags-on-save t)
  '(js2-missing-semi-one-line-override t)
