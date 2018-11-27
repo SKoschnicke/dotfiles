@@ -777,8 +777,8 @@ otherkeywords={define,include,\\#}}
                          (mu4e-refile-folder . "/Privat/INBOX.Archive")
                          (smtpmail-local-domain . "koschnicke.de")
                          (smtpmail-smtp-server . "sslout.df.eu")
-                         (smtpmail-smtp-service . 587)
-                         (smtpmail-stream-type . starttls)
+                         (smtpmail-smtp-service . 465)
+                         (smtpmail-stream-type . ssl)
                          (smtpmail-auth-credentials . "~/.netrc")))
              ,(make-mu4e-context
                :name "GFXpro"
@@ -913,10 +913,12 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 2)
+ '(evil-want-Y-yank-to-eol t)
  '(exec-path
    '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin"))
  '(flycheck-checker-error-threshold 2000)
  '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
+ '(flycheck-phpcs-standard "Wordpress")
  '(haskell-tags-on-save t)
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
