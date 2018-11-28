@@ -820,7 +820,7 @@ otherkeywords={define,include,\\#}}
                          (mu4e-drafts-folder . "/Uni/drafts")
                          (user-mail-address . "svk@informatik.uni-kiel.de")
                          (smtpmail-local-domain . "informatik.uni-kiel.de")
-                         (smtpmail-smtp-server . "mail.informatik.uni-kiel.de")
+                         (smtpmail-smtp-server . "mailin.informatik.uni-kiel.de")
                          (smtpmail-smtp-service . 587)
                          (smtpmail-stream-type . starttls)
                          (smtpmail-auth-credentials . "~/.netrc"))
