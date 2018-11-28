@@ -28,3 +28,4 @@ $HOME/bin/ergo
 exec xmonad
 #exec metacity
 #exec dwm
+#exec fvwm
