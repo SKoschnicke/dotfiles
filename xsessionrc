@@ -7,7 +7,7 @@ xrdb -merge $HOME/.Xresources
   #--output DP-4 --scale 1.3x1.3 --mode 3840x2160 --pos 2160x805
 xscreensaver &
 case $HOSTNAME in
-  (daltigoth) feh --no-fehbg --bg-center ~/backgrounds/current.jpg;;
+  (daltigoth) feh --no-fehbg --bg-scale ~/backgrounds/current.jpg;;
   (sven-uni)   feh --no-fehbg --bg-center ~/backgrounds/current-left.jpg ~/backgrounds/current-right.jpg;;
 esac
 #setxkbmap -layout "us, de" -option "grp:caps_toggle"
