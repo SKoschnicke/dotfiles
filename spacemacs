@@ -869,8 +869,8 @@ otherkeywords={define,include,\\#}}
   (setq helm-ag-base-command "rg --vimgrep --no-heading")
 
   ;; automatically sync mobile org on start and stop of emacs
-  (add-hook 'after-init-hook 'org-mobile-pull)
-  (add-hook 'kill-emacs-hook 'org-mobile-push)
+  ;(add-hook 'after-init-hook 'org-mobile-pull)
+  ;(add-hook 'kill-emacs-hook 'org-mobile-push)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
