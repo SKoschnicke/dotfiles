@@ -550,6 +550,7 @@ you should place you code here."
                    "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
                   ("B" "Brain" plain (function org-brain-goto-end)
                    "* %i%?" :empty-lines 1)
+                  ("f" "Frontastic Weekly" entry (file+headline "gxp-frontastic.org" "DevOps Weekly Review Meeting") (file "tmp-frontastic-meeting.org"))
                   )))
 
     ;;; org mode beamer
