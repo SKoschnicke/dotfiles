@@ -359,6 +359,7 @@ you should place you code here."
     (setq org-time-clocksum-format
           '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
 
+    (setq org-agenda-overriding-columns-format "%TODO %7EFFORT %PRIORITY     %100ITEM 100%TAGS")
     ;; CUSTOM AGENDA
     ;; Custom agenda command definitions
 
