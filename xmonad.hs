@@ -171,16 +171,28 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      spawn "playerctl previous")
 
   -- Mute volume.
-  , ((modMask .|. shiftMask, xK_F10),
+  , ((modMask, xK_F1),
      spawn "amixer -D pulse set Master toggle")
 
   -- Decrease volume.
-  , ((modMask .|. shiftMask, xK_F11),
+  , ((modMask, xK_F2),
      spawn "amixer -q set Master playback 10%-")
 
   -- Increase volume.
-  , ((modMask .|. shiftMask, xK_F12),
+  , ((modMask, xK_F3),
      spawn "amixer -q set Master playback 10%+")
+
+  -- Decrease screen backlight.
+  , ((modMask, xK_F5),
+     spawn "xbacklight -dec 10")
+
+  -- Increase screen backlight.
+  , ((modMask, xK_F6),
+     spawn "xbacklight -inc 10")
+
+  -- Toggle keyboard backlight.
+  , ((modMask, xK_F11),
+     spawn "/home/sven/kb-light.py")
 
   -- search
   , ((modMask, xK_s),
