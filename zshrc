@@ -128,7 +128,7 @@ alias lls="TERM=xterm-256color exa --git -l"
 alias db="dropbox-cli"
 
 alias cat=bat
-alias find=fd
+#alias find=fd
 alias man=tldr
 
 # ps + grep.

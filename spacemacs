@@ -155,7 +155,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 9.0
+                               :size 7.0
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -300,6 +300,9 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
   (require 'helm-bookmark) ; workaround until https://github.com/syl20bnr/spacemacs/issues/9549 is fixed in stable
+
+  (setq browse-url-browser-function 'browse-url-firefox)
+
   (with-eval-after-load 'org
 
     (setq org-log-done t
@@ -757,6 +760,8 @@ otherkeywords={define,include,\\#}}
           mu4e-get-mail-command "offlineimap"
           mu4e-update-interval 300 ;; in seconds
           mu4e-compose-format-flowed t
+          mu4e-context-policy 'pick-first
+          mu4e-compose-context-policy 'ask
           )
 
     (setq mu4e-contexts
