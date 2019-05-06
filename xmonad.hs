@@ -152,6 +152,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_p),
      spawn "dmenu_run -fn 'DejaVu Sans Mono'")
 
+  , ((modMask, xK_t),
+     spawn "notify-send \"$(date +'%H:%M')\" \"$(date +'%a, %d.%m.%n%B %Y w%W')\"")
+
   -- Take a screenshot in select mode.
   -- After pressing this key binding, click a window, or draw a rectangle with
   -- the mouse.
@@ -255,7 +258,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      sendMessage Expand)
 
   -- Push window back into tiling.
-  , ((modMask, xK_t),
+  , ((modMask .|. shiftMask, xK_t),
      withFocused $ windows . W.sink)
 
   -- Increment the number of windows in the master area.
@@ -343,16 +346,10 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 ------------------------------------------------------------------------
 -- Run xmonad with all the defaults we set up.
 --
-main = do
-  xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobar.hs"
+main = 
   xmonad $ desktopConfig {
-      logHook = dynamicLogWithPP $ xmobarPP {
-            ppOutput = hPutStrLn xmproc
-          , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
-          , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
-          , ppSep = "   "}
     -- simple stuff
-    , terminal           = myTerminal
+      terminal           = myTerminal
     , focusFollowsMouse  = myFocusFollowsMouse
     , borderWidth        = myBorderWidth
     , modMask            = myModMask
