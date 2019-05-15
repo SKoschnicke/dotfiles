@@ -161,3 +161,5 @@ export TLDR_CACHE_MAX_AGE=720
 
 
 export PATH="$PATH:$HOME/.npm-global/bin"
+
+alias wlan="wicd-cli --wireless"
