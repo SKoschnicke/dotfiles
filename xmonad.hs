@@ -150,7 +150,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Use this to launch programs without a key binding.
   -- Note that you need a patched dmenu for fonts to work (Arch: dmenu2 from AUR)
   , ((modMask, xK_p),
-     spawn "dmenu_run -fn 'DejaVu Sans Mono'")
+     spawn "rofi -show run")
 
   , ((modMask, xK_t),
      spawn "notify-send \"$(date +'%H:%M')\" \"$(date +'%a, %d.%m.%n%B %Y w%W')\"")
