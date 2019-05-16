@@ -155,11 +155,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_t),
      spawn "notify-send \"$(date +'%H:%M')\" \"$(date +'%a, %d.%m.%n%B %Y w%W')\"")
 
-  -- Take a screenshot in select mode.
-  -- After pressing this key binding, click a window, or draw a rectangle with
-  -- the mouse.
+  -- Take a screenshot using teiler
   , ((modMask .|. shiftMask, xK_p),
-     spawn "~/.xmonad/bin/select-screenshot")
+     spawn "teiler")
 
   -- Play/Pause
   , ((modMask .|. shiftMask, xK_F8),
