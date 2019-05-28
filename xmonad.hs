@@ -159,6 +159,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. shiftMask, xK_p),
      spawn "teiler")
 
+  -- Toggle screencast
+  , ((modMask .|. shiftMask, xK_x),
+     spawn "teiler --togglecast")
+
   -- Play/Pause
   , ((modMask .|. shiftMask, xK_F8),
      spawn "playerctl play-pause")

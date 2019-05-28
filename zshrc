@@ -67,25 +67,19 @@ bindkey "^R" znt-history-widget
 #zle -N znt-cd-widget
 #bindkey "^J" znt-cd-widget
 
-# call ranger file manager with Ctrl-J
+# call file manager with Ctrl-J
 # jumps to the selected directory when quit
-start_ranger() {
-  if [ -z "$RANGER_LEVEL" ]; then
-    local tempfile="$(mktemp -t tmp.XXXXXXX)"
-    exec</dev/tty
-    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
-    test -f "$tempfile" &&
-    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
-        cd "$(cat "$tempfile")"
-    fi
-    rm -f -- "$tempfile"
-  else
-    exit
+start_filemanager() {
+  local dst=$(command vifm --choose-dir - < $TTY)
+  if [ -z "$dst" ]; then
+    echo 'Directory picking cancelled/failed'
+    return 1
   fi
+  cd "$dst"
   zle reset-prompt
 }
-zle -N start_ranger
-bindkey "^J" start_ranger
+zle -N start_filemanager
+bindkey "^J" start_filemanager
 
 # always do pushd when cding, so you can always navigate back by calling popd (even multiple times, which doesn't work with cd -)
 setopt AUTO_PUSHD
