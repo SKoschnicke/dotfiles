@@ -70,7 +70,7 @@ bindkey "^R" znt-history-widget
 # call file manager with Ctrl-J
 # jumps to the selected directory when quit
 start_filemanager() {
-  local dst=$(command vifm --choose-dir - < $TTY)
+  local dst=$(command vifm --choose-dir - $PWD < $TTY)
   if [ -z "$dst" ]; then
     echo 'Directory picking cancelled/failed'
     return 1
