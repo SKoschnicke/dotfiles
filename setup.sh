@@ -45,3 +45,5 @@ mkdir -p ~/.config/kitty
 ln -s ~/.dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 mkdir -p ~/.config/teiler
 ln -s ~/.dotfiles/teiler.conf ~/.config/teiler/config
+mkdir -p ~/.config/vifm
+ln -s ~/.dotfiles/vifm ~/.config/vifm/vifmrc

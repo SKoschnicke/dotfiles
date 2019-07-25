@@ -55,9 +55,9 @@ myWorkspaces = ["1:term","2:web","3:editor","4:free","5:emacs"] ++ map show [6..
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "Firefox"  --> doShift "2:web"
+    [ className =? "firefox"  --> doShift "2:web"
     , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "st-256color"       --> doShift "1:term"
+    , resource  =? "kitty"       --> doShift "1:term"
     , className =? "Emacs"           --> doShift "5:emacs"
     , className =? "MPlayer"        --> doFloat
     , className =? "Qshutdown"      --> doFloat
