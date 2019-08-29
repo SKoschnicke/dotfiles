@@ -60,8 +60,10 @@ fileviewer *.pdf pdftotext -l 1 -nopgbrk %c -
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.qt,*.divx,*.as[fx],*mp3,*.flac file
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,*.as[fx] mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) %f 2>/dev/null &,
 
-fileview *.zip,*.rar,*.tar.gz atool -l %f
-filetype *.zip,*.rar,*.tar.gz ext %f
+fileview *.7z,*.bz2,*.cab,*.cpio,*.deb,*.gz,*.msi,*.pkg,*.rar,*.tar,*.tgz,*.xz,*.zip atool -l %f
+filetype *.7z,*.bz2,*.cab,*.cpio,*.deb,*.gz,*.msi,*.pkg,*.rar,*.tar,*.tgz,*.xz,*.zip
+       \ {Mount with avfs}
+       \ FUSE_MOUNT3|mount-avfs %DESTINATION_DIR %SOURCE_FILE
 
 fileviewer *.[1-8] man ./%c | col -b
 filetype *.[1-8] man ./%c
@@ -73,3 +75,5 @@ filextype *.svg inkscape %f 2>/dev/null &
 filextype *.xcf gimp %f 2>/dev/null &
 
 set vifminfo=dhistory,chistory,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
+
+command! extractfiles :execute '!%%n extract-files' &fusehome expand('%%D') expand('%%f:p')va

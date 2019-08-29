@@ -47,3 +47,5 @@ mkdir -p ~/.config/teiler
 ln -s ~/.dotfiles/teiler.conf ~/.config/teiler/config
 mkdir -p ~/.config/vifm
 ln -s ~/.dotfiles/vifm ~/.config/vifm/vifmrc
+ln -s ~/.dotfiles/vifm-scripts/extract-files ~/.config/vifm/scripts/
+ln -s ~/.dotfiles/vifm-scripts/mount-avfs ~/.config/vifm/scripts/
