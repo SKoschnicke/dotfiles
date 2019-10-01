@@ -163,6 +163,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. shiftMask, xK_x),
      spawn "teiler --togglecast")
 
+  -- Take a screenshot from an area
+  , ((modMask .|. shiftMask, xK_a),
+     spawn "teiler --quick image area")
+
   -- Play/Pause
   , ((modMask .|. shiftMask, xK_F8),
      spawn "playerctl play-pause")
@@ -225,6 +229,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Move focus to the next window.
   , ((modMask, xK_Tab),
+     windows W.focusDown)
+
+  -- Move focus to the next window.
+  , ((modMask, xK_j),
      windows W.focusDown)
 
   -- Move focus to the next window.
@@ -348,7 +356,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 ------------------------------------------------------------------------
 -- Run xmonad with all the defaults we set up.
 --
-main = 
+main =
   xmonad $ desktopConfig {
     -- simple stuff
       terminal           = myTerminal

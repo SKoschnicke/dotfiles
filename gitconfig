@@ -10,6 +10,8 @@
   l = log --all --graph --decorate --oneline --abbrev-commit
 [push]
   default = current
+[merge]
+  tool = meld
 [color]
   ui = 1
 [core]

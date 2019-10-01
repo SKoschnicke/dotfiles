@@ -46,7 +46,8 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # NOTE that fasd needs the executable fasd installed
 # NOTE do NOT enable the tmux plugin! It breaks the last-working-dir functionality
-plugins=(last-working-dir zsh-navigation-tools rvm web-search bundler ruby git gem git-extras github vi-mode wd fabric docker archlinux colorize alias-tips fasd)
+plugins=(last-working-dir zsh-navigation-tools rvm web-search bundler ruby git gem git-extras github vi-mode wd fabric docker archlinux colorize alias-tips fasd zpty zsh-autosuggestions dircycle)
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,6 +87,11 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 # enable rvm
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+
+# dircycle with Ctrl-H and Ctrl-L
+#bindkey -c '^H' cd ..
+#bindkey '^L' insert-cycledright
 
 # tell Java that XMonad is non-reparenting (prevents blank windows of java applications)
 export _JAVA_AWT_WM_NONREPARENTING=1
