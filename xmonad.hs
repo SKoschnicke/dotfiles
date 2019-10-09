@@ -167,6 +167,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. shiftMask, xK_a),
      spawn "teiler --quick image area")
 
+  -- Translate
+  , ((modMask, xK_d),
+     spawn "~/development/lab/WR-translator/wordreference.py de de en")
+
   -- Play/Pause
   , ((modMask .|. shiftMask, xK_F8),
      spawn "playerctl play-pause")
