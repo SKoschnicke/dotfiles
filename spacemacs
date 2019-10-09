@@ -82,13 +82,12 @@ values."
      elixir
      (restclient :variables restclient-use-org t)
      (elfeed :variables rmh-elfeed-org-files (list "~/SpiderOak Hive/org/newsfeeds.org"))
-     nlinum
    )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(yafolding key-chord helm-org-rifle string-inflection hackernews harvest vue-mode zpresent)
+   dotspacemacs-additional-packages '(yafolding key-chord helm-org-rifle string-inflection hackernews harvest vue-mode zpresent flycheck-phpstan)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -974,6 +973,13 @@ otherkeywords={define,include,\\#}}
   ;; automatically sync mobile org on start and stop of emacs
   ;(add-hook 'after-init-hook 'org-mobile-pull)
   ;(add-hook 'kill-emacs-hook 'org-mobile-push)
+
+  (defun my-php-mode-setup ()
+    "My PHP-mode hook."
+    (require 'flycheck-phpstan)
+    (flycheck-mode t))
+
+  (add-hook 'php-mode-hook 'my-php-mode-setup)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -1022,11 +1028,12 @@ This function is called at the very end of Spacemacs initialization."
  '(exec-path
    '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin"))
  '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
+ '(flycheck-phpstan-executable "/home/sven/.config/composer/vendor/bin/phpstan")
  '(haskell-tags-on-save t)
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
  '(mu4e-view-show-addresses t)
- '(mu4e-view-show-images t)
+ '(mu4e-view-show-images t t)
  '(org-babel-load-languages '((ruby . t) (emacs-lisp . t)))
  '(org-list-allow-alphabetical t)
  '(package-selected-packages
