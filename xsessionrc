@@ -6,6 +6,8 @@ xrdb -merge $HOME/.Xresources
   #--output DP-2.9 --mode 1920x2160 \
   #--output DP-4 --scale 1.3x1.3 --mode 3840x2160 --pos 2160x805
 xscreensaver &
+# workaround flatpack bug https://github.com/flatpak/xdg-desktop-portal-gtk/issues/72
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 case $HOSTNAME in
   (daltigoth) feh --no-fehbg --bg-scale ~/backgrounds/current.jpg;;
   (sven-uni)   feh --no-fehbg --bg-center ~/backgrounds/current-left.jpg ~/backgrounds/current-right.jpg;;
