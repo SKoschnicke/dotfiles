@@ -58,7 +58,8 @@ values."
             scala-use-unicode-arrows t
             scala-auto-start-ensime t)
      (ruby :variables
-           ruby-version-manager 'rbenv)
+           ruby-version-manager 'rbenv
+           ruby-backend 'lsp)
      ruby-on-rails
      html
      javascript
@@ -82,6 +83,9 @@ values."
      elixir
      (restclient :variables restclient-use-org t)
      (elfeed :variables rmh-elfeed-org-files (list "~/SpiderOak Hive/org/newsfeeds.org"))
+     (lsp
+       :hook (ruby-mode . lsp-deferred)
+       :commands (lsp lsp-deferred))
    )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -1026,7 +1030,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 'set-from-style)
  '(exec-path
-   '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin"))
+   '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin" "/home/svk/.rbenv/versions/2.4.1/lib/ruby/gems/2.4.0/gems/solargraph-0.37.2/bin"))
  '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
  '(flycheck-phpstan-executable "/home/sven/.config/composer/vendor/bin/phpstan")
  '(haskell-tags-on-save t)
