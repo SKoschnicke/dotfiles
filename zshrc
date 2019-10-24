@@ -49,6 +49,9 @@ ZSH_THEME="agnoster"
 plugins=(last-working-dir zsh-navigation-tools rvm web-search bundler ruby git gem git-extras github vi-mode wd fabric docker archlinux colorize alias-tips fasd zpty zsh-autosuggestions dircycle)
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
+# to install autosuggestions plugin:
+# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
