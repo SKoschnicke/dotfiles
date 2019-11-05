@@ -46,11 +46,13 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # NOTE that fasd needs the executable fasd installed
 # NOTE do NOT enable the tmux plugin! It breaks the last-working-dir functionality
-plugins=(last-working-dir zsh-navigation-tools rvm web-search bundler ruby git gem git-extras github vi-mode wd fabric docker archlinux colorize alias-tips fasd zpty zsh-autosuggestions dircycle)
+plugins=(last-working-dir zsh-navigation-tools rvm web-search bundler ruby git gem git-extras github vi-mode wd fabric docker archlinux colorize alias-tips fasd zsh-autosuggestions dircycle)
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # to install autosuggestions plugin:
 # git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# to install alias-tips plugin:
+# git clone https://github.com/djui/alias-tips ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/alias-tips
 
 source $ZSH/oh-my-zsh.sh
 
