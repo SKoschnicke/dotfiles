@@ -419,7 +419,7 @@ you should place you code here."
           org-agenda-skip-scheduled-if-done t
           org-tags-column 80
           org-enforce-todo-dependencies t
-          org-agenda-dim-blocked-tasks t
+          org-agenda-dim-blocked-tasks nil
           org-src-fontify-natively t)
 
                                         ; Refile targets include this file and any file contributing to the agenda - up to 5 levels deep
