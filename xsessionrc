@@ -14,6 +14,8 @@ case $HOSTNAME in
 esac
 #setxkbmap -layout "us, de" -option "grp:caps_toggle"
 setxkbmap -layout "us"
+#xmodmap -e "keycode 134 = Tab Delete"
+xmodmap ~/.dotfiles/Xmodmap_model01
 #xinput set-prop "Wacom Bamboo Connect Pen stylus" --type=float "Coordinate Transformation Matrix" 0.5 0 0.5 0 1 0 0 0 1
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &
@@ -27,7 +29,6 @@ emacs &
 dunst -conf ~/.dunstrc &
 udiskie &
 # remap Delete to Tab (and Shift-Delete to Delete)
-#xmodmap -e "keycode 134 = Tab Delete"
 $HOME/bin/ergo
 exec xmonad
 #exec metacity
