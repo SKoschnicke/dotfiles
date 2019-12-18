@@ -1,6 +1,4 @@
-clear mod1
 keycode 108 = Mode_switch
-add mod1    =   Alt_R
 
 keysym a = a A adiaeresis Adiaeresis
 keysym o = o O odiaeresis Odiaeresis
