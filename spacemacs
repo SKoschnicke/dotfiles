@@ -23,7 +23,8 @@ values."
      csv
      (go :variables
          go-use-gometalinter t
-         go-tab-width 2)
+         go-tab-width 2
+         go-use-gocheck-for-testing t)
      helm
      php
      ;; ----------------------------------------------------------------
@@ -657,90 +658,6 @@ you should place you code here."
     ;;; org mode beamer
 
 
-    (setq ieeetran-class
-          '("IEEEtran"
-            "\\documentclass[11pt]{IEEEtran}"
-            ("\\section{%s}" . "\\section*{%s}")
-            ("\\subsection{%s}" . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}" . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-    (setq article-class
-          '("article"
-            "\\documentclass[11pt]{article}"
-            ("\\section{%s}" . "\\section*{%s}")
-            ("\\subsection{%s}" . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}" . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-    (setq beamer-class
-          '("beamer"
-            "\\documentclass{beamer}
-\\usepackage[german]{babel}
-\\usepackage{listings}
-\\usepackage{color}
-
-\\definecolor{red}{rgb}{0.6,0,0} % for strings
-\\definecolor{green}{rgb}{0.25,0.5,0.35} % comments
-\\definecolor{purple}{rgb}{0.5,0,0.35} % keywords
-\\definecolor{docblue}{rgb}{0.25,0.35,0.75} % doc
-
-\\lstset{basicstyle=\\small\\ttfamily,
-keywordstyle=\\color{purple},
-stringstyle=\\color{red},
-commentstyle=\\color{green},
-morecomment=[s][\\color{docblue}]{/**}{*/},
-numbers=left,
-numberstyle=\\tiny\\color{gray},
-stepnumber=1,
-numbersep=10pt,
-tabsize=2,
-showspaces=false,
-showstringspaces=false,
-otherkeywords={define,include,\\#}}
-\\usetheme{hsrm}
-     [NO-DEFAULT-PACKAGES]
-     [NO-PACKAGES]"
-            ("\\section{%s}" . "\\section*{%s}")
-            ("\\subsection{%s}" . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}" . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-    (unless (boundp 'org-latex-classes)
-      (setq org-latex-classes nil))
-    (add-to-list 'org-latex-classes ieeetran-class t)
-    (add-to-list 'org-latex-classes article-class t)
-    (add-to-list 'org-latex-classes beamer-class t)
-
-    (add-to-list 'org-latex-classes
-                 '("djcb-org-article"
-                   "\\documentclass[11pt,a4paper]{article}
-\\usepackage[T1]{fontenc}
-\\usepackage{fontspec}
-\\usepackage{graphicx}
-\\usepackage{hyperref}
-\\defaultfontfeatures{Mapping=tex-text}
-\\setromanfont{Gentium}
-\\setromanfont [BoldFont={Gentium Basic Bold},
-                ItalicFont={Gentium Basic Italic}]{Gentium Basic}
-\\setsansfont{Charis SIL}
-\\setmonofont[Scale=0.8]{DejaVu Sans Mono}
-\\usepackage{geometry}
-\\geometry{a4paper, textwidth=6.5in, textheight=10in,
-            marginparsep=7pt, marginparwidth=.6in}
-\\pagestyle{empty}
-\\title{}
-      [NO-DEFAULT-PACKAGES]
-      [NO-PACKAGES]"
-                   ("\\section{%s}" . "\\section*{%s}")
-                   ("\\subsection{%s}" . "\\subsection*{%s}")
-                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
     (setq org-latex-pdf-process
           '("xelatex -interaction nonstopmode -shell-escape %f"
             "xelatex -interaction nonstopmode -shell-escape %f")) ;; for multiple passes
@@ -748,24 +665,22 @@ otherkeywords={define,include,\\#}}
     (setq org-export-latex-hyperref-format "\\ref{%s}")
     (setq org-latex-listings t)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; org mode bibtex integration
-    (defun my-rtcite-export-handler (path desc format)
-      (message "my-rtcite-export-handler is called : path = %s, desc = %s, format = %s" path desc format)
-      (let* ((search (when (string-match "::#?\\(.+\\)\\'" path)
-                       (match-string 1 path)))
-             (path (substring path 0 (match-beginning 0))))
-        (cond ((eq format 'latex)
-               (if (or (not desc)
-                       (equal 0 (search "rtcite:" desc)))
-                   (format "\\cite{%s}" search)
-                 (format "\\cite[%s]{%s}" desc search))))))
+    ;; insert creation date into all headings
+    (defun insert-created-date(&rest ignore)
+      (insert "\n")
+      (org-insert-time-stamp (current-time) 't 't)
+      (org-back-to-heading) ; in org-capture, this folds the entry; when inserting a heading, this moves point back to the heading line
+      (move-end-of-line()) ; when inserting a heading, this moves point to the end of the line
+      )
 
+    ; add to the org-capture hook
+    (add-hook 'org-capture-before-finalize-hook
+              #'insert-created-date
+              )
 
-    (org-add-link-type "rtcite"
-                       'org-bibtex-open
-                       'my-rtcite-export-handler)
-    )
+    (advice-add 'org-insert-heading :after #'insert-created-date)
+
+  ) ;; org-mode eval after load end
 
   ; This enables binding the custom agenda to keys and showing it on startup.
   ; Has to be defined outside of org mode hook, or else it would not be
@@ -1052,13 +967,13 @@ This function is called at the very end of Spacemacs initialization."
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
  '(mu4e-view-show-addresses t)
- '(mu4e-view-show-images t t)
+ '(mu4e-view-show-images t)
  '(org-babel-load-languages '((ruby . t) (emacs-lisp . t)))
  '(org-list-allow-alphabetical t)
  '(org-modules
    '(org-bbdb org-bibtex org-docview org-eww org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m))
  '(package-selected-packages
-   '(poet-theme restclient-helm org-mime ob-restclient ob-http jinja2-mode hackernews go-guru go-eldoc flycheck-gometalinter transient org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir flycheck-mix alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-tern company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
+   '(dap-mode bui tree-mode restclient-helm org-mime ob-restclient ob-http jinja2-mode hackernews go-guru go-eldoc flycheck-gometalinter transient org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir flycheck-mix alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-tern company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
  '(paradox-github-token t)
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(php-mode-enable-project-coding-style t)
@@ -1069,21 +984,23 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3"))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
- '(org-block ((t (:inherit fixed-pitch))))
- '(org-todo ((t (:inherit fixed-pitch))))
- '(org-done ((t (:inherit fixed-pitch))))
- '(org-priority ((t (:inherit fixed-pitch))))
  '(org-ascii-export-block ((t (:inherit fixed-pitch))))
+ '(org-block ((t (:inherit fixed-pitch))))
  '(org-code ((t (:inherit (shadow fixed-pitch)))))
+ '(org-date ((t (:inherit (fixed-pitch)))))
  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+ '(org-done ((t (:inherit fixed-pitch))))
  '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
  '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-priority ((t (:inherit fixed-pitch))))
  '(org-property-value ((t (:inherit fixed-pitch))) t)
  '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
  '(org-table ((t (:inherit fixed-pitch))))
  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+ '(org-todo ((t (:inherit fixed-pitch))))
  '(org-verbatim ((t (:inherit (shadow fixed-pitch)))))
  '(variable-pitch ((t (:weight book :family "DejaVu Serif")))))
 )
