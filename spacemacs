@@ -1,16 +1,31 @@
-;; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
 (defun dotspacemacs/layers ()
-  "Configuration Layers declaration.
-You should not put any user code in this function besides modifying the variable
-values."
+  "Layer configuration:
+This function should only modify configuration layer settings."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
    dotspacemacs-distribution 'spacemacs
+
+   ;; Lazy installation of layers (i.e. layers are installed only when a file
+   ;; with a supported type is opened). Possible values are `all', `unused'
+   ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
+   ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
+   ;; lazy install any layer that support lazy installation even the layers
+   ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
+   ;; installation feature and you have to explicitly list a layer in the
+   ;; variable `dotspacemacs-configuration-layers' to install it.
+   ;; (default 'unused)
+   dotspacemacs-enable-lazy-installation 'unused
+
+   ;; If non-nil then Spacemacs will ask for confirmation before installing
+   ;; a layer lazily. (default t)
+   dotspacemacs-ask-for-lazy-installation t
+
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
@@ -135,8 +150,8 @@ values."
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
-   ;; (default nil)
-   dotspacemacs-verify-spacelpa-archives nil
+   ;; (default t)
+   dotspacemacs-verify-spacelpa-archives t
 
    ;; If non-nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
@@ -202,7 +217,7 @@ values."
    ;; pressing `<leader> m`. Set it to `nil` to disable it. (default ",")
    dotspacemacs-major-mode-leader-key ","
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
-   ;; (default "C-M-m)
+   ;; (default "C-M-m")
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
    ;; These variables control whether separate commands are bound in the GUI to
    ;; the key pairs C-i, TAB and C-m, RET.
@@ -226,7 +241,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts t
+   dotspacemacs-auto-resume-layouts nil
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
@@ -306,7 +321,7 @@ values."
    dotspacemacs-smartparens-strict-mode nil
 
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
-   ;; over any automatically added closing parenthesis, bracket, quote, etc…
+   ;; over any automatically added closing parenthesis, bracket, quote, etc...
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
    dotspacemacs-smart-closing-parenthesis nil
 
@@ -382,6 +397,17 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
   (require 'window-purpose) ; workaround until https://github.com/bmag/emacs-purpose/issues/158 is fixed
+
+  (when (string= system-name "sven-uni")
+    (defconst my-sync-path "~/SpiderOak Hive"))
+  (when (string= system-name "palanthas")
+    (defconst my-sync-path "~/SpiderOak Hive"))
+  (when (string-prefix-p "losarcum" system-name)
+    (defconst my-sync-path "~/sync"))
+  (when (string= system-name "daltigoth")
+    (defconst my-sync-path "~/sync"))
+
+  (defconst my-org-file-path (concat my-sync-path "/org"))
 
   (setq browse-url-browser-function 'browse-url-firefox)
 
@@ -605,14 +631,6 @@ you should place you code here."
         (previous-line 2)
         (org-edit-src-code)))
 
-    (when (string= system-name "sven-uni")
-      (defconst my-org-file-path "~/SpiderOak Hive/org"))
-    (when (string= system-name "palanthas")
-      (defconst my-org-file-path "~/SpiderOak Hive/org"))
-    (when (string-prefix-p "losarcum" system-name)
-      (defconst my-org-file-path "~/sync/org"))
-    (when (string= system-name "daltigoth")
-      (defconst my-org-file-path "~/sync/org"))
 
     (when (file-accessible-directory-p my-org-file-path)
       (setq diary-file (concat my-org-file-path "/diary")))
@@ -905,6 +923,28 @@ you should place you code here."
     (flycheck-mode t))
 
   (add-hook 'php-mode-hook 'my-php-mode-setup)
+
+  (setq persp-autokill-buffer-on-remove 'kill-weak
+        persp-auto-save-persps-to-their-file-before-kill t
+        persp-auto-resume-time 1
+        persp-auto-save-fname "autosave"
+        persp-auto-save-opt 1
+        persp-nil-hidden t
+        persp-nil-name "Default"
+        persp-save-dir (concat my-sync-path "/emacs-perspectives/"))
+
+  (defun good-morning ()
+    "Setup windows in the morning"
+    (interactive)
+    (persp-switch (concat my-org-file-path "/"))
+    (evil-window-right 1)
+    (org-agenda-show-mine)
+    (evil-window-down 1)
+    (mu4e)
+    )
+
+
+  (evil-leader/set-key "am" 'good-morning)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
