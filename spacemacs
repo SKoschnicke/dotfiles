@@ -937,10 +937,17 @@ you should place you code here."
     "Setup windows in the morning"
     (interactive)
     (persp-switch (concat my-org-file-path "/"))
+    (switch-to-buffer "gtd-daily-cooldown.org")
+    (evil-goto-first-line)
     (evil-window-right 1)
     (org-agenda-show-mine)
     (evil-window-down 1)
     (mu4e)
+    (mu4e-update-mail-and-index t)
+    (mu4e-headers-search-bookmark "u")
+    (evil-window-left 1)
+    (org-shifttab 6)
+    (evil-goto-line)
     )
 
 
