@@ -1052,5 +1052,5 @@ This function is called at the very end of Spacemacs initialization."
  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
  '(org-todo ((t (:inherit fixed-pitch))))
  '(org-verbatim ((t (:inherit (shadow fixed-pitch)))))
- '(variable-pitch ((t (:family "Fira Sans" :weight light)))))
+ '(variable-pitch ((t (:family "Fira Sans" :weight light :height 1.2)))))
 )
