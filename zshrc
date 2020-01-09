@@ -128,7 +128,7 @@ alias dc="docker-compose"
 
 alias pa="cd $HOME/development/pa"
 alias sc="cd $HOME/development/sc"
-alias ls="TERM=xterm-256color exa"
+#alias ls="TERM=xterm-256color exa"
 alias lls="TERM=xterm-256color exa --git -l"
 alias db="dropbox-cli"
 
@@ -175,3 +175,6 @@ export PATH="$PATH:$HOME/.npm-global/bin"
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 alias wlan="wicd-cli --wireless"
+
+source /home/sven/.config/broot/launcher/bash/br
+alias ls="br"
