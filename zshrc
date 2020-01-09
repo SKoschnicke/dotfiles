@@ -73,7 +73,7 @@ bindkey "^R" znt-history-widget
 #zle -N znt-cd-widget
 #bindkey "^J" znt-cd-widget
 
-# call file manager with Ctrl-J
+# call file manager with Ctrl-K
 # jumps to the selected directory when quit
 start_filemanager() {
   local dst=$(command vifm --choose-dir - $PWD < $TTY)
@@ -85,7 +85,7 @@ start_filemanager() {
   zle reset-prompt
 }
 zle -N start_filemanager
-bindkey "^J" start_filemanager
+bindkey "^K" start_filemanager
 
 # always do pushd when cding, so you can always navigate back by calling popd (even multiple times, which doesn't work with cd -)
 setopt AUTO_PUSHD
@@ -177,4 +177,4 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 alias wlan="wicd-cli --wireless"
 
 source /home/sven/.config/broot/launcher/bash/br
-alias ls="br"
+bindkey -s "^J" "br^M"
