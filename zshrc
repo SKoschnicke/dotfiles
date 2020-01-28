@@ -58,6 +58,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+unalias sp # web-search plugin
 DEFAULT_USER="svk"
 
 autoload -U zmv

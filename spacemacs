@@ -39,9 +39,11 @@ This function should only modify configuration layer settings."
      (go :variables
          go-use-gometalinter t
          go-tab-width 2
-         go-use-gocheck-for-testing t)
+         go-use-gocheck-for-testing t
+         go-backend 'lsp)
      helm
-     php
+     (php :variables
+          php-backend 'lsp)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -110,7 +112,7 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(yafolding key-chord helm-org-rifle string-inflection hackernews harvest vue-mode zpresent flycheck-phpstan)
+   dotspacemacs-additional-packages '(yafolding key-chord helm-org-rifle string-inflection hackernews harvest vue-mode zpresent company-box)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -413,6 +415,10 @@ you should place you code here."
 
   ;(global-company-mode t)
 
+  (with-eval-after-load 'company-box
+    (add-hook 'company-mode-hook 'company-box-mode)
+  )
+
   ;; Number the candidates (use M-1, M-2 etc to select completions).
   (setq company-show-numbers t)
 
@@ -691,10 +697,11 @@ you should place you code here."
       (move-end-of-line()) ; when inserting a heading, this moves point to the end of the line
       )
 
-    ; add to the org-capture hook
-    (add-hook 'org-capture-before-finalize-hook
-              #'insert-created-date
-              )
+    ; add to the org-capture hook to insert a creation date
+    ; deactivated because it does not work well with the org-capture function (there, the date is inserted twice)
+    ;(add-hook 'org-capture-before-finalize-hook
+    ;          #'insert-created-date
+    ;          )
 
     (advice-add 'org-insert-heading :after #'insert-created-date)
 
@@ -919,9 +926,12 @@ you should place you code here."
 
   (defun my-php-mode-setup ()
     "My PHP-mode hook."
-    (require 'flycheck-phpstan)
+    ;(require 'flycheck-phpstan)
     (flycheck-mode t)
-    (setq flycheck-checker-error-threshold 5000))
+    (setq flycheck-checker-error-threshold 5000)
+    (setq phpstan-working-dir ".")
+    ;(flycheck-add-next-checker 'phpstan 'php-phpcs)
+  )
 
   (add-hook 'php-mode-hook 'my-php-mode-setup)
 
@@ -992,6 +1002,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 2)
+ '(company-box-icons-alist 'company-box-icons-all-the-icons)
  '(evil-want-Y-yank-to-eol t)
  '(exec-path
    '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin"))
@@ -1016,6 +1027,7 @@ This function is called at the very end of Spacemacs initialization."
      ("\\?\\?\\?+" . "#dc752f")))
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
+ '(lsp-gopls-server-path "/home/sven/go/bin/gopls")
  '(mu4e-view-show-addresses t)
  '(mu4e-view-show-images t)
  '(org-babel-load-languages '((ruby . t) (emacs-lisp . t)))
@@ -1035,6 +1047,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3"))))
+ '(company-tooltip ((t (:background "seashell" :foreground "#586e75"))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
  '(org-ascii-export-block ((t (:inherit fixed-pitch))))
