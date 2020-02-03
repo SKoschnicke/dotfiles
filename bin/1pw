@@ -1,0 +1,3 @@
+#!/bin/sh
+#chromium --allow-file-access-from-files /home/sven/Dropbox/1Password.agilekeychain/1Password.html
+wine "$HOME/.wine/drive_c/Program Files (x86)/1Password 4/1Password.exe"

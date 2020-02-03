@@ -148,7 +148,7 @@ type = IMAP
 remotehost = mail.jpberlin.de
 ssl = yes
 #sslcacertfile = ~/.dotfiles/certs/jpberlin.cert
-cert_fingerprint = d73353101ff45bdb113dd0e15dbe11e961634557
+cert_fingerprint = 64b06df4ade1e349d2b6d20fb09234a95bef4a52174f7cc4bcf14331c446733b04a02935a570ecf357be2c23d9f9bec17d9c71b4773d439f03c84efcb6672d2c
 remoteuser = s.koschnicke@gfxpro.com
 
 
@@ -157,6 +157,7 @@ remoteuser = s.koschnicke@gfxpro.com
 type = IMAP
 remotehost = sslin.df.eu
 ssl = yes
-sslcacertfile = ~/.dotfiles/certs/df.cert
+sslcacertfile = /home/sven/.dotfiles/certs/sslin.df.eu.cer
+
 #cert_fingerprint = 7dda4982e4c87209d866f273faac21244c523ab3
 remoteuser = sven@koschnicke.de
