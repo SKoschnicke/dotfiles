@@ -155,6 +155,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_t),
      spawn "notify-send \"$(date +'%H:%M')\" \"$(date +'%a, %d.%m.%n%B %Y w%V')\"")
 
+  -- Select and copy an emoji
+  , ((modMask .|. shiftMask, xK_r),
+     spawn "~/bin/dmenuemoji")
+
   -- Take a screenshot using teiler
   , ((modMask .|. shiftMask, xK_p),
      spawn "teiler")
