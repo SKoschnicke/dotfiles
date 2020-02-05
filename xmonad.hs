@@ -157,7 +157,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Select and copy an emoji
   , ((modMask .|. shiftMask, xK_r),
-     spawn "~/bin/dmenuemoji")
+     spawn "~/bin/dmenuunicode")
 
   -- Take a screenshot using teiler
   , ((modMask .|. shiftMask, xK_p),
