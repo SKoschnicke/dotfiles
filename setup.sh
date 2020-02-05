@@ -49,3 +49,4 @@ mkdir -p ~/.config/vifm
 ln -s ~/.dotfiles/vifm ~/.config/vifm/vifmrc
 ln -s ~/.dotfiles/vifm-scripts/extract-files ~/.config/vifm/scripts/
 ln -s ~/.dotfiles/vifm-scripts/mount-avfs ~/.config/vifm/scripts/
+ln -s ~/.dotfiles/local-bin ~/bin
