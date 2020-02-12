@@ -37,7 +37,7 @@ myTerminal = "/usr/bin/kitty"
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
-myWorkspaces = ["1:term","2:web","3:editor","4:free","5:emacs"] ++ map show [6..9]
+myWorkspaces = ["1:term","2:web","3:editor","4:free","5:emacs","6:phone"] ++ map show [7..9]
 
 
 ------------------------------------------------------------------------
@@ -55,12 +55,13 @@ myWorkspaces = ["1:term","2:web","3:editor","4:free","5:emacs"] ++ map show [6..
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "firefox"  --> doShift "2:web"
+    [ className =? "firefox"        --> doShift "2:web"
     , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kitty"       --> doShift "1:term"
-    , className =? "Emacs"           --> doShift "5:emacs"
+    , resource  =? "kitty"          --> doShift "1:term"
+    , className =? "Emacs"          --> doShift "5:emacs"
     , className =? "MPlayer"        --> doFloat
     , className =? "Qshutdown"      --> doFloat
+    , className =? "linphone"       --> doShift "6:phone"
     , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
 
 

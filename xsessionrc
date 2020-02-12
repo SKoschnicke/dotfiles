@@ -30,6 +30,7 @@ dunst -conf ~/.dunstrc &
 udiskie &
 # remap Delete to Tab (and Shift-Delete to Delete)
 $HOME/bin/ergo
+$HOME/phone.sh
 exec xmonad
 #exec metacity
 #exec dwm
