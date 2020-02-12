@@ -178,4 +178,4 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 alias wlan="wicd-cli --wireless"
 
 source /home/sven/.config/broot/launcher/bash/br
-bindkey -s "^J" "br^M"
+#bindkey -s "^J" "br^M"
