@@ -160,6 +160,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. shiftMask, xK_r),
      spawn "~/bin/dmenuunicode")
 
+  -- Select and copy an unicode symbol
+  , ((modMask, xK_u),
+     spawn "rofi -show unicode")
+
   -- Take a screenshot using teiler
   , ((modMask .|. shiftMask, xK_p),
      spawn "teiler")

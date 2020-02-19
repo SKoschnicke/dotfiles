@@ -231,3 +231,6 @@ URxvt*letterSpace:                    -1
 !! white dark/light
 *color7:                S_base2
 *color15:               S_base3
+
+rofi.font: Fira Code 17
+rofi.modi: windowcd,drun,run,ssh,unicode:~/bin/rofiunicode.sh,emoji:~/bin/rofiemoji.sh
