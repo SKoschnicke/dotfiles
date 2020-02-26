@@ -178,7 +178,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Translate
   , ((modMask, xK_d),
-     spawn "~/development/lab/WR-translator/wordreference.py de de en")
+     spawn "rofi_trans")
 
   -- Play/Pause
   , ((modMask .|. shiftMask, xK_F8),
