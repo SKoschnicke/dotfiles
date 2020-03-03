@@ -18,6 +18,8 @@ import           XMonad.Layout.Fullscreen
 import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Spiral
 import           XMonad.Layout.Tabbed
+import           XMonad.Layout.Dishes
+import           XMonad.Layout.StackTile
 import           XMonad.Prompt
 import qualified XMonad.StackSet            as W
 import           XMonad.Util.EZConfig       (additionalKeys)
@@ -78,10 +80,9 @@ myManageHook = composeAll
 myLayout = avoidStruts (
     Tall 1 (3/100) (1/2) |||
     Mirror (Tall 1 (3/100) (1/2)) |||
+    StackTile 1 (3/100) (1/2) |||
     tabbed shrinkText tabConfig |||
-    Full |||
-    spiral (6/7)) |||
-    noBorders (fullscreenFull Full)
+    noBorders (fullscreenFull Full))
 
 
 ------------------------------------------------------------------------

@@ -40,10 +40,10 @@ This function should only modify configuration layer settings."
          go-use-gometalinter t
          go-tab-width 2
          go-use-gocheck-for-testing t
-         go-backend 'lsp)
+         go-backend 'lsp-deferred)
      helm
      (php :variables
-          php-backend 'lsp)
+          php-backend 'lsp-deferred)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -78,14 +78,14 @@ This function should only modify configuration layer settings."
             scala-auto-start-ensime t)
      (ruby :variables
            ruby-version-manager 'rbenv
-           ruby-backend 'lsp)
+           ruby-backend 'lsp-deferred)
      ruby-on-rails
      html
      javascript
      (java :variables
-           java-backend 'lsp)
+           java-backend 'lsp-deferred)
      (kotlin :variables
-           kotlin-backend 'lsp)
+           kotlin-backend 'lsp-deferred)
      haskell
      yaml
      asciidoc
@@ -105,9 +105,7 @@ This function should only modify configuration layer settings."
      elixir
      (restclient :variables restclient-use-org t)
      (elfeed :variables rmh-elfeed-org-files (list "~/SpiderOak Hive/org/newsfeeds.org"))
-     (lsp
-       :hook (ruby-mode . lsp-deferred)
-       :commands (lsp lsp-deferred))
+     lsp
    )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these

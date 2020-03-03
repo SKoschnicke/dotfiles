@@ -1,6 +1,7 @@
 #!/bin/sh
 
 xrdb -merge $HOME/.Xresources
+xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3840x2160 --pos 3840x0 --rotate left --output DP-3 --off --output DP-4 --primary --mode 3840x2160 --pos 0x1167 --rotate normal --output DP-5 --off
 #xrandr --dpi 183 --fb 7152x3840 \
   #--output DP-2.8 --mode 1920x2160 --pos 0x1920 \
   #--output DP-2.9 --mode 1920x2160 \
@@ -9,7 +10,7 @@ xscreensaver &
 # workaround flatpack bug https://github.com/flatpak/xdg-desktop-portal-gtk/issues/72
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 case $HOSTNAME in
-  (daltigoth) feh --no-fehbg --bg-scale ~/backgrounds/current.jpg;;
+  (daltigoth) feh --no-fehbg --bg-scale ~/backgrounds/current.jpg ~/backgrounds/ourun2.jpg;;
   (sven-uni)   feh --no-fehbg --bg-center ~/backgrounds/current-left.jpg ~/backgrounds/current-right.jpg;;
 esac
 #setxkbmap -layout "us, de" -option "grp:caps_toggle"
