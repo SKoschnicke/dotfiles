@@ -130,7 +130,7 @@ alias dc="docker-compose"
 alias pa="cd $HOME/development/pa"
 alias sc="cd $HOME/development/sc"
 alias ls="TERM=xterm-256color exa"
-alias lls="TERM=xterm-256color exa --git -l"
+alias ll="TERM=xterm-256color exa --git -l"
 alias db="dropbox-cli"
 
 alias cat=bat

@@ -370,7 +370,11 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 ------------------------------------------------------------------------
 -- Run xmonad with all the defaults we set up.
 --
-main =
+-- 
+monokaiBlue = "#66D9EF"
+
+main = do
+  xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
   xmonad $ desktopConfig {
     -- simple stuff
       terminal           = myTerminal
@@ -390,4 +394,15 @@ main =
     , manageHook = manageDocks <+> myManageHook
     , startupHook = setWMName "LG3D"
     , handleEventHook = handleEventHook desktopConfig <+> XMonad.Hooks.EwmhDesktops.fullscreenEventHook
+    , logHook            = dynamicLogWithPP $ xmobarPP
+      { ppOutput          = hPutStrLn xmproc
+      , ppTitle           = xmobarColor monokaiBlue "" . shorten 100
+      , ppHiddenNoWindows = xmobarColor "grey" "" . wrap "" ""
+      , ppUrgent          = xmobarColor "black" "#FD971F" . wrap " "  " "
+      , ppHidden          = xmobarColor "grey" "black"
+      , ppCurrent         = xmobarColor "black" monokaiBlue . wrap " " " "
+      , ppVisible         = xmobarColor monokaiBlue ""
+      , ppLayout          = xmobarColor "#999" "" . wrap "|" "|"
+      , ppSep             = " · "
+      }
   }
