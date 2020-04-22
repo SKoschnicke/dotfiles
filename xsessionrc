@@ -21,7 +21,6 @@ xmodmap ~/.dotfiles/Xmodmap_model01
 #xinput set-prop "Wacom Bamboo Connect Pen stylus" --type=float "Coordinate Transformation Matrix" 0.5 0 0.5 0 1 0 0 0 1
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &
-dropbox-cli start
 kitty --session ~/.dotfiles/kitty-session.conf &
 firefox &
 #thunderbird &
@@ -37,3 +36,4 @@ exec xmonad
 #exec metacity
 #exec dwm
 #exec fvwm
+#exec startxfce4
