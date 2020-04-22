@@ -46,8 +46,8 @@ This function should only modify configuration layer settings."
           php-backend 'lsp-deferred)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
+     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
+     ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
@@ -191,7 +191,7 @@ values."
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
    ;; List of themes, the first of the list is loaded when spacemacs starts.
-   ;; Press <SPC> T n to cycle to the next theme in the list (works great
+   ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(solarized-light
                          solarized-dark
@@ -218,12 +218,15 @@ values."
    ;; pressing `<leader> m`. Set it to `nil` to disable it. (default ",")
    dotspacemacs-major-mode-leader-key ","
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
-   ;; (default "C-M-m")
-   dotspacemacs-major-mode-emacs-leader-key "C-M-m"
+   ;; (default "C-M-m" for terminal mode, "<M-return>" for GUI mode).
+   ;; Thus M-RET should work as leader key in both GUI and terminal modes.
+   ;; C-M-m also should work in terminal mode, but not in GUI mode.
+   dotspacemacs-major-mode-emacs-leader-key (if window-system "<M-return>" "C-M-m")
+
    ;; These variables control whether separate commands are bound in the GUI to
-   ;; the key pairs C-i, TAB and C-m, RET.
-   ;; Setting it to a non-nil value, allows for separate commands under <C-i>
-   ;; and TAB or <C-m> and RET.
+   ;; the key pairs `C-i', `TAB' and `C-m', `RET'.
+   ;; Setting it to a non-nil value, allows for separate commands under `C-i'
+   ;; and TAB or `C-m' and `RET'.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
@@ -237,17 +240,30 @@ values."
    dotspacemacs-remap-Y-to-y$ t
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
-   ;; If non nil the default layout name is displayed in the mode-line.
+
+   ;; If non-nil the default layout name is displayed in the mode-line.
    ;; (default nil)
    dotspacemacs-display-default-layout nil
-   ;; If non nil then the last auto saved layouts are resume automatically upon
+
+   ;; If non-nil then the last auto saved layouts are resumed automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts nil
+
+   ;; If non-nil, auto-generate layout name when creating new layouts. Only has
+   ;; effect when using the "jump to layout by number" commands. (default nil)
+   dotspacemacs-auto-generate-layout-names nil
+
+   ;; Size (in MB) above which spacemacs will prompt to open the large file
+   ;; literally to avoid performance issues. Opening a file literally means that
+   ;; no major mode or minor modes are active. (default is 1)
+   dotspacemacs-large-file-size 1
+
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
    ;; (default 'cache)
    dotspacemacs-auto-save-file-location 'cache
+
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
    ;; If non nil then `ido' replaces `helm' for some commands. For now only
@@ -268,6 +284,7 @@ values."
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
    dotspacemacs-which-key-delay 0.4
+
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
@@ -293,31 +310,69 @@ values."
    ;; If non-nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native nil
-   ;; If non nil the frame is maximized when Emacs starts up.
+
+   ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
    dotspacemacs-maximized-at-startup nil
+
+   ;; If non-nil the frame is undecorated when Emacs starts up. Combine this
+   ;; variable with `dotspacemacs-maximized-at-startup' in OSX to obtain
+   ;; borderless fullscreen. (default nil)
+   dotspacemacs-undecorated-at-startup nil
+
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-active-transparency 90
+
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
-   ;; Modeline theme
+
+   ;; If non-nil show the titles of transient states. (default t)
+   dotspacemacs-show-transient-state-title t
+
+   ;; If non-nil show the color guide hint for transient state keys. (default t)
+   dotspacemacs-show-transient-state-color-guide t
+
    dotspacemacs-mode-line-theme 'spacemacs
-   ;; If non nil unicode symbols are displayed in the mode line. (default t)
+   ;; If non-nil unicode symbols are displayed in the mode line.
+   ;; If you use Emacs as a daemon and wants unicode characters only in GUI set
+   ;; the value to quoted `display-graphic-p'. (default t)
    dotspacemacs-mode-line-unicode-symbols t
-   ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
-   ;; scrolling overrides the default behavior of Emacs which recenters the
-   ;; point when it reaches the top or bottom of the screen. (default t)
+
+   ;; If non-nil smooth scrolling (native-scrolling) is enabled. Smooth
+   ;; scrolling overrides the default behavior of Emacs which recenters point
+   ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
-   ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
-   ;; derivatives. If set to `relative', also turns on relative line numbers.
+
+   ;; Control line numbers activation.
+   ;; If set to `t', `relative' or `visual' then line numbers are enabled in all
+   ;; `prog-mode' and `text-mode' derivatives. If set to `relative', line
+   ;; numbers are relative. If set to `visual', line numbers are also relative,
+   ;; but lines are only visual lines are counted. For example, folded lines
+   ;; will not be counted and wrapped lines are counted as multiple lines.
+   ;; This variable can also be set to a property list for finer control:
+   ;; '(:relative nil
+   ;;   :visual nil
+   ;;   :disabled-for-modes dired-mode
+   ;;                       doc-view-mode
+   ;;                       markdown-mode
+   ;;                       org-mode
+   ;;                       pdf-view-mode
+   ;;                       text-mode
+   ;;   :size-limit-kb 1000)
+   ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
    dotspacemacs-line-numbers nil
-   ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
+
+   ;; Code folding method. Possible values are `evil' and `origami'.
+   ;; (default 'evil)
+   dotspacemacs-folding-method 'evil
+
+   ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
 
@@ -345,6 +400,7 @@ values."
    ;; If non-nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
+
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
@@ -964,6 +1020,10 @@ you should place you code here."
 
 
   (evil-leader/set-key "am" 'good-morning)
+
+  (add-to-list 'projectile-project-root-files "go.mod")
+  (projectile-register-project-type 'go '("go.mod")
+                                    :test-suffix "_test")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
