@@ -103,8 +103,8 @@ setopt PUSHD_IGNORE_DUPS
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 function powerline_precmd() {
-    #PS1="$(powerline-go -error $? -shell zsh -theme $HOME/.dotfiles/theme.json)"
-    PS1="$(powerline-go -error $? -shell zsh )"
+    PS1="$(powerline-go -error $? -shell zsh -theme $HOME/.dotfiles/powerline-theme.json)"
+    #PS1="$(powerline-go -error $? -shell zsh)"
 }
 
 function install_powerline_precmd() {
