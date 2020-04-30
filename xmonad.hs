@@ -155,7 +155,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      spawn "rofi -show run")
 
   , ((modMask, xK_t),
-     spawn "notify-send \"$(date +'%H:%M')\" \"$(date +'%a, %d.%m.%n%B %Y w%V')\"")
+     spawn "notify-send \"$(date +'%H:%M')\" \"$(date +'%a, %d.%m.%n%B %Y w%V')\n$(acpi)\"")
 
   -- Select and copy an emoji
   , ((modMask .|. shiftMask, xK_r),
