@@ -111,7 +111,7 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(yafolding key-chord helm-org-rifle string-inflection hackernews harvest vue-mode zpresent company-box)
+   dotspacemacs-additional-packages '(yafolding key-chord helm-org-rifle string-inflection hackernews harvest vue-mode zpresent company-box org-randomnote)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
