@@ -44,14 +44,21 @@ ZSH_THEME="agnoster"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-# NOTE that autojump needs the executable autojump installed
+# NOTE that fasd needs the executable fasd installed
 # NOTE do NOT enable the tmux plugin! It breaks the last-working-dir functionality
-plugins=(last-working-dir zsh-navigation-tools rvm web-search rails bundler ruby git gem git-extras github vi-mode wd fabric docker archlinux colorize alias-tips tmux)
+plugins=(last-working-dir zsh-navigation-tools rvm web-search bundler ruby git gem git-extras github vi-mode wd fabric docker docker-compose archlinux colorize alias-tips fasd zsh-autosuggestions dircycle safe-paste)
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# to install autosuggestions plugin:
+# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# to install alias-tips plugin:
+# git clone https://github.com/djui/alias-tips ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/alias-tips
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+unalias sp # web-search plugin
 DEFAULT_USER="svk"
 
 autoload -U zmv
@@ -67,25 +74,19 @@ bindkey "^R" znt-history-widget
 #zle -N znt-cd-widget
 #bindkey "^J" znt-cd-widget
 
-# call ranger file manager with Ctrl-J
+# call file manager with Ctrl-K
 # jumps to the selected directory when quit
-start_ranger() {
-  if [ -z "$RANGER_LEVEL" ]; then
-    local tempfile="$(mktemp -t tmp.XXXXXXX)"
-    exec</dev/tty
-    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
-    test -f "$tempfile" &&
-    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
-        cd "$(cat "$tempfile")"
-    fi
-    rm -f -- "$tempfile"
-  else
-    exit
+start_filemanager() {
+  local dst=$(command vifm --choose-dir - $PWD < $TTY)
+  if [ -z "$dst" ]; then
+    echo 'Directory picking cancelled/failed'
+    return 1
   fi
+  cd "$dst"
   zle reset-prompt
 }
-zle -N start_ranger
-bindkey "^J" start_ranger
+zle -N start_filemanager
+bindkey "^K" start_filemanager
 
 # always do pushd when cding, so you can always navigate back by calling popd (even multiple times, which doesn't work with cd -)
 setopt AUTO_PUSHD
@@ -93,9 +94,31 @@ setopt PUSHD_IGNORE_DUPS
 # enable rvm
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
+
+# dircycle with Ctrl-H and Ctrl-L
+#bindkey -c '^H' cd ..
+#bindkey '^L' insert-cycledright
+
 # tell Java that XMonad is non-reparenting (prevents blank windows of java applications)
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+function powerline_precmd() {
+    #PS1="$(powerline-go -error $? -shell zsh -theme $HOME/.dotfiles/theme.json)"
+    PS1="$(powerline-go -error $? -shell zsh )"
+}
+
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" ]; then
+    install_powerline_precmd
+fi
 
 export EDITOR=vim
 
@@ -107,7 +130,12 @@ alias dc="docker-compose"
 alias pa="cd $HOME/development/pa"
 alias sc="cd $HOME/development/sc"
 alias ls="TERM=xterm-256color exa"
-alias lls="TERM=xterm-256color exa --git -l"
+alias ll="TERM=xterm-256color exa --git -l"
+alias db="dropbox-cli"
+
+alias cat=bat
+#alias find=fd
+alias man=tldr
 
 # ps + grep.
 # see https://github.com/blueyed/oh-my-zsh/blob/a08181210b47625efdc8480e628b0155bff392c9/lib/aliases.zsh#L10-L18
@@ -125,8 +153,29 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 # initialize rbenv (ruby version manager)
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+alias cherry="xmodmap ~/.Xmodmap_cherry"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 unalias gr # zsh git plugin defines this alias but we want to use the gr tool
 
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
+
+export BAT_THEME="Monokai Extended Light"
+
+export TLDR_COLOR_BLANK="white"
+export TLDR_COLOR_NAME="cyan"
+export TLDR_COLOR_DESCRIPTION="yellow"
+export TLDR_COLOR_EXAMPLE="green"
+export TLDR_COLOR_COMMAND="blue"
+export TLDR_COLOR_PARAMETER="magenta"
+export TLDR_CACHE_ENABLED=1
+export TLDR_CACHE_MAX_AGE=720
+
+
+export PATH="$PATH:$HOME/.npm-global/bin"
+export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+
+alias wlan="wicd-cli --wireless"
+
+source /home/sven/.config/broot/launcher/bash/br
+#bindkey -s "^J" "br^M"

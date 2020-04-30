@@ -18,6 +18,8 @@ import           XMonad.Layout.Fullscreen
 import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Spiral
 import           XMonad.Layout.Tabbed
+import           XMonad.Layout.Dishes
+import           XMonad.Layout.StackTile
 import           XMonad.Prompt
 import qualified XMonad.StackSet            as W
 import           XMonad.Util.EZConfig       (additionalKeys)
@@ -30,14 +32,14 @@ import XMonad.Config.Desktop
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "/usr/bin/st"
+myTerminal = "/usr/bin/kitty"
 
 
 ------------------------------------------------------------------------
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
-myWorkspaces = ["1:editor","2:web","3:term","4:mail","5:emacs","6:messenger"] ++ map show [7..9]
+myWorkspaces = ["1:term","2:web","3:editor","4:free","5:emacs","6:phone"] ++ map show [7..9]
 
 
 ------------------------------------------------------------------------
@@ -55,15 +57,13 @@ myWorkspaces = ["1:editor","2:web","3:term","4:mail","5:emacs","6:messenger"] ++
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "Firefox"  --> doShift "2:web"
+    [ className =? "firefox"        --> doShift "2:web"
     , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "XTerm"       --> doShift "3:term"
-    , className =? "Thunderbird"  --> doShift "4:mail"
-    , className =? "Emacs24"           --> doShift "5:emacs"
-    , className =? "Pidgin"          --> doShift "6:messenger"
+    , resource  =? "kitty"          --> doShift "1:term"
+    , className =? "Emacs"          --> doShift "5:emacs"
     , className =? "MPlayer"        --> doFloat
     , className =? "Qshutdown"      --> doFloat
-    , className =? "VirtualBox"     --> doShift "8"
+    , className =? "linphone"       --> doShift "6:phone"
     , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
 
 
@@ -80,10 +80,9 @@ myManageHook = composeAll
 myLayout = avoidStruts (
     Tall 1 (3/100) (1/2) |||
     Mirror (Tall 1 (3/100) (1/2)) |||
+    StackTile 1 (3/100) (1/2) |||
     tabbed shrinkText tabConfig |||
-    Full |||
-    spiral (6/7)) |||
-    noBorders (fullscreenFull Full)
+    noBorders (fullscreenFull Full))
 
 
 ------------------------------------------------------------------------
@@ -153,13 +152,34 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Use this to launch programs without a key binding.
   -- Note that you need a patched dmenu for fonts to work (Arch: dmenu2 from AUR)
   , ((modMask, xK_p),
-     spawn "dmenu_run -fn 'DejaVu Sans Mono'")
+     spawn "rofi -show run")
 
-  -- Take a screenshot in select mode.
-  -- After pressing this key binding, click a window, or draw a rectangle with
-  -- the mouse.
+  , ((modMask, xK_t),
+     spawn "notify-send \"$(date +'%H:%M')\" \"$(date +'%a, %d.%m.%n%B %Y w%V')\"")
+
+  -- Select and copy an emoji
+  , ((modMask .|. shiftMask, xK_r),
+     spawn "~/bin/dmenuunicode")
+
+  -- Select and copy an unicode symbol
+  , ((modMask, xK_u),
+     spawn "rofi -show unicode")
+
+  -- Take a screenshot using teiler
   , ((modMask .|. shiftMask, xK_p),
-     spawn "~/.xmonad/bin/select-screenshot")
+     spawn "teiler")
+
+  -- Toggle screencast
+  , ((modMask .|. shiftMask, xK_x),
+     spawn "teiler --togglecast")
+
+  -- Take a screenshot from an area
+  , ((modMask .|. shiftMask, xK_a),
+     spawn "teiler --quick image area")
+
+  -- Translate
+  , ((modMask, xK_d),
+     spawn "rofi_trans")
 
   -- Play/Pause
   , ((modMask .|. shiftMask, xK_F8),
@@ -174,16 +194,28 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      spawn "playerctl previous")
 
   -- Mute volume.
-  , ((modMask .|. shiftMask, xK_F10),
+  , ((modMask, xK_F1),
      spawn "amixer -D pulse set Master toggle")
 
   -- Decrease volume.
-  , ((modMask .|. shiftMask, xK_F11),
+  , ((modMask, xK_F2),
      spawn "amixer -q set Master playback 10%-")
 
   -- Increase volume.
-  , ((modMask .|. shiftMask, xK_F12),
+  , ((modMask, xK_F3),
      spawn "amixer -q set Master playback 10%+")
+
+  -- Decrease screen backlight.
+  , ((modMask, xK_F5),
+     spawn "xbacklight -dec 10")
+
+  -- Increase screen backlight.
+  , ((modMask, xK_F6),
+     spawn "xbacklight -inc 10")
+
+  -- Toggle keyboard backlight.
+  , ((modMask, xK_F11),
+     spawn "/home/sven/kb-light.py")
 
   -- search
   , ((modMask, xK_s),
@@ -211,6 +243,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Move focus to the next window.
   , ((modMask, xK_Tab),
+     windows W.focusDown)
+
+  -- Move focus to the next window.
+  , ((modMask, xK_j),
      windows W.focusDown)
 
   -- Move focus to the next window.
@@ -246,7 +282,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      sendMessage Expand)
 
   -- Push window back into tiling.
-  , ((modMask, xK_t),
+  , ((modMask .|. shiftMask, xK_t),
      withFocused $ windows . W.sink)
 
   -- Increment the number of windows in the master area.
@@ -334,16 +370,14 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 ------------------------------------------------------------------------
 -- Run xmonad with all the defaults we set up.
 --
+-- 
+monokaiBlue = "#66D9EF"
+
 main = do
-  xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobar.hs"
+  xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
   xmonad $ desktopConfig {
-      logHook = dynamicLogWithPP $ xmobarPP {
-            ppOutput = hPutStrLn xmproc
-          , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
-          , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
-          , ppSep = "   "}
     -- simple stuff
-    , terminal           = myTerminal
+      terminal           = myTerminal
     , focusFollowsMouse  = myFocusFollowsMouse
     , borderWidth        = myBorderWidth
     , modMask            = myModMask
@@ -360,4 +394,15 @@ main = do
     , manageHook = manageDocks <+> myManageHook
     , startupHook = setWMName "LG3D"
     , handleEventHook = handleEventHook desktopConfig <+> XMonad.Hooks.EwmhDesktops.fullscreenEventHook
+    , logHook            = dynamicLogWithPP $ xmobarPP
+      { ppOutput          = hPutStrLn xmproc
+      , ppTitle           = xmobarColor monokaiBlue "" . shorten 100
+      , ppHiddenNoWindows = xmobarColor "grey" "" . wrap "" ""
+      , ppUrgent          = xmobarColor "black" "#FD971F" . wrap " "  " "
+      , ppHidden          = xmobarColor "grey" "black"
+      , ppCurrent         = xmobarColor "black" monokaiBlue . wrap " " " "
+      , ppVisible         = xmobarColor monokaiBlue ""
+      , ppLayout          = xmobarColor "#999" "" . wrap "|" "|"
+      , ppSep             = " · "
+      }
   }

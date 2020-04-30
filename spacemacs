@@ -1,27 +1,49 @@
-;; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
 (defun dotspacemacs/layers ()
-  "Configuration Layers declaration.
-You should not put any user code in this function besides modifying the variable
-values."
+  "Layer configuration:
+This function should only modify configuration layer settings."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
    dotspacemacs-distribution 'spacemacs
+
+   ;; Lazy installation of layers (i.e. layers are installed only when a file
+   ;; with a supported type is opened). Possible values are `all', `unused'
+   ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
+   ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
+   ;; lazy install any layer that support lazy installation even the layers
+   ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
+   ;; installation feature and you have to explicitly list a layer in the
+   ;; variable `dotspacemacs-configuration-layers' to install it.
+   ;; (default 'unused)
+   dotspacemacs-enable-lazy-installation 'unused
+
+   ;; If non-nil then Spacemacs will ask for confirmation before installing
+   ;; a layer lazily. (default t)
+   dotspacemacs-ask-for-lazy-installation t
+
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
-   '((go :variables
+   '(rust
+     ansible
+     react
+     csv
+     (go :variables
          go-use-gometalinter t
-         go-tab-width 2)
+         go-tab-width 2
+         go-use-gocheck-for-testing t
+         go-backend 'lsp-deferred)
      helm
-     php
+     (php :variables
+          php-backend 'lsp-deferred)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -30,9 +52,14 @@ values."
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage t)
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence "jk"
+                      auto-completion-complete-with-key-sequence-delay 0.1
+                      )
      typography
-     emoji
+     ;emoji ;; breaks org mode repeat
      emacs-lisp
      git
      github
@@ -50,11 +77,15 @@ values."
             scala-use-unicode-arrows t
             scala-auto-start-ensime t)
      (ruby :variables
-           ruby-version-manager 'rbenv)
+           ruby-version-manager 'rbenv
+           ruby-backend 'lsp-deferred)
      ruby-on-rails
      html
      javascript
-     java
+     (java :variables
+           java-backend 'lsp-deferred)
+     (kotlin :variables
+           kotlin-backend 'lsp-deferred)
      haskell
      yaml
      asciidoc
@@ -64,19 +95,23 @@ values."
             shell-enable-smart-eshell t)
      c-c++
      sql
-     typescript
+     (typescript :variables
+                 company-tooltip-align-annotations t)
      python
      (gtags :variables gtags-enable-by-default t)
      (mu4e :variables
            mu4e-installation-path "/usr/share/emacs/site-lisp")
-                                        ;spacemacs-purpose seems not to be available yet
+;     spacemacs-purpose
      elixir
+     (restclient :variables restclient-use-org t)
+     (elfeed :variables rmh-elfeed-org-files (list "~/SpiderOak Hive/org/newsfeeds.org"))
+     lsp
    )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(yafolding key-chord helm-org-rifle string-inflection)
+   dotspacemacs-additional-packages '(yafolding key-chord helm-org-rifle string-inflection hackernews harvest vue-mode zpresent company-box)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -103,13 +138,39 @@ values."
    dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 5
-   ;; If non nil then spacemacs will check for updates at startup
-   ;; when the current branch is not `develop'. (default t)
-   dotspacemacs-check-for-update t
-   ;; One of `vim', `emacs' or `hybrid'. Evil is always enabled but if the
-   ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
-   ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
-   ;; unchanged. (default 'vim)
+
+   ;; Set `gc-cons-threshold' and `gc-cons-percentage' when startup finishes.
+   ;; This is an advanced option and should not be changed unless you suspect
+   ;; performance issues due to garbage collection operations.
+   ;; (default '(100000000 0.1))
+   dotspacemacs-gc-cons '(100000000 0.1)
+
+   ;; If non-nil then Spacelpa repository is the primary source to install
+   ;; a locked version of packages. If nil then Spacemacs will install the
+   ;; latest version of packages from MELPA. (default nil)
+   dotspacemacs-use-spacelpa nil
+
+   ;; If non-nil then verify the signature for downloaded Spacelpa archives.
+   ;; (default t)
+   dotspacemacs-verify-spacelpa-archives t
+
+   ;; If non-nil then spacemacs will check for updates at startup
+   ;; when the current branch is not `develop'. Note that checking for
+   ;; new versions works via git commands, thus it calls GitHub services
+   ;; whenever you start Emacs. (default nil)
+   dotspacemacs-check-for-update nil
+
+   ;; If non-nil, a form that evaluates to a package directory. For example, to
+   ;; use different package directories for different Emacs versions, set this
+   ;; to `emacs-version'. (default 'emacs-version)
+   dotspacemacs-elpa-subdirectory 'emacs-version
+
+   ;; One of `vim', `emacs' or `hybrid'.
+   ;; `hybrid' is like `vim' except that `insert state' is replaced by the
+   ;; `hybrid state' with `emacs' key bindings. The value can also be a list
+   ;; with `:variables' keyword (similar to layers). Check the editing styles
+   ;; section of the documentation for details on available variables.
+   ;; (default 'vim)
    dotspacemacs-editing-style 'vim
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
@@ -143,8 +204,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 9.0
+   dotspacemacs-default-font '("Victor Mono"
+                               :size 10.0
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -157,7 +218,7 @@ values."
    ;; pressing `<leader> m`. Set it to `nil` to disable it. (default ",")
    dotspacemacs-major-mode-leader-key ","
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
-   ;; (default "C-M-m)
+   ;; (default "C-M-m")
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
    ;; These variables control whether separate commands are bound in the GUI to
    ;; the key pairs C-i, TAB and C-m, RET.
@@ -181,7 +242,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts t
+   dotspacemacs-auto-resume-layouts nil
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
@@ -212,14 +273,24 @@ values."
    ;; right; if there is insufficient space it displays it at the bottom.
    ;; (default 'bottom)
    dotspacemacs-which-key-position 'bottom
-   ;; If non nil a progress bar is displayed when spacemacs is loading. This
+
+   ;; Control where `switch-to-buffer' displays the buffer. If nil,
+   ;; `switch-to-buffer' displays the buffer in the current window even if
+   ;; another same-purpose window is available. If non-nil, `switch-to-buffer'
+   ;; displays the buffer in a same-purpose window even if the buffer can be
+   ;; displayed in the current window. (default nil)
+   dotspacemacs-switch-to-buffer-prefers-purpose nil
+
+   ;; If non-nil a progress bar is displayed when spacemacs is loading. This
    ;; may increase the boot time on some systems and emacs builds, set it to
    ;; nil to boost the loading time. (default t)
    dotspacemacs-loading-progress-bar t
-   ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
+
+   ;; If non-nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
    dotspacemacs-fullscreen-at-startup nil
-   ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
+
+   ;; If non-nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native nil
    ;; If non nil the frame is maximized when Emacs starts up.
@@ -234,6 +305,8 @@ values."
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
+   ;; Modeline theme
+   dotspacemacs-mode-line-theme 'spacemacs
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
    dotspacemacs-mode-line-unicode-symbols t
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
@@ -247,24 +320,62 @@ values."
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
+
+   ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
+   ;; over any automatically added closing parenthesis, bracket, quote, etc...
+   ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
+   dotspacemacs-smart-closing-parenthesis nil
+
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
    dotspacemacs-highlight-delimiters 'all
-   ;; If non nil advises quit functions to keep server open when quitting.
+
+   ;; If non-nil, start an Emacs server if one is not already running.
+   ;; (default nil)
+   dotspacemacs-enable-server t
+
+   ;; Set the emacs server socket location.
+   ;; If nil, uses whatever the Emacs default is, otherwise a directory path
+   ;; like \"~/.emacs.d/server\". It has no effect if
+   ;; `dotspacemacs-enable-server' is nil.
+   ;; (default nil)
+   dotspacemacs-server-socket-dir nil
+
+   ;; If non-nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
    ;; List of search tool executable names. Spacemacs uses the first installed
-   ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
-   ;; (default '("ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
-   ;; The default package repository used if no explicit repository has been
-   ;; specified with an installed package.
-   ;; Not used for now. (default nil)
-   dotspacemacs-default-package-repository nil
+   ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
+   ;; (default '("rg" "ag" "pt" "ack" "grep"))
+   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
+
+   ;; Format specification for setting the frame title.
+   ;; %a - the `abbreviated-file-name', or `buffer-name'
+   ;; %t - `projectile-project-name'
+   ;; %I - `invocation-name'
+   ;; %S - `system-name'
+   ;; %U - contents of $USER
+   ;; %b - buffer name
+   ;; %f - visited file name
+   ;; %F - frame name
+   ;; %s - process status
+   ;; %p - percent of buffer above top of window, or Top, Bot or All
+   ;; %P - percent of buffer above bottom of window, perhaps plus Top, or Bot or All
+   ;; %m - mode name
+   ;; %n - Narrow if appropriate
+   ;; %z - mnemonics of buffer, terminal, and keyboard coding systems
+   ;; %Z - like %z, but including the end-of-line format
+   ;; (default "%I@%S")
+   dotspacemacs-frame-title-format "%I@%S"
+
+   ;; Format specification for setting the icon title format
+   ;; (default nil - same as frame-title-format)
+   dotspacemacs-icon-title-format nil
+
    ;; Delete whitespace while saving buffer. Possible values are `all'
    ;; to aggressively delete empty line and long sequences of whitespace,
-   ;; `trailing' to delete only the whitespace at end of lines, `changed'to
+   ;; `trailing' to delete only the whitespace at end of lines, `changed' to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup 'trailing
@@ -286,7 +397,43 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
-  (require 'helm-bookmark) ; workaround until https://github.com/syl20bnr/spacemacs/issues/9549 is fixed in stable
+  (require 'window-purpose) ; workaround until https://github.com/bmag/emacs-purpose/issues/158 is fixed
+
+  (when (string= system-name "sven-uni")
+    (defconst my-sync-path "~/SpiderOak Hive"))
+  (when (string= system-name "palanthas")
+    (defconst my-sync-path "~/SpiderOak Hive"))
+  (when (string-prefix-p "losarcum" system-name)
+    (defconst my-sync-path "~/sync"))
+  (when (string= system-name "daltigoth")
+    (defconst my-sync-path "~/sync"))
+
+  (defconst my-org-file-path (concat my-sync-path "/org"))
+
+  (setq browse-url-browser-function 'browse-url-firefox)
+
+  ;(global-company-mode t)
+
+  (with-eval-after-load 'company-box
+    (add-hook 'company-mode-hook 'company-box-mode)
+  )
+
+  ;; Number the candidates (use M-1, M-2 etc to select completions).
+  (setq company-show-numbers t)
+
+  ;; use imagemagick, if available (for displaying inline images, e.g. in mu4e)
+  (when (fboundp 'imagemagick-register-types)
+    (imagemagick-register-types))
+
+  (evil-leader/set-key "ah" 'harvest)
+;; (add-hook 'org-clock-in-hook 'harvest)
+;; (add-hook 'org-clock-out-hook 'harvest-clock-out)
+
+  (add-hook 'org-mode-hook 'variable-pitch-mode)
+  (add-hook 'org-mode-hook 'visual-line-mode)
+
+  (setq mmm-submode-decoration-level 0)
+
   (with-eval-after-load 'org
 
     (setq org-log-done t
@@ -307,7 +454,7 @@ you should place you code here."
           org-agenda-skip-scheduled-if-done t
           org-tags-column 80
           org-enforce-todo-dependencies t
-          org-agenda-dim-blocked-tasks t
+          org-agenda-dim-blocked-tasks nil
           org-src-fontify-natively t)
 
                                         ; Refile targets include this file and any file contributing to the agenda - up to 5 levels deep
@@ -320,7 +467,7 @@ you should place you code here."
 
     (setq org-todo-keywords
           (quote ((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "|" "DONE(d!/!)")
-                  (sequence "WAITING(w@/!)" "SOMEDAY(S)" "HOLD(h)" "|" "CANCELLED(c@/!)"))))
+                  (sequence "WAITING(w@/!)" "SOMEDAY(S)" "MAYBE(m)" "HOLD(h)" "|" "CANCELLED(c@/!)"))))
 
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -343,8 +490,13 @@ you should place you code here."
     (setq org-time-clocksum-format
           '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
 
+    (setq org-agenda-overriding-columns-format "%TODO %7EFFORT{:} %7CLOCKSUM_T(SPENT){:} %3PRIORITY     %100ITEM 100%TAGS")
     ;; CUSTOM AGENDA
     ;; Custom agenda command definitions
+
+    (defun my/org-agenda-skip-scheduled ()
+      (org-agenda-skip-entry-if 'scheduled 'deadline 'regexp "\n]+>"))
+
     (setq org-agenda-custom-commands
           (quote (("N" "Notes" tags "NOTE"
                    ((org-agenda-overriding-header "Notes")
@@ -372,9 +524,77 @@ you should place you code here."
                                ((org-agenda-overriding-header "Waiting and Postponed Tasks")
                                 (org-tags-match-list-sublevels nil))
                                nil)))
-                  ("O" "Overview" agenda ""
-                   ((org-agenda-span 14) (org-agenda-start-day "-1d")
-                    )))))
+                  ("t" todo-tree "TODO")
+                  ("T" tags-todo "/TODO|NEXT" ((org-agenda-todo-ignore-scheduled 'future)
+                                               (org-agenda-tags-todo-honor-ignore-options t)
+                                               (org-agenda-todo-list-sublevels t)))
+                  ("s" todo-tree "STARTED")
+                  ("w" todo-tree "WAITING")
+                  ("R" tags "REFILE")
+                  ("o" tags-todo "-pav-swc-gxp/TODO")
+                  ("p" . "Project Agendas")
+
+
+        ;;           (mapcar (lambda (l)
+        ;;                     (let ((first-member (car l))
+        ;;                           (second-member (cadr l))
+        ;;                           (third-member (nth 2 l) ))
+        ;;                       `(,first-member ,second-member ;;First and second
+        ;;                                       ( (tags-todo ,(concat third-member "/STARTED")
+        ;;                                                     `((org-agenda-overriding-header "Started Tasks")))
+        ;;                                         (tags-todo ,(concat third-member "/NEXT")
+        ;;                                                     `((org-agenda-overriding-header "Next Tasks")))
+        ;;                                         (tags-todo ,(concat third-member "/WAITING")
+        ;;                                                     `((org-agenda-overriding-header "Waiting")))
+        ;;                                         (tags-todo ,(concat third-member "/TODO")
+        ;;                                                     `((org-agenda-overriding-header "Unscheduled Tasks")
+        ;;                                                       (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))))))
+        ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;                   '( ("pp" "Perfavo" "pav") ("ps" "Software-Challenge" "swc")))
+
+
+                  ("pp" "Perfavo" ((tags-todo "pav/STARTED" ((org-agenda-overriding-header "Started Tasks")))
+                                   (tags-todo "pav/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                                   (tags-todo "pav/WAITING" ((org-agenda-overriding-header "Waiting")))
+                                   (tags-todo "pav/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
+                  ))
+                  ("ps" "Software-Challenge" ((tags-todo "swc/STARTED" ((org-agenda-overriding-header "Started Tasks")))
+                                   (tags-todo "swc/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                                   (tags-todo "swc/WAITING" ((org-agenda-overriding-header "Waiting")))
+                                   (tags-todo "swc/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
+                                   ))
+                  ("pg" "GFXpro" ((tags-todo "gxp/STARTED" ((org-agenda-overriding-header "Started Tasks")))
+                                              (tags-todo "gxp/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                                              (tags-todo "gxp/WAITING" ((org-agenda-overriding-header "Waiting")))
+                                              (tags-todo "gxp/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
+                                              ))
+; Weekly Review block agenda
+  ("r" . "Weekly Review")
+  ("r1" "Get Clear: Collect loose materials and process Inbox"
+    tags "+in+LEVEL>1"
+    ((org-agenda-overriding-header "Inbox items to process:")
+     (org-agenda-prefix-format "")))
+  ("r2" "Get Current: Review Next Actions\n    Archive completed actions, review for further action steps."
+    (;(todo "DONE|DROPPED|COMPLETE" ((org-agenda-overriding-header "Done/Dropped Items (to archive):")
+     ;                               (org-agenda-cmp-user-defined (cmp-date-property "CLOSED"))
+     ;                               (org-agenda-sorting-strategy '(user-defined-up))))
+    ; (above gives error because cmp-date-property doesn't exist)
+     (tags-todo "-sm/NEXT" ((org-agenda-overriding-header "Next Actions:")
+                            (org-agenda-sorting-strategy '(time-up category-up alpha-up))
+                            (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))
+     (tags-todo "-sm/NEXT" ((org-agenda-overriding-header "Scheduled Actions:")
+                            (org-agenda-sorting-strategy '(time-up category-up alpha-up))
+                            (org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled)))))
+     ((org-agenda-prefix-format "%-12:c ")))
+  ("r3" "Get Current: Review Previous Calendar"
+    ((agenda "" ((org-agenda-start-day (concat "-" (number-to-string (+ 13 (nth 6 (decode-time)))) "d"))
+                 (org-agenda-span (+ 14 (nth 6 (decode-time))))
+                 (org-agenda-repeating-timestamp-show-all t)
+                 (org-agenda-entry-types '(:deadline :timestamp :sexp)) ; show due tasks, meetings
+                 (org-agenda-show-log t)
+                 (org-agenda-prefix-format "%-12t% s")))))
+
+                  )))
 
     ;; ;; CUSTOM AGENDA END
 
@@ -416,14 +636,6 @@ you should place you code here."
         (previous-line 2)
         (org-edit-src-code)))
 
-    (when (string= system-name "sven-uni")
-      (defconst my-org-file-path "~/SpiderOak Hive/org"))
-    (when (string= system-name "palanthas")
-      (defconst my-org-file-path "~/SpiderOak Hive/org"))
-    (when (string-prefix-p "losarcum" system-name)
-      (defconst my-org-file-path "~/mainsync/org"))
-    (when (string= system-name "daltigoth")
-      (defconst my-org-file-path "~/sync/org"))
 
     (when (file-accessible-directory-p my-org-file-path)
       (setq diary-file (concat my-org-file-path "/diary")))
@@ -443,12 +655,16 @@ you should place you code here."
     (setq org-capture-templates
           (quote (("t" "todo" entry (file "refile.org")
                    "* TODO %?\n%U\n%a\n")
-                  ("r" "respond" entry (file "refile.org")
-                   "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n")
+                  ("c" "Cooldown" entry (file+datetree "gtd-daily-cooldown.org") (file "tmp-daily-cooldown.org"))
+                  ("r" "Weekly Review" entry (file+datetree "gtd-weekly-reviews.org") (file "tmp-weekly-review.org"))
                   ("n" "note" entry (file "refile.org")
                    "* %? :NOTE:\n%U\n%a\n")
                   ("b" "bug" entry (file "bugs.org")
                    "* %?\n%U\n%a\n\n** Symptom\n\n** Ursache\n\n** Wie gefunden\n\n** Fix\n\n** Projekt\n\n** Commit\n\n** Bug selbst verursacht?\n\n** Zeit bis zum Fix\n\n** Lektionen\n")
+                  ("a" "automate" entry (file "refile.org")
+                   "* %? :AUTO:\n%U\n%a\n")
+                  ("g" "respond" entry (file "refile.org")
+                   "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n")
                   ("j" "Journal" entry (file+datetree "diary.org")
                    "* %?\n%U\n")
                   ("m" "Meeting" entry (file "refile.org")
@@ -459,94 +675,11 @@ you should place you code here."
                    "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
                   ("B" "Brain" plain (function org-brain-goto-end)
                    "* %i%?" :empty-lines 1)
+                  ("f" "Frontastic Weekly" entry (file+headline "gxp-frontastic.org" "DevOps Weekly Review Meeting") (file "tmp-frontastic-meeting.org"))
                   )))
 
     ;;; org mode beamer
 
-
-    (setq ieeetran-class
-          '("IEEEtran"
-            "\\documentclass[11pt]{IEEEtran}"
-            ("\\section{%s}" . "\\section*{%s}")
-            ("\\subsection{%s}" . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}" . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-    (setq article-class
-          '("article"
-            "\\documentclass[11pt]{article}"
-            ("\\section{%s}" . "\\section*{%s}")
-            ("\\subsection{%s}" . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}" . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-    (setq beamer-class
-          '("beamer"
-            "\\documentclass{beamer}
-\\usepackage[german]{babel}
-\\usepackage{listings}
-\\usepackage{color}
-
-\\definecolor{red}{rgb}{0.6,0,0} % for strings
-\\definecolor{green}{rgb}{0.25,0.5,0.35} % comments
-\\definecolor{purple}{rgb}{0.5,0,0.35} % keywords
-\\definecolor{docblue}{rgb}{0.25,0.35,0.75} % doc
-
-\\lstset{basicstyle=\\small\\ttfamily,
-keywordstyle=\\color{purple},
-stringstyle=\\color{red},
-commentstyle=\\color{green},
-morecomment=[s][\\color{docblue}]{/**}{*/},
-numbers=left,
-numberstyle=\\tiny\\color{gray},
-stepnumber=1,
-numbersep=10pt,
-tabsize=2,
-showspaces=false,
-showstringspaces=false,
-otherkeywords={define,include,\\#}}
-\\usetheme{hsrm}
-     [NO-DEFAULT-PACKAGES]
-     [NO-PACKAGES]"
-            ("\\section{%s}" . "\\section*{%s}")
-            ("\\subsection{%s}" . "\\subsection*{%s}")
-            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-            ("\\paragraph{%s}" . "\\paragraph*{%s}")
-            ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-    (unless (boundp 'org-latex-classes)
-      (setq org-latex-classes nil))
-    (add-to-list 'org-latex-classes ieeetran-class t)
-    (add-to-list 'org-latex-classes article-class t)
-    (add-to-list 'org-latex-classes beamer-class t)
-
-    (add-to-list 'org-latex-classes
-                 '("djcb-org-article"
-                   "\\documentclass[11pt,a4paper]{article}
-\\usepackage[T1]{fontenc}
-\\usepackage{fontspec}
-\\usepackage{graphicx}
-\\usepackage{hyperref}
-\\defaultfontfeatures{Mapping=tex-text}
-\\setromanfont{Gentium}
-\\setromanfont [BoldFont={Gentium Basic Bold},
-                ItalicFont={Gentium Basic Italic}]{Gentium Basic}
-\\setsansfont{Charis SIL}
-\\setmonofont[Scale=0.8]{DejaVu Sans Mono}
-\\usepackage{geometry}
-\\geometry{a4paper, textwidth=6.5in, textheight=10in,
-            marginparsep=7pt, marginparwidth=.6in}
-\\pagestyle{empty}
-\\title{}
-      [NO-DEFAULT-PACKAGES]
-      [NO-PACKAGES]"
-                   ("\\section{%s}" . "\\section*{%s}")
-                   ("\\subsection{%s}" . "\\subsection*{%s}")
-                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
     (setq org-latex-pdf-process
           '("xelatex -interaction nonstopmode -shell-escape %f"
@@ -555,24 +688,23 @@ otherkeywords={define,include,\\#}}
     (setq org-export-latex-hyperref-format "\\ref{%s}")
     (setq org-latex-listings t)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; org mode bibtex integration
-    (defun my-rtcite-export-handler (path desc format)
-      (message "my-rtcite-export-handler is called : path = %s, desc = %s, format = %s" path desc format)
-      (let* ((search (when (string-match "::#?\\(.+\\)\\'" path)
-                       (match-string 1 path)))
-             (path (substring path 0 (match-beginning 0))))
-        (cond ((eq format 'latex)
-               (if (or (not desc)
-                       (equal 0 (search "rtcite:" desc)))
-                   (format "\\cite{%s}" search)
-                 (format "\\cite[%s]{%s}" desc search))))))
+    ;; insert creation date into all headings
+    (defun insert-created-date(&rest ignore)
+      (insert "\n")
+      (org-insert-time-stamp (current-time) 't 't)
+      (org-back-to-heading) ; in org-capture, this folds the entry; when inserting a heading, this moves point back to the heading line
+      (move-end-of-line()) ; when inserting a heading, this moves point to the end of the line
+      )
 
+    ; add to the org-capture hook to insert a creation date
+    ; deactivated because it does not work well with the org-capture function (there, the date is inserted twice)
+    ;(add-hook 'org-capture-before-finalize-hook
+    ;          #'insert-created-date
+    ;          )
 
-    (org-add-link-type "rtcite"
-                       'org-bibtex-open
-                       'my-rtcite-export-handler)
-    )
+    (advice-add 'org-insert-heading :after #'insert-created-date)
+
+  ) ;; org-mode eval after load end
 
   ; This enables binding the custom agenda to keys and showing it on startup.
   ; Has to be defined outside of org mode hook, or else it would not be
@@ -625,6 +757,17 @@ otherkeywords={define,include,\\#}}
   ; never indent with tabs
   (setq-default indent-tabs-mode nil)
 
+  ;; Enable JavaScript completion between <script>...</script> etc.
+  (advice-add 'company-tern :before
+              #'(lambda (&rest _)
+                  (if (equal major-mode 'web-mode)
+                      (let ((web-mode-cur-language
+                             (web-mode-language-at-pos)))
+                        (if (or (string= web-mode-cur-language "javascript")
+                                (string= web-mode-cur-language "jsx"))
+                            (unless tern-mode (tern-mode))
+                          (if tern-mode (tern-mode -1)))))))
+
   ; how can the default config not set this?!
   (global-set-key (kbd "C-i") 'evil-jump-forward)
 
@@ -653,80 +796,105 @@ otherkeywords={define,include,\\#}}
   ; https://github.com/syl20bnr/spacemacs/issues/4207
   (setq shell-file-name "/bin/sh")
 
-  (require 'mu4e)
-  (setq mu4e-maildir "~/Mail"
-        mu4e-get-mail-command "offlineimap"
-        mu4e-update-interval 300 ;; in seconds
-        mu4e-compose-format-flowed t
-        mu4e-view-show-images t
-        )
+  (with-eval-after-load 'mu4e
 
-  (setq mu4e-sent-folder "/GFXpro/INBOX.Sent"
-        mu4e-drafts-folder "/GFXpro/INBOX.Drafts"
-        user-mail-address "s.koschnicke@gfxpro.com"
-        smtpmail-local-domain "gfxpro.com"
-        smtpmail-smtp-server "mail.jpberlin.de"
-        smtpmail-smtp-service 465
-        smtpmail-stream-type 'ssl
-        smtpmail-auth-credentials "~/.netrc"
-        message-send-mail-function 'smtpmail-send-it
-        )
+    (setq mu4e-maildir "~/Mail"
+          mu4e-get-mail-command "offlineimap"
+          mu4e-update-interval 300 ;; in seconds
+          mu4e-compose-format-flowed t
+          mu4e-context-policy 'pick-first
+          mu4e-compose-context-policy 'ask
+          )
 
-  (defvar my-mu4e-account-alist
-    '(("GFXpro"
-       (mu4e-sent-folder "/GFXpro/Saved Items")
-       (mu4e-drafts-folder "/GFXpro/Drafts")
-       (user-mail-address "s.koschnicke@gfxpro.com")
-       (smtpmail-local-domain "gfxpro.com")
-       (smtpmail-smtp-server "mail.jpberlin.de")
-       (smtpmail-smtp-service 465)
-       (smtpmail-stream-type ssl)
-       (smtpmail-auth-credentials "~/.netrc"))
-      ("Uni"
-       (mu4e-sent-folder "/Uni/sent")
-       (mu4e-drafts-folder "/Uni/drafts")
-       (user-mail-address "svk@informatik.uni-kiel.de")
-       (smtpmail-local-domain "informatik.uni-kiel.de")
-       (smtpmail-smtp-server "mail.informatik.uni-kiel.de")
-       (smtpmail-smtp-service 587)
-       (smtpmail-stream-type starttls)
-       (smtpmail-auth-credentials "~/.netrc"))
-       )
+    (setq mu4e-contexts
+          `( ,(make-mu4e-context
+               :name "Privat"
+               :enter-func (lambda () (mu4e-message "Switch to the Private context"))
+               ;; leave-func not defined
+               :match-func (lambda (msg)
+                             (when msg
+                               (mu4e-message-contact-field-matches msg
+                                                                   :to "sven@koschnicke.de")))
+               :vars '(  ( user-mail-address      . "sven@koschnicke.de"  )
+                         ( user-full-name     . "Sven Koschnicke" )
+                         ( mu4e-compose-signature .
+                                                  (concat
+                                                   "Viele Gruesse\n"
+                                                   "  Sven Koschnicke\n"))
+                         (mu4e-sent-folder . "/Privat/INBOX.Sent")
+                         (mu4e-drafts-folder . "/Privat/INBOX.Drafts")
+                         (mu4e-trash-folder . "/Privat/INBOX.Trash")
+                         (mu4e-refile-folder . "/Privat/INBOX.Archive")
+                         (smtpmail-local-domain . "koschnicke.de")
+                         (smtpmail-smtp-server . "sslout.df.eu")
+                         (smtpmail-smtp-service . 465)
+                         (smtpmail-stream-type . ssl)
+                         (smtpmail-auth-credentials . "~/.netrc")))
+             ,(make-mu4e-context
+               :name "GFXpro"
+               :enter-func (lambda () (mu4e-message "Switch to the GFXpro context"))
+               ;; leave-fun not defined
+               :match-func (lambda (msg)
+                             (when msg
+                               (mu4e-message-contact-field-matches msg
+                                                                   :to "s.koschnicke@gfxpro.com")))
+               :vars '(  ( user-mail-address      . "s.koschnicke@gfxpro.com" )
+                         ( user-full-name     . "Sven Koschnicke" )
+                         ( mu4e-compose-signature .
+                                                  (concat
+                                                   "Viele Gruesse\n"
+                                                   "  Sven Koschnicke\n"))
+                         (mu4e-sent-folder . "/GFXpro/INBOX.Sent")
+                         (mu4e-drafts-folder . "/GFXpro/INBOX.Drafts")
+                         (mu4e-trash-folder . "/GFXpro/INBOX.Trash")
+                         (mu4e-refile-folder . "/GFXpro/INBOX.Archives")
+                         (smtpmail-local-domain . "gfxpro.com")
+                         (smtpmail-smtp-server . "mail.jpberlin.de")
+                         (smtpmail-smtp-service . 465)
+                         (smtpmail-stream-type . ssl)
+                         (smtpmail-auth-credentials . "~/.netrc"))
+               )
+             ,(make-mu4e-context
+               :name "Uni"
+               :enter-func (lambda () (mu4e-message "Switch to the Uni context"))
+               ;; leave-fun not defined
+               :match-func (lambda (msg)
+                             (when msg
+                               (mu4e-message-contact-field-matches msg
+                                                                   :to "svk@informatik.uni-kiel.de")))
+               :vars '(  ( user-mail-address      . "svk@informatik.uni-kiel.de" )
+                         ( user-full-name     . "Sven Koschnicke" )
+                         ( mu4e-compose-signature .
+                                                  (concat
+                                                   "Viele Gruesse\n"
+                                                   "  Sven Koschnicke\n"))
+                         (mu4e-sent-folder . "/Uni/sent")
+                         (mu4e-drafts-folder . "/Uni/drafts")
+                         (mu4e-trash-folder . "/Uni/trash")
+                         (mu4e-refile-folder . "/Uni/archive")
+                         (user-mail-address . "svk@informatik.uni-kiel.de")
+                         (smtpmail-local-domain . "informatik.uni-kiel.de")
+                         (smtpmail-smtp-server . "mailin.informatik.uni-kiel.de")
+                         (smtpmail-smtp-service . 587)
+                         (smtpmail-stream-type . starttls)
+                         (smtpmail-auth-credentials . "~/.netrc"))
+               )
+             )
+          )
+
+
+    (add-to-list 'mu4e-bookmarks
+                 '("flag:flagged" "Flagged messages" ?f)
+                 )
+    ;(require 'mu4e-contrib)
+    (setq mu4e-html2text-command 'mu4e-shr2text)
+    (add-hook 'mu4e-view-mode-hook
+              (lambda()
+                ;; try to emulate some of the eww key-bindings
+                (local-set-key (kbd "<tab>") 'shr-next-link)
+                (local-set-key (kbd "<backtab>") 'shr-previous-link)))
+
   )
-
-  (defun my-mu4e-set-account ()
-    "Set the account for composing a message."
-    (let* ((account
-            (if mu4e-compose-parent-message
-                (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-                  (string-match "/\\(.*?\\)/" maildir)
-                  (match-string 1 maildir))
-              (completing-read (format "Compose with account: (%s) "
-                                       (mapconcat #'(lambda (var) (car var))
-                                                  my-mu4e-account-alist "/"))
-                               (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
-                               nil t nil nil (caar my-mu4e-account-alist))))
-           (account-vars (cdr (assoc account my-mu4e-account-alist))))
-      (if account-vars
-          (mapc #'(lambda (var)
-                    (set (car var) (cadr var)))
-                account-vars)
-        (error "No email account found"))))
-
-  (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
-
-  (require 'mu4e)
-  (add-to-list 'mu4e-bookmarks
-               '("flag:flagged" "Flagged messages" ?f)
-  )
-  (require 'mu4e-contrib)
-  (setq mu4e-html2text-command 'mu4e-shr2text)
-  (add-hook 'mu4e-view-mode-hook
-            (lambda()
-              ;; try to emulate some of the eww key-bindings
-              (local-set-key (kbd "<tab>") 'shr-next-link)
-              (local-set-key (kbd "<backtab>") 'shr-previous-link)))
-
   ;; use ensime in java mode (requires installed sbt)
   ;(add-hook 'java-mode-hook 'scala/configure-ensime)
   ;(add-hook 'java-mode-hook 'scala/maybe-start-ensime)
@@ -741,8 +909,7 @@ otherkeywords={define,include,\\#}}
   ;; Does not work yet, have to use M-/
   ;(evil-define-key 'insert org-mode-map (kbd "TAB") 'hippie-expand)
 
-  (with-eval-after-load 'helm-org-rifle
-    (spacemacs/set-leader-keys "aos" 'helm-org-rifle))
+  (spacemacs/set-leader-keys "aos" 'helm-org-rifle)
 
   ;; Keybindings for string inflection package
   (define-key evil-normal-state-map (kbd "C-w C-c") 'string-inflection-ruby-style-cycle)
@@ -753,8 +920,50 @@ otherkeywords={define,include,\\#}}
   (setq helm-ag-base-command "rg --vimgrep --no-heading")
 
   ;; automatically sync mobile org on start and stop of emacs
-  (add-hook 'after-init-hook 'org-mobile-pull)
-  (add-hook 'kill-emacs-hook 'org-mobile-push)
+  ;(add-hook 'after-init-hook 'org-mobile-pull)
+  ;(add-hook 'kill-emacs-hook 'org-mobile-push)
+
+  (defun my-php-mode-setup ()
+    "My PHP-mode hook."
+    ;(require 'flycheck-phpstan)
+    (flycheck-mode t)
+    (setq flycheck-checker-error-threshold 5000)
+    (setq phpstan-working-dir ".")
+    ;(flycheck-add-next-checker 'phpstan 'php-phpcs)
+  )
+
+  (add-hook 'php-mode-hook 'my-php-mode-setup)
+
+  (setq persp-autokill-buffer-on-remove 'kill-weak
+        persp-auto-save-persps-to-their-file-before-kill t
+        persp-auto-resume-time 1
+        persp-auto-save-fname "autosave"
+        persp-auto-save-opt 1
+        persp-nil-hidden t
+        persp-nil-name "Default"
+        persp-save-dir (concat my-sync-path "/emacs-perspectives/"))
+
+  (defun good-morning ()
+    "Setup windows in the morning"
+    (interactive)
+    (persp-switch (concat my-org-file-path "/"))
+    (switch-to-buffer "gtd-daily-cooldown.org")
+    (evil-goto-first-line)
+    (evil-window-right 1)
+    (org-agenda-show-mine)
+    (evil-window-down 1)
+    (mu4e)
+    (mu4e-update-mail-and-index t)
+    (mu4e-headers-search-bookmark "u")
+    (evil-window-left 1)
+    (org-shifttab)
+    (org-shifttab)
+    (org-shifttab)
+    (evil-goto-line)
+    )
+
+
+  (evil-leader/set-key "am" 'good-morning)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -767,7 +976,7 @@ otherkeywords={define,include,\\#}}
  '(c-basic-offset 2)
  '(exec-path
    (quote
-    ("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin")))
+    ("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/")))
  '(flycheck-disabled-checkers (quote (ruby ruby-rubylint javascript-jshint)))
  '(haskell-tags-on-save t)
  '(js2-missing-semi-one-line-override t)
@@ -778,7 +987,7 @@ otherkeywords={define,include,\\#}}
  '(org-list-allow-alphabetical t)
  '(package-selected-packages
    (quote
-    (org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir flycheck-mix alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-tern company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (restclient-helm org-mime ob-restclient ob-http jinja2-mode hackernews go-guru go-eldoc flycheck-gometalinter transient org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir flycheck-mix alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-tern company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(paradox-github-token t)
  '(rbenv-modeline-function (quote rbenv--modeline-plain)))
 (custom-set-faces
@@ -800,26 +1009,68 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 2)
+ '(company-box-icons-alist 'company-box-icons-all-the-icons)
+ '(evil-want-Y-yank-to-eol t)
  '(exec-path
-   '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin"))
+   '("/home/svk/.rbenv/shims/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/usr/lib/emacs/25.1/x86_64-unknown-linux-gnu/" "/home/svk/.gem/ruby/2.3.0/bin" "/home/svk/.rbenv/versions/2.3.1/bin" "/home/sven/.rbenv/shims"))
  '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
+ '(flycheck-phpstan-executable "/home/sven/.config/composer/vendor/bin/phpstan")
  '(haskell-tags-on-save t)
+ '(hl-todo-keyword-faces
+   '(("TODO" . "#dc752f")
+     ("NEXT" . "#dc752f")
+     ("THEM" . "#2d9574")
+     ("PROG" . "#4f97d7")
+     ("OKAY" . "#4f97d7")
+     ("DONT" . "#f2241f")
+     ("FAIL" . "#f2241f")
+     ("DONE" . "#86dc2f")
+     ("NOTE" . "#b1951d")
+     ("KLUDGE" . "#b1951d")
+     ("HACK" . "#b1951d")
+     ("TEMP" . "#b1951d")
+     ("FIXME" . "#dc752f")
+     ("XXX+" . "#dc752f")
+     ("\\?\\?\\?+" . "#dc752f")))
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
+ '(lsp-gopls-server-path "/home/sven/go/bin/gopls")
  '(mu4e-view-show-addresses t)
  '(mu4e-view-show-images t)
  '(org-babel-load-languages '((ruby . t) (emacs-lisp . t)))
  '(org-list-allow-alphabetical t)
+ '(org-modules
+   '(org-bbdb org-bibtex org-docview org-eww org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m))
  '(package-selected-packages
-   '(zenburn-theme yasnippet-snippets symon spaceline-all-the-icons all-the-icons memoize ruby-refactor ruby-hash-syntax pippel pipenv password-generator overseer org-mime org-brain nameless mvn monokai-theme meghanada maven-test-mode magithub ghub+ apiwrap json-navigator hierarchy importmagic epc ctable concurrent deferred impatient-mode helm-xref helm-rtags helm-purpose window-purpose imenu-list helm-mu groovy-mode groovy-imports gradle-mode google-c-style godoctor go-tag go-rename go-guru go-eldoc flycheck-rtags flycheck-gometalinter evil-org ghub evil-lion evil-cleverparens paredit emojify editorconfig dante lcr counsel-projectile counsel swiper ivy company-rtags rtags company-php ac-php-core xcscope company-go go-mode company-emacs-eclim centered-cursor-mode browse-at-remote dash font-lock+ org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir flycheck-mix alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-tern company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
+   '(dap-mode bui restclient-helm org-mime ob-restclient ob-http jinja2-mode hackernews go-guru go-eldoc flycheck-gometalinter transient org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir flycheck-mix alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-tern company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
  '(paradox-github-token t)
- '(rbenv-modeline-function 'rbenv--modeline-plain))
+ '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
+ '(php-mode-enable-project-coding-style t)
+ '(rbenv-modeline-function 'rbenv--modeline-plain)
+ '(send-mail-function 'smtpmail-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3"))))
+ '(company-tooltip ((t (:background "seashell" :foreground "#586e75"))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
- '(variable-pitch ((t (:weight semi-light :family "Fira Sans")))))
+ '(org-ascii-export-block ((t (:inherit fixed-pitch))))
+ '(org-block ((t (:inherit fixed-pitch))))
+ '(org-code ((t (:inherit (shadow fixed-pitch)))))
+ '(org-date ((t (:inherit (fixed-pitch)))))
+ '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+ '(org-done ((t (:inherit fixed-pitch))))
+ '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+ '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-priority ((t (:inherit fixed-pitch))))
+ '(org-property-value ((t (:inherit fixed-pitch))) t)
+ '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-table ((t (:inherit fixed-pitch))))
+ '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+ '(org-todo ((t (:inherit fixed-pitch))))
+ '(org-verbatim ((t (:inherit (shadow fixed-pitch)))))
+ '(variable-pitch ((t (:family "Fira Sans" :weight light :height 1.2)))))
 )

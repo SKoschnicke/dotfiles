@@ -1,0 +1,2 @@
+#!/bin/sh
+sed 's/.*│//g' | tr -d '\n' | grep -aEo '((http|https)://|www\.)[a-zA-Z0-9./&?=_-]*' | uniq | sed 's/^www./http:\/\/www\./g' | dmenu -p 'Follow which url?' -l 10 | xargs -r xdg-open

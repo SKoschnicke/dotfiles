@@ -1,6 +1,6 @@
 "let moria_style = 'white'
 "colorscheme moria
-set background=dark " because of strange xresources, this means actually light
+set background=light
 colorscheme solarized
 "colorscheme github
 let g:molokai_original=1
