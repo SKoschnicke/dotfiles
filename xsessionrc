@@ -32,6 +32,7 @@ udiskie &
 # remap Delete to Tab (and Shift-Delete to Delete)
 $HOME/bin/ergo
 $HOME/phone.sh
+picom -r 0 -t 0 -l 0 -D 6 &
 exec xmonad
 #exec metacity
 #exec dwm
