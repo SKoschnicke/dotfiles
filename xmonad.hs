@@ -148,9 +148,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. shiftMask, xK_o),
      spawn "~/.xmonad/bin/keyboard-layout")
 
-  -- Launch dmenu via yeganesh.
-  -- Use this to launch programs without a key binding.
-  -- Note that you need a patched dmenu for fonts to work (Arch: dmenu2 from AUR)
+  -- Show launcher
   , ((modMask, xK_p),
      spawn "rofi -show run")
 
@@ -165,6 +163,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_u),
      spawn "rofi -show unicode")
 
+  -- Show clipboard
+  , ((modMask, xK_c),
+     spawn "rofi -modi \"clipboard:greenclip print\" -show clipboard -run-command '{cmd}'")
+
   -- Take a screenshot using teiler
   , ((modMask .|. shiftMask, xK_p),
      spawn "teiler")
@@ -175,7 +177,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Take a screenshot from an area
   , ((modMask .|. shiftMask, xK_a),
-     spawn "teiler --quick image area")
+     spawn "flameshot gui -p ~/screenshots")
 
   -- Translate
   , ((modMask, xK_d),
