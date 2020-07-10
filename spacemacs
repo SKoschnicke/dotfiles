@@ -600,12 +600,12 @@ you should place you code here."
           org-agenda-dim-blocked-tasks nil
           org-src-fontify-natively t)
 
-                                        ; Refile targets include this file and any file contributing to the agenda - up to 5 levels deep
-    (setq org-refile-targets (quote ((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5))))
+                                        ; Refile targets include this file and any file contributing to the agenda - up to 1 level deep
+    (setq org-refile-targets (quote ((nil :level . 1) (org-agenda-files :maxlevel . 1))))
                                         ; Targets start with the file name - allows creating level 1 tasks
     (setq org-refile-use-outline-path (quote file))
-                                        ; Targets complete in steps so we start with filename, TAB shows the next level of targets etc
-    (setq org-outline-path-complete-in-steps t)
+                                        ; Works only with helm when nil
+    (setq org-outline-path-complete-in-steps nil)
 
 
     (setq org-todo-keywords
@@ -819,6 +819,7 @@ you should place you code here."
                   ("B" "Brain" plain (function org-brain-goto-end)
                    "* %i%?" :empty-lines 1)
                   ("f" "Frontastic Weekly" entry (file+headline "gxp-frontastic.org" "DevOps Weekly Review Meeting") (file "tmp-frontastic-meeting.org"))
+                  ("F" "Frontastic Report" entry (file+headline "gxp-frontastic.org" "Wochenbericht Frontastic") (file "tmp-frontastic-weekly-report.org"))
                   )))
 
     ;;; org mode beamer
@@ -1162,6 +1163,7 @@ This function is called at the very end of Spacemacs initialization."
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(php-mode-enable-project-coding-style t)
  '(rbenv-modeline-function 'rbenv--modeline-plain)
+ '(select-enable-primary t)
  '(send-mail-function 'smtpmail-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -1169,9 +1171,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3"))))
- '(company-tooltip ((t (:background "seashell" :foreground "#586e75"))))
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
  '(org-ascii-export-block ((t (:inherit fixed-pitch))))
  '(org-block ((t (:inherit fixed-pitch))))
  '(org-code ((t (:inherit (shadow fixed-pitch)))))
