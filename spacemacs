@@ -72,10 +72,11 @@ This function should only modify configuration layer settings."
      spell-checking
      syntax-checking
      version-control
-     (scala :variables
-            scala-auto-insert-asterisk-in-comments t
-            scala-use-unicode-arrows t
-            scala-auto-start-ensime t)
+     shell-scripts
+     ;; (scala :variables
+     ;;        scala-auto-insert-asterisk-in-comments t
+     ;;        scala-use-unicode-arrows t
+     ;;        scala-auto-start-ensime t)
      (ruby :variables
            ruby-version-manager 'rbenv
            ruby-backend 'lsp-deferred)
@@ -112,7 +113,22 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(yafolding key-chord helm-org-rifle string-inflection hackernews harvest vue-mode zpresent company-box org-randomnote org-ql)
+   dotspacemacs-additional-packages
+   '(yafolding
+     key-chord
+     helm-org-rifle
+     string-inflection
+     hackernews
+     harvest
+     vue-mode
+     zpresent
+     company-box
+     org-randomnote
+     org-ql
+     ;org-variable-pitch ;; seen no difference to using mixed-pitch
+     mixed-pitch
+     org-roam
+     )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
 
@@ -552,6 +568,7 @@ you should place you code here."
     (defconst my-sync-path "~/sync"))
 
   (defconst my-org-file-path (concat my-sync-path "/org"))
+  (setq org-roam-directory my-org-file-path)
 
   (setq browse-url-browser-function 'browse-url-firefox)
 
@@ -600,8 +617,8 @@ you should place you code here."
           org-agenda-dim-blocked-tasks nil
           org-src-fontify-natively t)
 
-                                        ; Refile targets include this file and any file contributing to the agenda - up to 1 level deep
-    (setq org-refile-targets (quote ((nil :level . 1) (org-agenda-files :maxlevel . 1))))
+    ; Refile targets include this file (5 levels deep) and any file contributing to the agenda (only 1 level, top level headlines)
+    (setq org-refile-targets (quote ((nil :maxlevel . 2) (org-agenda-files :maxlevel . 1))))
                                         ; Targets start with the file name - allows creating level 1 tasks
     (setq org-refile-use-outline-path (quote file))
                                         ; Works only with helm when nil
@@ -902,15 +919,16 @@ you should place you code here."
   (setq-default indent-tabs-mode nil)
 
   ;; Enable JavaScript completion between <script>...</script> etc.
-  (advice-add 'company-tern :before
-              #'(lambda (&rest _)
-                  (if (equal major-mode 'web-mode)
-                      (let ((web-mode-cur-language
-                             (web-mode-language-at-pos)))
-                        (if (or (string= web-mode-cur-language "javascript")
-                                (string= web-mode-cur-language "jsx"))
-                            (unless tern-mode (tern-mode))
-                          (if tern-mode (tern-mode -1)))))))
+  ;; company-tern seems to be unavailable
+;  (advice-add 'company-tern :before
+;              #'(lambda (&rest _)
+;                  (if (equal major-mode 'web-mode)
+;                      (let ((web-mode-cur-language
+;                             (web-mode-language-at-pos)))
+;                        (if (or (string= web-mode-cur-language "javascript")
+;                                (string= web-mode-cur-language "jsx"))
+;                            (unless tern-mode (tern-mode))
+;                          (if tern-mode (tern-mode -1)))))))
 
   ; how can the default config not set this?!
   (global-set-key (kbd "C-i") 'evil-jump-forward)
@@ -1053,7 +1071,8 @@ you should place you code here."
   ;; Does not work yet, have to use M-/
   ;(evil-define-key 'insert org-mode-map (kbd "TAB") 'hippie-expand)
 
-  (spacemacs/set-leader-keys "aos" 'helm-org-rifle)
+  (spacemacs/set-leader-keys "aos" 'helm-org-rifle-org-directory)
+  (spacemacs/set-leader-keys "aor" 'helm-org-rifle-current-buffer)
 
   ;; Keybindings for string inflection package
   (define-key evil-normal-state-map (kbd "C-w C-c") 'string-inflection-ruby-style-cycle)
@@ -1112,6 +1131,10 @@ you should place you code here."
   (add-to-list 'projectile-project-root-files "go.mod")
   (projectile-register-project-type 'go '("go.mod")
                                     :test-suffix "_test")
+
+  (add-hook 'org-mode-hook 'mixed-pitch-mode)
+  (add-hook 'org-mode-hook 'org-indent-mode)
+  (add-hook 'after-init-hook 'org-roam-mode)
 )
 
 (defun dotspacemacs/emacs-custom-settings ()
@@ -1158,33 +1181,19 @@ This function is called at the very end of Spacemacs initialization."
  '(org-modules
    '(org-bbdb org-bibtex org-docview org-eww org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m))
  '(package-selected-packages
-   '(dap-mode bui restclient-helm org-mime ob-restclient ob-http jinja2-mode hackernews go-guru go-eldoc flycheck-gometalinter transient org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-tern company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
+   '(dap-mode bui restclient-helm org-mime ob-restclient ob-http jinja2-mode hackernews go-guru go-eldoc flycheck-gometalinter transient org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
  '(paradox-github-token t)
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(php-mode-enable-project-coding-style t)
  '(rbenv-modeline-function 'rbenv--modeline-plain)
  '(select-enable-primary t)
- '(send-mail-function 'smtpmail-send-it))
+ '(send-mail-function 'smtpmail-send-it)
+ '(writeroom-width 144))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3"))))
- '(org-ascii-export-block ((t (:inherit fixed-pitch))))
- '(org-block ((t (:inherit fixed-pitch))))
- '(org-code ((t (:inherit (shadow fixed-pitch)))))
- '(org-date ((t (:inherit (fixed-pitch)))))
- '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
- '(org-done ((t (:inherit fixed-pitch))))
- '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
- '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-priority ((t (:inherit fixed-pitch))))
- '(org-property-value ((t (:inherit fixed-pitch))) t)
- '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-table ((t (:inherit fixed-pitch))))
- '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
- '(org-todo ((t (:inherit fixed-pitch))))
- '(org-verbatim ((t (:inherit (shadow fixed-pitch)))))
  '(variable-pitch ((t (:family "Fira Sans" :weight light :height 1.2)))))
 )
