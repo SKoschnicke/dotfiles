@@ -179,3 +179,8 @@ alias wlan="wicd-cli --wireless"
 
 source /home/sven/.config/broot/launcher/bash/br
 #bindkey -s "^J" "br^M"
+#
+alias vi=nvim
+
+# refresh timeout every time using sudo
+alias sudo='sudo  -v; sudo '
