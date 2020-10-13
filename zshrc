@@ -116,6 +116,16 @@ function install_powerline_precmd() {
   precmd_functions+=(powerline_precmd)
 }
 
+function gitrmtag () {
+  declare -a refs
+  local index=1 
+  for tag in $@
+  do
+    refs[index++]=":refs/tags/$tag" 
+  done
+  git push origin "${refs[@]}" && git tag -d "$@"
+}
+
 if [ "$TERM" != "linux" ]; then
     install_powerline_precmd
 fi
@@ -159,6 +169,7 @@ unalias gr # zsh git plugin defines this alias but we want to use the gr tool
 
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$HOME/.linuxbrew/bin"
 
 export BAT_THEME="Monokai Extended Light"
 
@@ -179,8 +190,3 @@ alias wlan="wicd-cli --wireless"
 
 source /home/sven/.config/broot/launcher/bash/br
 #bindkey -s "^J" "br^M"
-#
-export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye
-unset SSH_AGENT_PID
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
