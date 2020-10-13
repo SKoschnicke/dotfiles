@@ -179,3 +179,8 @@ alias wlan="wicd-cli --wireless"
 
 source /home/sven/.config/broot/launcher/bash/br
 #bindkey -s "^J" "br^M"
+#
+export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye
+unset SSH_AGENT_PID
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
