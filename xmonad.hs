@@ -140,10 +140,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. shiftMask, xK_l),
      spawn "xscreensaver-command -lock")
 
-  -- Shutdown
-  , ((modMask .|. shiftMask, xK_s),
-     spawn "qshutdown")
-
   -- switch between keyboard layouts
   , ((modMask .|. shiftMask, xK_o),
      spawn "~/.xmonad/bin/keyboard-layout")
@@ -247,18 +243,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_Tab),
      windows W.focusDown)
 
-  -- Move focus to the next window.
-  , ((modMask, xK_j),
-     windows W.focusDown)
-
-  -- Move focus to the next window.
-  , ((modMask, xK_j),
-     windows W.focusDown)
-
-  -- Move focus to the previous window.
-  , ((modMask, xK_k),
-     windows W.focusUp  )
-
   -- Move focus to the master window.
   , ((modMask, xK_m),
      windows W.focusMaster  )
@@ -276,11 +260,11 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      windows W.swapUp    )
 
   -- Shrink the master area.
-  , ((modMask, xK_h),
+  , ((modMask .|. shiftMask, xK_h),
      sendMessage Shrink)
 
   -- Expand the master area.
-  , ((modMask, xK_l),
+  , ((modMask .|. shiftMask, xK_l),
      sendMessage Expand)
 
   -- Push window back into tiling.
@@ -310,8 +294,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- mod-[1..9], Switch to workspace N
   -- mod-shift-[1..9], Move client to workspace N
+  -- asdfghjkl; instead of 1..9
   [((m .|. modMask, k), windows $ f i)
-      | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+      | (i, k) <- zip (XMonad.workspaces conf) [xK_a, xK_s, xK_d, xK_f, xK_g, xK_h, xK_j, xK_k, xK_l]
       , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
   ++
 
@@ -330,7 +315,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 
-myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
+myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList
   [
     -- mod-button1, Set the window to floating mode and move by dragging
     ((modMask, button1),
