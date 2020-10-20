@@ -172,11 +172,11 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      spawn "teiler --togglecast")
 
   -- Take a screenshot from an area
-  , ((modMask .|. shiftMask, xK_a),
+  , ((modMask, xK_z),
      spawn "flameshot gui -p ~/screenshots")
 
   -- Translate
-  , ((modMask, xK_d),
+  , ((modMask, xK_x),
      spawn "rofi_trans")
 
   -- Play/Pause
