@@ -137,7 +137,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      spawn $ XMonad.terminal conf)
 
   -- Lock the screen using xscreensaver.
-  , ((modMask .|. shiftMask, xK_l),
+  , ((modMask, xK_b),
      spawn "xscreensaver-command -lock")
 
   -- switch between keyboard layouts
