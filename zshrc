@@ -146,6 +146,9 @@ alias db="dropbox-cli"
 alias cat=bat
 #alias find=fd
 alias man=tldr
+alias gcb="./gradlew clean && ./gradlew build"
+alias gct="./gradlew clean && ./gradlew test"
+alias gcr="./gradlew clean && ./gradlew run"
 
 # ps + grep.
 # see https://github.com/blueyed/oh-my-zsh/blob/a08181210b47625efdc8480e628b0155bff392c9/lib/aliases.zsh#L10-L18
@@ -170,6 +173,7 @@ unalias gr # zsh git plugin defines this alias but we want to use the gr tool
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$HOME/.linuxbrew/bin"
+export PATH="$PATH:$HOME/.emacs.d/bin"
 
 export BAT_THEME="Monokai Extended Light"
 
