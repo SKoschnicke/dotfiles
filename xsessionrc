@@ -30,11 +30,12 @@ firefox &
 emacs &
 dunst -conf ~/.dunstrc &
 udiskie &
-$HOME/phone.sh &
 if [ $HOSTNAME != "losarcum"]
 then
   picom -r 0 -t 0 -l 0 -D 6 &
 fi
+$HOME/phone.sh
+$HOME/bin/comp
 exec xmonad
 #exec metacity
 #exec dwm
