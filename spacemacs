@@ -43,7 +43,7 @@ This function should only modify configuration layer settings."
          go-use-gocheck-for-testing t
          go-format-before-save t
          go-use-golangci-lint t
-         go-backend 'lsp-deferred)
+         go-backend 'lsp)
      helm
      (php :variables
           php-backend 'lsp-deferred)
@@ -76,10 +76,8 @@ This function should only modify configuration layer settings."
      syntax-checking
      version-control
      shell-scripts
-     ;; (scala :variables
-     ;;        scala-auto-insert-asterisk-in-comments t
-     ;;        scala-use-unicode-arrows t
-     ;;        scala-auto-start-ensime t)
+     (scala :variables
+            scala-backend 'scala-metals)
      (ruby :variables
            ruby-version-manager 'rbenv
            ruby-backend 'lsp-deferred)
@@ -136,6 +134,9 @@ This function should only modify configuration layer settings."
      mixed-pitch
      org-roam
      edit-server
+     (ejira :location (recipe
+                       :fetcher github
+                       :repo "nyyManni/ejira"))
      )
 
 
@@ -269,6 +270,14 @@ It should only modify the values of Spacemacs settings."
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
 
+   ;; If non-nil, *scratch* buffer will be persistent. Things you write down in
+   ;; *scratch* buffer will be saved and restored automatically.
+   dotspacemacs-scratch-buffer-persistent nil
+
+   ;; If non-nil, `kill-buffer' on *scratch* buffer
+   ;; will bury it instead of killing.
+   dotspacemacs-scratch-buffer-unkillable nil
+
    ;; Initial message in the scratch buffer, such as "Welcome to Spacemacs!"
    ;; (default nil)
    dotspacemacs-initial-scratch-message nil
@@ -304,7 +313,8 @@ It should only modify the values of Spacemacs settings."
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
-   ;; The leader key
+
+   ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
 
    ;; The key used for Emacs commands `M-x' (after pressing on the leader key).
@@ -574,7 +584,6 @@ This function is called only while dumping Spacemacs configuration. You can
 dump."
   )
 
-
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -645,7 +654,8 @@ you should place you code here."
           org-tags-column 80
           org-enforce-todo-dependencies t
           org-agenda-dim-blocked-tasks nil
-          org-src-fontify-natively t)
+          org-src-fontify-natively t
+          org-id-track-globally t)
 
     ; Refile targets include this file (5 levels deep) and any file contributing to the agenda (only 1 level, top level headlines)
     (setq org-refile-targets (quote ((nil :maxlevel . 2) (org-agenda-files :maxlevel . 1))))
@@ -1163,7 +1173,7 @@ you should place you code here."
                                     :test-suffix "_test")
 
   (add-hook 'org-mode-hook 'mixed-pitch-mode)
-  (add-hook 'org-mode-hook 'org-indent-mode)
+;  (add-hook 'org-mode-hook 'org-indent-mode)
   (add-hook 'after-init-hook 'org-roam-mode)
 
   (use-package edit-server

@@ -145,7 +145,6 @@ alias db="dropbox-cli"
 
 alias cat=bat
 #alias find=fd
-alias man=tldr
 alias gcb="./gradlew clean && ./gradlew build"
 alias gct="./gradlew clean && ./gradlew test"
 alias gcr="./gradlew clean && ./gradlew run"

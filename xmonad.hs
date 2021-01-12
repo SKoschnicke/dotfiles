@@ -256,15 +256,15 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      windows W.swapDown  )
 
   -- Swap the focused window with the previous window.
-  , ((modMask .|. shiftMask, xK_k),
+  , ((modMask .|. shiftMask, xK_u),
      windows W.swapUp    )
 
   -- Shrink the master area.
-  , ((modMask .|. shiftMask, xK_h),
+  , ((modMask .|. shiftMask, xK_i),
      sendMessage Shrink)
 
   -- Expand the master area.
-  , ((modMask .|. shiftMask, xK_l),
+  , ((modMask .|. shiftMask, xK_o),
      sendMessage Expand)
 
   -- Push window back into tiling.
