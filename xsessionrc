@@ -10,7 +10,7 @@ xrdb -merge $HOME/.Xresources
 xscreensaver &
 # workaround flatpack bug https://github.com/flatpak/xdg-desktop-portal-gtk/issues/72
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
-case $HOSTNAME in
+case "$HOSTNAME" in
   (daltigoth) feh --no-fehbg --bg-scale ~/backgrounds/current.jpg ~/backgrounds/ourun2.jpg;;
   (sven-uni)   feh --no-fehbg --bg-center ~/backgrounds/current-left.jpg ~/backgrounds/current-right.jpg;;
 esac
@@ -30,12 +30,13 @@ firefox &
 emacs &
 dunst -conf ~/.dunstrc &
 udiskie &
-if [ $HOSTNAME != "losarcum"]
+if [ "$HOSTNAME" != "losarcum" ]
 then
   picom -r 0 -t 0 -l 0 -D 6 &
 fi
-$HOME/phone.sh
-$HOME/bin/comp
+#$HOME/phone.sh
+"$HOME/bin/comp"
+xmonad --recompile
 exec xmonad
 #exec metacity
 #exec dwm
