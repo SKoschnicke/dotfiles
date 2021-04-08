@@ -33,7 +33,8 @@ udiskie &
 # remap Delete to Tab (and Shift-Delete to Delete)
 $HOME/bin/ergo
 $HOME/phone.sh
-$HOME/bin/comp
+#$HOME/bin/comp
+xmonad --recompile
 exec xmonad
 #exec metacity
 #exec dwm
