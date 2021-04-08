@@ -145,9 +145,9 @@ alias db="dropbox-cli"
 
 alias cat=bat
 #alias find=fd
-alias gcb="./gradlew clean && ./gradlew build"
-alias gct="./gradlew clean && ./gradlew test"
-alias gcr="./gradlew clean && ./gradlew run"
+alias gcb="./gradlew clean build"
+alias gct="./gradlew clean check"
+alias gcr="./gradlew clean run"
 
 # ps + grep.
 # see https://github.com/blueyed/oh-my-zsh/blob/a08181210b47625efdc8480e628b0155bff392c9/lib/aliases.zsh#L10-L18
@@ -198,3 +198,5 @@ alias vi=nvim
 
 # refresh timeout every time using sudo
 alias sudo='sudo  -v; sudo '
+
+sshfm() { kitty +kitten ssh vagrant@$(grep remoteserverhostname frontastic.toml|cut -d'"' -f2) }
