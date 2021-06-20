@@ -589,7 +589,7 @@ you should place you code here."
   (when (string= system-name "palanthas")
     (defconst my-sync-path "~/SpiderOak Hive"))
   (when (string-prefix-p "losarcum" system-name)
-    (defconst my-sync-path "~/sync"))
+    (defconst my-sync-path "~"))
   (when (string= system-name "daltigoth")
     (defconst my-sync-path "~/sync"))
 
