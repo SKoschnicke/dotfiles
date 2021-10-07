@@ -200,3 +200,4 @@ alias vi=nvim
 alias sudo='sudo  -v; sudo '
 
 sshfm() { kitty +kitten ssh vagrant@$(grep remoteserverhostname frontastic.toml|cut -d'"' -f2) }
+eval "$(phpenv init -)"

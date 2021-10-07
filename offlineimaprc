@@ -8,6 +8,9 @@
 #
 accounts = GFXpro,Uni,Privat
 
+# to use the same encrypted password file as emacs
+#pythonfile = ~/.offlineimap.py
+
 [Account Uni]
 
 # These settings specify the two folders that you will be syncing.
@@ -129,6 +132,7 @@ cert_fingerprint = 7b58eff9eba6c3d54e79a51ce2930d43777dcc3152cbeac14c4ada9e7ffbc
 # Specify the remote user name.
 #
 remoteuser = svk
+#remotepasseval = get_password_emacs("imap.informatik.uni-kiel.de", 993)    
 
 ########## Passwords
 
@@ -150,6 +154,7 @@ ssl = yes
 #sslcacertfile = ~/.dotfiles/certs/jpberlin.cert
 cert_fingerprint = 64b06df4ade1e349d2b6d20fb09234a95bef4a52174f7cc4bcf14331c446733b04a02935a570ecf357be2c23d9f9bec17d9c71b4773d439f03c84efcb6672d2c
 remoteuser = s.koschnicke@gfxpro.com
+#remotepasseval = get_password_emacs("mail.jpberlin.de", 993)    
 
 
 [Repository RemotePrivat]
@@ -161,3 +166,4 @@ sslcacertfile = /home/sven/.dotfiles/certs/sslin.df.eu.cer
 
 #cert_fingerprint = 7dda4982e4c87209d866f273faac21244c523ab3
 remoteuser = sven@koschnicke.de
+#remotepasseval = get_password_emacs("sslin.df.eu", 993)    
