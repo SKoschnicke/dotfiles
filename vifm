@@ -78,3 +78,5 @@ filextype *.xcf gimp %f 2>/dev/null &
 set vifminfo=dhistory,chistory,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
 
 command! extractfiles :execute '!%%n extract-files' &fusehome expand('%%D') expand('%%f:p')va
+
+command! zip if [ -n "%a" ]; then zip -r '%a.zip' %f; elseif [ "%c" = "%f" ]; then zip -r %c.zip %c; else zip -r %d:t.zip %f; fi

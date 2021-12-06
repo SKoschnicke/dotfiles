@@ -191,6 +191,8 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 alias wlan="wicd-cli --wireless"
 
+alias f=frontastic
+
 source /home/sven/.config/broot/launcher/bash/br
 #bindkey -s "^J" "br^M"
 #
@@ -199,5 +201,11 @@ alias vi=nvim
 # refresh timeout every time using sudo
 alias sudo='sudo  -v; sudo '
 
-sshfm() { kitty +kitten ssh vagrant@$(grep remoteserverhostname frontastic.toml|cut -d'"' -f2) }
+sshfm() {
+  if (( # == 0 )); then
+    kitty +kitten ssh vagrant@$(grep remoteserverhostname frontastic.toml|cut -d'"' -f2) 
+  else
+    kitty +kitten ssh vagrant@$1
+  fi
+}
 eval "$(phpenv init -)"
