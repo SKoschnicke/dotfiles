@@ -70,7 +70,10 @@ This function should only modify configuration layer settings."
      github
      (org :variables
           org-enable-github-support t
-          org-enable-roam-support nil)
+          org-enable-roam-support nil
+          org-enable-jira-support t
+          jiralib-url "https://frontastic.atlassian.net:443"
+          )
      evil-snipe
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -137,6 +140,7 @@ This function should only modify configuration layer settings."
      mixed-pitch
      edit-server
      org-sidebar
+     org-super-agenda
      )
 
 
@@ -745,24 +749,32 @@ you should place you code here."
                   ;;   (org-agenda-sorting-strategy
                   ;;    '(todo-state-down effort-up category-keep))))
                   ("A" "Agenda"
-                   ((agenda "" ((org-agenda-span 2) (org-agenda-start-day "0d")))
-                    (tags-todo "-CANCELLED/!STARTED"
-                               ((org-agenda-overriding-header "Started Tasks")
-                                (org-tags-match-list-sublevels t)
-                                (org-agenda-sorting-strategy
-                                 '(todo-state-down effort-up category-keep))))
-                    (tags-todo "-CANCELLED/!NEXT"
-                               ((org-agenda-overriding-header "Next Tasks")
-                                (org-tags-match-list-sublevels t)
-                                (org-agenda-sorting-strategy
-                                 '(todo-state-down effort-up category-keep))))
-                    (tags "REFILE"
-                          ((org-agenda-overriding-header "Tasks to Refile")
-                           (org-tags-match-list-sublevels nil)))
-                    (tags-todo "-CANCELLED+WAITING|HOLD/!"
-                               ((org-agenda-overriding-header "Waiting and Postponed Tasks")
-                                (org-tags-match-list-sublevels nil))
-                               nil)))
+                   ((agenda "" ((org-agenda-span 'day)
+                                (org-agenda-start-day "0d")
+                                (org-super-agenda-groups
+                                 '((:name "Today"
+                                          :time-grid t
+                                          :todo "TODAY"
+                                          :scheduled today
+                                          :order 0)
+                                   (:name "Sprint"
+                                          :tag "sprint"
+                                          :order 1)
+                                   (:habit t)
+                                   (:name "Due Today"
+                                          :deadline today
+                                          :order 3)
+                                   (:name "Due Soon"
+                                          :deadline future
+                                          :order 8)
+                                   (:name "Overdue"
+                                          :deadline past
+                                          :order 7)
+                                   )
+                                )
+                                ))
+                    )
+                   )
                   ("t" todo-tree "TODO")
                   ("T" tags-todo "/TODO|NEXT" ((org-agenda-todo-ignore-scheduled 'future)
                                                (org-agenda-tags-todo-honor-ignore-options t)
@@ -853,6 +865,7 @@ you should place you code here."
 
     ;; ;; CUSTOM AGENDA END
 
+    (org-super-agenda-mode)
     ;;   (org-babel-do-load-languages
     ;;    'org-babel-load-languages
     ;;    '((R . t)
@@ -1350,6 +1363,7 @@ you should place you code here."
   ;; (set-face-attribute 'ahs-plugin-default-face-unfocused nil
   ;;                     :background nil
   ;;                     :foreground nil)
+
 )
 
 (defun dotspacemacs/emacs-custom-settings ()
@@ -1406,6 +1420,7 @@ This function is called at the very end of Spacemacs initialization."
  '(rbenv-modeline-function 'rbenv--modeline-plain)
  '(select-enable-primary t)
  '(send-mail-function 'smtpmail-send-it)
+ '(warning-suppress-types '((comp)))
  '(writeroom-width 144))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -1413,6 +1428,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3"))))
- '(fixed-pitch ((t (:family "Fira Code Retina" :height 160))))
- '(variable-pitch ((t (:family "Linux Biolinum" :height 120 :weight thin)))))
+ '(fixed-pitch ((t (:family "Fira Code Retina" :height 120))))
+ '(variable-pitch ((t (:family "Linux Biolinum" :height 120 :weight regular)))))
 )
