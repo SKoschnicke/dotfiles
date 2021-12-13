@@ -783,6 +783,7 @@ you should place you code here."
                   ("w" todo-tree "WAITING")
                   ("R" tags "REFILE")
                   ("o" tags-todo "-pav-swc-gxp/TODO")
+                  ("S" tags-todo "sprint/TODO")
                   ("p" . "Project Agendas")
 
 
