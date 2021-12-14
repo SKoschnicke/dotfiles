@@ -185,6 +185,8 @@ export TLDR_COLOR_PARAMETER="magenta"
 export TLDR_CACHE_ENABLED=1
 export TLDR_CACHE_MAX_AGE=720
 
+export MOZ_ENABLE_WAYLAND=1
+
 
 export PATH="$PATH:$HOME/.npm-global/bin"
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
