@@ -73,6 +73,7 @@ This function should only modify configuration layer settings."
           org-enable-roam-support nil
           org-enable-jira-support t
           jiralib-url "https://frontastic.atlassian.net:443"
+          org-enable-org-journal-support t
           )
      evil-snipe
      ;; (shell :variables
@@ -635,7 +636,7 @@ you should place you code here."
   (when (string= system-name "palanthas")
     (defconst my-sync-path "~/SpiderOak Hive"))
   (when (string-prefix-p "losarcum" system-name)
-    (defconst my-sync-path "~/sync"))
+    (defconst my-sync-path "~"))
   (when (string= system-name "daltigoth")
     (defconst my-sync-path "~"))
 
@@ -696,6 +697,7 @@ you should place you code here."
           org-agenda-columns-add-appointments-to-effort-sum t
           org-agenda-default-appointment-duration nil  ; this also makes all scheduled items last for this duration instead of taking the efford
           org-id-link-to-org-use-id t
+          org-journal-dir (concat my-org-file-path "/journal/")
           )
 
     ; Refile targets include this file (5 levels deep) and any file contributing to the agenda (only 1 level, top level headlines)
@@ -925,6 +927,7 @@ you should place you code here."
           (quote (("t" "todo" entry (file "refile.org")
                    "* TODO %?\n%U\n%a\n")
                   ("c" "Cooldown" entry (file+datetree "gtd-daily-cooldown.org") (file "tmp-daily-cooldown.org") :immediate-finish t :jump-to-captured t :clock-in t)
+                  ("e" "Abend-Review" entry (file+datetree "gtd-evening-review.org") (file "tmp-evening-review.org") :immediate-finish t :jump-to-captured t)
                   ("r" "Weekly Review" entry (file+datetree "gtd-weekly-reviews.org") (file "tmp-weekly-review.org") :immediate-finish t :jump-to-captured t :clock-in t)
                   ("n" "note" entry (file "refile.org")
                    "* %? :NOTE:\n%U\n%a\n")
