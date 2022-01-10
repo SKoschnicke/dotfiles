@@ -56,3 +56,6 @@ GPATH
 # Project specific #
 ####################
 /**/development/sc/webflow-site/deploy.sh
+
+# Syncthing
+.stfolder
