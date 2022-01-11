@@ -90,7 +90,7 @@ This function should only modify configuration layer settings."
            ruby-backend 'lsp-deferred)
      ruby-on-rails
      html
-     javascript
+     (javascript :variables javascript-fmt-on-save t)
      tern
      (java :variables
            java-backend 'lsp-deferred)
@@ -117,6 +117,7 @@ This function should only modify configuration layer settings."
      (lsp :variables lsp-treemacs-sync-mode 1)
      dash ; requires zeal installed on the machine
      plantuml
+     dap
    )
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
@@ -1368,6 +1369,12 @@ you should place you code here."
   ;;                     :background nil
   ;;                     :foreground nil)
 
+  (custom-set-variables
+   '(phpcbf-standard "PSR2")
+   )
+  (add-hook 'php-mode-hook 'phpcbf-enable-on-save)
+
+  (require 'dap-node)
 )
 
 (defun dotspacemacs/emacs-custom-settings ()
