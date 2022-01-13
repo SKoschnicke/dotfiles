@@ -1441,6 +1441,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3"))))
- '(fixed-pitch ((t (:family "Fira Code Retina" :height 120))))
- '(variable-pitch ((t (:family "Linux Biolinum" :height 120 :weight regular)))))
+ '(fixed-pitch ((t (:family "Victor Mono"))))
+ '(variable-pitch ((t (:family "Linux Biolinum" :weight regular)))))
 )
