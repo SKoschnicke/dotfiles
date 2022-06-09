@@ -1,7 +1,7 @@
 #!/bin/sh
 
 xrdb -merge $HOME/.Xresources
-xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3840x2160 --pos 3840x0 --rotate left --output DP-3 --off --output DP-4 --primary --mode 3840x2160 --pos 0x1167 --rotate normal --output DP-5 --off
+#xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3840x2160 --pos 3840x0 --rotate left --output DP-3 --off --output DP-4 --primary --mode 3840x2160 --pos 0x1167 --rotate normal --output DP-5 --off
 #nvidia-settings --assign CurrentMetaMode="DPY-6: nvidia-auto-select @3840x2160 +0+1167 {ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0, ForceCompositionPipeline=On}, DPY-4: nvidia-auto-select @2160x3840 +3840+0 {ViewPortIn=2160x3840, ViewPortOut=3840x2160+0+0, Rotation=90, ForceCompositionPipeline=On}"
 #xrandr --dpi 183 --fb 7152x3840 \
   #--output DP-2.8 --mode 1920x2160 --pos 0x1920 \
@@ -14,19 +14,13 @@ case $HOSTNAME in
   (daltigoth) feh --no-fehbg --bg-scale ~/backgrounds/current.jpg ~/backgrounds/ourun2.jpg;;
   (sven-uni)   feh --no-fehbg --bg-center ~/backgrounds/current-left.jpg ~/backgrounds/current-right.jpg;;
 esac
-#setxkbmap -layout "us, de" -option "grp:caps_toggle"
 setxkbmap -layout "us"
-#xmodmap -e "keycode 134 = Tab Delete"
 xmodmap ~/.dotfiles/Xmodmap_model01
-#xinput set-prop "Wacom Bamboo Connect Pen stylus" --type=float "Coordinate Transformation Matrix" 0.5 0 0.5 0 1 0 0 0 1
 greenclip daemon &
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &
 kitty --session ~/.dotfiles/kitty-session.conf &
 firefox &
-#thunderbird &
-#pidgin &
-#kupfer &
 emacs &
 dunst -conf ~/.dunstrc &
 udiskie &
