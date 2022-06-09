@@ -152,7 +152,7 @@ type = IMAP
 remotehost = mail.jpberlin.de
 ssl = yes
 #sslcacertfile = ~/.dotfiles/certs/jpberlin.cert
-cert_fingerprint = 64b06df4ade1e349d2b6d20fb09234a95bef4a52174f7cc4bcf14331c446733b04a02935a570ecf357be2c23d9f9bec17d9c71b4773d439f03c84efcb6672d2c
+cert_fingerprint = b7859db422b4a44f188668c8aae256230220143e289cae2677a230b2e70d4f8a7321168dd868db2ff103bb9b95b61ca51ea748aae977f24f9abb26eecc8c0cf3
 remoteuser = s.koschnicke@gfxpro.com
 #remotepasseval = get_password_emacs("mail.jpberlin.de", 993)    
 
