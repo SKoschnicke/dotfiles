@@ -171,7 +171,7 @@ unalias gr # zsh git plugin defines this alias but we want to use the gr tool
 
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
-export PATH="$PATH:$HOME/.linuxbrew/bin"
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 export PATH="$PATH:$HOME/.emacs.d/bin"
 
 export BAT_THEME="Monokai Extended Light"
