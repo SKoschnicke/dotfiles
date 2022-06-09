@@ -216,7 +216,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      spawn "/home/sven/kb-light.py")
 
   -- search
-  , ((modMask, xK_s),
+  , ((modMask, xK_r),
      promptSearch defaultXPConfig $ intelligent $ hayoo !> dictcc !> multi)
 
   --------------------------------------------------------------------
