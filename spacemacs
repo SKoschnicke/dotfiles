@@ -74,6 +74,8 @@ This function should only modify configuration layer settings."
           org-enable-jira-support t
           jiralib-url "https://frontastic.atlassian.net:443"
           org-enable-org-journal-support t
+          org-enable-asciidoc-support t
+          org-enable-verb-support t
           )
      evil-snipe
      ;; (shell :variables
@@ -87,7 +89,8 @@ This function should only modify configuration layer settings."
             scala-backend 'scala-metals)
      (ruby :variables
            ruby-version-manager 'rbenv
-           ruby-backend 'lsp-deferred)
+           ruby-backend 'lsp-deferred
+           ruby-prettier-on-save t)
      ruby-on-rails
      html
      (javascript :variables javascript-fmt-on-save t)
@@ -104,8 +107,11 @@ This function should only modify configuration layer settings."
             shell-default-shell 'eshell
             shell-enable-smart-eshell t)
      sql
+     prettier
      (typescript :variables
-                 company-tooltip-align-annotations t)
+                 company-tooltip-align-annotations t
+                 typescript-fmt-on-save t
+                 typescript-fmt-tool 'prettier)
      python
      (gtags :variables gtags-enable-by-default t)
      (mu4e :variables
@@ -143,6 +149,7 @@ This function should only modify configuration layer settings."
      edit-server
      org-sidebar
      org-super-agenda
+     yasnippet-snippets
      )
 
 
@@ -327,7 +334,7 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Victor Mono"
-                               :size 10.0
+                               :size 8.0
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -767,12 +774,15 @@ you should place you code here."
                                    (:name "Due Today"
                                           :deadline today
                                           :order 3)
-                                   (:name "Due Soon"
-                                          :deadline future
-                                          :order 8)
                                    (:name "Overdue"
                                           :deadline past
                                           :order 7)
+                                   (:name "Due Soon"
+                                          :deadline future
+                                          :order 8)
+                                   (:name "Privat"
+                                          :tag "prv"
+                                          :order 9)
                                    )
                                 )
                                 ))
@@ -961,6 +971,7 @@ you should place you code here."
 
     (setq org-export-latex-hyperref-format "\\ref{%s}")
     (setq org-latex-listings t)
+    (setq org-use-sub-superscripts "{}") ; x_i is not interpreted as subscript, but x_{i} is
 
     ;; insert creation date into all headings
     (defun insert-created-date(&rest ignore)
@@ -1292,6 +1303,8 @@ you should place you code here."
   ;(evil-leader/set-key "aor" 'counsel-org-goto)
   ;(evil-leader/set-key "aos" 'counsel-org-goto-all)
 
+  (evil-leader/set-key "aoq" 'org-ql-view-sidebar)
+
   (add-to-list 'projectile-project-root-files "go.mod")
   (projectile-register-project-type 'go '("go.mod")
                                     :project-file "go.mod"
@@ -1321,6 +1334,9 @@ you should place you code here."
   (setq create-lockfiles nil) ; webpack can't handle lockfiles
   (setq counsel-dash-common-docsets '("Javascript" "HTML" "Go" "PHP"))
   (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
+
+  (setq javascript-fmt-tool 'prettier)
+  (setq typescript-fmt-tool 'prettier)
 
   ;; ;; Enable the www ligature in every possible major mode
   ;; (ligature-set-ligatures 't '("www"))
@@ -1394,6 +1410,8 @@ This function is called at the very end of Spacemacs initialization."
  '(exec-path
    '("/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/home/sven/.rbenv/shims/"))
  '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
+ '(flycheck-phpcs-standard "PSR2")
+ '(flycheck-phpmd-rulesets '("codesize" "design" "unusedcode"))
  '(flycheck-phpstan-executable "/home/sven/.config/composer/vendor/bin/phpstan")
  '(haskell-tags-on-save t)
  '(highlight-parentheses-colors '("#2aa198" "#b58900" "#268bd2" "#6c71c4" "#859900"))
@@ -1442,5 +1460,5 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3"))))
  '(fixed-pitch ((t (:family "Victor Mono"))))
- '(variable-pitch ((t (:family "Linux Biolinum" :weight regular)))))
+ '(variable-pitch ((t (:family "Lato")))))
 )
