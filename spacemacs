@@ -981,12 +981,6 @@ you should place you code here."
       (move-end-of-line()) ; when inserting a heading, this moves point to the end of the line
       )
 
-    ; add to the org-capture hook to insert a creation date
-    ; deactivated because it does not work well with the org-capture function (there, the date is inserted twice)
-    ;(add-hook 'org-capture-before-finalize-hook
-    ;          #'insert-created-date
-    ;          )
-
     (advice-add 'org-insert-heading :after #'insert-created-date)
 
 
@@ -1043,18 +1037,6 @@ you should place you code here."
   ; never indent with tabs
   (setq-default indent-tabs-mode nil)
 
-  ;; Enable JavaScript completion between <script>...</script> etc.
-  ;; company-tern seems to be unavailable
-;  (advice-add 'company-tern :before
-;              #'(lambda (&rest _)
-;                  (if (equal major-mode 'web-mode)
-;                      (let ((web-mode-cur-language
-;                             (web-mode-language-at-pos)))
-;                        (if (or (string= web-mode-cur-language "javascript")
-;                                (string= web-mode-cur-language "jsx"))
-;                            (unless tern-mode (tern-mode))
-;                          (if tern-mode (tern-mode -1)))))))
-
   ; how can the default config not set this?!
   (global-set-key (kbd "C-i") 'evil-jump-forward)
 
@@ -1064,8 +1046,6 @@ you should place you code here."
 
   ; Reload document when it changes on disk
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-  ;(define-key evil-insert-state-map <deletechar> 'evil-normal-state)
-  ;(define-key evil-visual-state-map <deletechar> 'evil-normal-state)
 
   ; bind custom agenda to SPC-A
   (spacemacs/set-leader-keys "A" 'org-agenda-show-mine)
