@@ -67,7 +67,6 @@ This function should only modify configuration layer settings."
      ;emoji ;; breaks org mode repeat
      emacs-lisp
      git
-     github
      (org :variables
           org-enable-github-support t
           org-enable-roam-support nil
@@ -176,8 +175,8 @@ It should only modify the values of Spacemacs settings."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
-   ;; If non-nil then enable support for the portable dumper. You'll need
-   ;; to compile Emacs 27 from source following the instructions in file
+   ;; If non-nil then enable support for the portable dumper. You'll need to
+   ;; compile Emacs 27 from source following the instructions in file
    ;; EXPERIMENTAL.org at to root of the git repository.
    ;; (default nil)
    dotspacemacs-enable-emacs-pdumper nil
