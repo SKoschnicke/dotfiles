@@ -648,7 +648,6 @@ you should place you code here."
     (defconst my-sync-path "~"))
 
   (defconst my-org-file-path (concat my-sync-path "/org"))
-  (setq org-roam-directory (concat my-org-file-path "/roam"))
 
   (setq browse-url-browser-function 'browse-url-firefox)
 
@@ -666,81 +665,93 @@ you should place you code here."
     (imagemagick-register-types))
 
   (evil-leader/set-key "ah" 'harvest)
-;; (add-hook 'org-clock-in-hook 'harvest)
-;; (add-hook 'org-clock-out-hook 'harvest-clock-out)
 
   ; seems to make problems with tab complete
 ;  (setq-default evil-escape-key-sequence "kj")
 ;  (setq-default evil-escape-delay 0.2)
 
-  (add-hook 'org-mode-hook 'variable-pitch-mode)
-  (add-hook 'org-mode-hook 'visual-line-mode)
-
   (setq mmm-submode-decoration-level 0)
 
+  ;;;;;;;;;;;; org mode setq settings ;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; put them outside of eval-after-load to have them set before org is loaded
+  ;; at least org-todo-keywords won't work otherwise!
+
+  (add-hook 'org-mode-hook 'variable-pitch-mode)
+  (add-hook 'org-mode-hook 'visual-line-mode)
+  (add-hook 'org-mode-hook 'mixed-pitch-mode)
+  (add-hook 'after-init-hook 'org-roam-mode)
+  ;; (add-hook 'org-clock-in-hook 'harvest)
+  ;; (add-hook 'org-clock-out-hook 'harvest-clock-out)
+  ; show custom agenda after start
+  (add-hook 'after-init-hook 'org-agenda-show-mine)
+
+
+
+  (setq org-todo-keywords
+        (quote ((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "|" "DONE(d!/!)")
+                (sequence "WAITING(w@/!)" "SOMEDAY(S)" "MAYBE(m)" "HOLD(h)" "|" "CANCELLED(c@/!)"))))
+
+  (setq org-roam-directory (concat my-org-file-path "/roam"))
+
+  (setq org-log-done t
+        org-completion-use-ido t
+        org-edit-timestamp-down-means-later t
+        org-agenda-start-on-weekday nil
+        org-agenda-start-day "-1d"
+        org-agenda-span 14
+        org-agenda-include-diary t
+        org-agenda-window-setup 'current-window
+        org-fast-tag-selection-single-key 'expert
+        org-export-kill-product-buffer-when-displayed t
+        org-pretty-entities t
+        org-pretty-entities-include-sub-superscripts t
+        org-agenda-log-mode-items (list 'clock 'state)
+        org-agenda-start-with-log-mode t
+        org-agenda-skip-deadline-if-done t
+        org-agenda-skip-scheduled-if-done t
+        org-tags-column 80
+        org-enforce-todo-dependencies t
+        org-agenda-dim-blocked-tasks nil
+        org-src-fontify-natively t
+        org-id-track-globally t
+        org-agenda-columns-add-appointments-to-effort-sum t
+        org-agenda-default-appointment-duration nil  ; this also makes all scheduled items last for this duration instead of taking the efford
+        org-id-link-to-org-use-id t
+        org-journal-dir (concat my-org-file-path "/journal/")
+        )
+
+  ; Refile targets include this file (5 levels deep) and any file contributing to the agenda (only 1 level, top level headlines)
+  (setq org-refile-targets (quote ((nil :maxlevel . 2) (org-agenda-files :maxlevel . 1))))
+                                      ; Targets start with the file name - allows creating level 1 tasks
+  (setq org-refile-use-outline-path (quote file))
+                                      ; Works only with helm and ivy when nil
+  (setq org-outline-path-complete-in-steps nil)
+
+  (setq org-columns-default-format "%40ITEM(Task) %17Effort(Estimated Effort){:} %CLOCKSUM")
+
+  ;; Save the running clock and all clock history when exiting Emacs, load it on startup
+  (setq org-clock-persistence-insinuate t)
+  (setq org-clock-persist t)
+  (setq org-clock-in-resume t)
+
+  ;; Change task state to STARTED when clocking in
+  (setq org-clock-in-switch-to-state "STARTED")
+  ;; Save clock data and notes in the LOGBOOK drawer
+  (setq org-clock-into-drawer t)
+  ;; Removes clocked tasks with 0:00 duration
+  (setq org-clock-out-remove-zero-time-clocks t)
+
+  ;; Show clock sums as hours and minutes, not "n days" etc.
+  (setq org-time-clocksum-format
+        '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+
+  ;; put everything which calls org functions inside the eval-after-load block, to avoid loading bundled org mode
   (with-eval-after-load 'org
 
-    (setq org-log-done t
-          org-completion-use-ido t
-          org-edit-timestamp-down-means-later t
-          org-agenda-start-on-weekday nil
-          org-agenda-start-day "-1d"
-          org-agenda-span 14
-          org-agenda-include-diary t
-          org-agenda-window-setup 'current-window
-          org-fast-tag-selection-single-key 'expert
-          org-export-kill-product-buffer-when-displayed t
-          org-pretty-entities t
-          org-pretty-entities-include-sub-superscripts t
-          org-agenda-log-mode-items (list 'clock 'state)
-          org-agenda-start-with-log-mode t
-          org-agenda-skip-deadline-if-done t
-          org-agenda-skip-scheduled-if-done t
-          org-tags-column 80
-          org-enforce-todo-dependencies t
-          org-agenda-dim-blocked-tasks nil
-          org-src-fontify-natively t
-          org-id-track-globally t
-          org-agenda-columns-add-appointments-to-effort-sum t
-          org-agenda-default-appointment-duration nil  ; this also makes all scheduled items last for this duration instead of taking the efford
-          org-id-link-to-org-use-id t
-          org-journal-dir (concat my-org-file-path "/journal/")
-          )
 
-    ; Refile targets include this file (5 levels deep) and any file contributing to the agenda (only 1 level, top level headlines)
-    (setq org-refile-targets (quote ((nil :maxlevel . 2) (org-agenda-files :maxlevel . 1))))
-                                        ; Targets start with the file name - allows creating level 1 tasks
-    (setq org-refile-use-outline-path (quote file))
-                                        ; Works only with helm and ivy when nil
-    (setq org-outline-path-complete-in-steps nil)
-
-    (setq org-columns-default-format "%40ITEM(Task) %17Effort(Estimated Effort){:} %CLOCKSUM")
-
-
-    (setq org-todo-keywords
-          (quote ((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "|" "DONE(d!/!)")
-                  (sequence "WAITING(w@/!)" "SOMEDAY(S)" "MAYBE(m)" "HOLD(h)" "|" "CANCELLED(c@/!)"))))
-
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; Org clock
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-    ;; Save the running clock and all clock history when exiting Emacs, load it on startup
-    (setq org-clock-persistence-insinuate t)
-    (setq org-clock-persist t)
-    (setq org-clock-in-resume t)
-
-    ;; Change task state to STARTED when clocking in
-    (setq org-clock-in-switch-to-state "STARTED")
-    ;; Save clock data and notes in the LOGBOOK drawer
-    (setq org-clock-into-drawer t)
-    ;; Removes clocked tasks with 0:00 duration
-    (setq org-clock-out-remove-zero-time-clocks t)
-
-    ;; Show clock sums as hours and minutes, not "n days" etc.
-    (setq org-time-clocksum-format
-          '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     ;(setq org-agenda-overriding-columns-format "%TODO %7EFFORT{:} %7CLOCKSUM_T(SPENT){:} %3PRIORITY     %100ITEM 100%TAGS")
     ;; CUSTOM AGENDA
@@ -832,71 +843,54 @@ you should place you code here."
                                               (tags-todo "gxp/WAITING" ((org-agenda-overriding-header "Waiting")))
                                               (tags-todo "gxp/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
                                               ))
-; Weekly Review block agenda
-  ("r" . "Weekly Review")
-  ("r1" "Get Clear: Collect loose materials and process Inbox"
-    tags "+in+LEVEL>1"
-    ((org-agenda-overriding-header "Inbox items to process:")
-     (org-agenda-prefix-format "")))
-  ("r2" "Get Current: Review Next Actions\n    Archive completed actions, review for further action steps."
-    (;(todo "DONE|DROPPED|COMPLETE" ((org-agenda-overriding-header "Done/Dropped Items (to archive):")
-     ;                               (org-agenda-cmp-user-defined (cmp-date-property "CLOSED"))
-     ;                               (org-agenda-sorting-strategy '(user-defined-up))))
-    ; (above gives error because cmp-date-property doesn't exist)
-     (tags-todo "-sm/NEXT" ((org-agenda-overriding-header "Next Actions:")
-                            (org-agenda-sorting-strategy '(time-up category-up alpha-up))
-                            (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))
-     (tags-todo "-sm/NEXT" ((org-agenda-overriding-header "Scheduled Actions:")
-                            (org-agenda-sorting-strategy '(time-up category-up alpha-up))
-                            (org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled)))))
-     ((org-agenda-prefix-format "%-12:c ")))
-  ("r3" "Get Current: Review Previous Calendar"
-    ((agenda "" ((org-agenda-start-day (concat "-" (number-to-string (+ 13 (nth 6 (decode-time)))) "d"))
-                 (org-agenda-span (+ 14 (nth 6 (decode-time))))
-                 (org-agenda-repeating-timestamp-show-all t)
-                 (org-agenda-entry-types '(:deadline :timestamp :sexp)) ; show due tasks, meetings
-                 (org-agenda-show-log t)
-                 (org-agenda-prefix-format "%-12t% s")))))
+                                        ; Weekly Review block agenda
+                  ("r" . "Weekly Review")
+                  ("r1" "Get Clear: Collect loose materials and process Inbox"
+                   tags "+in+LEVEL>1"
+                   ((org-agenda-overriding-header "Inbox items to process:")
+                    (org-agenda-prefix-format "")))
+                  ("r2" "Get Current: Review Next Actions\n    Archive completed actions, review for further action steps."
+                   (;(todo "DONE|DROPPED|COMPLETE" ((org-agenda-overriding-header "Done/Dropped Items (to archive):")
+                                        ;                               (org-agenda-cmp-user-defined (cmp-date-property "CLOSED"))
+                                        ;                               (org-agenda-sorting-strategy '(user-defined-up))))
+                                        ; (above gives error because cmp-date-property doesn't exist)
+                    (tags-todo "-sm/NEXT" ((org-agenda-overriding-header "Next Actions:")
+                                           (org-agenda-sorting-strategy '(time-up category-up alpha-up))
+                                           (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))
+                    (tags-todo "-sm/NEXT" ((org-agenda-overriding-header "Scheduled Actions:")
+                                           (org-agenda-sorting-strategy '(time-up category-up alpha-up))
+                                           (org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled)))))
+                   ((org-agenda-prefix-format "%-12:c ")))
+                  ("r3" "Get Current: Review Previous Calendar"
+                   ((agenda "" ((org-agenda-start-day (concat "-" (number-to-string (+ 13 (nth 6 (decode-time)))) "d"))
+                                (org-agenda-span (+ 14 (nth 6 (decode-time))))
+                                (org-agenda-repeating-timestamp-show-all t)
+                                (org-agenda-entry-types '(:deadline :timestamp :sexp)) ; show due tasks, meetings
+                                (org-agenda-show-log t)
+                                (org-agenda-prefix-format "%-12t% s")))))
 
-  ("j" "Planning Table"
-    agenda ""
-    ((org-agenda-overriding-header "")
-     (org-agenda-span 1)
-     (org-agenda-use-time-grid nil)
-     (org-agenda-view-columns-initially t)
-     (org-columns-default-format-for-agenda
-      "%11AGENDA_TIME(When) %4TODO(Type) %40ITEM(What) %5AGENDA_DURATION(Takes){:}")
-     ;; do not show wardings, overdue and overscheduled
-     (org-scheduled-past-days 0)
-     (org-deadline-past-days 0)
-     (org-deadline-warning-days 0)
-     ;; skip finished entries
-     (org-agenda-skip-deadline-if-done t)
-     (org-agenda-skip-scheduled-if-done t)))
+                  ("j" "Planning Table"
+                   agenda ""
+                   ((org-agenda-overriding-header "")
+                    (org-agenda-span 1)
+                    (org-agenda-use-time-grid nil)
+                    (org-agenda-view-columns-initially t)
+                    (org-columns-default-format-for-agenda
+                     "%11AGENDA_TIME(When) %4TODO(Type) %40ITEM(What) %5AGENDA_DURATION(Takes){:}")
+                    ;; do not show wardings, overdue and overscheduled
+                    (org-scheduled-past-days 0)
+                    (org-deadline-past-days 0)
+                    (org-deadline-warning-days 0)
+                    ;; skip finished entries
+                    (org-agenda-skip-deadline-if-done t)
+                    (org-agenda-skip-scheduled-if-done t)))
 
-                  )))
+          ))
+    )
 
     ;; ;; CUSTOM AGENDA END
 
     (org-super-agenda-mode)
-    ;;   (org-babel-do-load-languages
-    ;;    'org-babel-load-languages
-    ;;    '((R . t)
-    ;;      (ditaa . t)
-    ;;      (dot . t)
-    ;;      (emacs-lisp . t)
-    ;;      (gnuplot . t)
-    ;;      (haskell . nil)
-    ;;      (latex . t)
-    ;;      (ledger . t)
-    ;;      (ocaml . nil)
-    ;;      (octave . t)
-    ;;      (python . t)
-    ;;      (ruby . t)
-    ;;      (screen . nil)
-    ;;      (sh . t)
-    ;;      (sql . nil)
-    ;;      (sqlite . t)))
 
     ; function to insert code block in org-mode
     (defun org-insert-src-block (src-code-type)
@@ -925,8 +919,6 @@ you should place you code here."
       (setq org-agenda-files (list my-org-file-path))
       (setq org-directory my-org-file-path)
       (setq org-default-notes-file (concat my-org-file-path "/refile.org"))
-      (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-      (setq org-mobile-inbox-for-pull (concat my-org-file-path "/from-mobile.org"))
       (setq org-download-method 'attach))
 
     ;; I use C-c c to start capture mode
@@ -936,9 +928,9 @@ you should place you code here."
     (setq org-capture-templates
           (quote (("t" "todo" entry (file "refile.org")
                    "* TODO %?\n%U\n%a\n")
-                  ("c" "Cooldown" entry (file+datetree "gtd-daily-cooldown.org") (file "tmp-daily-cooldown.org") :immediate-finish t :jump-to-captured t :clock-in t)
-                  ("e" "Abend-Review" entry (file+datetree "gtd-evening-review.org") (file "tmp-evening-review.org") :immediate-finish t :jump-to-captured t)
-                  ("r" "Weekly Review" entry (file+datetree "gtd-weekly-reviews.org") (file "tmp-weekly-review.org") :immediate-finish t :jump-to-captured t :clock-in t)
+                  ("c" "Cooldown" entry (file+olp+datetree "gtd-daily-cooldown.org") (file "tmp-daily-cooldown.org") :immediate-finish t :jump-to-captured t :clock-in t)
+                  ("e" "Abend-Review" entry (file+olp+datetree "gtd-evening-review.org") (file "tmp-evening-review.org") :immediate-finish t :jump-to-captured t)
+                  ("r" "Weekly Review" entry (file+olp+datetree "gtd-weekly-reviews.org") (file "tmp-weekly-review.org") :immediate-finish t :jump-to-captured t :clock-in t)
                   ("n" "note" entry (file "refile.org")
                    "* %? :NOTE:\n%U\n%a\n")
                   ("b" "bug" entry (file "bugs.org")
@@ -947,7 +939,7 @@ you should place you code here."
                    "* %? :AUTO:\n%U\n%a\n")
                   ("g" "respond" entry (file "refile.org")
                    "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n")
-                  ("j" "Journal" entry (file+datetree "diary.org")
+                  ("j" "Journal" entry (file+olp+datetree "diary.org")
                    "* %?\n%U\n")
                   ("m" "Meeting" entry (file "refile.org")
                    "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
@@ -960,9 +952,6 @@ you should place you code here."
                   ("f" "Frontastic Weekly" entry (file+olp "gxp-frontastic.org" "Meetings" "All-Hands Weekly") (file "tmp-frontastic-meeting.org"))
                   ("F" "Frontastic Report" entry (file+headline "gxp-frontastic.org" "Wochenbericht Frontastic") (file "tmp-frontastic-weekly-report.org"))
                   )))
-
-    ;;; org mode beamer
-
 
     (setq org-latex-pdf-process
           '("xelatex -interaction nonstopmode -shell-escape %f"
@@ -982,16 +971,84 @@ you should place you code here."
 
     (advice-add 'org-insert-heading :after #'insert-created-date)
 
+    ; This enables binding the custom agenda to keys and showing it on startup.
+    ; Has to be defined outside of org mode hook, or else it would not be
+    ; available until org mode was loaded by opening an org buffer.
+    (defun org-agenda-show-mine (&optional arg)
+      (interactive "P")
+      (org-agenda arg "A"))
 
+
+    ; bind custom agenda to SPC-A
+    (spacemacs/set-leader-keys "A" 'org-agenda-show-mine)
+
+
+    (spacemacs|define-custom-layout "Start layout"
+      :binding "s"
+      :body
+      (find-file (concat my-org-file-path "/refile.org"))
+      (split-window-right-and-focus) ;; Split and move to the right
+      (org-agenda-show-mine) ;; load agenda in upper right window
+      (split-window-below-and-focus) ;; Split the right side into two and move focus
+      (mu4e) ;; start mail in lower right part
+      (winum-select-window-2) ;; Move focus back to agenda
+    )
+
+    (spacemacs|define-custom-layout "Cooldown layout"
+      :binding "c"
+      :body
+      (find-file (concat my-org-file-path "/gtd-daily-cooldown.org"))
+      (split-window-right)
+      (org-agenda-show-mine)
+      (split-window-below-and-focus)
+      (org-todo-list "STARTED")
+      (split-window-below-and-focus)
+      (org-todo-list "NEXT")
+      (winum-select-window-1)
+      (split-window-below-and-focus)
+      (org-ql-view-recent-items 3)
+      (winum-select-window-1) ;; Move focus back to agenda
+    )
+
+    (defun good-morning ()
+      "Setup windows in the morning"
+      (interactive)
+      (persp-switch (concat my-org-file-path "/"))
+      (spacemacs/window-split-single-column t)
+      (find-file (concat my-org-file-path "/gtd-daily-cooldown.org"))
+      (split-window-right-and-focus) ;; Split and move to the right
+      (org-agenda-show-mine) ;; load agenda in upper right window
+      (split-window-below-and-focus) ;; Split the right side into two and move focus
+      (mu4e) ;; start mail in lower right part
+      (winum-select-window-2) ;; Move focus back to agenda
+      )
+
+    (defun well-done ()
+      "Setup windows for cooldown"
+      (interactive)
+      (persp-switch (concat my-org-file-path "/"))
+      (spacemacs/window-split-single-column t)
+      (find-file (concat my-org-file-path "/gtd-daily-cooldown.org"))
+      (split-window-right-and-focus) ;; Split and move to the right
+      (org-agenda-show-mine) ;; load agenda in upper right window
+      ;; (split-window-below-and-focus)
+      ;; (org-todo-list "STARTED")
+      ;; (split-window-below-and-focus)
+      ;; (org-todo-list "NEXT")
+      ;; (winum-select-window-1)
+      (split-window-below-and-focus)
+      (org-ql-view-recent-items 3)
+      (winum-select-window-1)
+      )
+
+
+    (evil-leader/set-key "am" 'good-morning)
+    (evil-leader/set-key "aw" 'well-done)
+    (evil-leader/set-key "aoq" 'org-ql-view-sidebar)
+
+    (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
+    (setq org-list-allow-alphabetical t)
   ) ;; org-mode eval after load end
-
-  ; This enables binding the custom agenda to keys and showing it on startup.
-  ; Has to be defined outside of org mode hook, or else it would not be
-  ; available until org mode was loaded by opening an org buffer.
-  (defun org-agenda-show-mine (&optional arg)
-    (interactive "P")
-    (org-agenda arg "A"))
-
   ;;;;;;;;;;;; org-mode end
 
   ;;;;;;;;;;;;;;;;;;;;;;
@@ -1046,14 +1103,9 @@ you should place you code here."
   ; Reload document when it changes on disk
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
-  ; bind custom agenda to SPC-A
-  (spacemacs/set-leader-keys "A" 'org-agenda-show-mine)
-
   (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
   (key-chord-mode 1)
 
-  ; show custom agenda after start
-  (add-hook 'after-init-hook 'org-agenda-show-mine)
 
   ;(setq rubocop-check-command "rbenv exec rubocop --format emacs")
   (setq rubocop-check-command "rubocop --format emacs")
@@ -1187,15 +1239,8 @@ you should place you code here."
   ;; needs scalastyle installed
   (setq-default flycheck-scalastylerc "~/development/pa/psi/conf/scalastyle_config.xml")
 
-  ;; Does not work yet, have to use M-/
-  ;(evil-define-key 'insert org-mode-map (kbd "TAB") 'hippie-expand)
-
   ;; Keybindings for string inflection package
   (define-key evil-normal-state-map (kbd "C-w C-c") 'string-inflection-ruby-style-cycle)
-
-  ;; automatically sync mobile org on start and stop of emacs
-  ;(add-hook 'after-init-hook 'org-mobile-pull)
-  ;(add-hook 'kill-emacs-hook 'org-mobile-push)
 
   (defun my-php-mode-setup ()
     "My PHP-mode hook."
@@ -1217,81 +1262,10 @@ you should place you code here."
         persp-nil-name "Default"
         persp-save-dir (concat my-sync-path "/emacs-perspectives/"))
 
-  (spacemacs|define-custom-layout "Start layout"
-    :binding "s"
-    :body
-    (find-file (concat my-org-file-path "/refile.org"))
-    (split-window-right-and-focus) ;; Split and move to the right
-    (org-agenda-show-mine) ;; load agenda in upper right window
-    (split-window-below-and-focus) ;; Split the right side into two and move focus
-    (mu4e) ;; start mail in lower right part
-    (winum-select-window-2) ;; Move focus back to agenda
-  )
-
-  (spacemacs|define-custom-layout "Cooldown layout"
-    :binding "c"
-    :body
-    (find-file (concat my-org-file-path "/gtd-daily-cooldown.org"))
-    (split-window-right)
-    (org-agenda-show-mine)
-    (split-window-below-and-focus)
-    (org-todo-list "STARTED")
-    (split-window-below-and-focus)
-    (org-todo-list "NEXT")
-    (winum-select-window-1)
-    (split-window-below-and-focus)
-    (org-ql-view-recent-items 3)
-    (winum-select-window-1) ;; Move focus back to agenda
-  )
-
-  (defun good-morning ()
-    "Setup windows in the morning"
-    (interactive)
-    (persp-switch (concat my-org-file-path "/"))
-    (spacemacs/window-split-single-column t)
-    (find-file (concat my-org-file-path "/gtd-daily-cooldown.org"))
-    (split-window-right-and-focus) ;; Split and move to the right
-    (org-agenda-show-mine) ;; load agenda in upper right window
-    (split-window-below-and-focus) ;; Split the right side into two and move focus
-    (mu4e) ;; start mail in lower right part
-    (winum-select-window-2) ;; Move focus back to agenda
-    )
-
-  (defun well-done ()
-    "Setup windows for cooldown"
-    (interactive)
-    (persp-switch (concat my-org-file-path "/"))
-    (spacemacs/window-split-single-column t)
-    (find-file (concat my-org-file-path "/gtd-daily-cooldown.org"))
-    (split-window-right-and-focus) ;; Split and move to the right
-    (org-agenda-show-mine) ;; load agenda in upper right window
-    ;; (split-window-below-and-focus)
-    ;; (org-todo-list "STARTED")
-    ;; (split-window-below-and-focus)
-    ;; (org-todo-list "NEXT")
-    ;; (winum-select-window-1)
-    (split-window-below-and-focus)
-    (org-ql-view-recent-items 3)
-    (winum-select-window-1)
-    )
-
-
-  (evil-leader/set-key "am" 'good-morning)
-  (evil-leader/set-key "aw" 'well-done)
-
-  ;(evil-leader/set-key "aor" 'counsel-org-goto)
-  ;(evil-leader/set-key "aos" 'counsel-org-goto-all)
-
-  (evil-leader/set-key "aoq" 'org-ql-view-sidebar)
-
   (add-to-list 'projectile-project-root-files "go.mod")
   (projectile-register-project-type 'go '("go.mod")
                                     :project-file "go.mod"
                                     :test-suffix "_test")
-
-  (add-hook 'org-mode-hook 'mixed-pitch-mode)
-;  (add-hook 'org-mode-hook 'org-indent-mode)
-  (add-hook 'after-init-hook 'org-roam-mode)
 
   (use-package edit-server
     :ensure t
@@ -1312,7 +1286,6 @@ you should place you code here."
 
   (setq create-lockfiles nil) ; webpack can't handle lockfiles
   (setq counsel-dash-common-docsets '("Javascript" "HTML" "Go" "PHP"))
-  (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
 
   (setq javascript-fmt-tool 'prettier)
   (setq typescript-fmt-tool 'prettier)
@@ -1417,10 +1390,6 @@ This function is called at the very end of Spacemacs initialization."
  '(mu4e-view-show-addresses t)
  '(mu4e-view-show-images t)
  '(native-comp-deferred-compilation-deny-list '(".*projectile.*"))
- '(org-agenda-files nil)
- '(org-babel-load-languages '((ruby . t) (emacs-lisp . t)))
- '(org-list-allow-alphabetical t)
- '(org-modules '(org-habit org-protocol id))
  '(package-selected-packages
    '(plantuml-mode nginx-mode protobuf-mode dap-mode bui restclient-helm org-mime ob-restclient ob-http jinja2-mode hackernews go-guru go-eldoc flycheck-gometalinter transient org-category-capture string-inflection winum fuzzy flycheck-credo helm-org-rifle eclim phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode ob-elixir alchemist elixir-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic alert log4e gntp markdown-mode simple-httpd json-snatcher json-reformat parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ marshal logito pcache pkg-info epl flx evil goto-chg f diminish web-completion-data dash-functional tern pos-tip ghc s bind-map bind-key packed markup-faces avy popup package-build powerline rake spinner org hydra scala-mode auto-complete company iedit highlight git-gutter request skewer-mode gh pcre2el helm-gtags ggtags minitest multiple-cursors hide-comnt anzu undo-tree flyspell-correct ht inflections inf-ruby sql-indent tide typescript-mode pug-mode sbt-mode smartparens helm helm-core haskell-mode flycheck yasnippet magit magit-popup git-commit with-editor async projectile js2-mode company-quickhelp yaml-mode yafolding xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa projectile-rails popwin persp-mode paradox ox-gfm orgit org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file noflet neotree multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc jade-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-statistics company-ghci company-ghc company-emoji company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
  '(paradox-github-token t)
