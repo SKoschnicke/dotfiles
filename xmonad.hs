@@ -81,7 +81,7 @@ myLayout = avoidStruts (
     Tall 1 (3/100) (1/2) |||
     Mirror (Tall 1 (3/100) (1/2)) |||
     StackTile 1 (3/100) (1/2) |||
-    tabbed shrinkText tabConfig |||
+--    tabbed shrinkText tabConfig |||
     noBorders (fullscreenFull Full))
 
 
@@ -93,14 +93,14 @@ myNormalBorderColor  = "#7c7c7c"
 myFocusedBorderColor = "#ffb6b0"
 
 -- Colors for text and backgrounds of each tab when in "Tabbed" layout.
-tabConfig = defaultTheme {
-    activeBorderColor = "#FF0000",
-    activeTextColor = "#CEFFAC",
-    activeColor = "#000000",
-    inactiveBorderColor = "#7C7C7C",
-    inactiveTextColor = "#EEEEEE",
-    inactiveColor = "#000000"
-}
+-- tabConfig = defaultTheme {
+--     activeBorderColor = "#FF0000",
+--     activeTextColor = "#CEFFAC",
+--     activeColor = "#000000",
+--     inactiveBorderColor = "#7C7C7C",
+--     inactiveTextColor = "#EEEEEE",
+--     inactiveColor = "#000000"
+-- }
 
 -- Color of current window title in xmobar.
 xmobarTitleColor = "#FFB6B0"
@@ -137,7 +137,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      spawn $ XMonad.terminal conf)
 
   -- Lock the screen using xscreensaver.
-  , ((modMask, xK_b),
+  , ((modMask .|. shiftMask, xK_b),
      spawn "xscreensaver-command -lock")
 
   -- switch between keyboard layouts
@@ -158,7 +158,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Select and copy an unicode symbol
   , ((modMask, xK_u),
      spawn "rofi -show unicode")
-
+ 
   -- Show clipboard
   , ((modMask, xK_c),
      spawn "rofi -modi \"clipboard:greenclip print\" -show clipboard -run-command '{cmd}'")
@@ -178,6 +178,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Translate
   , ((modMask, xK_x),
      spawn "rofi_trans")
+
+  -- Zeal Docs
+  , ((modMask, xK_b),
+     spawn "zeal")
 
   -- Play/Pause
   , ((modMask .|. shiftMask, xK_F8),
@@ -216,8 +220,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      spawn "/home/sven/kb-light.py")
 
   -- search
-  , ((modMask, xK_r),
-     promptSearch defaultXPConfig $ intelligent $ hayoo !> dictcc !> multi)
+--  , ((modMask, xK_r),
+--     promptSearch defaultXPConfig $ intelligent $ hayoo !> dictcc !> multi)
 
   --------------------------------------------------------------------
   -- "Standard" xmonad key bindings
@@ -362,7 +366,7 @@ monokaiBlue = "#66D9EF"
 
 main = do
   xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
-  xmonad $ desktopConfig {
+  xmonad $ ewmhFullscreen . ewmh $ desktopConfig {
     -- simple stuff
       terminal           = myTerminal
     , focusFollowsMouse  = myFocusFollowsMouse
@@ -380,7 +384,7 @@ main = do
     , layoutHook         = smartBorders $ myLayout
     , manageHook = manageDocks <+> myManageHook
     , startupHook = setWMName "LG3D"
-    , handleEventHook = handleEventHook desktopConfig <+> XMonad.Hooks.EwmhDesktops.fullscreenEventHook
+--    , handleEventHook = handleEventHook desktopConfig <+> XMonad.Hooks.EwmhDesktops.fullscreenEventHook
     , logHook            = dynamicLogWithPP $ xmobarPP
       { ppOutput          = hPutStrLn xmproc
       , ppTitle           = xmobarColor monokaiBlue "" . shorten 100

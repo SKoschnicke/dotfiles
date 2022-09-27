@@ -46,7 +46,7 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # NOTE that fasd needs the executable fasd installed
 # NOTE do NOT enable the tmux plugin! It breaks the last-working-dir functionality
-plugins=(last-working-dir zsh-navigation-tools rvm web-search bundler ruby git gem git-extras github vi-mode wd fabric docker docker-compose archlinux colorize alias-tips fasd zsh-autosuggestions dircycle safe-paste)
+plugins=(last-working-dir zsh-navigation-tools rvm web-search bundler ruby git gem git-extras github vi-mode wd fabric docker docker-compose archlinux colorize alias-tips fasd zsh-autosuggestions dircycle safe-paste zsh-nvm)
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # to install autosuggestions plugin:
@@ -194,6 +194,7 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 alias wlan="wicd-cli --wireless"
 
 alias f=frontastic
+alias mp=multipass
 
 source /home/sven/.config/broot/launcher/bash/br
 #bindkey -s "^J" "br^M"
@@ -205,7 +206,7 @@ alias sudo='sudo  -v; sudo '
 
 sshfm() {
   if (( # == 0 )); then
-    kitty +kitten ssh vagrant@$(grep remoteserverhostname frontastic.toml|cut -d'"' -f2) 
+    kitty +kitten ssh vagrant@$(grep remoteserverhostname frontastic.toml|cut -d\' -f2) 
   else
     kitty +kitten ssh vagrant@$1
   fi

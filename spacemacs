@@ -122,7 +122,9 @@ This function should only modify configuration layer settings."
      (restclient :variables restclient-use-org t)
      (elfeed :variables rmh-elfeed-org-files (list "~/SpiderOak Hive/org/newsfeeds.org"))
      (lsp :variables lsp-treemacs-sync-mode 1)
-     dash ; requires zeal installed on the machine
+     (dash :variables ; requires zeal installed on the machine
+           dash-docs-docset-newpath "~/.local/share/Zeal/Zeal/docsets"
+           dash-docs-enable-debugging nil)
      plantuml
      dap
      bm
@@ -408,7 +410,7 @@ It should only modify the values of Spacemacs settings."
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
-   dotspacemacs-large-file-size 1
+   dotspacemacs-large-file-size 3
 
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
@@ -741,6 +743,9 @@ you should place you code here."
         org-agenda-default-appointment-duration nil  ; this also makes all scheduled items last for this duration instead of taking the efford
         org-id-link-to-org-use-id t
         org-journal-dir (concat my-org-file-path "/journal/")
+        org-confirm-babel-evaluate nil
+        org-confirm-elisp-link-function nil
+        org-confirm-shell-link-function t
         )
 
   ; Refile targets include this file (5 levels deep) and any file contributing to the agenda (only 1 level, top level headlines)
@@ -1073,13 +1078,13 @@ you should place you code here."
       (find-file (concat my-org-file-path "/gtd-daily-cooldown.org"))
       (split-window-right-and-focus) ;; Split and move to the right
       (org-agenda-show-mine) ;; load agenda in upper right window
-      ;; (split-window-below-and-focus)
-      ;; (org-todo-list "STARTED")
+      (split-window-below-and-focus)
+      (org-todo-list "STARTED")
       ;; (split-window-below-and-focus)
       ;; (org-todo-list "NEXT")
       ;; (winum-select-window-1)
       (split-window-below-and-focus)
-      (org-ql-view-recent-items 3)
+      (org-ql-view-recent-items :num-days 1)
       (winum-select-window-1)
       )
 
@@ -1087,6 +1092,7 @@ you should place you code here."
     (evil-leader/set-key "am" 'good-morning)
     (evil-leader/set-key "aw" 'well-done)
     (evil-leader/set-key "aoq" 'org-ql-view-sidebar)
+    (evil-leader/set-key "ao/" 'helm-org-ql-agenda-files)
 
     (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
     (setq org-list-allow-alphabetical t)
@@ -1385,6 +1391,8 @@ you should place you code here."
   (add-hook 'php-mode-hook 'phpcbf-enable-on-save)
 
   (require 'dap-node)
+
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "s*" 'org-toggle-heading)
 )
 
 (defun dotspacemacs/emacs-custom-settings ()
