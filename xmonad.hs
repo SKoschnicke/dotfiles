@@ -173,7 +173,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Take a screenshot from an area
   , ((modMask, xK_z),
-     spawn "flameshot gui -p ~/screenshots")
+     spawn "flameshot gui --clipboard --path ~/screenshots")
 
   -- Translate
   , ((modMask, xK_x),
