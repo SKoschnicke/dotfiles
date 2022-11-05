@@ -211,4 +211,5 @@ sshfm() {
     kitty +kitten ssh vagrant@$1
   fi
 }
+export PATH="$HOME/.phpenv/bin:$PATH"
 eval "$(phpenv init -)"

@@ -115,20 +115,28 @@ This function should only modify configuration layer settings."
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier)
      python
-     (gtags :variables gtags-enable-by-default t)
+     ;(gtags :variables gtags-enable-by-default t) ; removed in favor of lsp-mode
      (mu4e :variables
            mu4e-installation-path "/usr/share/emacs/site-lisp")
 ;     spacemacs-purpose
      elixir
      (restclient :variables restclient-use-org t)
      (elfeed :variables rmh-elfeed-org-files (list "~/SpiderOak Hive/org/newsfeeds.org"))
-     (lsp :variables lsp-treemacs-sync-mode 1)
+     (lsp :variables
+          lsp-treemacs-sync-mode 1
+          lsp-lens-enable t)
      (dash :variables ; requires zeal installed on the machine
            dash-docs-docset-newpath "~/.local/share/Zeal/Zeal/docsets"
            dash-docs-enable-debugging nil)
      plantuml
      dap
      bm
+     (ranger :variables
+             ranger-show-preview t
+             ranger-show-hidden t
+             ranger-cleanup-eagerly t
+             ranger-cleanup-on-disable t
+             ranger-ignored-extensions '("mkv" "flv" "iso" "mp4"))
    )
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
@@ -586,7 +594,9 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil - same as frame-title-format)
    dotspacemacs-icon-title-format nil
 
-   ;; Show trailing whitespace (default t)
+   ;; Color highlight trailing whitespace in all prog-mode and text-mode derived
+   ;; modes such as c++-mode, python-mode, emacs-lisp, html-mode, rst-mode etc.
+   ;; (default t)
    dotspacemacs-show-trailing-whitespace t
 
    ;; Delete whitespace while saving buffer. Possible values are `all'
@@ -825,8 +835,8 @@ you should place you code here."
                                           :todo "TODAY"
                                           :scheduled today
                                           :order 0)
-                                   (:name "Sprint"
-                                          :tag "sprint"
+                                   (:name "Main"
+                                          :tag "main"
                                           :order 1)
                                    (:habit t)
                                    (:name "Due Today"
@@ -1389,11 +1399,20 @@ you should place you code here."
   (custom-set-variables
    '(phpcbf-standard "PSR2")
    )
-  (add-hook 'php-mode-hook 'phpcbf-enable-on-save)
+  ;(add-hook 'php-mode-hook 'phpcbf-enable-on-save)
+  (setq flycheck-phpcs-standard "PSR2")
+
+  ;; Set up before-save hooks to format buffer and add/delete imports.
+  (defun lsp-go-install-save-hooks ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (add-hook 'php-mode-hook #'lsp-go-install-save-hooks)
 
   (require 'dap-node)
 
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "s*" 'org-toggle-heading)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "sP" 'helm-org-parent-headings)
+  (setq helm-org-format-outline-path t)
 )
 
 (defun dotspacemacs/emacs-custom-settings ()
