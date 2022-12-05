@@ -137,6 +137,7 @@ This function should only modify configuration layer settings."
              ranger-cleanup-eagerly t
              ranger-cleanup-on-disable t
              ranger-ignored-extensions '("mkv" "flv" "iso" "mp4"))
+     treemacs
    )
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
@@ -484,6 +485,11 @@ It should only modify the values of Spacemacs settings."
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
+
+   ;; A value from the range (0..100), in increasing opacity, which describes the
+   ;; transparency level of a frame background when it's active or selected. Transparency
+   ;; can be toggled through `toggle-background-transparency'. (default 90)
+   dotspacemacs-background-transparency 90
 
    ;; If non-nil show the titles of transient states. (default t)
    dotspacemacs-show-transient-state-title t
@@ -1316,7 +1322,7 @@ you should place you code here."
         persp-auto-save-persps-to-their-file-before-kill t
         persp-auto-resume-time 1
         persp-auto-save-fname "autosave"
-        persp-auto-save-opt 1
+        persp-auto-save-opt 2
         persp-nil-hidden t
         persp-nil-name "Default"
         persp-save-dir (concat my-sync-path "/emacs-perspectives/"))
