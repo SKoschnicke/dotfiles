@@ -177,7 +177,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Translate
   , ((modMask, xK_x),
-     spawn "rofi_trans")
+     spawn "my_trans")
 
   -- Zeal Docs
   , ((modMask, xK_b),

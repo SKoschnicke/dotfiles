@@ -32,10 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(haskell
-     nginx
-     protobuf
-     rust
+   '(nginx
      ansible
      react
      csv
@@ -46,7 +43,6 @@ This function should only modify configuration layer settings."
          go-format-before-save t
          go-use-golangci-lint t
          go-backend 'lsp)
-     ;ivy
      helm
      (php :variables
           php-backend 'lsp-deferred)
@@ -63,6 +59,7 @@ This function should only modify configuration layer settings."
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-complete-with-key-sequence "jk"
                       auto-completion-complete-with-key-sequence-delay 0.1
+                      auto-completion-private-snippets-directory "~/.dotfiles/snippets"
                       )
      typography
      ;emoji ;; breaks org mode repeat
@@ -87,8 +84,6 @@ This function should only modify configuration layer settings."
      syntax-checking
      version-control
      shell-scripts
-     (scala :variables
-            scala-backend 'scala-metals)
      (ruby :variables
            ruby-version-manager 'rbenv
            ruby-backend 'lsp-deferred
@@ -97,11 +92,6 @@ This function should only modify configuration layer settings."
      html
      (javascript :variables javascript-fmt-on-save t)
      tern
-     (java :variables
-           java-backend 'lsp-deferred)
-     (kotlin :variables
-           kotlin-backend 'lsp-deferred)
-     ;haskell ;; currently results in emacs freezing because it waits for some stack command
      yaml
      asciidoc
      markdown
@@ -115,10 +105,8 @@ This function should only modify configuration layer settings."
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier)
      python
-     ;(gtags :variables gtags-enable-by-default t) ; removed in favor of lsp-mode
      (mu4e :variables
            mu4e-installation-path "/usr/share/emacs/site-lisp")
-;     spacemacs-purpose
      elixir
      (restclient :variables restclient-use-org t)
      (elfeed :variables rmh-elfeed-org-files (list "~/SpiderOak Hive/org/newsfeeds.org"))
@@ -137,7 +125,9 @@ This function should only modify configuration layer settings."
              ranger-cleanup-eagerly t
              ranger-cleanup-on-disable t
              ranger-ignored-extensions '("mkv" "flv" "iso" "mp4"))
-     treemacs
+     (spotify :variables
+              counsel-spotify-client-id "ef1e403bd070426f98a2e39d99b812bd"
+              counsel-spotify-client-secret "8c02bde949594754818d59b4a9e8276b")
    )
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
@@ -151,16 +141,14 @@ This function should only modify configuration layer settings."
    '(yafolding
      key-chord
      string-inflection
-     vue-mode
      zpresent
      company-box
      org-randomnote
      org-ql
-     helm-org-rifle
+     ;helm-org-rifle ; better use org-ql
      helm-org-ql
-                                        ;org-variable-pitch ;; seen no difference to using mixed-pitch
      mixed-pitch
-     edit-server
+     ;edit-server ; for integration into browser text fields
      org-sidebar
      org-super-agenda
      yasnippet-snippets
@@ -1106,8 +1094,8 @@ you should place you code here."
       )
 
 
-    (evil-leader/set-key "am" 'good-morning)
-    (evil-leader/set-key "aw" 'well-done)
+    (evil-leader/set-key "aM" 'good-morning)
+    (evil-leader/set-key "aW" 'well-done)
     (evil-leader/set-key "aoq" 'org-ql-view-sidebar)
     (evil-leader/set-key "ao/" 'helm-org-ql-agenda-files)
 
@@ -1332,22 +1320,22 @@ you should place you code here."
                                     :project-file "go.mod"
                                     :test-suffix "_test")
 
-  (use-package edit-server
-    :ensure t
-    :commands edit-server-start
-    :init (if after-init-time
-              (edit-server-start)
-            (add-hook 'after-init-hook
-                      #'(lambda() (edit-server-start))))
-    :config (setq edit-server-new-frame-alist
-                  '((name . "Edit with Emacs FRAME")
-                    (top . 200)
-                    (left . 200)
-                    (width . 80)
-                    (height . 25)
-                    (minibuffer . t)
-                    (menu-bar-lines . t)
-                    (window-system . x))))
+  ;; (use-package edit-server
+  ;;   :ensure t
+  ;;   :commands edit-server-start
+  ;;   :init (if after-init-time
+  ;;             (edit-server-start)
+  ;;           (add-hook 'after-init-hook
+  ;;                     #'(lambda() (edit-server-start))))
+  ;;   :config (setq edit-server-new-frame-alist
+  ;;                 '((name . "Edit with Emacs FRAME")
+  ;;                   (top . 200)
+  ;;                   (left . 200)
+  ;;                   (width . 80)
+  ;;                   (height . 25)
+  ;;                   (minibuffer . t)
+  ;;                   (menu-bar-lines . t)
+  ;;                   (window-system . x))))
 
   (setq create-lockfiles nil) ; webpack can't handle lockfiles
   (setq counsel-dash-common-docsets '("Javascript" "HTML" "Go" "PHP"))

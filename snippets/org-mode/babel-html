@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: http
+# key: http
+# --
+#+begin_src http :pretty
+POST $1
+Content-Type: application/json
+
+{
+  $2
+}
+#+end_src

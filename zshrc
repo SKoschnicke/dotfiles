@@ -213,3 +213,5 @@ sshfm() {
 }
 export PATH="$HOME/.phpenv/bin:$PATH"
 eval "$(phpenv init -)"
+
+alias sshk='kitty +kitten ssh'

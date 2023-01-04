@@ -1,0 +1,9 @@
+#!/bin/bash
+
+text=$(echo "Deutsch" | rofi -dmenu -F)
+result=$(curl -X POST 'https://api-free.deepl.com/v2/translate' \
+     -H 'Authorization: DeepL-Auth-Key 4bd94890-6cef-95f0-7790-8b050482ad79:fx' \
+     -d "text=$text" \
+     -d 'source_lang=DE' \
+     -d 'target_lang=EN')
+echo $result | jq '.translations[0].text' | tr -d '"' | rofi -dmenu

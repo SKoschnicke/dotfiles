@@ -126,7 +126,7 @@ ssl = yes
 # get with:
 # $ openssl s_client -CApath /etc/ssl/certs -connect ${hostname}:imaps -showcerts | perl -ne 'print if /BEGIN/../END/; print STDERR if /return/' > $sslcacertfile
 #sslcacertfile = uni-imap.cert
-cert_fingerprint = 7b58eff9eba6c3d54e79a51ce2930d43777dcc3152cbeac14c4ada9e7ffbceaae9ff7c53472470fff05866ada2d459ebb5946f6947607c47fa583e8e4314dca8
+cert_fingerprint = 444e26ea42f16308f1447c0eb3afaf4d46e845c3a39b1e3b6a458c7edf3522378d00ae9c82509d6dba502b50e4b435a0164c40f07c23dc69fdf2fc2a66924177
 
 
 # Specify the remote user name.
