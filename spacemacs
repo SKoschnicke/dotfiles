@@ -64,7 +64,10 @@ This function should only modify configuration layer settings."
      typography
      ;emoji ;; breaks org mode repeat
      emacs-lisp
-     git
+     (git :variables
+          git-enable-magit-delta-plugin nil; breaks stuff
+          git-enable-magit-todos-plugin nil ; breaks stuff
+          )
      (org :variables
           org-enable-github-support t
           org-enable-roam-support nil
@@ -1001,7 +1004,6 @@ you should place you code here."
                    "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
                   ("B" "Brain" plain (function org-brain-goto-end)
                    "* %i%?" :empty-lines 1)
-                  ("f" "Frontastic Weekly" entry (file+olp "gxp-frontastic.org" "Meetings" "All-Hands Weekly") (file "tmp-frontastic-meeting.org"))
                   ("F" "Frontastic Report" entry (file+headline "gxp-frontastic.org" "Wochenbericht Frontastic") (file "tmp-frontastic-weekly-report.org"))
                   )))
 
