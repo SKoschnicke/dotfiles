@@ -1,0 +1,5 @@
+[user]
+  name = Sven Koschnicke
+  email = s.koschnicke@gfxpro.com
+[merge]
+  tool = meld

@@ -1,6 +1,7 @@
-[user]
-  name = Sven Koschnicke
-  email = s.koschnicke@gfxpro.com
+[includeIf "gitdir:/Users"]
+  path = ~/.dotfiles/gitconfig-work
+[includeIf "gitdir:/home"]
+  path = ~/.dotfiles/gitconfig-personal
 [alias]
   s = status -sb
   st = status
@@ -10,8 +11,6 @@
   l = log --all --graph --decorate --oneline --abbrev-commit
 [push]
   default = current
-[merge]
-  tool = meld
 [color]
   ui = 1
 [core]
