@@ -215,3 +215,8 @@ export PATH="$HOME/.phpenv/bin:$PATH"
 eval "$(phpenv init -)"
 
 alias sshk='kitty +kitten ssh'
+
+alias ai=aichat
+alias ais='aichat -r shell'
+alias aic='aichat -r coder'
+alias ait='aichat -r translator:english'
