@@ -78,6 +78,7 @@ This function should only modify configuration layer settings."
           org-enable-verb-support t
           org-enable-valign t
           org-enable-transclusion-support t
+          org-enable-sticky-header t
           )
      evil-snipe
      ;; (shell :variables
@@ -156,6 +157,7 @@ This function should only modify configuration layer settings."
      org-super-agenda
      yasnippet-snippets
      editorconfig
+     org-recur
      )
 
 
@@ -712,11 +714,13 @@ you should place you code here."
   (add-hook 'org-mode-hook 'variable-pitch-mode)
   (add-hook 'org-mode-hook 'visual-line-mode)
   (add-hook 'org-mode-hook 'mixed-pitch-mode)
+  (add-hook 'org-mode-hook 'org-recur-mode)
   (add-hook 'after-init-hook 'org-roam-mode)
   ;; (add-hook 'org-clock-in-hook 'harvest)
   ;; (add-hook 'org-clock-out-hook 'harvest-clock-out)
   ; show custom agenda after start
   (add-hook 'after-init-hook 'org-agenda-show-mine)
+  (add-hook 'org-agenda-mode-hook 'org-recur-agenda-mode)
 
 
 
@@ -1073,7 +1077,7 @@ you should place you code here."
       (split-window-right-and-focus) ;; Split and move to the right
       (org-agenda-show-mine) ;; load agenda in upper right window
       (split-window-below-and-focus) ;; Split the right side into two and move focus
-      (mu4e) ;; start mail in lower right part
+      ;(mu4e) ;; start mail in lower right part
       (winum-select-window-2) ;; Move focus back to agenda
       )
 
