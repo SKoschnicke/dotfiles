@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: clock table
+# key: clock
+# --
+#+BEGIN: clocktable :scope agenda :block today :fileskip0 t :tags t :link t
+#+END:
