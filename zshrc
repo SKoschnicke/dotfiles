@@ -46,7 +46,7 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # NOTE that fasd needs the executable fasd installed
 # NOTE do NOT enable the tmux plugin! It breaks the last-working-dir functionality
-plugins=(last-working-dir zsh-navigation-tools rvm web-search bundler ruby git gem git-extras github vi-mode wd fabric docker docker-compose archlinux colorize alias-tips fasd zsh-autosuggestions dircycle safe-paste zsh-nvm)
+plugins=(last-working-dir zsh-navigation-tools rvm web-search bundler ruby git gem git-extras github vi-mode wd fabric docker docker-compose archlinux colorize alias-tips fasd zsh-autosuggestions dircycle safe-paste ssh-agent z extract mise)
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # to install autosuggestions plugin:
@@ -102,20 +102,6 @@ setopt PUSHD_IGNORE_DUPS
 # tell Java that XMonad is non-reparenting (prevents blank windows of java applications)
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-function powerline_precmd() {
-    PS1="$(powerline-go -error $? -shell zsh -theme $HOME/.dotfiles/powerline-theme.json)"
-    #PS1="$(powerline-go -error $? -shell zsh)"
-}
-
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-
 function gitrmtag () {
   declare -a refs
   local index=1 
@@ -126,12 +112,9 @@ function gitrmtag () {
   git push origin "${refs[@]}" && git tag -d "$@"
 }
 
-if [ "$TERM" != "linux" ]; then
-    install_powerline_precmd
-fi
+export EDITOR="nvim"
 
-export EDITOR=vim
-
+#alias docker=podman
 alias dockercleancontainers="docker ps -a -f status=exited -q | xargs docker rm"
 alias dockercleanimages="docker images -f dangling=true -q | xargs docker rmi"
 alias dockerclean="dockercleancontainers && dockercleanimages"
@@ -160,7 +143,9 @@ pg() {
   ps up $(pgrep -f $@)
 }
 
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+if [[ "$(hostname)" == "daltigoth" ]]; then
+  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+fi
 
 # initialize rbenv (ruby version manager)
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -173,6 +158,10 @@ export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 export PATH="$PATH:$HOME/.emacs.d/bin"
+if [[ "$(hostname)" == "Svens-Air.localdomain" || "$(hostname)" == "istar.localdomain" || "$(hostname)" == "Sven’s-MacBook-Air" ]]; then
+  export PATH="$PATH:$(brew --prefix python)/libexec/bin"
+  export PATH="$PATH:/Users/sven/Library/Python/3.11/bin"
+fi
 
 export BAT_THEME="Monokai Extended Light"
 
@@ -195,8 +184,11 @@ alias wlan="wicd-cli --wireless"
 
 alias f=frontastic
 alias mp=multipass
+alias ai="aichat"
+alias aic="aichat --role coder"
+alias ais="aichat --role shell"
 
-source /home/sven/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br
 #bindkey -s "^J" "br^M"
 #
 alias vi=nvim
@@ -211,7 +203,15 @@ sshfm() {
     kitty +kitten ssh vagrant@$1
   fi
 }
-export PATH="$HOME/.phpenv/bin:$PATH"
-eval "$(phpenv init -)"
+
+svrestart() {
+  ssh vagrant@$(grep remoteserverhostname frontastic.toml|cut -d\' -f2) sudo supervisorctl restart all
+}
+# not working on mac, needs phpenv
+#export PATH="$HOME/.phpenv/bin:$PATH"
+#eval "$(phpenv init -)"
 
 alias sshk='kitty +kitten ssh'
+
+eval "$(direnv hook zsh)"
+eval "$(starship init zsh)"
