@@ -1,78 +1,69 @@
 # avoid problems with emacs tramp
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # NOTE that fasd needs the executable fasd installed
 # NOTE do NOT enable the tmux plugin! It breaks the last-working-dir functionality
-plugins=(last-working-dir zsh-navigation-tools rvm web-search bundler ruby git gem git-extras github vi-mode wd fabric docker docker-compose archlinux colorize alias-tips fasd zsh-autosuggestions dircycle safe-paste ssh-agent z extract mise)
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+#plugins=(last-working-dir zsh-navigation-tools rvm web-search bundler ruby git gem git-extras github vi-mode wd fabric docker docker-compose archlinux colorize alias-tips fasd zsh-autosuggestions dircycle safe-paste ssh-agent z extract mise)
+#ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # to install autosuggestions plugin:
 # git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 # to install alias-tips plugin:
 # git clone https://github.com/djui/alias-tips ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/alias-tips
 
-source $ZSH/oh-my-zsh.sh
+source /opt/homebrew/opt/zinit/zinit.zsh
 
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+zinit ice wait lucid atload'_zsh_autosuggest_start'
+zinit light zsh-users/zsh-autosuggestions
+# Plugin history-search-multi-word loaded with investigating.
+zinit load zdharma-continuum/history-search-multi-word
+
+# Two regular plugins loaded without investigating.
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+zi snippet OMZP::z
+
+# Load starship theme
+# line 1: `starship` binary as command, from github release
+# line 2: starship setup at clone(create init.zsh, completion)
+# line 3: pull behavior same as clone, source init.zsh
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
+
+setopt  autocd autopushd
 # Customize to your needs...
 
-unalias sp # web-search plugin
 DEFAULT_USER="svk"
 
-autoload -U zmv
-alias mmv='noglob zmv -W'
+# autoload -U zmv
+# alias mmv='noglob zmv -W'
 
-# Settings for the zsh-navigation-tools
-autoload znt-history-widget
-zle -N znt-history-widget
-bindkey "^R" znt-history-widget
-#znt_cd_hotlist=( "~/development/pa/rho" "~/development/pa/psi" "~/development/sc/webapp"
-                 #"~/development/sc/graphical_client" "~/development/sc/client_server"
-               #)
-#zle -N znt-cd-widget
-#bindkey "^J" znt-cd-widget
+# # Settings for the zsh-navigation-tools
+# autoload znt-history-widget
+# zle -N znt-history-widget
+# bindkey "^R" znt-history-widget
+# #znt_cd_hotlist=( "~/development/pa/rho" "~/development/pa/psi" "~/development/sc/webapp"
+#                  #"~/development/sc/graphical_client" "~/development/sc/client_server"
+#                #)
+# #zle -N znt-cd-widget
+# #bindkey "^J" znt-cd-widget
 
 # call file manager with Ctrl-K
 # jumps to the selected directory when quit
@@ -104,10 +95,10 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 function gitrmtag () {
   declare -a refs
-  local index=1 
+  local index=1
   for tag in $@
   do
-    refs[index++]=":refs/tags/$tag" 
+    refs[index++]=":refs/tags/$tag"
   done
   git push origin "${refs[@]}" && git tag -d "$@"
 }
@@ -198,7 +189,7 @@ alias sudo='sudo  -v; sudo '
 
 sshfm() {
   if (( # == 0 )); then
-    kitty +kitten ssh vagrant@$(grep remoteserverhostname frontastic.toml|cut -d\' -f2) 
+    kitty +kitten ssh vagrant@$(grep remoteserverhostname frontastic.toml|cut -d\' -f2)
   else
     kitty +kitten ssh vagrant@$1
   fi
@@ -214,4 +205,4 @@ svrestart() {
 alias sshk='kitty +kitten ssh'
 
 eval "$(direnv hook zsh)"
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"

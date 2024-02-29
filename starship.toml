@@ -1,2 +1,2 @@
 [gcloud]
-format = 'on [$symbol GCP(\($region\))]($style) ' 
+format = 'on $symbol [GCP(\($region\))]($style) ' 
