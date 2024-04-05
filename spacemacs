@@ -66,7 +66,10 @@ This function should only modify configuration layer settings."
      typography
      ;emoji ;; breaks org mode repeat
      emacs-lisp
-     git
+     (git :variables
+          git-enable-magit-delta-plugin nil; breaks stuff
+          git-enable-magit-todos-plugin nil ; breaks stuff
+          )
      (org :variables
           org-enable-github-support t
           org-enable-roam-support nil
@@ -77,6 +80,7 @@ This function should only modify configuration layer settings."
           org-enable-verb-support t
           org-enable-valign t
           org-enable-transclusion-support t
+          org-enable-sticky-header t
           )
      evil-snipe
      ;; (shell :variables
@@ -162,6 +166,7 @@ This function should only modify configuration layer settings."
                          :fetcher github
                          :repo "zozowell/helm-ag"
                          :branch "further-support-rg"))
+     org-recur
      )
 
    ;; A list of packages that cannot be updated.
@@ -707,9 +712,13 @@ you should place you code here."
   (add-hook 'org-mode-hook 'variable-pitch-mode)
   (add-hook 'org-mode-hook 'visual-line-mode)
   (add-hook 'org-mode-hook 'mixed-pitch-mode)
-
+  (add-hook 'org-mode-hook 'org-recur-mode)
+  (add-hook 'after-init-hook 'org-roam-mode)
+  ;; (add-hook 'org-clock-in-hook 'harvest)
+  ;; (add-hook 'org-clock-out-hook 'harvest-clock-out)
   ; show custom agenda after start
   (add-hook 'after-init-hook 'org-agenda-show-mine)
+  (add-hook 'org-agenda-mode-hook 'org-recur-agenda-mode)
 
 
 
@@ -1015,6 +1024,9 @@ you should place you code here."
       (find-file (concat my-org-file-path "/gtd-daily-cooldown.org"))
       (split-window-right-and-focus) ;; Split and move to the right
       (org-agenda-show-mine) ;; load agenda in upper right window
+      (split-window-below-and-focus) ;; Split the right side into two and move focus
+      ;(mu4e) ;; start mail in lower right part
+      (winum-select-window-2) ;; Move focus back to agenda
       )
 
     (defun well-done ()

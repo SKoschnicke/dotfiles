@@ -42,6 +42,7 @@
 	includeIssuesSection = false
 [credential]
 	helper = cache
+	useHttpPath = true
 [pull]
 	rebase = true
 [init]
