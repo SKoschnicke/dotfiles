@@ -21,7 +21,10 @@ ln -s ~/.dotfiles/bin/keyboard-layout ~/.xmonad/bin/keyboard-layout
 ln -s ~/.dotfiles/bin/select-screenshot ~/.xmonad/bin/select-screenshot
 ln -s ~/.dotfiles/xmonad.hs ~/.xmonad/xmonad.hs
 ln -s ~/.dotfiles/xmobar.hs.`hostname` ~/.xmonad/xmobar.hs
-ln -s ~/.dotfiles/gitconfig ~/.gitconfig
+mkdir -p ~/.config/git
+ln -s ~/.dotfiles/gitconfig ~/.config/git/config
+ln -s ~/.dotfiles/gitconfig-work ~/.config/git/config-work
+ln -s ~/.dotfiles/gitconfig-personal ~/.config/git/config-personal
 ln -s ~/.dotfiles/pentadactylrc ~/.pentadactylrc
 mkdir -p ~/.pentadactyl
 ln -s ~/.dotfiles/pentadactyl/colors ~/.pentadactyl/colors

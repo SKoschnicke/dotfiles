@@ -1,7 +1,8 @@
-[includeIf "gitdir:/Users"]
-  path = ~/.dotfiles/gitconfig-work
-[includeIf "gitdir:/home"]
-  path = ~/.dotfiles/gitconfig-personal
+[user]
+  name = Sven Koschnicke
+  email = s.koschnicke@gfxpro.com
+[merge]
+  tool = meld
 [alias]
   s = status -sb
   st = status
@@ -18,6 +19,7 @@
   autocrlf = input
   pager = "diff-so-fancy | less --tabs=4 -RFX" # requires diff-so-fancy: npm install -g diff-so-fancy / yaourt diff-so-fancy / brew update && brew install diff-so-fancy
   excludesfile = ~/.gitignore-global
+	ignorecase = true
 [filter "lfs"]
   clean = git lfs clean %f
   smudge = git lfs smudge %f
@@ -31,7 +33,7 @@
   fetchJobs = 3 # parallel cloning, updating, fetching of submodules (sice 2.9)
 
 [github]
-  user = SKoschnicke
+	user = svenk-ct
 [magithub]
 	online = false
 [magithub "status"]

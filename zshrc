@@ -28,15 +28,44 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
+
+# Autosuggestions
 zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
+
 # Plugin history-search-multi-word loaded with investigating.
 zinit load zdharma-continuum/history-search-multi-word
 
+# allow cd ... = cd ../.. etc
+zinit load knu/zsh-manydots-magic
+
 # Two regular plugins loaded without investigating.
+
+# Syntax Highlight
 zinit light zdharma-continuum/fast-syntax-highlighting
 
+# Alias Tips
+zinit light djui/alias-tips
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT="💡 Alias tip: "
+
+# Git
+zi snippet OMZL::git.zsh
+zi snippet OMZP::git
+
+# Mise
+zi snippet OMZP::mise
+
+# Z (like autojump)
 zi snippet OMZP::z
+
+# lolcats aliases
+zi snippet OMZP::lol
+
+# remember last working directory in newly started shells
+zi snippet OMZP::last-working-dir
+
+# emacs shortcuts
+zi snippet OMZP::emacs
 
 # Load starship theme
 # line 1: `starship` binary as command, from github release
@@ -206,3 +235,5 @@ alias sshk='kitty +kitten ssh'
 
 eval "$(direnv hook zsh)"
 #eval "$(starship init zsh)"
+
+alias cdr=grt

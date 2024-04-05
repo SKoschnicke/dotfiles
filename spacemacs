@@ -71,7 +71,7 @@ This function should only modify configuration layer settings."
           org-enable-github-support t
           org-enable-roam-support nil
           org-enable-jira-support t
-          jiralib-url "https://frontastic.atlassian.net:443"
+          jiralib-url "https://commercetools.atlassian.net"
           org-enable-org-journal-support t
           org-enable-asciidoc-support t
           org-enable-verb-support t
@@ -155,6 +155,7 @@ This function should only modify configuration layer settings."
      (copilot :location (recipe :fetcher github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
      fireplace
      code-review
+     elpher
      ;; support rg 14
      ;; https://github.com/syl20bnr/spacemacs/issues/16200
      (helm-ag :location (recipe
@@ -1235,6 +1236,7 @@ you should place you code here."
   (add-hook 'php-mode-hook 'my-php-mode-setup)
 
   (add-to-list 'projectile-project-root-files "go.mod")
+  (add-to-list 'projectile-project-root-files "devbox.json")
   (projectile-register-project-type 'go '("go.mod")
                                     :project-file "go.mod"
                                     :test-suffix "_test")
@@ -1271,7 +1273,7 @@ you should place you code here."
      '(org-document-info ((t (:foreground "dark orange"))))
      '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
      '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
-     '(org-link ((t (:foreground "royal blue" :underline t))))
+     ;'(org-link ((t (:foreground "royal blue" :underline t))))
      '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
      '(org-property-value ((t (:inherit fixed-pitch))) t)
      '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
@@ -1301,6 +1303,10 @@ you should place you code here."
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "s*" 'org-toggle-heading)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "sP" 'helm-org-parent-headings)
   (setq helm-org-format-outline-path t)
+  ; not working, needs to be added to "helm actions" somehow
+  ;(with-eval-after-load 'helm-files
+  ;  (define-key helm-find-files-map (kbd "S-<return>") 'helm-find-files-other-window))
+
 
   (when (string= system-name "daltigoth")
     (setq lsp-go-gopls-server-path "/home/sven/go/bin/gopls")
@@ -1350,7 +1356,7 @@ This function is called at the very end of Spacemacs initialization."
    '("/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/home/sven/.rbenv/shims/" "/opt/homebrew/bin"))
  '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
  '(flycheck-go-golint-executable "/Users/sven/go/bin/golint")
- '(flycheck-phpcs-standard "PSR2")
+ '(flycheck-phpcs-standard "PSR2" t)
  '(flycheck-phpmd-rulesets '("codesize" "design" "unusedcode"))
  '(flycheck-phpstan-executable "/home/sven/.config/composer/vendor/bin/phpstan")
  '(haskell-tags-on-save t)
@@ -1370,14 +1376,105 @@ This function is called at the very end of Spacemacs initialization."
      ("FIXME" . "#dc752f")
      ("XXX+" . "#dc752f")
      ("\\?\\?\\?+" . "#dc752f")))
+ '(jiralib-url "https://commercetools.atlassian.net" t)
+ '(jiralib-user "63456be7754fb6b373b94dcc")
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
  '(lsp-intelephense-php-version "8.1.0")
  '(mu4e-view-show-addresses t)
  '(mu4e-view-show-images t)
  '(native-comp-deferred-compilation-deny-list '(".*projectile.*"))
+ '(org-ql-views
+   '(("Review: Refile" :buffers-files
+      ("/Users/sven/org/anniversary.org" "/Users/sven/org/bugs.org" "/Users/sven/org/cli-presentation.org" "/Users/sven/org/getdigital.org" "/Users/sven/org/gfxpro.org" "/Users/sven/org/gtd-daily-cooldown.org" "/Users/sven/org/gtd-evening-review.org" "/Users/sven/org/gtd-weekly-reviews.org" "/Users/sven/org/gxp-frontastic-cli.org" "/Users/sven/org/gxp-frontastic-meetings.org" "/Users/sven/org/gxp-frontastic.org" "/Users/sven/org/gxp-lasersoft-doc.org" "/Users/sven/org/gxp-lasersoft.org" "/Users/sven/org/isavision.org" "/Users/sven/org/knw-dev.org" "/Users/sven/org/knw-docker.org" "/Users/sven/org/knw-emacs.org" "/Users/sven/org/knw-git.org" "/Users/sven/org/knw-go.org" "/Users/sven/org/knw-hardware.org" "/Users/sven/org/knw-haskell.org" "/Users/sven/org/knw-java.org" "/Users/sven/org/knw-linux.org" "/Users/sven/org/knw-macos.org" "/Users/sven/org/knw-misc.org" "/Users/sven/org/knw-php.org" "/Users/sven/org/knw-productivity.org" "/Users/sven/org/knw-ruby.org" "/Users/sven/org/knw-scala.org" "/Users/sven/org/knw-webdev.org" "/Users/sven/org/knw-windows.org" "/Users/sven/org/les-aprpat.org" "/Users/sven/org/mallorca-selection-verarbeitungsverzeichnis.org" "/Users/sven/org/meta.org" "/Users/sven/org/newsfeeds.org" "/Users/sven/org/notes.org" "/Users/sven/org/pav-dev-orga.org" "/Users/sven/org/pav-lambda.org" "/Users/sven/org/pav-plan.org" "/Users/sven/org/pav-psi.org" "/Users/sven/org/pav-rho.org" "/Users/sven/org/pav-sea-gmbh.org" "/Users/sven/org/pav-sysops.org" "/Users/sven/org/pav-theory.org" "/Users/sven/org/plan.org" "/Users/sven/org/postgres-tuning.org" "/Users/sven/org/privat.org" "/Users/sven/org/prs-linting.org" "/Users/sven/org/prv-garten.org" "/Users/sven/org/prv-haus.org" "/Users/sven/org/prv-haushalt.org" "/Users/sven/org/prv-kindergarten.org" "/Users/sven/org/prv-mama.org" "/Users/sven/org/prv-steuern.org" "/Users/sven/org/prv-sysops.org" "/Users/sven/org/refile.org" "/Users/sven/org/social.org" "/Users/sven/org/swc-docu.org" "/Users/sven/org/swc-finalapp.org" "/Users/sven/org/swc-gui.org" "/Users/sven/org/swc-misc.org" "/Users/sven/org/swc-orga.org" "/Users/sven/org/swc-server.org" "/Users/sven/org/swc-sysops.org" "/Users/sven/org/swc-team.org" "/Users/sven/org/swc-verzeichnis-verarbeitungstaetigkeiten.org" "/Users/sven/org/swc-webapp.org" "/Users/sven/org/swc-website.org" "/Users/sven/org/swc-workshop.org" "/Users/sven/org/tmp-daily-cooldown.org" "/Users/sven/org/tmp-evening-review.org" "/Users/sven/org/tmp-frontastic-weekly-report.org" "/Users/sven/org/tmp-weekly-review.org" "/Users/sven/org/uni-bachelor-tim.org" "/Users/sven/org/uni-digisys.org" "/Users/sven/org/uni-doktorarbeit.org" "/Users/sven/org/uni-imps.org" "/Users/sven/org/uni-infprog.org" "/Users/sven/org/uni-misc.org" "/Users/sven/org/uni-plan.org")
+      :query
+      (tags "REFILE")
+      :sort
+      (date)
+      :narrow nil :super-groups nil :title "Review: Refile")
+     ("Prioritize Tasks ct" :buffers-files
+      ("/Users/sven/org/anniversary.org" "/Users/sven/org/bugs.org" "/Users/sven/org/cli-presentation.org" "/Users/sven/org/getdigital.org" "/Users/sven/org/gfxpro.org" "/Users/sven/org/gtd-daily-cooldown.org" "/Users/sven/org/gtd-evening-review.org" "/Users/sven/org/gtd-weekly-reviews.org" "/Users/sven/org/gxp-frontastic-cli.org" "/Users/sven/org/gxp-frontastic-meetings.org" "/Users/sven/org/gxp-frontastic.org" "/Users/sven/org/gxp-lasersoft-doc.org" "/Users/sven/org/gxp-lasersoft.org" "/Users/sven/org/isavision.org" "/Users/sven/org/knw-dev.org" "/Users/sven/org/knw-docker.org" "/Users/sven/org/knw-emacs.org" "/Users/sven/org/knw-git.org" "/Users/sven/org/knw-go.org" "/Users/sven/org/knw-hardware.org" "/Users/sven/org/knw-haskell.org" "/Users/sven/org/knw-java.org" "/Users/sven/org/knw-linux.org" "/Users/sven/org/knw-macos.org" "/Users/sven/org/knw-misc.org" "/Users/sven/org/knw-php.org" "/Users/sven/org/knw-productivity.org" "/Users/sven/org/knw-ruby.org" "/Users/sven/org/knw-scala.org" "/Users/sven/org/knw-webdev.org" "/Users/sven/org/knw-windows.org" "/Users/sven/org/les-aprpat.org" "/Users/sven/org/mallorca-selection-verarbeitungsverzeichnis.org" "/Users/sven/org/meta.org" "/Users/sven/org/newsfeeds.org" "/Users/sven/org/notes.org" "/Users/sven/org/pav-dev-orga.org" "/Users/sven/org/pav-lambda.org" "/Users/sven/org/pav-plan.org" "/Users/sven/org/pav-psi.org" "/Users/sven/org/pav-rho.org" "/Users/sven/org/pav-sea-gmbh.org" "/Users/sven/org/pav-sysops.org" "/Users/sven/org/pav-theory.org" "/Users/sven/org/plan.org" "/Users/sven/org/postgres-tuning.org" "/Users/sven/org/privat.org" "/Users/sven/org/prs-linting.org" "/Users/sven/org/prv-garten.org" "/Users/sven/org/prv-haus.org" "/Users/sven/org/prv-haushalt.org" "/Users/sven/org/prv-kindergarten.org" "/Users/sven/org/prv-mama.org" "/Users/sven/org/prv-steuern.org" "/Users/sven/org/prv-sysops.org" "/Users/sven/org/refile.org" "/Users/sven/org/social.org" "/Users/sven/org/swc-docu.org" "/Users/sven/org/swc-finalapp.org" "/Users/sven/org/swc-gui.org" "/Users/sven/org/swc-misc.org" "/Users/sven/org/swc-orga.org" "/Users/sven/org/swc-server.org" "/Users/sven/org/swc-sysops.org" "/Users/sven/org/swc-team.org" "/Users/sven/org/swc-verzeichnis-verarbeitungstaetigkeiten.org" "/Users/sven/org/swc-webapp.org" "/Users/sven/org/swc-website.org" "/Users/sven/org/swc-workshop.org" "/Users/sven/org/tmp-daily-cooldown.org" "/Users/sven/org/tmp-evening-review.org" "/Users/sven/org/tmp-frontastic-weekly-report.org" "/Users/sven/org/tmp-weekly-review.org" "/Users/sven/org/uni-bachelor-tim.org" "/Users/sven/org/uni-digisys.org" "/Users/sven/org/uni-doktorarbeit.org" "/Users/sven/org/uni-imps.org" "/Users/sven/org/uni-infprog.org" "/Users/sven/org/uni-misc.org" "/Users/sven/org/uni-plan.org")
+      :query
+      (tags "prioritize")
+      :sort nil :narrow nil :super-groups nil :title "Prioritize Tasks ct")
+     ("Overview: Agenda-like" :buffers-files org-agenda-files :query
+      (and
+       (not
+        (done))
+       (or
+        (habit)
+        (deadline auto)
+        (scheduled :to today)
+        (ts-active :on today)))
+      :sort
+      (todo priority date)
+      :super-groups org-super-agenda-groups :title "Agenda-like")
+     ("Overview: NEXT tasks" :buffers-files org-agenda-files :query
+      (todo "NEXT")
+      :sort
+      (date priority)
+      :super-groups org-super-agenda-groups :title "Overview: NEXT tasks")
+     ("Calendar: Today" :buffers-files org-agenda-files :query
+      (ts-active :on today)
+      :title "Today" :super-groups org-super-agenda-groups :sort
+      (priority))
+     ("Calendar: This week" .
+      #[0 "\301 \302\303\304\305\304\306\304\307\310\301 \311\1!\10>\204\34\0\312\313\314\3D\"\210\211\315H\204\232\0\211\315\316\317\320\311\6\6!\10>\2048\0\312\313\314\6\10D\"\210\5\321H\204\223\0\5\321\311\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\203\215\0\4\203\215\0\3\203\215\0\2\203\215\0\1\203\215\0\211\203\215\0\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\202\221\0\330 \266\206I\210\5\321H\"!I\210\211\315H\262\1[\6\12#&\7\302\303\332\305\333\306\333\307\310\327\301 \311\1!\10>\204\300\0\312\313\314\3D\"\210\211\315H\204>\1\211\315\316\317\320\311\6\6!\10>\204\334\0\312\313\314\6\10D\"\210\5\321H\2047\1\5\321\311\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\2031\1\4\2031\1\3\2031\1\2\2031\1\1\2031\1\211\2031\1\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\2025\1\330 \266\206I\210\5\321H\"!I\210\211\315H\262\1Z\6\13#&\7\334\335 \336\337\5\340\6\6\257\5\341\342\343\344\345\346&\10\207"
+          [cl-struct-ts-tags ts-now ts-apply :hour 0 :minute :second ts-adjust day type-of signal wrong-type-argument ts 7 string-to-number format-time-string "%w" 17 3 2 1 4 5 6 float-time encode-time 23 59 org-ql-search org-agenda-files ts-active :from :to :title "This week" :super-groups org-super-agenda-groups :sort
+                             (priority)]
+          34 "Show items with an active timestamp during this calendar week." nil])
+     ("Calendar: Next week" .
+      #[0 "\301\302\303\304 #\305\306\307\310\307\311\307\301\302\304 \312\1!\10>\204 \0\313\314\315\3D\"\210\211\303H\204\236\0\211\303\316\317\320\312\6\6!\10>\204<\0\313\314\315\6\10D\"\210\5\321H\204\227\0\5\321\312\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\203\221\0\4\203\221\0\3\203\221\0\2\203\221\0\1\203\221\0\211\203\221\0\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\202\225\0\330 \266\206I\210\5\321H\"!I\210\211\303H\262\1[\6\12#&\7\305\306\332\310\333\311\333\301\302\327\304 \312\1!\10>\204\304\0\313\314\315\3D\"\210\211\303H\204B\1\211\303\316\317\320\312\6\6!\10>\204\340\0\313\314\315\6\10D\"\210\5\321H\204;\1\5\321\312\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\2035\1\4\2035\1\3\2035\1\2\2035\1\1\2035\1\211\2035\1\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\2029\1\330 \266\206I\210\5\321H\"!I\210\211\303H\262\1Z\6\13#&\7\334\335 \336\337\5\340\6\6\257\5\341\342\343\344\345\346&\10\207"
+          [cl-struct-ts-tags ts-adjust day 7 ts-now ts-apply :hour 0 :minute :second type-of signal wrong-type-argument ts string-to-number format-time-string "%w" 17 3 2 1 4 5 6 float-time encode-time 23 59 org-ql-search org-agenda-files ts-active :from :to :title "Next week" :super-groups org-super-agenda-groups :sort
+                             (priority)]
+          34 "Show items with an active timestamp during the next calendar week." nil])
+     ("Review: Recently timestamped" . org-ql-view-recent-items)
+     (#("Review: Dangling tasks" 0 22
+        (help-echo "Tasks whose ancestor is done"))
+      :buffers-files org-agenda-files :query
+      (and
+       (todo)
+       (ancestors
+        (done)))
+      :title
+      #("Review: Dangling tasks" 0 22
+        (help-echo "Tasks whose ancestor is done"))
+      :sort
+      (todo priority date)
+      :super-groups
+      ((:auto-parent t)))
+     (#("Review: Stale tasks" 0 19
+        (help-echo "Tasks without a timestamp in the past 2 weeks"))
+      :buffers-files org-agenda-files :query
+      (and
+       (todo)
+       (not
+        (ts :from -14)))
+      :title
+      #("Review: Stale tasks" 0 19
+        (help-echo "Tasks without a timestamp in the past 2 weeks"))
+      :sort
+      (todo priority date)
+      :super-groups
+      ((:auto-parent t)))
+     (#("Review: Stuck projects" 0 22
+        (help-echo "Tasks with sub-tasks but no NEXT sub-tasks"))
+      :buffers-files org-agenda-files :query
+      (and
+       (todo)
+       (descendants
+        (todo))
+       (not
+        (descendants
+         (todo "NEXT"))))
+      :title
+      #("Review: Stuck projects" 0 22
+        (help-echo "Tasks with sub-tasks but no NEXT sub-tasks"))
+      :sort
+      (date priority)
+      :super-groups org-super-agenda-groups)))
  '(package-selected-packages
-   '(ivy ggtags ron-mode xref toml-mode zpresent org-parser yasnippet-snippets yapfify yaml-mode yafolding xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree queue typo typescript-mode toc-org tide tagedit string-inflection sql-indent spotify spaceline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restclient-helm restart-emacs rbenv ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake inflections plantuml-mode pip-requirements phpunit php-extras persp-mode pcre2el paradox spinner ox-gfm origami orgit org-sidebar org-randomnote org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets open-junk-file ob-restclient ob-http ob-elixir nginx-mode neotree multi-term move-text mmm-mode mixed-pitch minitest markdown-toc markdown-mode magit-gitflow magit-popup magit magit-section macrostep lorem-ipsum livid-mode skewer-mode live-py-mode linum-relative key-chord json-mode json-snatcher js2-refactor multiple-cursors js2-mode js-doc jinja2-mode insert-shebang indent-guide hydra lv hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-spotify-plus multi helm-pydoc helm-projectile projectile helm-org-ql org-ql helm-org peg ov org-super-agenda ts helm-mode-manager helm-make helm-gitignore request git-modes helm-flx helm-descbinds helm-dash dash-docs helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio go-guru go-eldoc gnuplot git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter git-commit with-editor transient compat gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck-gometalinter flycheck-credo flycheck flx-ido flx fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav elfeed-web simple-httpd elfeed-org elfeed-goodies link-hint powerline popwin elfeed dumb-jump drupal-mode php-mode diminish diff-hl define-word dash-at-point cython-mode csv-mode copilot editorconfig company-web web-completion-data company-statistics company-shell company-restclient restclient know-your-http-well company-quickhelp pos-tip company-go go-mode company-box frame-local company-ansible company-anaconda column-enforce-mode coffee-mode clean-aindent-mode chruby bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol ht auto-dictionary auto-compile ansible-doc ansible anaconda-mode pythonic f alchemist s pkg-info company elixir-mode epl aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup solarized-theme dash))
+   '(elpher ivy ggtags ron-mode xref toml-mode zpresent org-parser yasnippet-snippets yapfify yaml-mode yafolding xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree queue typo typescript-mode toc-org tide tagedit string-inflection sql-indent spotify spaceline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restclient-helm restart-emacs rbenv ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake inflections plantuml-mode pip-requirements phpunit php-extras persp-mode pcre2el paradox spinner ox-gfm origami orgit org-sidebar org-randomnote org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets open-junk-file ob-restclient ob-http ob-elixir nginx-mode neotree multi-term move-text mmm-mode mixed-pitch minitest markdown-toc markdown-mode magit-gitflow magit-popup magit magit-section macrostep lorem-ipsum livid-mode skewer-mode live-py-mode linum-relative key-chord json-mode json-snatcher js2-refactor multiple-cursors js2-mode js-doc jinja2-mode insert-shebang indent-guide hydra lv hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-spotify-plus multi helm-pydoc helm-projectile projectile helm-org-ql org-ql helm-org peg ov org-super-agenda ts helm-mode-manager helm-make helm-gitignore request git-modes helm-flx helm-descbinds helm-dash dash-docs helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio go-guru go-eldoc gnuplot git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter git-commit with-editor transient compat gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck-gometalinter flycheck-credo flycheck flx-ido flx fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav elfeed-web simple-httpd elfeed-org elfeed-goodies link-hint powerline popwin elfeed dumb-jump drupal-mode php-mode diminish diff-hl define-word dash-at-point cython-mode csv-mode copilot editorconfig company-web web-completion-data company-statistics company-shell company-restclient restclient know-your-http-well company-quickhelp pos-tip company-go go-mode company-box frame-local company-ansible company-anaconda column-enforce-mode coffee-mode clean-aindent-mode chruby bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol ht auto-dictionary auto-compile ansible-doc ansible anaconda-mode pythonic f alchemist s pkg-info company elixir-mode epl aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup solarized-theme dash))
  '(paradox-github-token t)
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(php-mode-enable-project-coding-style t)
@@ -1387,6 +1484,33 @@ This function is called at the very end of Spacemacs initialization."
  '(send-mail-function 'smtpmail-send-it)
  '(warning-suppress-types '((comp)))
  '(writeroom-width 144))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fixed-pitch ((t (:family "Victor Mono" :height 160))))
+ '(org-block ((t (:inherit fixed-pitch))))
+ '(org-code ((t (:inherit (shadow fixed-pitch)))))
+ '(org-document-info ((t (:foreground "dark orange"))))
+ '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+ '(org-document-title ((t ((\,@ headline) (\,@ variable-tuple) :height 2.0 :underline nil))))
+ '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+ '(org-level-1 ((t ((\,@ headline) (\,@ variable-tuple) :height 1.75))))
+ '(org-level-2 ((t ((\,@ headline) (\,@ variable-tuple) :height 1.5))))
+ '(org-level-3 ((t ((\,@ headline) (\,@ variable-tuple) :height 1.25))))
+ '(org-level-4 ((t ((\,@ headline) (\,@ variable-tuple) :height 1.1))))
+ '(org-level-5 ((t ((\,@ headline) (\,@ variable-tuple)))))
+ '(org-level-6 ((t ((\,@ headline) (\,@ variable-tuple)))))
+ '(org-level-7 ((t ((\,@ headline) (\,@ variable-tuple)))))
+ '(org-level-8 ((t ((\,@ headline) (\,@ variable-tuple)))))
+ '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-property-value ((t (:inherit fixed-pitch))) t)
+ '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+ '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+ '(org-verbatim ((t (:inherit (shadow fixed-pitch) :height 1.2))))
+ '(variable-pitch ((t (:family "ETBembo" :height 240)))))
 )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

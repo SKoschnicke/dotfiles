@@ -1,2 +1,6 @@
 [gcloud]
 format = 'on $symbol [GCP(\($region\))]($style) ' 
+
+[git_status]
+conflicted = "↯"
+stashed = "⍟${count}"
