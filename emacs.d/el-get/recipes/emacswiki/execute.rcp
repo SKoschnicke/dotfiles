@@ -1,5 +1,5 @@
-	(:name execute
+	(:name Execute
 	:auto-generated t
 	:type emacswiki
 	:description ""
-	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/execute.el")
+	:website "https://raw.github.com/emacsmirror/emacswiki.org/master/Execute.el")
