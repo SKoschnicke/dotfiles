@@ -219,6 +219,8 @@ alias wlan="wicd-cli --wireless"
 
 alias f=frontastic
 alias mp=multipass
+
+export AICHAT_CONFIG_DIR=$HOME/.config/aichat
 alias ai="aichat"
 alias aic="aichat --role coder"
 alias ais="aichat --role shell"
@@ -252,3 +254,4 @@ eval "$(direnv hook zsh)"
 #eval "$(starship init zsh)"
 
 alias cdr=grt
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
