@@ -34,10 +34,10 @@ zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 
 # Plugin history-search-multi-word loaded with investigating.
-zinit load zdharma-continuum/history-search-multi-word
+#zinit load zdharma-continuum/history-search-multi-word
 
 # allow cd ... = cd ../.. etc
-zinit load knu/zsh-manydots-magic
+zinit autoload'#manydots-magic' for twang817/zsh-manydots-magic 
 
 # Two regular plugins loaded without investigating.
 
@@ -51,6 +51,10 @@ export ZSH_PLUGINS_ALIAS_TIPS_TEXT="💡 Alias tip: "
 # Git
 zi snippet OMZL::git.zsh
 zi snippet OMZP::git
+
+# Git Fuzzy
+zinit ice as"program" pick"bin/git-fuzzy"
+zinit light bigH/git-fuzzy
 
 # Mise
 zi snippet OMZP::mise
@@ -66,6 +70,11 @@ zi snippet OMZP::last-working-dir
 
 # emacs shortcuts
 zi snippet OMZP::emacs
+# fzf
+zi snippet OMZP::fzf
+
+# fzf ssh
+zinit light sunlei/zsh-ssh
 
 # Load starship theme
 # line 1: `starship` binary as command, from github release
@@ -75,6 +84,9 @@ zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
+
+zinit load atuinsh/atuin
+eval "$(atuin init zsh)"
 
 setopt  autocd autopushd
 # Customize to your needs...
