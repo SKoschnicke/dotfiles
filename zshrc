@@ -255,3 +255,5 @@ eval "$(direnv hook zsh)"
 
 alias cdr=grt
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+alias gs="git branch | grep -v \"^\*\" | fzf --height=20% --reverse --info=inline | xargs git switch"
