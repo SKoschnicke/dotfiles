@@ -69,7 +69,10 @@ zi snippet OMZP::lol
 zi snippet OMZP::last-working-dir
 
 # emacs shortcuts
-zi snippet OMZP::emacs
+#zi snippet OMZP::emacs
+# vi mode
+zi snippet OMZP::vi-mode
+
 # fzf
 zi snippet OMZP::fzf
 
