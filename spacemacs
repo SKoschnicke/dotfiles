@@ -54,6 +54,8 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     (helm
+      )
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
@@ -1034,9 +1036,9 @@ you should place you code here."
       (find-file (concat my-org-file-path "/gtd-daily-cooldown.org"))
       (split-window-right-and-focus) ;; Split and move to the right
       (org-agenda-show-mine) ;; load agenda in upper right window
-      (split-window-below-and-focus) ;; Split the right side into two and move focus
+      ;(split-window-below-and-focus) ;; Split the right side into two and move focus
       ;(mu4e) ;; start mail in lower right part
-      (winum-select-window-2) ;; Move focus back to agenda
+      ;(winum-select-window-2) ;; Move focus back to agenda
       )
 
     (defun well-done ()
@@ -1278,7 +1280,7 @@ you should place you code here."
                 (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
          (base-font-color     (face-foreground 'default nil 'default))
          (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
-
+   )
     ;; (custom-theme-set-faces
     ;;  'user
     ;;  '(org-level-8 ((t (,@headline ,@variable-tuple))))
@@ -1303,13 +1305,10 @@ you should place you code here."
     ;;  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
     ;;  '(org-verbatim ((t (:inherit (shadow fixed-pitch) :height 1.2)))))
 
-    (custom-theme-set-faces
-     'user
-
-     (custom-theme-set-faces
-      'user
-      '(variable-pitch ((t (:family "ETBembo" :height 240))))
-      '(fixed-pitch ((t ( :family "Victor Mono" :height 160)))))))
+  (custom-theme-set-faces
+    'user
+    '(variable-pitch ((t (:family "ETBembo" :height 240))))
+    '(fixed-pitch ((t ( :family "Victor Mono" :height 160)))))
 
   (custom-set-variables
    '(phpcbf-standard "PSR2")
@@ -1330,12 +1329,11 @@ you should place you code here."
   ;  (define-key helm-find-files-map (kbd "S-<return>") 'helm-find-files-other-window))
 
 
-  (when (string= system-name "daltigoth")
-    (setq lsp-go-gopls-server-path "/home/sven/go/bin/gopls")
-    (setq lsp-gopls-server-path "/home/sven/go/bin/gopls"))
-  (when (string= system-name "istar.localdomain")
-    (setq lsp-go-gopls-server-path "/opt/homebrew/bin/gopls")
-    (setq lsp-gopls-server-path  "/opt/homebrew/bin/gopls"))
+  (setq lsp-go-gopls-server-path
+        (pcase system-name
+          ("daltigoth" "/home/sven/go/bin/gopls")
+          ("istar.localdomain" "/opt/homebrew/bin/gopls")))
+  (setq lsp-gopls-server-path lsp-go-gopls-server-path)
 
   ; also install coreutils through brew: "brew install coreutils"
   (when (equal system-type 'darwin)
@@ -1356,6 +1354,15 @@ you should place you code here."
      (lambda (key _value)
        (file-notify-rm-watch key))
      file-notify-descriptors))
+
+
+  (add-to-list 'auto-mode-alist '("Tiltfile" . python-mode))
+
+  (require 'conventional-commit)
+  (add-hook 'git-commit-mode-hook 'conventional-commit-setup)
+  (add-hook 'company-mode-hook
+            (lambda()
+              (global-set-key (kbd "S-SPC") 'company-complete)))
 )
 
 (defun dotspacemacs/emacs-custom-settings ()
@@ -1496,7 +1503,7 @@ This function is called at the very end of Spacemacs initialization."
       (date priority)
       :super-groups org-super-agenda-groups)))
  '(package-selected-packages
-   '(org-modern elpher ivy ggtags ron-mode xref toml-mode zpresent org-parser yasnippet-snippets yapfify yaml-mode yafolding xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree queue typo typescript-mode toc-org tide tagedit string-inflection sql-indent spotify spaceline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restclient-helm restart-emacs rbenv ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake inflections plantuml-mode pip-requirements phpunit php-extras persp-mode pcre2el paradox spinner ox-gfm origami orgit org-sidebar org-randomnote org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets open-junk-file ob-restclient ob-http ob-elixir nginx-mode neotree multi-term move-text mmm-mode mixed-pitch minitest markdown-toc markdown-mode magit-gitflow magit-popup magit magit-section macrostep lorem-ipsum livid-mode skewer-mode live-py-mode linum-relative key-chord json-mode json-snatcher js2-refactor multiple-cursors js2-mode js-doc jinja2-mode insert-shebang indent-guide hydra lv hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-spotify-plus multi helm-pydoc helm-projectile projectile helm-org-ql org-ql helm-org peg ov org-super-agenda ts helm-mode-manager helm-make helm-gitignore request git-modes helm-flx helm-descbinds helm-dash dash-docs helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio go-guru go-eldoc gnuplot git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter git-commit with-editor transient compat gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck-gometalinter flycheck-credo flycheck flx-ido flx fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav elfeed-web simple-httpd elfeed-org elfeed-goodies link-hint powerline popwin elfeed dumb-jump drupal-mode php-mode diminish diff-hl define-word dash-at-point cython-mode csv-mode copilot editorconfig company-web web-completion-data company-statistics company-shell company-restclient restclient know-your-http-well company-quickhelp pos-tip company-go go-mode company-box frame-local company-ansible company-anaconda column-enforce-mode coffee-mode clean-aindent-mode chruby bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol ht auto-dictionary auto-compile ansible-doc ansible anaconda-mode pythonic f alchemist s pkg-info company elixir-mode epl aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup solarized-theme dash))
+   '(gptel blacken code-cells ivy ggtags helm-cscope concurrent lsp-pyright pippel pydoc sphinx-doc stickyfunc-enhance zpresent org-parser yasnippet-snippets yapfify yaml-mode yafolding xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree queue typo typescript-mode toc-org tide tagedit string-inflection sql-indent spotify spaceline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restclient-helm restart-emacs rbenv ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake inflections plantuml-mode pip-requirements phpunit php-extras persp-mode pcre2el paradox spinner ox-gfm origami orgit org-sidebar org-randomnote org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets open-junk-file ob-restclient ob-http ob-elixir nginx-mode neotree multi-term move-text mmm-mode mixed-pitch minitest markdown-toc markdown-mode magit-gitflow magit-popup magit magit-section macrostep lorem-ipsum livid-mode skewer-mode live-py-mode linum-relative key-chord json-mode json-snatcher js2-refactor multiple-cursors js2-mode js-doc jinja2-mode insert-shebang indent-guide hydra lv hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-spotify-plus multi helm-pydoc helm-projectile projectile helm-org-ql org-ql helm-org peg ov org-super-agenda ts helm-mode-manager helm-make helm-gitignore request git-modes helm-flx helm-descbinds helm-dash dash-docs helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio go-guru go-eldoc gnuplot git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter git-commit with-editor transient compat gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck-gometalinter flycheck-credo flycheck flx-ido flx fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav elfeed-web simple-httpd elfeed-org elfeed-goodies link-hint powerline popwin elfeed dumb-jump drupal-mode php-mode diminish diff-hl define-word dash-at-point cython-mode csv-mode copilot editorconfig company-web web-completion-data company-statistics company-shell company-restclient restclient know-your-http-well company-quickhelp pos-tip company-go go-mode company-box frame-local company-ansible company-anaconda column-enforce-mode coffee-mode clean-aindent-mode chruby bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol ht auto-dictionary auto-compile ansible-doc ansible anaconda-mode pythonic f alchemist s pkg-info company elixir-mode epl aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup solarized-theme dash))
  '(paradox-github-token t)
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(php-mode-enable-project-coding-style t)
@@ -1506,6 +1513,13 @@ This function is called at the very end of Spacemacs initialization."
  '(send-mail-function 'smtpmail-send-it)
  '(warning-suppress-types '((comp)))
  '(writeroom-width 144))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fixed-pitch ((t (:family "Victor Mono" :height 160))))
+ '(variable-pitch ((t (:family "ETBembo" :height 240)))))
 )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
