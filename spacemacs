@@ -169,6 +169,8 @@ This function should only modify configuration layer settings."
                          :repo "zozowell/helm-ag"
                          :branch "further-support-rg"))
      org-recur
+     gptel
+     (conventional-commit :location (recipe :fetcher github :repo "akirak/conventional-commit.el"))
      )
 
    ;; A list of packages that cannot be updated.
@@ -682,6 +684,12 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
   (require 'window-purpose) ; workaround until https://github.com/bmag/emacs-purpose/issues/158 is fixed
+  (require 'gptel)
+  (require 'gptel-curl)
+  (setq gptel-model "gpt-4"
+        gptel-default-mode "org-mode")
+  ; map SPC a g to gptel-send invoked with universal argument
+  (spacemacs/set-leader-keys "ag" (lambda () (interactive) (gptel-send '(4))))
 
   (when (string= system-name "sven-uni")
     (defconst my-sync-path "~/SpiderOak Hive"))
