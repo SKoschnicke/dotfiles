@@ -88,8 +88,10 @@ zinit ice as"command" from"gh-r" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
+export ATUIN_NOBIND="true" 
 zinit load atuinsh/atuin
-eval "$(atuin init zsh)"
+#eval "$(atuin init zsh --disable-up-arrow)"
+bindkey '^r' atuin-search 
 
 setopt  autocd autopushd
 # Customize to your needs...
