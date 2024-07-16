@@ -67,11 +67,11 @@ This function should only modify configuration layer settings."
                       auto-completion-private-snippets-directory "~/.dotfiles/snippets"
                       )
      typography
-     ;emoji ;; breaks org mode repeat
+     ;;emoji ;; breaks org mode repeat
      emacs-lisp
      (git :variables
           git-enable-magit-delta-plugin nil; breaks stuff
-          git-enable-magit-todos-plugin nil ; breaks stuff
+          git-enable-magit-todos-plugin nil ;; breaks stuff
           )
      (org :variables
           org-enable-github-support t
@@ -118,8 +118,8 @@ This function should only modify configuration layer settings."
      (lsp :variables
           lsp-treemacs-sync-mode 1
           lsp-lens-enable t
-          lsp-enable-file-watchers nil) ; only causes trouble on macOS, but keep on Linux!
-     (dash :variables ; requires zeal installed on the machine
+          lsp-enable-file-watchers nil) ;; only causes trouble on macOS, but keep on Linux!
+     (dash :variables ;; requires zeal installed on the machine
            dash-docs-docset-newpath "~/.local/share/Zeal/Zeal/docsets"
            dash-docs-enable-debugging nil)
      bm
@@ -140,7 +140,7 @@ This function should only modify configuration layer settings."
                         persp-nil-hidden t
                         persp-nil-name "Default"
                         persp-save-dir (concat my-sync-path "/emacs-perspectives/"))
-   )
+     )
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
    ;; loaded using load/require/use-package in the user-config section below in
@@ -659,7 +659,7 @@ default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
   (spacemacs/load-spacemacs-env)
-)
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -667,7 +667,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-)
+  )
 
 
 (defun dotspacemacs/user-load ()
@@ -675,7 +675,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-)
+  )
 
 
 (defun dotspacemacs/user-config ()
@@ -685,12 +685,12 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
-  (require 'window-purpose) ; workaround until https://github.com/bmag/emacs-purpose/issues/158 is fixed
+  (require 'window-purpose) ;; workaround until https://github.com/bmag/emacs-purpose/issues/158 is fixed
   (require 'gptel)
   (require 'gptel-curl)
   (setq gptel-model "gpt-4"
         gptel-default-mode "org-mode")
-  ; map SPC a g to gptel-send invoked with universal argument
+  ;; map SPC a g to gptel-send invoked with universal argument
   (spacemacs/set-leader-keys "ag" (lambda () (interactive) (gptel-send '(4))))
 
   (when (string= system-name "sven-uni")
@@ -713,9 +713,9 @@ you should place you code here."
   (setq browse-url-browser-function 'browse-url-firefox)
 
 
-  ; seems to make problems with tab complete
-;  (setq-default evil-escape-key-sequence "kj")
-;  (setq-default evil-escape-delay 0.2)
+  ;; seems to make problems with tab complete
+  ;;  (setq-default evil-escape-key-sequence "kj")
+  ;;  (setq-default evil-escape-delay 0.2)
 
   ;;;;;;;;;;;; org mode setq settings ;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; put them outside of eval-after-load to have them set before org is loaded
@@ -728,7 +728,7 @@ you should place you code here."
   (add-hook 'after-init-hook 'org-roam-mode)
   ;; (add-hook 'org-clock-in-hook 'harvest)
   ;; (add-hook 'org-clock-out-hook 'harvest-clock-out)
-  ; show custom agenda after start
+  ;; show custom agenda after start
   (add-hook 'after-init-hook 'org-agenda-show-mine)
   (add-hook 'org-agenda-mode-hook 'org-recur-agenda-mode)
 
@@ -760,7 +760,7 @@ you should place you code here."
         org-src-fontify-natively t
         org-id-track-globally t
         org-agenda-columns-add-appointments-to-effort-sum t
-        org-agenda-default-appointment-duration nil  ; this also makes all scheduled items last for this duration instead of taking the efford
+        org-agenda-default-appointment-duration nil  ;; this also makes all scheduled items last for this duration instead of taking the efford
         org-id-link-to-org-use-id t
         org-journal-dir (concat my-org-file-path "/journal/")
         org-confirm-babel-evaluate nil
@@ -768,11 +768,11 @@ you should place you code here."
         org-confirm-shell-link-function t
         )
 
-  ; Refile targets include this file (5 levels deep) and any file contributing to the agenda (only 1 level, top level headlines)
+  ;; Refile targets include this file (5 levels deep) and any file contributing to the agenda (only 1 level, top level headlines)
   (setq org-refile-targets (quote ((nil :maxlevel . 2) (org-agenda-files :maxlevel . 1))))
-                                      ; Targets start with the file name - allows creating level 1 tasks
+  ;; Targets start with the file name - allows creating level 1 tasks
   (setq org-refile-use-outline-path (quote file))
-                                      ; Works only with helm and ivy when nil
+  ;; Works only with helm and ivy when nil
   (setq org-outline-path-complete-in-steps nil)
 
   (setq org-columns-default-format "%40ITEM(Task) %17Effort(Estimated Effort){:} %CLOCKSUM")
@@ -860,7 +860,7 @@ you should place you code here."
                                           :tag "prv"
                                           :order 9)
                                    )
-                                )
+                                 )
                                 ))
                     )
                    )
@@ -880,18 +880,18 @@ you should place you code here."
                                    (tags-todo "pav/NEXT" ((org-agenda-overriding-header "Next Tasks")))
                                    (tags-todo "pav/WAITING" ((org-agenda-overriding-header "Waiting")))
                                    (tags-todo "pav/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
-                  ))
-                  ("ps" "Software-Challenge" ((tags-todo "swc/STARTED" ((org-agenda-overriding-header "Started Tasks")))
-                                   (tags-todo "swc/NEXT" ((org-agenda-overriding-header "Next Tasks")))
-                                   (tags-todo "swc/WAITING" ((org-agenda-overriding-header "Waiting")))
-                                   (tags-todo "swc/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
                                    ))
-                  ("pg" "GFXpro" ((tags-todo "gxp/STARTED" ((org-agenda-overriding-header "Started Tasks")))
-                                              (tags-todo "gxp/NEXT" ((org-agenda-overriding-header "Next Tasks")))
-                                              (tags-todo "gxp/WAITING" ((org-agenda-overriding-header "Waiting")))
-                                              (tags-todo "gxp/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
+                  ("ps" "Software-Challenge" ((tags-todo "swc/STARTED" ((org-agenda-overriding-header "Started Tasks")))
+                                              (tags-todo "swc/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                                              (tags-todo "swc/WAITING" ((org-agenda-overriding-header "Waiting")))
+                                              (tags-todo "swc/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
                                               ))
-                                        ; Weekly Review block agenda
+                  ("pg" "GFXpro" ((tags-todo "gxp/STARTED" ((org-agenda-overriding-header "Started Tasks")))
+                                  (tags-todo "gxp/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                                  (tags-todo "gxp/WAITING" ((org-agenda-overriding-header "Waiting")))
+                                  (tags-todo "gxp/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
+                                  ))
+                  ;; Weekly Review block agenda
                   ("r" . "Weekly Review")
                   ("r1" "Get Clear: Collect loose materials and process Inbox"
                    tags "+REFILE"
@@ -899,9 +899,9 @@ you should place you code here."
                     (org-agenda-prefix-format "")))
                   ("r2" "Get Current: Review Next Actions\n    Archive completed actions, review for further action steps."
                    (;(todo "DONE|DROPPED|COMPLETE" ((org-agenda-overriding-header "Done/Dropped Items (to archive):")
-                                        ;                               (org-agenda-cmp-user-defined (cmp-date-property "CLOSED"))
-                                        ;                               (org-agenda-sorting-strategy '(user-defined-up))))
-                                        ; (above gives error because cmp-date-property doesn't exist)
+                    ;;                               (org-agenda-cmp-user-defined (cmp-date-property "CLOSED"))
+                    ;;                               (org-agenda-sorting-strategy '(user-defined-up))))
+                    ;; (above gives error because cmp-date-property doesn't exist)
                     (tags-todo "-sm/NEXT" ((org-agenda-overriding-header "Next Actions:")
                                            (org-agenda-sorting-strategy '(time-up category-up alpha-up))
                                            (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))
@@ -913,7 +913,7 @@ you should place you code here."
                    ((agenda "" ((org-agenda-start-day (concat "-" (number-to-string (+ 13 (nth 6 (decode-time)))) "d"))
                                 (org-agenda-span (+ 14 (nth 6 (decode-time))))
                                 (org-agenda-repeating-timestamp-show-all t)
-                                (org-agenda-entry-types '(:deadline :timestamp :sexp)) ; show due tasks, meetings
+                                (org-agenda-entry-types '(:deadline :timestamp :sexp)) ;; show due tasks, meetings
                                 (org-agenda-show-log t)
                                 (org-agenda-prefix-format "%-12t% s")))))
 
@@ -933,8 +933,8 @@ you should place you code here."
                     (org-agenda-skip-deadline-if-done t)
                     (org-agenda-skip-scheduled-if-done t)))
 
-          ))
-    )
+                  ))
+          )
 
     ;; ;; CUSTOM AGENDA END
 
@@ -980,26 +980,26 @@ you should place you code here."
                   ("f" "Frontastic Report" entry (file+headline "gxp-frontastic.org" "Wochenbericht Frontastic") (file "tmp-frontastic-weekly-report.org"))
                   )))
 
-    (setq org-use-sub-superscripts "{}") ; x_i is not interpreted as subscript, but x_{i} is
+    (setq org-use-sub-superscripts "{}") ;; x_i is not interpreted as subscript, but x_{i} is
 
     ;; insert creation date into all headings
     (defun insert-created-date(&rest ignore)
       (insert "\n")
       (org-insert-time-stamp (current-time) 't 't)
-      (org-back-to-heading) ; in org-capture, this folds the entry; when inserting a heading, this moves point back to the heading line
-      (move-end-of-line()) ; when inserting a heading, this moves point to the end of the line
+      (org-back-to-heading) ;; in org-capture, this folds the entry; when inserting a heading, this moves point back to the heading line
+      (move-end-of-line()) ;; when inserting a heading, this moves point to the end of the line
       )
 
     (advice-add 'org-insert-heading :after #'insert-created-date)
 
-    ; This enables binding the custom agenda to keys and showing it on startup.
-    ; Has to be defined outside of org mode hook, or else it would not be
-    ; available until org mode was loaded by opening an org buffer.
+    ;; This enables binding the custom agenda to keys and showing it on startup.
+    ;; Has to be defined outside of org mode hook, or else it would not be
+    ;; available until org mode was loaded by opening an org buffer.
     (defun org-agenda-show-mine (&optional arg)
       (interactive "P")
       (org-agenda arg "A"))
 
-    ; bind custom agenda to SPC-A
+    ;; bind custom agenda to SPC-A
     (spacemacs/set-leader-keys "A" 'org-agenda-show-mine)
 
     (spacemacs|define-custom-layout "Start layout"
@@ -1011,7 +1011,7 @@ you should place you code here."
       (split-window-below-and-focus) ;; Split the right side into two and move focus
       (mu4e) ;; start mail in lower right part
       (winum-select-window-2) ;; Move focus back to agenda
-    )
+      )
     (spacemacs|define-custom-layout "Cooldown layout"
       :binding "c"
       :body
@@ -1026,7 +1026,7 @@ you should place you code here."
       (split-window-below-and-focus)
       (org-ql-view-recent-items 3)
       (winum-select-window-1) ;; Move focus back to agenda
-    )
+      )
 
     (defun good-morning ()
       "Setup windows in the morning"
@@ -1036,9 +1036,9 @@ you should place you code here."
       (find-file (concat my-org-file-path "/gtd-daily-cooldown.org"))
       (split-window-right-and-focus) ;; Split and move to the right
       (org-agenda-show-mine) ;; load agenda in upper right window
-      ;(split-window-below-and-focus) ;; Split the right side into two and move focus
-      ;(mu4e) ;; start mail in lower right part
-      ;(winum-select-window-2) ;; Move focus back to agenda
+      ;;(split-window-below-and-focus) ;; Split the right side into two and move focus
+      ;;(mu4e) ;; start mail in lower right part
+      ;;(winum-select-window-2) ;; Move focus back to agenda
       )
 
     (defun well-done ()
@@ -1067,7 +1067,7 @@ you should place you code here."
 
     (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
     (setq org-list-allow-alphabetical t)
-  ) ;; org-mode eval after load end
+    ) ;; org-mode eval after load end
   ;;;;;;;;;;;; org-mode end
 
   ;;;;;;;;;;;;;;;;;;;;;;
@@ -1097,7 +1097,7 @@ you should place you code here."
 
   (setq-default git-magit-status-fullscreen t)
 
-  ; use 2 spaces in web mode for everything (instead of 4)
+  ;; use 2 spaces in web mode for everything (instead of 4)
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
   (setq-default typescript-indent-level 2)
@@ -1106,20 +1106,20 @@ you should place you code here."
   (setq-default web-mode-code-indent-offset 2)
   (setq-default web-mode-indent-style 2)
   (setq-default typescript-indent-level 2)
-  ; NOTE that indent when using beautify (SPC m =) is determined by the external
-  ; .jsbeautifyrc file, see https://github.com/yasuyk/web-beautify
+  ;; NOTE that indent when using beautify (SPC m =) is determined by the external
+  ;; .jsbeautifyrc file, see https://github.com/yasuyk/web-beautify
 
-  ; never indent with tabs
+  ;; never indent with tabs
   (setq-default indent-tabs-mode nil)
 
-  ; how can the default config not set this?!
+  ;; how can the default config not set this?!
   (global-set-key (kbd "C-i") 'evil-jump-forward)
 
-  ; DocView renders PDFs as PNGs to display them. The default resolution (DPI)
-  ; for this makes the PDFs look rasterized on hiDPI displays.
+  ;; DocView renders PDFs as PNGs to display them. The default resolution (DPI)
+  ;; for this makes the PDFs look rasterized on hiDPI displays.
   (setq-default doc-view-resolution 300)
 
-  ; Reload document when it changes on disk
+  ;; Reload document when it changes on disk
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
   (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
@@ -1159,9 +1159,9 @@ you should place you code here."
                :vars '(  ( user-mail-address      . "sven@koschnicke.de"  )
                          ( user-full-name     . "Sven Koschnicke" )
                          ( mu4e-compose-signature .
-                                                  (concat
-                                                   "Viele Gruesse\n"
-                                                   "  Sven Koschnicke\n"))
+                           (concat
+                            "Viele Gruesse\n"
+                            "  Sven Koschnicke\n"))
                          (mu4e-sent-folder . "/Privat/INBOX.Sent")
                          (mu4e-drafts-folder . "/Privat/INBOX.Drafts")
                          (mu4e-trash-folder . "/Privat/INBOX.Trash")
@@ -1182,9 +1182,9 @@ you should place you code here."
                :vars '(  ( user-mail-address      . "s.koschnicke@gfxpro.com" )
                          ( user-full-name     . "Sven Koschnicke" )
                          ( mu4e-compose-signature .
-                                                  (concat
-                                                   "Viele Gruesse\n"
-                                                   "  Sven Koschnicke\n"))
+                           (concat
+                            "Viele Gruesse\n"
+                            "  Sven Koschnicke\n"))
                          (mu4e-sent-folder . "/GFXpro/INBOX.Sent")
                          (mu4e-drafts-folder . "/GFXpro/INBOX.Drafts")
                          (mu4e-trash-folder . "/GFXpro/INBOX.Trash")
@@ -1206,9 +1206,9 @@ you should place you code here."
                :vars '(  ( user-mail-address      . "svk@informatik.uni-kiel.de" )
                          ( user-full-name     . "Sven Koschnicke" )
                          ( mu4e-compose-signature .
-                                                  (concat
-                                                   "Viele Gruesse\n"
-                                                   "  Sven Koschnicke\n"))
+                           (concat
+                            "Viele Gruesse\n"
+                            "  Sven Koschnicke\n"))
                          (mu4e-sent-folder . "/Uni/sent")
                          (mu4e-drafts-folder . "/Uni/drafts")
                          (mu4e-trash-folder . "/Uni/trash")
@@ -1233,7 +1233,7 @@ you should place you code here."
     (add-to-list 'mu4e-bookmarks
                  '("flag:flagged" "Flagged messages" ?f)
                  )
-    ;(require 'mu4e-contrib)
+    ;;(require 'mu4e-contrib)
     (setq mu4e-html2text-command 'mu4e-shr2text)
     (add-hook 'mu4e-view-mode-hook
               (lambda()
@@ -1241,21 +1241,21 @@ you should place you code here."
                 (local-set-key (kbd "<tab>") 'shr-next-link)
                 (local-set-key (kbd "<backtab>") 'shr-previous-link)))
 
-  )
+    )
   ;; to avoid "The TLS connection was non-properly terminated"
   ;; see https://github.com/syl20bnr/spacemacs/issues/6638
-  ;(setq dotspacemacs-elpa-https nil)
+  ;;(setq dotspacemacs-elpa-https nil)
 
 
   (defun my-php-mode-setup ()
     "My PHP-mode hook."
-    ;(require 'flycheck-phpstan)
+    ;;(require 'flycheck-phpstan)
     (flycheck-mode t)
     (setq flycheck-checker-error-threshold 5000)
     (setq phpstan-working-dir ".")
-    ;(flycheck-add-next-checker 'phpstan 'php-phpcs)
+    ;;(flycheck-add-next-checker 'phpstan 'php-phpcs)
     (flycheck-add-next-checker 'php-phpcs)
-  )
+    )
 
   (add-hook 'php-mode-hook 'my-php-mode-setup)
 
@@ -1265,7 +1265,7 @@ you should place you code here."
                                     :project-file "go.mod"
                                     :test-suffix "_test")
 
-  (setq create-lockfiles nil) ; webpack can't handle lockfiles
+  (setq create-lockfiles nil) ;; webpack can't handle lockfiles
   (setq counsel-dash-common-docsets '("Javascript" "HTML" "Go" "PHP"))
 
   (setq javascript-fmt-tool 'prettier)
@@ -1280,35 +1280,35 @@ you should place you code here."
                 (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
          (base-font-color     (face-foreground 'default nil 'default))
          (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
-   )
-    ;; (custom-theme-set-faces
-    ;;  'user
-    ;;  '(org-level-8 ((t (,@headline ,@variable-tuple))))
-    ;;  '(org-level-7 ((t (,@headline ,@variable-tuple))))
-    ;;  '(org-level-6 ((t (,@headline ,@variable-tuple))))
-    ;;  '(org-level-5 ((t (,@headline ,@variable-tuple))))
-    ;;  '(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
-    ;;  '(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
-    ;;  '(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
-    ;;  '(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
-    ;;  '(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))
-    ;;  '(org-block ((t (:inherit fixed-pitch))))
-    ;;  '(org-code ((t (:inherit (shadow fixed-pitch)))))
-    ;;  '(org-document-info ((t (:foreground "dark orange"))))
-    ;;  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
-    ;;  '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
-    ;;  ;'(org-link ((t (:foreground "royal blue" :underline t))))
-    ;;  '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-    ;;  '(org-property-value ((t (:inherit fixed-pitch))) t)
-    ;;  '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-    ;;  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
-    ;;  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
-    ;;  '(org-verbatim ((t (:inherit (shadow fixed-pitch) :height 1.2)))))
+    )
+  ;; (custom-theme-set-faces
+  ;;  'user
+  ;;  '(org-level-8 ((t (,@headline ,@variable-tuple))))
+  ;;  '(org-level-7 ((t (,@headline ,@variable-tuple))))
+  ;;  '(org-level-6 ((t (,@headline ,@variable-tuple))))
+  ;;  '(org-level-5 ((t (,@headline ,@variable-tuple))))
+  ;;  '(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
+  ;;  '(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
+  ;;  '(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
+  ;;  '(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
+  ;;  '(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))
+  ;;  '(org-block ((t (:inherit fixed-pitch))))
+  ;;  '(org-code ((t (:inherit (shadow fixed-pitch)))))
+  ;;  '(org-document-info ((t (:foreground "dark orange"))))
+  ;;  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+  ;;  '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+  ;;  ;;'(org-link ((t (:foreground "royal blue" :underline t))))
+  ;;  '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+  ;;  '(org-property-value ((t (:inherit fixed-pitch))) t)
+  ;;  '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+  ;;  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+  ;;  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+  ;;  '(org-verbatim ((t (:inherit (shadow fixed-pitch) :height 1.2)))))
 
   (custom-theme-set-faces
-    'user
-    '(variable-pitch ((t (:family "ETBembo" :height 240))))
-    '(fixed-pitch ((t ( :family "Victor Mono" :height 160)))))
+   'user
+   '(variable-pitch ((t (:family "ETBembo" :height 240))))
+   '(fixed-pitch ((t ( :family "Victor Mono" :height 160)))))
 
   (custom-set-variables
    '(phpcbf-standard "PSR2")
@@ -1324,9 +1324,9 @@ you should place you code here."
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "s*" 'org-toggle-heading)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "sP" 'helm-org-parent-headings)
   (setq helm-org-format-outline-path t)
-  ; not working, needs to be added to "helm actions" somehow
-  ;(with-eval-after-load 'helm-files
-  ;  (define-key helm-find-files-map (kbd "S-<return>") 'helm-find-files-other-window))
+  ;; not working, needs to be added to "helm actions" somehow
+  ;;(with-eval-after-load 'helm-files
+  ;;  (define-key helm-find-files-map (kbd "S-<return>") 'helm-find-files-other-window))
 
 
   (setq lsp-go-gopls-server-path
@@ -1335,7 +1335,7 @@ you should place you code here."
           ("istar.localdomain" "/opt/homebrew/bin/gopls")))
   (setq lsp-gopls-server-path lsp-go-gopls-server-path)
 
-  ; also install coreutils through brew: "brew install coreutils"
+  ;; also install coreutils through brew: "brew install coreutils"
   (when (equal system-type 'darwin)
     (setq insert-directory-program "/opt/homebrew/opt/coreutils/libexec/gnubin/ls"))
 
@@ -1363,164 +1363,164 @@ you should place you code here."
   (add-hook 'company-mode-hook
             (lambda()
               (global-set-key (kbd "S-SPC") 'company-complete)))
-)
+  )
 
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(auth-source-save-behavior nil)
- '(c-basic-offset 2)
- '(company-box-icons-alist 'company-box-icons-all-the-icons)
- '(custom-safe-themes
-   '("eecff0e045e5a54e5a517a042a7491eecfb8d49e79c5813e2110ad3458df52ce" default))
- '(evil-want-Y-yank-to-eol t)
- '(exec-path
-   '("/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/home/sven/.rbenv/shims/" "/opt/homebrew/bin"))
- '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
- '(flycheck-go-golint-executable "/Users/sven/go/bin/golint")
- '(flycheck-phpcs-standard "PSR2")
- '(flycheck-phpmd-rulesets '("codesize" "design" "unusedcode"))
- '(flycheck-phpstan-executable "/home/sven/.config/composer/vendor/bin/phpstan")
- '(haskell-tags-on-save t)
- '(hl-todo-keyword-faces
-   '(("TODO" . "#dc752f")
-     ("NEXT" . "#dc752f")
-     ("THEM" . "#2d9574")
-     ("PROG" . "#4f97d7")
-     ("OKAY" . "#4f97d7")
-     ("DONT" . "#f2241f")
-     ("FAIL" . "#f2241f")
-     ("DONE" . "#86dc2f")
-     ("NOTE" . "#b1951d")
-     ("KLUDGE" . "#b1951d")
-     ("HACK" . "#b1951d")
-     ("TEMP" . "#b1951d")
-     ("FIXME" . "#dc752f")
-     ("XXX+" . "#dc752f")
-     ("\\?\\?\\?+" . "#dc752f")))
- '(jiralib-url "https://commercetools.atlassian.net" t)
- '(jiralib-user "63456be7754fb6b373b94dcc")
- '(js2-missing-semi-one-line-override t)
- '(js2-strict-missing-semi-warning nil)
- '(lsp-intelephense-php-version "8.1.0")
- '(mu4e-view-show-addresses t)
- '(mu4e-view-show-images t)
- '(native-comp-deferred-compilation-deny-list '(".*projectile.*"))
- '(org-ql-views
-   '(("Review: Refile" :buffers-files
-      ("/Users/sven/org/anniversary.org" "/Users/sven/org/bugs.org" "/Users/sven/org/cli-presentation.org" "/Users/sven/org/getdigital.org" "/Users/sven/org/gfxpro.org" "/Users/sven/org/gtd-daily-cooldown.org" "/Users/sven/org/gtd-evening-review.org" "/Users/sven/org/gtd-weekly-reviews.org" "/Users/sven/org/gxp-frontastic-cli.org" "/Users/sven/org/gxp-frontastic-meetings.org" "/Users/sven/org/gxp-frontastic.org" "/Users/sven/org/gxp-lasersoft-doc.org" "/Users/sven/org/gxp-lasersoft.org" "/Users/sven/org/isavision.org" "/Users/sven/org/knw-dev.org" "/Users/sven/org/knw-docker.org" "/Users/sven/org/knw-emacs.org" "/Users/sven/org/knw-git.org" "/Users/sven/org/knw-go.org" "/Users/sven/org/knw-hardware.org" "/Users/sven/org/knw-haskell.org" "/Users/sven/org/knw-java.org" "/Users/sven/org/knw-linux.org" "/Users/sven/org/knw-macos.org" "/Users/sven/org/knw-misc.org" "/Users/sven/org/knw-php.org" "/Users/sven/org/knw-productivity.org" "/Users/sven/org/knw-ruby.org" "/Users/sven/org/knw-scala.org" "/Users/sven/org/knw-webdev.org" "/Users/sven/org/knw-windows.org" "/Users/sven/org/les-aprpat.org" "/Users/sven/org/mallorca-selection-verarbeitungsverzeichnis.org" "/Users/sven/org/meta.org" "/Users/sven/org/newsfeeds.org" "/Users/sven/org/notes.org" "/Users/sven/org/pav-dev-orga.org" "/Users/sven/org/pav-lambda.org" "/Users/sven/org/pav-plan.org" "/Users/sven/org/pav-psi.org" "/Users/sven/org/pav-rho.org" "/Users/sven/org/pav-sea-gmbh.org" "/Users/sven/org/pav-sysops.org" "/Users/sven/org/pav-theory.org" "/Users/sven/org/plan.org" "/Users/sven/org/postgres-tuning.org" "/Users/sven/org/privat.org" "/Users/sven/org/prs-linting.org" "/Users/sven/org/prv-garten.org" "/Users/sven/org/prv-haus.org" "/Users/sven/org/prv-haushalt.org" "/Users/sven/org/prv-kindergarten.org" "/Users/sven/org/prv-mama.org" "/Users/sven/org/prv-steuern.org" "/Users/sven/org/prv-sysops.org" "/Users/sven/org/refile.org" "/Users/sven/org/social.org" "/Users/sven/org/swc-docu.org" "/Users/sven/org/swc-finalapp.org" "/Users/sven/org/swc-gui.org" "/Users/sven/org/swc-misc.org" "/Users/sven/org/swc-orga.org" "/Users/sven/org/swc-server.org" "/Users/sven/org/swc-sysops.org" "/Users/sven/org/swc-team.org" "/Users/sven/org/swc-verzeichnis-verarbeitungstaetigkeiten.org" "/Users/sven/org/swc-webapp.org" "/Users/sven/org/swc-website.org" "/Users/sven/org/swc-workshop.org" "/Users/sven/org/tmp-daily-cooldown.org" "/Users/sven/org/tmp-evening-review.org" "/Users/sven/org/tmp-frontastic-weekly-report.org" "/Users/sven/org/tmp-weekly-review.org" "/Users/sven/org/uni-bachelor-tim.org" "/Users/sven/org/uni-digisys.org" "/Users/sven/org/uni-doktorarbeit.org" "/Users/sven/org/uni-imps.org" "/Users/sven/org/uni-infprog.org" "/Users/sven/org/uni-misc.org" "/Users/sven/org/uni-plan.org")
-      :query
-      (tags "REFILE")
-      :sort
-      (date)
-      :narrow nil :super-groups nil :title "Review: Refile")
-     ("Prioritize Tasks ct" :buffers-files
-      ("/Users/sven/org/anniversary.org" "/Users/sven/org/bugs.org" "/Users/sven/org/cli-presentation.org" "/Users/sven/org/getdigital.org" "/Users/sven/org/gfxpro.org" "/Users/sven/org/gtd-daily-cooldown.org" "/Users/sven/org/gtd-evening-review.org" "/Users/sven/org/gtd-weekly-reviews.org" "/Users/sven/org/gxp-frontastic-cli.org" "/Users/sven/org/gxp-frontastic-meetings.org" "/Users/sven/org/gxp-frontastic.org" "/Users/sven/org/gxp-lasersoft-doc.org" "/Users/sven/org/gxp-lasersoft.org" "/Users/sven/org/isavision.org" "/Users/sven/org/knw-dev.org" "/Users/sven/org/knw-docker.org" "/Users/sven/org/knw-emacs.org" "/Users/sven/org/knw-git.org" "/Users/sven/org/knw-go.org" "/Users/sven/org/knw-hardware.org" "/Users/sven/org/knw-haskell.org" "/Users/sven/org/knw-java.org" "/Users/sven/org/knw-linux.org" "/Users/sven/org/knw-macos.org" "/Users/sven/org/knw-misc.org" "/Users/sven/org/knw-php.org" "/Users/sven/org/knw-productivity.org" "/Users/sven/org/knw-ruby.org" "/Users/sven/org/knw-scala.org" "/Users/sven/org/knw-webdev.org" "/Users/sven/org/knw-windows.org" "/Users/sven/org/les-aprpat.org" "/Users/sven/org/mallorca-selection-verarbeitungsverzeichnis.org" "/Users/sven/org/meta.org" "/Users/sven/org/newsfeeds.org" "/Users/sven/org/notes.org" "/Users/sven/org/pav-dev-orga.org" "/Users/sven/org/pav-lambda.org" "/Users/sven/org/pav-plan.org" "/Users/sven/org/pav-psi.org" "/Users/sven/org/pav-rho.org" "/Users/sven/org/pav-sea-gmbh.org" "/Users/sven/org/pav-sysops.org" "/Users/sven/org/pav-theory.org" "/Users/sven/org/plan.org" "/Users/sven/org/postgres-tuning.org" "/Users/sven/org/privat.org" "/Users/sven/org/prs-linting.org" "/Users/sven/org/prv-garten.org" "/Users/sven/org/prv-haus.org" "/Users/sven/org/prv-haushalt.org" "/Users/sven/org/prv-kindergarten.org" "/Users/sven/org/prv-mama.org" "/Users/sven/org/prv-steuern.org" "/Users/sven/org/prv-sysops.org" "/Users/sven/org/refile.org" "/Users/sven/org/social.org" "/Users/sven/org/swc-docu.org" "/Users/sven/org/swc-finalapp.org" "/Users/sven/org/swc-gui.org" "/Users/sven/org/swc-misc.org" "/Users/sven/org/swc-orga.org" "/Users/sven/org/swc-server.org" "/Users/sven/org/swc-sysops.org" "/Users/sven/org/swc-team.org" "/Users/sven/org/swc-verzeichnis-verarbeitungstaetigkeiten.org" "/Users/sven/org/swc-webapp.org" "/Users/sven/org/swc-website.org" "/Users/sven/org/swc-workshop.org" "/Users/sven/org/tmp-daily-cooldown.org" "/Users/sven/org/tmp-evening-review.org" "/Users/sven/org/tmp-frontastic-weekly-report.org" "/Users/sven/org/tmp-weekly-review.org" "/Users/sven/org/uni-bachelor-tim.org" "/Users/sven/org/uni-digisys.org" "/Users/sven/org/uni-doktorarbeit.org" "/Users/sven/org/uni-imps.org" "/Users/sven/org/uni-infprog.org" "/Users/sven/org/uni-misc.org" "/Users/sven/org/uni-plan.org")
-      :query
-      (tags "prioritize")
-      :sort nil :narrow nil :super-groups nil :title "Prioritize Tasks ct")
-     ("Overview: Agenda-like" :buffers-files org-agenda-files :query
-      (and
-       (not
-        (done))
-       (or
-        (habit)
-        (deadline auto)
-        (scheduled :to today)
-        (ts-active :on today)))
-      :sort
-      (todo priority date)
-      :super-groups org-super-agenda-groups :title "Agenda-like")
-     ("Overview: NEXT tasks" :buffers-files org-agenda-files :query
-      (todo "NEXT")
-      :sort
-      (date priority)
-      :super-groups org-super-agenda-groups :title "Overview: NEXT tasks")
-     ("Calendar: Today" :buffers-files org-agenda-files :query
-      (ts-active :on today)
-      :title "Today" :super-groups org-super-agenda-groups :sort
-      (priority))
-     ("Calendar: This week" .
-      #[0 "\301 \302\303\304\305\304\306\304\307\310\301 \311\1!\10>\204\34\0\312\313\314\3D\"\210\211\315H\204\232\0\211\315\316\317\320\311\6\6!\10>\2048\0\312\313\314\6\10D\"\210\5\321H\204\223\0\5\321\311\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\203\215\0\4\203\215\0\3\203\215\0\2\203\215\0\1\203\215\0\211\203\215\0\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\202\221\0\330 \266\206I\210\5\321H\"!I\210\211\315H\262\1[\6\12#&\7\302\303\332\305\333\306\333\307\310\327\301 \311\1!\10>\204\300\0\312\313\314\3D\"\210\211\315H\204>\1\211\315\316\317\320\311\6\6!\10>\204\334\0\312\313\314\6\10D\"\210\5\321H\2047\1\5\321\311\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\2031\1\4\2031\1\3\2031\1\2\2031\1\1\2031\1\211\2031\1\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\2025\1\330 \266\206I\210\5\321H\"!I\210\211\315H\262\1Z\6\13#&\7\334\335 \336\337\5\340\6\6\257\5\341\342\343\344\345\346&\10\207"
-          [cl-struct-ts-tags ts-now ts-apply :hour 0 :minute :second ts-adjust day type-of signal wrong-type-argument ts 7 string-to-number format-time-string "%w" 17 3 2 1 4 5 6 float-time encode-time 23 59 org-ql-search org-agenda-files ts-active :from :to :title "This week" :super-groups org-super-agenda-groups :sort
-                             (priority)]
-          34 "Show items with an active timestamp during this calendar week." nil])
-     ("Calendar: Next week" .
-      #[0 "\301\302\303\304 #\305\306\307\310\307\311\307\301\302\304 \312\1!\10>\204 \0\313\314\315\3D\"\210\211\303H\204\236\0\211\303\316\317\320\312\6\6!\10>\204<\0\313\314\315\6\10D\"\210\5\321H\204\227\0\5\321\312\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\203\221\0\4\203\221\0\3\203\221\0\2\203\221\0\1\203\221\0\211\203\221\0\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\202\225\0\330 \266\206I\210\5\321H\"!I\210\211\303H\262\1[\6\12#&\7\305\306\332\310\333\311\333\301\302\327\304 \312\1!\10>\204\304\0\313\314\315\3D\"\210\211\303H\204B\1\211\303\316\317\320\312\6\6!\10>\204\340\0\313\314\315\6\10D\"\210\5\321H\204;\1\5\321\312\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\2035\1\4\2035\1\3\2035\1\2\2035\1\1\2035\1\211\2035\1\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\2029\1\330 \266\206I\210\5\321H\"!I\210\211\303H\262\1Z\6\13#&\7\334\335 \336\337\5\340\6\6\257\5\341\342\343\344\345\346&\10\207"
-          [cl-struct-ts-tags ts-adjust day 7 ts-now ts-apply :hour 0 :minute :second type-of signal wrong-type-argument ts string-to-number format-time-string "%w" 17 3 2 1 4 5 6 float-time encode-time 23 59 org-ql-search org-agenda-files ts-active :from :to :title "Next week" :super-groups org-super-agenda-groups :sort
-                             (priority)]
-          34 "Show items with an active timestamp during the next calendar week." nil])
-     ("Review: Recently timestamped" . org-ql-view-recent-items)
-     (#("Review: Dangling tasks" 0 22
-        (help-echo "Tasks whose ancestor is done"))
-      :buffers-files org-agenda-files :query
-      (and
-       (todo)
-       (ancestors
-        (done)))
-      :title
-      #("Review: Dangling tasks" 0 22
-        (help-echo "Tasks whose ancestor is done"))
-      :sort
-      (todo priority date)
-      :super-groups
-      ((:auto-parent t)))
-     (#("Review: Stale tasks" 0 19
-        (help-echo "Tasks without a timestamp in the past 2 weeks"))
-      :buffers-files org-agenda-files :query
-      (and
-       (todo)
-       (not
-        (ts :from -14)))
-      :title
-      #("Review: Stale tasks" 0 19
-        (help-echo "Tasks without a timestamp in the past 2 weeks"))
-      :sort
-      (todo priority date)
-      :super-groups
-      ((:auto-parent t)))
-     (#("Review: Stuck projects" 0 22
-        (help-echo "Tasks with sub-tasks but no NEXT sub-tasks"))
-      :buffers-files org-agenda-files :query
-      (and
-       (todo)
-       (descendants
-        (todo))
-       (not
-        (descendants
-         (todo "NEXT"))))
-      :title
-      #("Review: Stuck projects" 0 22
-        (help-echo "Tasks with sub-tasks but no NEXT sub-tasks"))
-      :sort
-      (date priority)
-      :super-groups org-super-agenda-groups)))
- '(package-selected-packages
-   '(gptel blacken code-cells ivy ggtags helm-cscope concurrent lsp-pyright pippel pydoc sphinx-doc stickyfunc-enhance zpresent org-parser yasnippet-snippets yapfify yaml-mode yafolding xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree queue typo typescript-mode toc-org tide tagedit string-inflection sql-indent spotify spaceline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restclient-helm restart-emacs rbenv ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake inflections plantuml-mode pip-requirements phpunit php-extras persp-mode pcre2el paradox spinner ox-gfm origami orgit org-sidebar org-randomnote org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets open-junk-file ob-restclient ob-http ob-elixir nginx-mode neotree multi-term move-text mmm-mode mixed-pitch minitest markdown-toc markdown-mode magit-gitflow magit-popup magit magit-section macrostep lorem-ipsum livid-mode skewer-mode live-py-mode linum-relative key-chord json-mode json-snatcher js2-refactor multiple-cursors js2-mode js-doc jinja2-mode insert-shebang indent-guide hydra lv hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-spotify-plus multi helm-pydoc helm-projectile projectile helm-org-ql org-ql helm-org peg ov org-super-agenda ts helm-mode-manager helm-make helm-gitignore request git-modes helm-flx helm-descbinds helm-dash dash-docs helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio go-guru go-eldoc gnuplot git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter git-commit with-editor transient compat gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck-gometalinter flycheck-credo flycheck flx-ido flx fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav elfeed-web simple-httpd elfeed-org elfeed-goodies link-hint powerline popwin elfeed dumb-jump drupal-mode php-mode diminish diff-hl define-word dash-at-point cython-mode csv-mode copilot editorconfig company-web web-completion-data company-statistics company-shell company-restclient restclient know-your-http-well company-quickhelp pos-tip company-go go-mode company-box frame-local company-ansible company-anaconda column-enforce-mode coffee-mode clean-aindent-mode chruby bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol ht auto-dictionary auto-compile ansible-doc ansible anaconda-mode pythonic f alchemist s pkg-info company elixir-mode epl aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup solarized-theme dash))
- '(paradox-github-token t)
- '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
- '(php-mode-enable-project-coding-style t)
- '(phpcbf-standard "PSR2")
- '(rbenv-modeline-function 'rbenv--modeline-plain)
- '(select-enable-primary t)
- '(send-mail-function 'smtpmail-send-it)
- '(warning-suppress-types '((comp)))
- '(writeroom-width 144))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(fixed-pitch ((t (:family "Victor Mono" :height 160))))
- '(variable-pitch ((t (:family "ETBembo" :height 240)))))
-)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(auth-source-save-behavior nil)
+   '(c-basic-offset 2)
+   '(company-box-icons-alist 'company-box-icons-all-the-icons)
+   '(custom-safe-themes
+     '("eecff0e045e5a54e5a517a042a7491eecfb8d49e79c5813e2110ad3458df52ce" default))
+   '(evil-want-Y-yank-to-eol t)
+   '(exec-path
+     '("/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/" "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/" "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/" "/usr/bin/core_perl/" "/home/sven/.rbenv/shims/" "/opt/homebrew/bin"))
+   '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
+   '(flycheck-go-golint-executable "/Users/sven/go/bin/golint")
+   '(flycheck-phpcs-standard "PSR2")
+   '(flycheck-phpmd-rulesets '("codesize" "design" "unusedcode"))
+   '(flycheck-phpstan-executable "/home/sven/.config/composer/vendor/bin/phpstan")
+   '(haskell-tags-on-save t)
+   '(hl-todo-keyword-faces
+     '(("TODO" . "#dc752f")
+       ("NEXT" . "#dc752f")
+       ("THEM" . "#2d9574")
+       ("PROG" . "#4f97d7")
+       ("OKAY" . "#4f97d7")
+       ("DONT" . "#f2241f")
+       ("FAIL" . "#f2241f")
+       ("DONE" . "#86dc2f")
+       ("NOTE" . "#b1951d")
+       ("KLUDGE" . "#b1951d")
+       ("HACK" . "#b1951d")
+       ("TEMP" . "#b1951d")
+       ("FIXME" . "#dc752f")
+       ("XXX+" . "#dc752f")
+       ("\\?\\?\\?+" . "#dc752f")))
+   '(jiralib-url "https://commercetools.atlassian.net" t)
+   '(jiralib-user "63456be7754fb6b373b94dcc")
+   '(js2-missing-semi-one-line-override t)
+   '(js2-strict-missing-semi-warning nil)
+   '(lsp-intelephense-php-version "8.1.0")
+   '(mu4e-view-show-addresses t)
+   '(mu4e-view-show-images t)
+   '(native-comp-deferred-compilation-deny-list '(".*projectile.*"))
+   '(org-ql-views
+     '(("Review: Refile" :buffers-files
+        ("/Users/sven/org/anniversary.org" "/Users/sven/org/bugs.org" "/Users/sven/org/cli-presentation.org" "/Users/sven/org/getdigital.org" "/Users/sven/org/gfxpro.org" "/Users/sven/org/gtd-daily-cooldown.org" "/Users/sven/org/gtd-evening-review.org" "/Users/sven/org/gtd-weekly-reviews.org" "/Users/sven/org/gxp-frontastic-cli.org" "/Users/sven/org/gxp-frontastic-meetings.org" "/Users/sven/org/gxp-frontastic.org" "/Users/sven/org/gxp-lasersoft-doc.org" "/Users/sven/org/gxp-lasersoft.org" "/Users/sven/org/isavision.org" "/Users/sven/org/knw-dev.org" "/Users/sven/org/knw-docker.org" "/Users/sven/org/knw-emacs.org" "/Users/sven/org/knw-git.org" "/Users/sven/org/knw-go.org" "/Users/sven/org/knw-hardware.org" "/Users/sven/org/knw-haskell.org" "/Users/sven/org/knw-java.org" "/Users/sven/org/knw-linux.org" "/Users/sven/org/knw-macos.org" "/Users/sven/org/knw-misc.org" "/Users/sven/org/knw-php.org" "/Users/sven/org/knw-productivity.org" "/Users/sven/org/knw-ruby.org" "/Users/sven/org/knw-scala.org" "/Users/sven/org/knw-webdev.org" "/Users/sven/org/knw-windows.org" "/Users/sven/org/les-aprpat.org" "/Users/sven/org/mallorca-selection-verarbeitungsverzeichnis.org" "/Users/sven/org/meta.org" "/Users/sven/org/newsfeeds.org" "/Users/sven/org/notes.org" "/Users/sven/org/pav-dev-orga.org" "/Users/sven/org/pav-lambda.org" "/Users/sven/org/pav-plan.org" "/Users/sven/org/pav-psi.org" "/Users/sven/org/pav-rho.org" "/Users/sven/org/pav-sea-gmbh.org" "/Users/sven/org/pav-sysops.org" "/Users/sven/org/pav-theory.org" "/Users/sven/org/plan.org" "/Users/sven/org/postgres-tuning.org" "/Users/sven/org/privat.org" "/Users/sven/org/prs-linting.org" "/Users/sven/org/prv-garten.org" "/Users/sven/org/prv-haus.org" "/Users/sven/org/prv-haushalt.org" "/Users/sven/org/prv-kindergarten.org" "/Users/sven/org/prv-mama.org" "/Users/sven/org/prv-steuern.org" "/Users/sven/org/prv-sysops.org" "/Users/sven/org/refile.org" "/Users/sven/org/social.org" "/Users/sven/org/swc-docu.org" "/Users/sven/org/swc-finalapp.org" "/Users/sven/org/swc-gui.org" "/Users/sven/org/swc-misc.org" "/Users/sven/org/swc-orga.org" "/Users/sven/org/swc-server.org" "/Users/sven/org/swc-sysops.org" "/Users/sven/org/swc-team.org" "/Users/sven/org/swc-verzeichnis-verarbeitungstaetigkeiten.org" "/Users/sven/org/swc-webapp.org" "/Users/sven/org/swc-website.org" "/Users/sven/org/swc-workshop.org" "/Users/sven/org/tmp-daily-cooldown.org" "/Users/sven/org/tmp-evening-review.org" "/Users/sven/org/tmp-frontastic-weekly-report.org" "/Users/sven/org/tmp-weekly-review.org" "/Users/sven/org/uni-bachelor-tim.org" "/Users/sven/org/uni-digisys.org" "/Users/sven/org/uni-doktorarbeit.org" "/Users/sven/org/uni-imps.org" "/Users/sven/org/uni-infprog.org" "/Users/sven/org/uni-misc.org" "/Users/sven/org/uni-plan.org")
+        :query
+        (tags "REFILE")
+        :sort
+        (date)
+        :narrow nil :super-groups nil :title "Review: Refile")
+       ("Prioritize Tasks ct" :buffers-files
+        ("/Users/sven/org/anniversary.org" "/Users/sven/org/bugs.org" "/Users/sven/org/cli-presentation.org" "/Users/sven/org/getdigital.org" "/Users/sven/org/gfxpro.org" "/Users/sven/org/gtd-daily-cooldown.org" "/Users/sven/org/gtd-evening-review.org" "/Users/sven/org/gtd-weekly-reviews.org" "/Users/sven/org/gxp-frontastic-cli.org" "/Users/sven/org/gxp-frontastic-meetings.org" "/Users/sven/org/gxp-frontastic.org" "/Users/sven/org/gxp-lasersoft-doc.org" "/Users/sven/org/gxp-lasersoft.org" "/Users/sven/org/isavision.org" "/Users/sven/org/knw-dev.org" "/Users/sven/org/knw-docker.org" "/Users/sven/org/knw-emacs.org" "/Users/sven/org/knw-git.org" "/Users/sven/org/knw-go.org" "/Users/sven/org/knw-hardware.org" "/Users/sven/org/knw-haskell.org" "/Users/sven/org/knw-java.org" "/Users/sven/org/knw-linux.org" "/Users/sven/org/knw-macos.org" "/Users/sven/org/knw-misc.org" "/Users/sven/org/knw-php.org" "/Users/sven/org/knw-productivity.org" "/Users/sven/org/knw-ruby.org" "/Users/sven/org/knw-scala.org" "/Users/sven/org/knw-webdev.org" "/Users/sven/org/knw-windows.org" "/Users/sven/org/les-aprpat.org" "/Users/sven/org/mallorca-selection-verarbeitungsverzeichnis.org" "/Users/sven/org/meta.org" "/Users/sven/org/newsfeeds.org" "/Users/sven/org/notes.org" "/Users/sven/org/pav-dev-orga.org" "/Users/sven/org/pav-lambda.org" "/Users/sven/org/pav-plan.org" "/Users/sven/org/pav-psi.org" "/Users/sven/org/pav-rho.org" "/Users/sven/org/pav-sea-gmbh.org" "/Users/sven/org/pav-sysops.org" "/Users/sven/org/pav-theory.org" "/Users/sven/org/plan.org" "/Users/sven/org/postgres-tuning.org" "/Users/sven/org/privat.org" "/Users/sven/org/prs-linting.org" "/Users/sven/org/prv-garten.org" "/Users/sven/org/prv-haus.org" "/Users/sven/org/prv-haushalt.org" "/Users/sven/org/prv-kindergarten.org" "/Users/sven/org/prv-mama.org" "/Users/sven/org/prv-steuern.org" "/Users/sven/org/prv-sysops.org" "/Users/sven/org/refile.org" "/Users/sven/org/social.org" "/Users/sven/org/swc-docu.org" "/Users/sven/org/swc-finalapp.org" "/Users/sven/org/swc-gui.org" "/Users/sven/org/swc-misc.org" "/Users/sven/org/swc-orga.org" "/Users/sven/org/swc-server.org" "/Users/sven/org/swc-sysops.org" "/Users/sven/org/swc-team.org" "/Users/sven/org/swc-verzeichnis-verarbeitungstaetigkeiten.org" "/Users/sven/org/swc-webapp.org" "/Users/sven/org/swc-website.org" "/Users/sven/org/swc-workshop.org" "/Users/sven/org/tmp-daily-cooldown.org" "/Users/sven/org/tmp-evening-review.org" "/Users/sven/org/tmp-frontastic-weekly-report.org" "/Users/sven/org/tmp-weekly-review.org" "/Users/sven/org/uni-bachelor-tim.org" "/Users/sven/org/uni-digisys.org" "/Users/sven/org/uni-doktorarbeit.org" "/Users/sven/org/uni-imps.org" "/Users/sven/org/uni-infprog.org" "/Users/sven/org/uni-misc.org" "/Users/sven/org/uni-plan.org")
+        :query
+        (tags "prioritize")
+        :sort nil :narrow nil :super-groups nil :title "Prioritize Tasks ct")
+       ("Overview: Agenda-like" :buffers-files org-agenda-files :query
+        (and
+         (not
+          (done))
+         (or
+          (habit)
+          (deadline auto)
+          (scheduled :to today)
+          (ts-active :on today)))
+        :sort
+        (todo priority date)
+        :super-groups org-super-agenda-groups :title "Agenda-like")
+       ("Overview: NEXT tasks" :buffers-files org-agenda-files :query
+        (todo "NEXT")
+        :sort
+        (date priority)
+        :super-groups org-super-agenda-groups :title "Overview: NEXT tasks")
+       ("Calendar: Today" :buffers-files org-agenda-files :query
+        (ts-active :on today)
+        :title "Today" :super-groups org-super-agenda-groups :sort
+        (priority))
+       ("Calendar: This week" .
+        #[0 "\301 \302\303\304\305\304\306\304\307\310\301 \311\1!\10>\204\34\0\312\313\314\3D\"\210\211\315H\204\232\0\211\315\316\317\320\311\6\6!\10>\2048\0\312\313\314\6\10D\"\210\5\321H\204\223\0\5\321\311\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\203\215\0\4\203\215\0\3\203\215\0\2\203\215\0\1\203\215\0\211\203\215\0\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\202\221\0\330 \266\206I\210\5\321H\"!I\210\211\315H\262\1[\6\12#&\7\302\303\332\305\333\306\333\307\310\327\301 \311\1!\10>\204\300\0\312\313\314\3D\"\210\211\315H\204>\1\211\315\316\317\320\311\6\6!\10>\204\334\0\312\313\314\6\10D\"\210\5\321H\2047\1\5\321\311\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\2031\1\4\2031\1\3\2031\1\2\2031\1\1\2031\1\211\2031\1\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\2025\1\330 \266\206I\210\5\321H\"!I\210\211\315H\262\1Z\6\13#&\7\334\335 \336\337\5\340\6\6\257\5\341\342\343\344\345\346&\10\207"
+            [cl-struct-ts-tags ts-now ts-apply :hour 0 :minute :second ts-adjust day type-of signal wrong-type-argument ts 7 string-to-number format-time-string "%w" 17 3 2 1 4 5 6 float-time encode-time 23 59 org-ql-search org-agenda-files ts-active :from :to :title "This week" :super-groups org-super-agenda-groups :sort
+                               (priority)]
+            34 "Show items with an active timestamp during this calendar week." nil])
+       ("Calendar: Next week" .
+        #[0 "\301\302\303\304 #\305\306\307\310\307\311\307\301\302\304 \312\1!\10>\204 \0\313\314\315\3D\"\210\211\303H\204\236\0\211\303\316\317\320\312\6\6!\10>\204<\0\313\314\315\6\10D\"\210\5\321H\204\227\0\5\321\312\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\203\221\0\4\203\221\0\3\203\221\0\2\203\221\0\1\203\221\0\211\203\221\0\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\202\225\0\330 \266\206I\210\5\321H\"!I\210\211\303H\262\1[\6\12#&\7\305\306\332\310\333\311\333\301\302\327\304 \312\1!\10>\204\304\0\313\314\315\3D\"\210\211\303H\204B\1\211\303\316\317\320\312\6\6!\10>\204\340\0\313\314\315\6\10D\"\210\5\321H\204;\1\5\321\312\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\2035\1\4\2035\1\3\2035\1\2\2035\1\1\2035\1\211\2035\1\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\2029\1\330 \266\206I\210\5\321H\"!I\210\211\303H\262\1Z\6\13#&\7\334\335 \336\337\5\340\6\6\257\5\341\342\343\344\345\346&\10\207"
+            [cl-struct-ts-tags ts-adjust day 7 ts-now ts-apply :hour 0 :minute :second type-of signal wrong-type-argument ts string-to-number format-time-string "%w" 17 3 2 1 4 5 6 float-time encode-time 23 59 org-ql-search org-agenda-files ts-active :from :to :title "Next week" :super-groups org-super-agenda-groups :sort
+                               (priority)]
+            34 "Show items with an active timestamp during the next calendar week." nil])
+       ("Review: Recently timestamped" . org-ql-view-recent-items)
+       (#("Review: Dangling tasks" 0 22
+          (help-echo "Tasks whose ancestor is done"))
+        :buffers-files org-agenda-files :query
+        (and
+         (todo)
+         (ancestors
+          (done)))
+        :title
+        #("Review: Dangling tasks" 0 22
+          (help-echo "Tasks whose ancestor is done"))
+        :sort
+        (todo priority date)
+        :super-groups
+        ((:auto-parent t)))
+       (#("Review: Stale tasks" 0 19
+          (help-echo "Tasks without a timestamp in the past 2 weeks"))
+        :buffers-files org-agenda-files :query
+        (and
+         (todo)
+         (not
+          (ts :from -14)))
+        :title
+        #("Review: Stale tasks" 0 19
+          (help-echo "Tasks without a timestamp in the past 2 weeks"))
+        :sort
+        (todo priority date)
+        :super-groups
+        ((:auto-parent t)))
+       (#("Review: Stuck projects" 0 22
+          (help-echo "Tasks with sub-tasks but no NEXT sub-tasks"))
+        :buffers-files org-agenda-files :query
+        (and
+         (todo)
+         (descendants
+          (todo))
+         (not
+          (descendants
+           (todo "NEXT"))))
+        :title
+        #("Review: Stuck projects" 0 22
+          (help-echo "Tasks with sub-tasks but no NEXT sub-tasks"))
+        :sort
+        (date priority)
+        :super-groups org-super-agenda-groups)))
+   '(package-selected-packages
+     '(gptel blacken code-cells ivy ggtags helm-cscope concurrent lsp-pyright pippel pydoc sphinx-doc stickyfunc-enhance zpresent org-parser yasnippet-snippets yapfify yaml-mode yafolding xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree queue typo typescript-mode toc-org tide tagedit string-inflection sql-indent spotify spaceline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restclient-helm restart-emacs rbenv ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake inflections plantuml-mode pip-requirements phpunit php-extras persp-mode pcre2el paradox spinner ox-gfm origami orgit org-sidebar org-randomnote org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets open-junk-file ob-restclient ob-http ob-elixir nginx-mode neotree multi-term move-text mmm-mode mixed-pitch minitest markdown-toc markdown-mode magit-gitflow magit-popup magit magit-section macrostep lorem-ipsum livid-mode skewer-mode live-py-mode linum-relative key-chord json-mode json-snatcher js2-refactor multiple-cursors js2-mode js-doc jinja2-mode insert-shebang indent-guide hydra lv hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-spotify-plus multi helm-pydoc helm-projectile projectile helm-org-ql org-ql helm-org peg ov org-super-agenda ts helm-mode-manager helm-make helm-gitignore request git-modes helm-flx helm-descbinds helm-dash dash-docs helm-css-scss helm-company helm-c-yasnippet haml-mode google-translate golden-ratio go-guru go-eldoc gnuplot git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter git-commit with-editor transient compat gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck-gometalinter flycheck-credo flycheck flx-ido flx fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav elfeed-web simple-httpd elfeed-org elfeed-goodies link-hint powerline popwin elfeed dumb-jump drupal-mode php-mode diminish diff-hl define-word dash-at-point cython-mode csv-mode copilot editorconfig company-web web-completion-data company-statistics company-shell company-restclient restclient know-your-http-well company-quickhelp pos-tip company-go go-mode company-box frame-local company-ansible company-anaconda column-enforce-mode coffee-mode clean-aindent-mode chruby bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol ht auto-dictionary auto-compile ansible-doc ansible anaconda-mode pythonic f alchemist s pkg-info company elixir-mode epl aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup solarized-theme dash))
+   '(paradox-github-token t)
+   '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
+   '(php-mode-enable-project-coding-style t)
+   '(phpcbf-standard "PSR2")
+   '(rbenv-modeline-function 'rbenv--modeline-plain)
+   '(select-enable-primary t)
+   '(send-mail-function 'smtpmail-send-it)
+   '(warning-suppress-types '((comp)))
+   '(writeroom-width 144))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(fixed-pitch ((t (:family "Victor Mono" :height 160))))
+   '(variable-pitch ((t (:family "ETBembo" :height 240)))))
+  )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
