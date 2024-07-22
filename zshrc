@@ -159,8 +159,8 @@ alias dc="docker-compose"
 
 alias pa="cd $HOME/development/pa"
 alias sc="cd $HOME/development/sc"
-alias ls="TERM=xterm-256color exa"
-alias ll="TERM=xterm-256color exa --git -l"
+alias ls="eza --icons=auto --classify=auto"
+alias ll="eza --classify=auto --icons=auto --long --color-scale=all --color-scale-mode=fixed"
 alias db="dropbox-cli"
 
 alias cat=bat
@@ -259,3 +259,8 @@ alias cdr=grt
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 alias gs="git branch | grep -v \"^\*\" | fzf --height=20% --reverse --info=inline | xargs git switch"
+
+# change to frontastic directory (ctrl-x+f)
+function cdfrontastic() { cd ~/development/frontastic; zle reset-prompt; zle redisplay}
+zle -N cdfrontastic
+bindkey '^xf' cdfrontastic
