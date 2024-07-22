@@ -164,12 +164,6 @@ This function should only modify configuration layer settings."
      fireplace
      code-review
      elpher
-     ;; support rg 14
-     ;; https://github.com/syl20bnr/spacemacs/issues/16200
-     (helm-ag :location (recipe
-                         :fetcher github
-                         :repo "zozowell/helm-ag"
-                         :branch "further-support-rg"))
      org-recur
      gptel
      (conventional-commit :location (recipe :fetcher github :repo "akirak/conventional-commit.el"))
@@ -368,7 +362,9 @@ It should only modify the values of Spacemacs settings."
    ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
 
-   ;; Default font or prioritized list of fonts. The `:size' can be specified as
+   ;; Default font or prioritized list of fonts. This setting has no effect when
+   ;; running Emacs in terminal. The font set here will be used for default and
+   ;; fixed-pitch faces. The `:size' can be specified as
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Victor Mono"
@@ -450,6 +446,10 @@ It should only modify the values of Spacemacs settings."
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
+   ;; It is also possible to use a posframe with the following cons cell
+   ;; `(posframe . position)' where position can be one of `center',
+   ;; `top-center', `bottom-center', `top-left-corner', `top-right-corner',
+   ;; `top-right-corner', `bottom-left-corner' or `bottom-right-corner'
    ;; (default 'bottom)
    dotspacemacs-which-key-position 'bottom
 
