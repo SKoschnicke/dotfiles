@@ -46,7 +46,8 @@ This function should only modify configuration layer settings."
          go-format-before-save t
          go-use-golangci-lint t
          go-backend 'lsp)
-       helm
+       ;; helm
+       compleseus
        (php :variables
          php-backend 'lsp-deferred)
        ;; ----------------------------------------------------------------
@@ -54,8 +55,6 @@ This function should only modify configuration layer settings."
        ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
        ;; `M-m f e R' (Emacs style) to install them.
        ;; ----------------------------------------------------------------
-       (helm
-         )
        (auto-completion :variables
          auto-completion-enable-snippets-in-popup t
          auto-completion-enable-help-tooltip t
@@ -154,7 +153,7 @@ This function should only modify configuration layer settings."
        key-chord
        string-inflection
        org-ql
-       helm-org-ql
+       ;; helm-org-ql
        mixed-pitch
        org-sidebar
        org-super-agenda
@@ -1063,7 +1062,7 @@ you should place you code here."
     (evil-leader/set-key "aM" 'good-morning)
     (evil-leader/set-key "aW" 'well-done)
     (evil-leader/set-key "aoq" 'org-ql-view-sidebar)
-    (evil-leader/set-key "ao/" 'helm-org-ql-agenda-files)
+    (evil-leader/set-key "ao/" 'org-ql-find-in-agenda)
 
     (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
     (setq org-list-allow-alphabetical t)
@@ -1322,7 +1321,7 @@ you should place you code here."
   (add-hook 'php-mode-hook #'lsp-go-install-save-hooks)
 
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "s*" 'org-toggle-heading)
-  (spacemacs/set-leader-keys-for-major-mode 'org-mode "sP" 'helm-org-parent-headings)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "sP" 'outline-up-heading)
   (setq helm-org-format-outline-path t)
   ;; not working, needs to be added to "helm actions" somehow
   ;;(with-eval-after-load 'helm-files
@@ -1362,7 +1361,7 @@ you should place you code here."
   (add-hook 'git-commit-mode-hook 'conventional-commit-setup)
   (add-hook 'company-mode-hook
     (lambda()
-      (global-set-key (kbd "S-SPC") 'company-complete)))
+      (global-set-key (kbd "S-TAB") 'company-complete)))
   )
 
 (defun dotspacemacs/emacs-custom-settings ()
