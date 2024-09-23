@@ -234,6 +234,7 @@ alias vi=nvim
 
 # refresh timeout every time using sudo
 alias sudo='sudo  -v; sudo '
+alias _=sudo
 
 sshfm() {
   if (( # == 0 )); then
@@ -264,3 +265,5 @@ alias gs="git branch | grep -v \"^\*\" | fzf --height=20% --reverse --info=inlin
 function cdfrontastic() { cd ~/development/frontastic; zle reset-prompt; zle redisplay}
 zle -N cdfrontastic
 bindkey '^xf' cdfrontastic
+alias lg=lazygit
+alias gama='GITHUB_TOKEN="$(gh auth token)" gama'
