@@ -142,6 +142,8 @@ This function should only modify configuration layer settings."
                         persp-save-dir (concat my-sync-path "/emacs-perspectives/"))
      (llm-client :variables
                  llm-client-enable-gptel t)
+     (nixos :variables
+            nixos-format-on-save t)
      )
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
@@ -170,6 +172,7 @@ This function should only modify configuration layer settings."
      gptel
      (conventional-commit :location (recipe :fetcher github :repo "akirak/conventional-commit.el"))
      (jwt :location (recipe :fetcher github :repo "joshbax189/jwt-el"))
+     exec-path-from-shell
      )
 
    ;; A list of packages that cannot be updated.
@@ -1316,7 +1319,7 @@ you should place you code here."
 
   (custom-theme-set-faces
    'user
-   '(variable-pitch ((t (:family "ETBembo" :height 240))))
+   '(variable-pitch ((t (:family "ETBembo" :height 130))))
    '(fixed-pitch ((t ( :family "Victor Mono" :height 160)))))
 
   (custom-set-variables
