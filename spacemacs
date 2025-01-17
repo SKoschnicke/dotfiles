@@ -144,6 +144,7 @@ This function should only modify configuration layer settings."
                  llm-client-enable-gptel t)
      (nixos :variables
             nixos-format-on-save t)
+     (elfeed :variables rmh-elfeed-org-files (list "~/org/newsfeeds.org"))
      )
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
@@ -1076,9 +1077,104 @@ you should place you code here."
     (evil-leader/set-key "aW" 'well-done)
     (evil-leader/set-key "aoq" 'org-ql-view-sidebar)
     (evil-leader/set-key "ao/" 'org-ql-find-in-agenda)
+    (evil-leader/set-key "aS" 'my/generate-standup-message)
 
     (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
     (setq org-list-allow-alphabetical t)
+
+    (defcustom my/standup-hidden-tags '("REFILE" "gxp" "frontastic")
+      "List of tags to hide in standup messages."
+      :type '(repeat string)
+      :group 'org-standup)
+
+    (defcustom my/standup-template
+      "💪 *Yesterday I completed:*\n%s\n🌅 *Today I will:*\n%s"
+      "Template for standup messages. First %s is for completed tasks, second for planned tasks."
+      :type 'string
+      :group 'org-standup)
+
+    (defun my/filter-tags (tags)
+      "Remove hidden tags from TAGS list."
+      (cl-remove-if (lambda (tag)
+                      (member tag my/standup-hidden-tags))
+                    tags))
+
+    (defun my/format-task (task)
+      "Format a single TASK for display."
+      (let* ((category (nth 0 task))
+             (heading (nth 1 task))
+             (tags (my/filter-tags (nth 2 task)))
+             (priority (nth 3 task))
+             (effort (nth 4 task))
+             (priority-str (if priority (format "[%s] " priority) ""))
+             (effort-str (if effort (format " (%s)" effort) ""))
+             (tag-string (when tags
+                           (format " _%s_"
+                                   (string-join tags " ")))))
+        (format "• %s%s%s%s\n"
+                priority-str
+                heading
+                effort-str
+                (or tag-string ""))))
+
+    (defun my/get-previous-workday (today)
+      "Get the previous workday's ts object from TODAY.
+If today is Monday, returns last Friday. Otherwise returns yesterday."
+      (let* ((day-of-week (ts-dow today))
+             (days-to-subtract (if (= day-of-week 1) 3 1))) ; If Monday (1), subtract 3 days
+        (ts-adjust 'day (- days-to-subtract) today)))
+
+    (defun my/generate-standup-message ()
+      "Generate a Slack standup message based on today's scheduled tasks and yesterday's completed tasks."
+      (interactive)
+      (let* ((today (ts-now))
+             (prev-workday (my/get-previous-workday today))
+             ;; Get today's planned tasks
+             (planned-tasks (org-ql-query
+                              :select '(list (org-get-category)
+                                             (org-get-heading t t t t)
+                                             (org-get-tags)
+                                             (org-element-property :priority (org-element-at-point))
+                                             (org-entry-get nil "EFFORT"))
+                              :from (org-agenda-files)
+                              :where '(and (scheduled :on today)
+                                           (not (tags "no_announce")))
+                              :order-by '(priority)))
+             ;; Get completed tasks from previous workday
+             (completed-tasks (org-ql-query
+                                :select '(list (org-get-category)
+                                               (org-get-heading t t t t)
+                                               (org-get-tags)
+                                               (org-element-property :priority (org-element-at-point))
+                                               (org-entry-get nil "EFFORT"))
+                                :from (org-agenda-files)
+                                :where `(and (closed :on ,prev-workday)
+                                             (not (tags "no_announce")))
+                                :order-by '(priority)))
+             (message-text
+              (with-temp-buffer
+                (insert (format
+                         my/standup-template
+                         (if completed-tasks
+                             (mapconcat #'my/format-task completed-tasks "")
+                           "\n• _No tasks completed_\n")
+                         (if planned-tasks
+                             (mapconcat #'my/format-task planned-tasks "")
+                           "\n• _No tasks scheduled_\n")))
+                (buffer-string))))
+        (kill-new message-text)
+        (message "Standup message copied to clipboard!")
+        (with-current-buffer (get-buffer-create "*Standup Preview*")
+          (erase-buffer)
+          (insert message-text)
+          (switch-to-buffer-other-window (current-buffer)))))
+
+    (defun my/insert-standup-message ()
+      "Insert the standup message at point."
+      (interactive)
+      (let ((message-text (with-current-buffer "*Standup Preview*"
+                            (buffer-string))))
+        (insert message-text)))
     ) ;; org-mode eval after load end
   ;;;;;;;;;;;; org-mode end
 
