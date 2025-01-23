@@ -76,6 +76,9 @@ zi snippet OMZP::vi-mode
 # fzf
 zi snippet OMZP::fzf
 
+# safe-paste, prevent code pasted from running
+zi snippet OMZP::safe-paste
+
 # fzf ssh
 zinit light sunlei/zsh-ssh
 
