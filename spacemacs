@@ -836,6 +836,13 @@ you should place you code here."
     (defun my/org-agenda-skip-scheduled ()
       (org-agenda-skip-entry-if 'scheduled 'deadline 'regexp "\n]+>"))
 
+    ;; (setq org-agenda-prefix-format
+    ;;       '((agenda . "%t %i %b")
+    ;;         (todo . " %i %b")
+    ;;         (tags . " %i %b")
+    ;;         (search . " %i %b")))
+
+
     (setq org-agenda-custom-commands
           (quote (("N" "Notes" tags "NOTE"
                    ((org-agenda-overriding-header "Notes")
