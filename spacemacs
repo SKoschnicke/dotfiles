@@ -1099,6 +1099,15 @@ you should place you code here."
                       (member tag my/standup-hidden-tags))
                     tags))
 
+    (defun my/get-parent-context ()
+      "Get parent heading context if not at level 1.
+Returns nil if at level 1 or no parent found."
+      (save-excursion
+        (when (> (org-current-level) 1)
+          (org-up-heading-safe)
+          (when (> (org-current-level) 1)  ; Skip level 1 parents
+            (org-get-heading t t t t)))))
+
     (defun my/format-task (task)
       "Format a single TASK for display."
       (let* ((category (nth 0 task))
@@ -1106,14 +1115,18 @@ you should place you code here."
              (tags (my/filter-tags (nth 2 task)))
              (priority (nth 3 task))
              (effort (nth 4 task))
+             (parent (nth 5 task))
              (priority-str (if priority (format "[%s] " priority) ""))
              (effort-str (if effort (format " (%s)" effort) ""))
              (tag-string (when tags
                            (format " _%s_"
-                                   (string-join tags " ")))))
+                                   (string-join tags " "))))
+             (display-heading (if parent
+                                  (format "%s - %s" parent heading)
+                                heading)))
         (format "• %s%s%s%s\n"
                 priority-str
-                heading
+                display-heading
                 effort-str
                 (or tag-string ""))))
 
@@ -1124,18 +1137,26 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
              (days-to-subtract (if (= day-of-week 1) 3 1))) ; If Monday (1), subtract 3 days
         (ts-adjust 'day (- days-to-subtract) today)))
 
+    (defun my/get-date-range (date)
+      "Get start and end of DATE as ts objects."
+      (let ((start (ts-apply :hour 0 :minute 0 :second 0 date))
+            (end (ts-apply :hour 23 :minute 59 :second 59 date)))
+        (cons start end)))
+
     (defun my/generate-standup-message ()
       "Generate a Slack standup message based on today's scheduled tasks and yesterday's completed tasks."
       (interactive)
       (let* ((today (ts-now))
              (prev-workday (my/get-previous-workday today))
+             (prev-day-range (my/get-date-range prev-workday))
              ;; Get today's planned tasks
              (planned-tasks (org-ql-query
                               :select '(list (org-get-category)
                                              (org-get-heading t t t t)
                                              (org-get-tags)
                                              (org-element-property :priority (org-element-at-point))
-                                             (org-entry-get nil "EFFORT"))
+                                             (org-entry-get nil "EFFORT")
+                                             (my/get-parent-context))
                               :from (org-agenda-files)
                               :where '(and (scheduled :on today)
                                            (not (tags "no_announce")))
@@ -1146,10 +1167,12 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
                                                (org-get-heading t t t t)
                                                (org-get-tags)
                                                (org-element-property :priority (org-element-at-point))
-                                               (org-entry-get nil "EFFORT"))
+                                               (org-entry-get nil "EFFORT")
+                                               (my/get-parent-context))
                                 :from (org-agenda-files)
-                                :where `(and (closed :on ,prev-workday)
-                                             (not (tags "no_announce")))
+                                :where `(and (done)
+                                             (closed :from ,(car prev-day-range) :to ,(cdr prev-day-range))
+                                             (not (tags "no-announce")))
                                 :order-by '(priority)))
              (message-text
               (with-temp-buffer
