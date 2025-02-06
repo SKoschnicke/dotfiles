@@ -1095,7 +1095,7 @@ you should place you code here."
       :group 'org-standup)
 
     (defcustom my/standup-template
-      "💪 *Yesterday I completed:*\n%s\n🌅 *Today I will:*\n%s"
+      "Yesterday I completed:\n%s\nI also worked on:\n%s\nToday I will:\n%s"
       "Template for standup messages. First %s is for completed tasks, second for planned tasks."
       :type 'string
       :group 'org-standup)
@@ -1151,7 +1151,7 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
         (cons start end)))
 
     (defun my/generate-standup-message ()
-      "Generate a Slack standup message based on today's scheduled tasks and yesterday's completed tasks."
+      "Generate a Slack standup message based on today's scheduled tasks, yesterday's completed tasks, and clocked tasks."
       (interactive)
       (let* ((today (ts-now))
              (prev-workday (my/get-previous-workday today))
@@ -1181,6 +1181,18 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
                                              (closed :from ,(car prev-day-range) :to ,(cdr prev-day-range))
                                              (not (tags "no-announce")))
                                 :order-by '(priority)))
+             ;; Get clocked tasks from previous workday
+             (clocked-tasks (org-ql-query
+                              :select '(list (org-get-category)
+                                             (org-get-heading t t t t)
+                                             (org-get-tags)
+                                             (org-element-property :priority (org-element-at-point))
+                                             (org-entry-get nil "EFFORT")
+                                             (my/get-parent-context))
+                              :from (org-agenda-files)
+                              :where `(and (clocked :from ,(car prev-day-range) :to ,(cdr prev-day-range))
+                                           (not (tags "no-announce")))
+                              :order-by '(priority)))
              (message-text
               (with-temp-buffer
                 (insert (format
@@ -1190,7 +1202,10 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
                            "\n• _No tasks completed_\n")
                          (if planned-tasks
                              (mapconcat #'my/format-task planned-tasks "")
-                           "\n• _No tasks scheduled_\n")))
+                           "\n• _No tasks scheduled_\n")
+                         (if clocked-tasks
+                             (mapconcat #'my/format-task clocked-tasks "")
+                           "\n• _No tasks clocked_\n")))
                 (buffer-string))))
         (kill-new message-text)
         (message "Standup message copied to clipboard!")
@@ -1501,6 +1516,7 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
   (add-hook 'company-mode-hook
             (lambda()
               (global-set-key (kbd "S-TAB") 'company-complete)))
+  (setenv "PATH" (concat "/opt/homebrew/bin:" (getenv "PATH")))
 
   )
 
