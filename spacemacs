@@ -1096,7 +1096,7 @@ you should place you code here."
 
     (defcustom my/standup-template
       "Yesterday I completed:\n%s\nI also worked on:\n%s\nToday I will:\n%s"
-      "Template for standup messages. First %s is for completed tasks, second for planned tasks."
+      "Template for standup messages. First %s is for completed tasks, second for clocked tasks, third for planned tasks."
       :type 'string
       :group 'org-standup)
 
@@ -1200,12 +1200,12 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
                          (if completed-tasks
                              (mapconcat #'my/format-task completed-tasks "")
                            "\n• _No tasks completed_\n")
-                         (if planned-tasks
-                             (mapconcat #'my/format-task planned-tasks "")
-                           "\n• _No tasks scheduled_\n")
                          (if clocked-tasks
                              (mapconcat #'my/format-task clocked-tasks "")
-                           "\n• _No tasks clocked_\n")))
+                           "\n• _No tasks clocked_\n")
+                         (if planned-tasks
+                             (mapconcat #'my/format-task planned-tasks "")
+                           "\n• _No tasks scheduled_\n")))
                 (buffer-string))))
         (kill-new message-text)
         (message "Standup message copied to clipboard!")
