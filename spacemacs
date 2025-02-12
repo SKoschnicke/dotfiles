@@ -80,16 +80,13 @@ This function should only modify configuration layer settings."
           org-enable-org-journal-support t
           org-enable-asciidoc-support t
           org-enable-verb-support t
-          org-enable-valign f
+          org-enable-valign t
           org-enable-transclusion-support t
           org-enable-sticky-header t
-          org-enable-modern-support t
+          org-enable-modern-support f
           org-enable-hugo-support t
           )
      evil-snipe
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
      spell-checking
      syntax-checking
      version-control
@@ -347,7 +344,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-light
+   dotspacemacs-themes '(solarized-selenized-light
+                         solarized-light
                          solarized-dark
                          spacemacs-dark
                          spacemacs-light
@@ -692,7 +690,6 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
-  (require 'window-purpose) ;; workaround until https://github.com/bmag/emacs-purpose/issues/158 is fixed
   (require 'gptel)
   (require 'gptel-curl)
   (setq gptel-model "gpt-4"
@@ -732,9 +729,7 @@ you should place you code here."
   ;; put them outside of eval-after-load to have them set before org is loaded
   ;; at least org-todo-keywords won't work otherwise!
 
-  (add-hook 'org-mode-hook 'variable-pitch-mode)
   (add-hook 'org-mode-hook 'visual-line-mode)
-  (add-hook 'org-mode-hook 'mixed-pitch-mode)
   (add-hook 'org-mode-hook 'org-recur-mode)
   (add-hook 'after-init-hook 'org-roam-mode)
   ;; (add-hook 'org-clock-in-hook 'harvest)
@@ -1424,45 +1419,6 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
   (setq javascript-fmt-tool 'prettier)
   (setq typescript-fmt-tool 'prettier)
 
-  (let* ((variable-tuple
-          (cond ((x-list-fonts "ETBembo")         '(:font "ETBembo"))
-                ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
-                ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
-                ((x-list-fonts "Verdana")         '(:font "Verdana"))
-                ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
-                (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
-         (base-font-color     (face-foreground 'default nil 'default))
-         (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
-    )
-  ;; (custom-theme-set-faces
-  ;;  'user
-  ;;  '(org-level-8 ((t (,@headline ,@variable-tuple))))
-  ;;  '(org-level-7 ((t (,@headline ,@variable-tuple))))
-  ;;  '(org-level-6 ((t (,@headline ,@variable-tuple))))
-  ;;  '(org-level-5 ((t (,@headline ,@variable-tuple))))
-  ;;  '(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
-  ;;  '(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
-  ;;  '(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
-  ;;  '(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
-  ;;  '(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))
-  ;;  '(org-block ((t (:inherit fixed-pitch))))
-  ;;  '(org-code ((t (:inherit (shadow fixed-pitch)))))
-  ;;  '(org-document-info ((t (:foreground "dark orange"))))
-  ;;  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
-  ;;  '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
-  ;;  ;;'(org-link ((t (:foreground "royal blue" :underline t))))
-  ;;  '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-  ;;  '(org-property-value ((t (:inherit fixed-pitch))) t)
-  ;;  '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-  ;;  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
-  ;;  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
-  ;;  '(org-verbatim ((t (:inherit (shadow fixed-pitch) :height 1.2)))))
-
-  (custom-theme-set-faces
-   'user
-   '(variable-pitch ((t (:family "ETBembo" :height 130))))
-   '(fixed-pitch ((t ( :family "Victor Mono" :height 160)))))
-
   (custom-set-variables
    '(phpcbf-standard "PSR2")
    )
@@ -1668,13 +1624,6 @@ This function is called at the very end of Spacemacs initialization."
    '(send-mail-function 'smtpmail-send-it)
    '(warning-suppress-types '((comp)))
    '(writeroom-width 144))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(fixed-pitch ((t (:family "Victor Mono" :height 160))))
-   '(variable-pitch ((t (:family "ETBembo" :height 240)))))
   )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
