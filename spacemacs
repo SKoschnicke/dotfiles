@@ -1110,6 +1110,14 @@ Returns nil if at level 1 or no parent found."
           (when (> (org-current-level) 1)  ; Skip level 1 parents
             (org-get-heading t t t t)))))
 
+    (defun my/get-jira-link (tag)
+      "Convert a Jira tag (like FP_1234) into a Jira link with title.
+Returns nil if tag doesn't match Jira pattern."
+      (when (string-match "^FP_\\([0-9]+\\)$" tag)
+        (format "[Jira FP-%s](https://commercetools.atlassian.net/browse/FP-%s)"
+                (match-string 1 tag)
+                (match-string 1 tag))))
+
     (defun my/format-task (task)
       "Format a single TASK for display."
       (let* ((category (nth 0 task))
@@ -1120,17 +1128,18 @@ Returns nil if at level 1 or no parent found."
              (parent (nth 5 task))
              (priority-str (if priority (format "[%s] " priority) ""))
              (effort-str (if effort (format " (%s)" effort) ""))
-             (tag-string (when tags
-                           (format " _%s_"
-                                   (string-join tags " "))))
+             (jira-links (delq nil (mapcar #'my/get-jira-link tags)))
              (display-heading (if parent
                                   (format "%s - %s" parent heading)
-                                heading)))
+                                heading))
+             (jira-links-str (when jira-links
+                               (format " %s"
+                                       (string-join jira-links " ")))))
         (format "• %s%s%s%s\n"
                 priority-str
                 display-heading
                 effort-str
-                (or tag-string ""))))
+                (or jira-links-str ""))))
 
     (defun my/get-previous-workday (today)
       "Get the previous workday's ts object from TODAY.
