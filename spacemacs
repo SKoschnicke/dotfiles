@@ -1170,7 +1170,7 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
                                              (my/get-parent-context))
                               :from (org-agenda-files)
                               :where '(and (scheduled :on today)
-                                           (not (tags "no_announce")))
+                                           (not (tags "no_announce" "prv")))
                               :order-by '(priority)))
              ;; Get completed tasks from previous workday
              (completed-tasks (org-ql-query
@@ -1183,7 +1183,7 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
                                 :from (org-agenda-files)
                                 :where `(and (done)
                                              (closed :from ,(car prev-day-range) :to ,(cdr prev-day-range))
-                                             (not (tags "no-announce")))
+                                             (not (tags "no-announce" "prv")))
                                 :order-by '(priority)))
              ;; Get clocked tasks from previous workday
              (clocked-tasks (org-ql-query
@@ -1195,7 +1195,7 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
                                              (my/get-parent-context))
                               :from (org-agenda-files)
                               :where `(and (clocked :from ,(car prev-day-range) :to ,(cdr prev-day-range))
-                                           (not (tags "no-announce")))
+                                           (not (tags "no-announce" "prv")))
                               :order-by '(priority)))
              (message-text
               (with-temp-buffer
