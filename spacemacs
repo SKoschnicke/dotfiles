@@ -1154,49 +1154,54 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
             (end (ts-apply :hour 23 :minute 59 :second 59 date)))
         (cons start end)))
 
+    (defun my/task-filter-tags ()
+      "Return the list of tags that should exclude tasks from standup messages."
+      '("no_announce" "prv"))
+
     (defun my/generate-standup-message ()
       "Generate a Slack standup message based on today's scheduled tasks, yesterday's completed tasks, and clocked tasks."
       (interactive)
       (let* ((today (ts-now))
              (prev-workday (my/get-previous-workday today))
              (prev-day-range (my/get-date-range prev-workday))
+             (exclude-tags (my/task-filter-tags))
              ;; Get today's planned tasks
              (planned-tasks (org-ql-query
-                              :select '(list (org-get-category)
-                                             (org-get-heading t t t t)
-                                             (org-get-tags)
-                                             (org-element-property :priority (org-element-at-point))
-                                             (org-entry-get nil "EFFORT")
-                                             (my/get-parent-context))
-                              :from (org-agenda-files)
-                              :where '(and (scheduled :on today)
-                                           (not (tags "no_announce" "prv")))
-                              :order-by '(priority)))
+                             :select '(list (org-get-category)
+                                           (org-get-heading t t t t)
+                                           (org-get-tags)
+                                           (org-element-property :priority (org-element-at-point))
+                                           (org-entry-get nil "EFFORT")
+                                           (my/get-parent-context))
+                             :from (org-agenda-files)
+                             :where `(and (scheduled :on today)
+                                         (not (tags ,@exclude-tags)))
+                             :order-by '(priority)))
              ;; Get completed tasks from previous workday
              (completed-tasks (org-ql-query
-                                :select '(list (org-get-category)
-                                               (org-get-heading t t t t)
-                                               (org-get-tags)
-                                               (org-element-property :priority (org-element-at-point))
-                                               (org-entry-get nil "EFFORT")
-                                               (my/get-parent-context))
-                                :from (org-agenda-files)
-                                :where `(and (done)
-                                             (closed :from ,(car prev-day-range) :to ,(cdr prev-day-range))
-                                             (not (tags "no-announce" "prv")))
-                                :order-by '(priority)))
-             ;; Get clocked tasks from previous workday
-             (clocked-tasks (org-ql-query
-                              :select '(list (org-get-category)
+                               :select '(list (org-get-category)
                                              (org-get-heading t t t t)
                                              (org-get-tags)
                                              (org-element-property :priority (org-element-at-point))
                                              (org-entry-get nil "EFFORT")
                                              (my/get-parent-context))
-                              :from (org-agenda-files)
-                              :where `(and (clocked :from ,(car prev-day-range) :to ,(cdr prev-day-range))
-                                           (not (tags "no-announce" "prv")))
-                              :order-by '(priority)))
+                               :from (org-agenda-files)
+                               :where `(and (done)
+                                           (closed :from ,(car prev-day-range) :to ,(cdr prev-day-range))
+                                           (not (tags ,@exclude-tags)))
+                               :order-by '(priority)))
+             ;; Get clocked tasks from previous workday
+             (clocked-tasks (org-ql-query
+                             :select '(list (org-get-category)
+                                           (org-get-heading t t t t)
+                                           (org-get-tags)
+                                           (org-element-property :priority (org-element-at-point))
+                                           (org-entry-get nil "EFFORT")
+                                           (my/get-parent-context))
+                             :from (org-agenda-files)
+                             :where `(and (clocked :from ,(car prev-day-range) :to ,(cdr prev-day-range))
+                                         (not (tags ,@exclude-tags)))
+                             :order-by '(priority)))
              (message-text
               (with-temp-buffer
                 (insert (format
