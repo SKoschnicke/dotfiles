@@ -1081,6 +1081,16 @@ you should place you code here."
     (evil-leader/set-key "ao/" 'org-ql-find-in-agenda)
     (evil-leader/set-key "aS" 'my/generate-standup-message)
 
+
+    ;; Select candidates in minibuffer with M-j and move down one candidate so
+    ;; that multiple can be selected in a row
+    (with-eval-after-load 'embark
+      (define-key minibuffer-local-map (kbd "M-j")
+                  (lambda ()
+                    (interactive)
+                    (embark-select)
+                    (vertico-next 1))))
+
     (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
     (setq org-list-allow-alphabetical t)
 
