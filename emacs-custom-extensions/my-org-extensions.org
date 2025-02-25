@@ -28,7 +28,10 @@ Functions and key bindings for interacting with Jira from org-mode.
 
 ** Open Jira Ticket at Point
 
-This function looks for Jira ticket references in the current org section and opens them in a browser.
+This function looks for Jira ticket references in the current org section and
+opens them in a browser. I normally add a link to the ticket or a tag in the
+form =FP_1234= to the heading, but I want to be able to open the ticket in Jira
+from anywhere in the section.
 
 #+begin_src emacs-lisp
 ;; Function to open Jira ticket from org section
@@ -76,12 +79,22 @@ Functions and customizations for generating daily standup messages from org task
 
 ** Customization Variables
 
+*** Hidden tags
+
+These tags should not be included in the message. This is likely outdated as I
+don't include any tags in the message. Note that this is not to filter out items
+which are tagged with these tags.
+
 #+begin_src emacs-lisp
 (defcustom my/standup-hidden-tags '("REFILE" "gxp" "frontastic")
   "List of tags to hide in standup messages."
   :type '(repeat string)
   :group 'org-standup)
+#+end_src
 
+*** Template for the message
+
+#+begin_src emacs-lisp
 (defcustom my/standup-template
   "Yesterday I completed:\n%s\nI also worked on:\n%s\nToday I will:\n%s"
   "Template for standup messages. First %s is for completed tasks, second for clocked tasks, third for planned tasks."
@@ -238,6 +251,10 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
 
 Other utility functions for working with org mode.
 
+** Add arbitrary text to refile.org
+
+This can be called from an external script to append things to my refile.org. I
+use it together with Raycast to quickly capture todos when not in emacs.
 #+begin_src emacs-lisp
 (defun my/add-to-refile (text)
   "Add TEXT to the refile.org file."
