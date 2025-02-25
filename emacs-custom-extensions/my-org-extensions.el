@@ -43,7 +43,7 @@
       (message "No Jira ticket reference found in this section"))))
 
 ;; Bind the function to a key in org-mode
-(spacemacs/set-leader-keys-for-major-mode ('org-mode) "aj" 'my/org-open-jira-ticket-at-point)
+(spacemacs/set-leader-keys-for-major-mode 'org-mode "j" 'my/org-open-jira-ticket-at-point)
 
 (defcustom my/standup-hidden-tags '("REFILE" "gxp" "frontastic")
   "List of tags to hide in standup messages."

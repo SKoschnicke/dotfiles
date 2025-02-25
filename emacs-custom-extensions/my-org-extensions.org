@@ -33,44 +33,46 @@ opens them in a browser. I normally add a link to the ticket or a tag in the
 form =FP_1234= to the heading, but I want to be able to open the ticket in Jira
 from anywhere in the section.
 
+Press ˜SPC m j˜ to invoke the function.
+
 #+begin_src emacs-lisp
-;; Function to open Jira ticket from org section
-(defun my/org-open-jira-ticket-at-point ()
-  "Find Jira ticket reference in current org section and open it in browser.
-     Looks for:
-     - Tag in the format FP_1234
-     - Link in the format https://commercetools.atlassian.net/browse/FP-1234"
-  (interactive)
-  (let* ((jira-base-url "https://commercetools.atlassian.net/browse/")
-         (ticket-id nil))
+  ;; Function to open Jira ticket from org section
+  (defun my/org-open-jira-ticket-at-point ()
+    "Find Jira ticket reference in current org section and open it in browser.
+       Looks for:
+       - Tag in the format FP_1234
+       - Link in the format https://commercetools.atlassian.net/browse/FP-1234"
+    (interactive)
+    (let* ((jira-base-url "https://commercetools.atlassian.net/browse/")
+           (ticket-id nil))
 
-    ;; First check for tags on the current heading
-    (save-excursion
-      (org-back-to-heading t)
-      (let ((tags (org-get-tags)))
-        (when tags
-          (dolist (tag tags)
-            (when (string-match "FP_\\([0-9]+\\)" tag)
-              (setq ticket-id (concat "FP-" (match-string 1 tag))))))))
-
-    ;; If no tag found, look for URL in heading text and content
-    (when (not ticket-id)
+      ;; First check for tags on the current heading
       (save-excursion
         (org-back-to-heading t)
-        (let ((end-of-subtree (save-excursion (org-end-of-subtree) (point)))
-              (url-regexp "https://commercetools\\.atlassian\\.net/browse/\\([A-Z]+-[0-9]+\\)"))
-          (when (re-search-forward url-regexp end-of-subtree t)
-            (setq ticket-id (match-string 1))))))
+        (let ((tags (org-get-tags)))
+          (when tags
+            (dolist (tag tags)
+              (when (string-match "FP_\\([0-9]+\\)" tag)
+                (setq ticket-id (concat "FP-" (match-string 1 tag))))))))
 
-    ;; If ticket-id found, open in browser
-    (if ticket-id
-        (progn
-          (browse-url (concat jira-base-url ticket-id))
-          (message "Opening Jira ticket %s" ticket-id))
-      (message "No Jira ticket reference found in this section"))))
+      ;; If no tag found, look for URL in heading text and content
+      (when (not ticket-id)
+        (save-excursion
+          (org-back-to-heading t)
+          (let ((end-of-subtree (save-excursion (org-end-of-subtree) (point)))
+                (url-regexp "https://commercetools\\.atlassian\\.net/browse/\\([A-Z]+-[0-9]+\\)"))
+            (when (re-search-forward url-regexp end-of-subtree t)
+              (setq ticket-id (match-string 1))))))
 
-;; Bind the function to a key in org-mode
-(spacemacs/set-leader-keys-for-major-mode ('org-mode) "aj" 'my/org-open-jira-ticket-at-point)
+      ;; If ticket-id found, open in browser
+      (if ticket-id
+          (progn
+            (browse-url (concat jira-base-url ticket-id))
+            (message "Opening Jira ticket %s" ticket-id))
+        (message "No Jira ticket reference found in this section"))))
+
+  ;; Bind the function to a key in org-mode
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "j" 'my/org-open-jira-ticket-at-point)
 #+end_src
 
 * Standup Message Generator
