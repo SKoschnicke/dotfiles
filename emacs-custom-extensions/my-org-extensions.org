@@ -1,3 +1,17 @@
+#+TITLE: My Org Mode Extensions
+#+AUTHOR: Sven
+#+PROPERTY: header-args:emacs-lisp :tangle my-org-extensions.el :results silent
+
+* Introduction
+
+This file contains custom org-mode extensions to enhance productivity with org-mode in Emacs.
+The file is set up to automatically tangle to =my-org-extensions.el= when saved.
+
+* Auto-Tangle Configuration
+
+This section contains the code that enables automatic tangling whenever this file is saved.
+
+#+begin_src emacs-lisp
 ;; Auto-tangle on save
 (defun org-babel-auto-tangle ()
   "Automatically tangle org file when saved."
@@ -6,7 +20,17 @@
       (org-babel-tangle))))
 
 (add-hook 'after-save-hook 'org-babel-auto-tangle)
+#+end_src
 
+* Jira Integration
+
+Functions and key bindings for interacting with Jira from org-mode.
+
+** Open Jira Ticket at Point
+
+This function looks for Jira ticket references in the current org section and opens them in a browser.
+
+#+begin_src emacs-lisp
 ;; Function to open Jira ticket from org section
 (defun my/org-open-jira-ticket-at-point ()
   "Find Jira ticket reference in current org section and open it in browser.
@@ -44,7 +68,15 @@
 
 ;; Bind the function to a key in org-mode
 (spacemacs/set-leader-keys-for-major-mode ('org-mode) "aj" 'my/org-open-jira-ticket-at-point)
+#+end_src
 
+* Standup Message Generator
+
+Functions and customizations for generating daily standup messages from org tasks.
+
+** Customization Variables
+
+#+begin_src emacs-lisp
 (defcustom my/standup-hidden-tags '("REFILE" "gxp" "frontastic")
   "List of tags to hide in standup messages."
   :type '(repeat string)
@@ -55,7 +87,13 @@
   "Template for standup messages. First %s is for completed tasks, second for clocked tasks, third for planned tasks."
   :type 'string
   :group 'org-standup)
+#+end_src
 
+** Helper Functions
+
+These functions support the main standup generation functionality.
+
+#+begin_src emacs-lisp
 (defun my/filter-tags (tags)
   "Remove hidden tags from TAGS list."
   (cl-remove-if (lambda (tag)
@@ -118,7 +156,11 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
 (defun my/task-filter-tags ()
   "Return the list of tags that should exclude tasks from standup messages."
   '("no_announce" "prv"))
+#+end_src
 
+** Main Standup Functions
+
+#+begin_src emacs-lisp
 (defun my/generate-standup-message ()
   "Generate a Slack standup message based on today's scheduled tasks, yesterday's completed tasks, and clocked tasks."
   (interactive)
@@ -190,7 +232,13 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
   (let ((message-text (with-current-buffer "*Standup Preview*"
                         (buffer-string))))
     (insert message-text)))
+#+end_src
 
+* Utility Functions
+
+Other utility functions for working with org mode.
+
+#+begin_src emacs-lisp
 (defun my/add-to-refile (text)
   "Add TEXT to the refile.org file."
   (save-window-excursion
@@ -199,3 +247,4 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
     (insert "\n")
     (insert text)
     (save-buffer)))
+#+end_src
