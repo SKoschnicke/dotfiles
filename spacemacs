@@ -83,7 +83,7 @@ This function should only modify configuration layer settings."
           org-enable-valign t
           org-enable-transclusion-support t
           org-enable-sticky-header t
-          org-enable-modern-support f
+          org-enable-modern-support t
           org-enable-hugo-support t
           )
      evil-snipe
@@ -822,6 +822,7 @@ you should place you code here."
        (sql . nil)
        (verb . nil)
        (sqlite . t)
+       (plantuml . t)
        (js . t)))
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1177,41 +1178,41 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
              (exclude-tags (my/task-filter-tags))
              ;; Get today's planned tasks
              (planned-tasks (org-ql-query
-                             :select '(list (org-get-category)
-                                           (org-get-heading t t t t)
-                                           (org-get-tags)
-                                           (org-element-property :priority (org-element-at-point))
-                                           (org-entry-get nil "EFFORT")
-                                           (my/get-parent-context))
-                             :from (org-agenda-files)
-                             :where `(and (scheduled :on today)
-                                         (not (tags ,@exclude-tags)))
-                             :order-by '(priority)))
-             ;; Get completed tasks from previous workday
-             (completed-tasks (org-ql-query
-                               :select '(list (org-get-category)
+                              :select '(list (org-get-category)
                                              (org-get-heading t t t t)
                                              (org-get-tags)
                                              (org-element-property :priority (org-element-at-point))
                                              (org-entry-get nil "EFFORT")
                                              (my/get-parent-context))
-                               :from (org-agenda-files)
-                               :where `(and (done)
-                                           (closed :from ,(car prev-day-range) :to ,(cdr prev-day-range))
+                              :from (org-agenda-files)
+                              :where `(and (scheduled :on today)
                                            (not (tags ,@exclude-tags)))
-                               :order-by '(priority)))
+                              :order-by '(priority)))
+             ;; Get completed tasks from previous workday
+             (completed-tasks (org-ql-query
+                                :select '(list (org-get-category)
+                                               (org-get-heading t t t t)
+                                               (org-get-tags)
+                                               (org-element-property :priority (org-element-at-point))
+                                               (org-entry-get nil "EFFORT")
+                                               (my/get-parent-context))
+                                :from (org-agenda-files)
+                                :where `(and (done)
+                                             (closed :from ,(car prev-day-range) :to ,(cdr prev-day-range))
+                                             (not (tags ,@exclude-tags)))
+                                :order-by '(priority)))
              ;; Get clocked tasks from previous workday
              (clocked-tasks (org-ql-query
-                             :select '(list (org-get-category)
-                                           (org-get-heading t t t t)
-                                           (org-get-tags)
-                                           (org-element-property :priority (org-element-at-point))
-                                           (org-entry-get nil "EFFORT")
-                                           (my/get-parent-context))
-                             :from (org-agenda-files)
-                             :where `(and (clocked :from ,(car prev-day-range) :to ,(cdr prev-day-range))
-                                         (not (tags ,@exclude-tags)))
-                             :order-by '(priority)))
+                              :select '(list (org-get-category)
+                                             (org-get-heading t t t t)
+                                             (org-get-tags)
+                                             (org-element-property :priority (org-element-at-point))
+                                             (org-entry-get nil "EFFORT")
+                                             (my/get-parent-context))
+                              :from (org-agenda-files)
+                              :where `(and (clocked :from ,(car prev-day-range) :to ,(cdr prev-day-range))
+                                           (not (tags ,@exclude-tags)))
+                              :order-by '(priority)))
              (message-text
               (with-temp-buffer
                 (insert (format
@@ -1239,7 +1240,15 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
       (let ((message-text (with-current-buffer "*Standup Preview*"
                             (buffer-string))))
         (insert message-text)))
-    ) ;; org-mode eval after load end
+
+    (defun my/add-to-refile (text)
+      (save-window-excursion
+        (find-file (concat my-org-file-path "/refile.org"))
+        (goto-char (point-max))
+        (insert "\n")
+        (insert text)
+        (save-buffer)))
+    ) ;; Org-mode eval after load end
   ;;;;;;;;;;;; org-mode end
 
   ;;;;;;;;;;;;;;;;;;;;;;
@@ -1498,6 +1507,45 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
               (global-set-key (kbd "S-TAB") 'company-complete)))
   (setenv "PATH" (concat "/opt/homebrew/bin:" (getenv "PATH")))
 
+  ;; Function to open Jira ticket from org section
+  (defun my/org-open-jira-ticket-at-point ()
+    "Find Jira ticket reference in current org section and open it in browser.
+     Looks for:
+     - Tag in the format FP_1234
+     - Link in the format https://commercetools.atlassian.net/browse/FP-1234"
+    (interactive)
+    (let* ((jira-base-url "https://commercetools.atlassian.net/browse/")
+           (ticket-id nil))
+
+      ;; First check for tags on the current heading
+      (save-excursion
+        (org-back-to-heading t)
+        (let ((tags (org-get-tags)))
+          (when tags
+            (dolist (tag tags)
+              (when (string-match "FP_\\([0-9]+\\)" tag)
+                (setq ticket-id (concat "FP-" (match-string 1 tag))))))))
+
+      ;; If no tag found, look for URL in heading text and content
+      (when (not ticket-id)
+        (save-excursion
+          (org-back-to-heading t)
+          (let ((end-of-subtree (save-excursion (org-end-of-subtree) (point)))
+                (url-regexp "https://commercetools\\.atlassian\\.net/browse/\\([A-Z]+-[0-9]+\\)"))
+            (when (re-search-forward url-regexp end-of-subtree t)
+              (setq ticket-id (match-string 1))))))
+
+      ;; If ticket-id found, open in browser
+      (if ticket-id
+          (progn
+            (browse-url (concat jira-base-url ticket-id))
+            (message "Opening Jira ticket %s" ticket-id))
+        (message "No Jira ticket reference found in this section"))))
+
+  ;; Bind the function to a key in org-mode
+  (spacemacs/set-leader-keys-for-major-mode ('org-mode) "aj" 'my/org-open-jira-ticket-at-point)
+
+  ;; Rest of your user-config
   )
 
 (defun dotspacemacs/emacs-custom-settings ()
@@ -1540,8 +1588,8 @@ This function is called at the very end of Spacemacs initialization."
        ("FIXME" . "#dc752f")
        ("XXX+" . "#dc752f")
        ("\\?\\?\\?+" . "#dc752f")))
-   '(jiralib-url "https://commercetools.atlassian.net" t)
-   '(jiralib-user "63456be7754fb6b373b94dcc")
+   '(jiralib-url "https://commercetools.atlassian.net")
+   '(jiralib-user "sven.koschnicke@commercetools.com")
    '(js2-missing-semi-one-line-override t)
    '(js2-strict-missing-semi-warning nil)
    '(lsp-intelephense-php-version "8.1.0")
@@ -1648,6 +1696,12 @@ This function is called at the very end of Spacemacs initialization."
    '(send-mail-function 'smtpmail-send-it)
    '(warning-suppress-types '((comp)))
    '(writeroom-width 144))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   )
   )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
