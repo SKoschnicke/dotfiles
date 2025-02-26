@@ -119,6 +119,18 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
   "Return the list of tags that should exclude tasks from standup messages."
   '("no_announce" "prv"))
 
+(defun my/get-scheduled-time (pom)
+  "Get the scheduled time for point-or-marker POM.
+Returns a cons cell (HAS-TIME . TIMESTAMP) where HAS-TIME is t if the
+timestamp includes a time, and TIMESTAMP is the full time value for sorting."
+  (let* ((scheduled-time (org-entry-get pom "SCHEDULED"))
+         (ts (when scheduled-time
+               (org-timestamp-from-string scheduled-time))))
+    (if ts
+        (cons (org-timestamp-has-time-p ts)
+              (apply #'encode-time (org-parse-time-string scheduled-time)))
+      (cons nil nil))))
+
 (defun my/generate-standup-message ()
   "Generate a Slack standup message based on today's scheduled tasks, yesterday's completed tasks, and clocked tasks."
   (interactive)
@@ -133,11 +145,31 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
                                          (org-get-tags)
                                          (org-element-property :priority (org-element-at-point))
                                          (org-entry-get nil "EFFORT")
-                                         (my/get-parent-context))
+                                         (my/get-parent-context)
+                                         (my/get-scheduled-time (point)))
                           :from (org-agenda-files)
                           :where `(and (scheduled :on today)
-                                       (not (tags ,@exclude-tags)))
-                          :order-by '(priority)))
+                                       (not (tags ,@exclude-tags)))))
+         ;; Sort planned tasks by scheduled time
+         (sorted-planned-tasks
+          (sort planned-tasks
+                (lambda (a b)
+                  (let ((time-a (nth 6 a))
+                        (time-b (nth 6 b)))
+                    (cond
+                     ;; Both have times, compare timestamps
+                     ((and (car time-a) (car time-b))
+                      (time-less-p (cdr time-a) (cdr time-b)))
+                     ;; Only a has time, a comes first
+                     ((car time-a) t)
+                     ;; Only b has time, b comes first
+                     ((car time-b) nil)
+                     ;; Neither has time, use priority
+                     (t (let ((pri-a (nth 3 a))
+                              (pri-b (nth 3 b)))
+                          (if (and pri-a pri-b)
+                              (string< pri-a pri-b)
+                            (if pri-a t nil)))))))))
          ;; Get completed tasks from previous workday
          (completed-tasks (org-ql-query
                             :select '(list (org-get-category)
@@ -173,8 +205,9 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
                      (if clocked-tasks
                          (mapconcat #'my/format-task clocked-tasks "")
                        "\n• _No tasks clocked_\n")
-                     (if planned-tasks
-                         (mapconcat #'my/format-task planned-tasks "")
+                     (if sorted-planned-tasks
+                         (mapconcat (lambda (task)
+                                      (my/format-task (butlast task))) sorted-planned-tasks "")
                        "\n• _No tasks scheduled_\n")))
             (buffer-string))))
     (kill-new message-text)
@@ -199,3 +232,23 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
     (insert "\n")
     (insert text)
     (save-buffer)))
+
+(defun my/add-executable-to-exec-path (executable)
+  "Find EXECUTABLE using whereis and add its directory to exec-path."
+  (let* ((whereis-output (shell-command-to-string (concat "whereis " executable)))
+         (exec-file-path (when (string-match (concat "/" "[^ ]+" "/" executable) whereis-output)
+                          (match-string 0 whereis-output))))
+    (when exec-file-path
+      (let ((exec-dir (file-name-directory exec-file-path)))
+        (add-to-list 'exec-path exec-dir)
+        (message "Added %s to exec-path" exec-dir)))))
+
+(defun my/add-essential-executables-to-exec-path ()
+  "Add essential executables (git, node, sh) to exec-path."
+  (interactive)
+  (dolist (executable '("git" "node" "sh"))
+    (my/add-executable-to-exec-path executable)))
+
+;; Run when Emacs starts
+(eval-after-load 'org
+  '(my/add-essential-executables-to-exec-path))
