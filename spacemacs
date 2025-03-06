@@ -162,7 +162,7 @@ This function should only modify configuration layer settings."
      org-super-agenda
      yasnippet-snippets
      editorconfig
-     (copilot :location (recipe :fetcher github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+     ;(copilot :location (recipe :fetcher github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
      fireplace
      code-review
      elpher
@@ -1332,9 +1332,9 @@ you should place you code here."
     (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
     (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
     (define-key copilot-completion-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
-    (define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion-by-word))
+    (define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
+    (add-hook 'prog-mode-hook 'copilot-mode))
 
-  (add-hook 'prog-mode-hook 'copilot-mode)
 
   (defun file-notify-rm-all-watches ()
     "Remove all existing file notification watches from Emacs."

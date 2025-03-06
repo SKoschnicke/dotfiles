@@ -43,6 +43,63 @@ default-root-container-orientation = 'auto'
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
 automatically-unhide-macos-hidden-apps = false
 
+[workspace-to-monitor-force-assignment]
+     1 = 'main'
+     2 = 'main'
+     3 = 'main'
+     4 = 'main'
+     5 = 'main'
+     6 = 'main'
+     7 = 'main'
+     8 = 'main'
+     9 = 'main'
+    10 = 'secondary'
+
+[[on-window-detected]]
+    if.app-id = 'net.kovidgoyal.kitty'
+    if.during-aerospace-startup = true
+    run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+    if.app-id = 'org.mozilla.firefox'
+    if.during-aerospace-startup = true
+    run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+    if.app-id = 'com.gather.Gather'
+    if.during-aerospace-startup = true
+    run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+    if.app-id = 'org.chromium.Chromium'
+    if.during-aerospace-startup = true
+    run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+    if.app-name-regex-substring = 'Remeet'
+    if.during-aerospace-startup = true
+    run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+    if.app-id = 'org.gnu.Emacs'
+    if.during-aerospace-startup = true
+    run = 'move-node-to-workslace 5'
+
+[[on-window-detected]]
+    if.app-id = 'com.microsoft.VSCodeInsiders'
+    if.during-aerospace-startup = true
+    run = 'move-node-to-workspace 6'
+
+[[on-window-detected]]
+    if.app-id = 'com.tinyspeck.slackmacgap'
+    if.during-aerospace-startup = true
+    run = 'move-node-to-workspace 8'
+
+[[on-window-detected]]
+    if.app-id = 'com.spotify.client'
+    if.during-aerospace-startup = true
+    run = 'move-node-to-workspace 9'
+
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
