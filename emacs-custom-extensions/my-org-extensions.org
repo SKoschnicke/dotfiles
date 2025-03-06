@@ -52,8 +52,8 @@ Press ˜SPC m j˜ to invoke the function.
         (let ((tags (org-get-tags)))
           (when tags
             (dolist (tag tags)
-              (when (string-match "FP_\\([0-9]+\\)" tag)
-                (setq ticket-id (concat "FP-" (match-string 1 tag))))))))
+              (when (string-match "\\([A-Z]+\\)_\\([0-9]+\\)" tag)
+                (setq ticket-id (concat (match-string 1 tag) "-" (match-string 2 tag))))))))
 
       ;; If no tag found, look for URL in heading text and content
       (when (not ticket-id)
@@ -127,10 +127,12 @@ Returns nil if at level 1 or no parent found."
 (defun my/get-jira-link (tag)
   "Convert a Jira tag (like FP_1234) into a Jira link with title.
 Returns nil if tag doesn't match Jira pattern."
-  (when (string-match "^FP_\\([0-9]+\\)$" tag)
-    (format "[Jira FP-%s](https://commercetools.atlassian.net/browse/FP-%s)"
+  (when (string-match "^\\([A-Z]+\\)_\\([0-9]+\\)$" tag)
+    (format "[Jira %s-%s](https://commercetools.atlassian.net/browse/%s-%s)"
             (match-string 1 tag)
-            (match-string 1 tag))))
+            (match-string 2 tag)
+            (match-string 1 tag)
+            (match-string 2 tag))))
 
 (defun my/format-task (task)
   "Format a single TASK for display."
