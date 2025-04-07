@@ -83,7 +83,7 @@ automatically-unhide-macos-hidden-apps = false
 [[on-window-detected]]
     if.app-id = 'org.gnu.Emacs'
     if.during-aerospace-startup = true
-    run = 'move-node-to-workslace 5'
+    run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
     if.app-id = 'com.microsoft.VSCodeInsiders'

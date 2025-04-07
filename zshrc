@@ -271,3 +271,4 @@ bindkey '^xf' cdfrontastic
 alias lg=lazygit
 alias gama='GITHUB_TOKEN="$(gh auth token)" gama'
 alias pubip='curl -s ifconfig.me'
+alias m=mise

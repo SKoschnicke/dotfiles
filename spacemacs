@@ -160,9 +160,10 @@ This function should only modify configuration layer settings."
      mixed-pitch
      org-sidebar
      org-super-agenda
+     org-edna ;; for triggers
      yasnippet-snippets
      editorconfig
-     ;(copilot :location (recipe :fetcher github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+                                        ;(copilot :location (recipe :fetcher github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
      fireplace
      code-review
      elpher
@@ -171,6 +172,7 @@ This function should only modify configuration layer settings."
      (conventional-commit :location (recipe :fetcher github :repo "akirak/conventional-commit.el"))
      (jwt :location (recipe :fetcher github :repo "joshbax189/jwt-el"))
      exec-path-from-shell
+     ox-slack
      )
 
    ;; A list of packages that cannot be updated.
@@ -803,6 +805,8 @@ you should place you code here."
   (with-eval-after-load 'org
 
 
+    (org-edna-mode)
+
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((R . t)
@@ -1081,6 +1085,7 @@ you should place you code here."
     (evil-leader/set-key "aoq" 'org-ql-view-sidebar)
     (evil-leader/set-key "ao/" 'org-ql-find-in-agenda)
     (evil-leader/set-key "aS" 'my/generate-standup-message)
+    (evil-leader/set-key "gF" 'magit-pull-from-pushremote)
 
 
     ;; Select candidates in minibuffer with M-j and move down one candidate so
@@ -1401,7 +1406,7 @@ This function is called at the very end of Spacemacs initialization."
        ("FIXME" . "#dc752f")
        ("XXX+" . "#dc752f")
        ("\\?\\?\\?+" . "#dc752f")))
-   '(jiralib-url "https://commercetools.atlassian.net")
+   '(jiralib-url "https://commercetools.atlassian.net" t)
    '(jiralib-user "sven.koschnicke@commercetools.com")
    '(js2-missing-semi-one-line-override t)
    '(js2-strict-missing-semi-warning nil)
@@ -1499,7 +1504,7 @@ This function is called at the very end of Spacemacs initialization."
         (date priority)
         :super-groups org-super-agenda-groups)))
    '(package-selected-packages
-     '(magit-todos zpresent org-parser yasnippet-snippets yapfify yaml-mode yafolding xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree queue typo typescript-mode toc-org tide tagedit string-inflection sql-indent spotify spaceline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restclient-helm restart-emacs rbenv ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake inflections plantuml-mode pip-requirements phpunit php-extras persp-mode pcre2el paradox spinner ox-gfm origami orgit org-sidebar org-randomnote org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets open-junk-file ob-restclient ob-http ob-elixir nginx-mode neotree multi-term move-text mmm-mode mixed-pitch minitest markdown-toc markdown-mode magit-gitflow magit-popup magit magit-section macrostep lorem-ipsum livid-mode skewer-mode live-py-mode linum-relative key-chord json-mode json-snatcher js2-refactor multiple-cursors js2-mode js-doc jinja2-mode insert-shebang indent-guide hydra lv hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-spotify-plus multi helm-pydoc helm-projectile projectile helm-org-ql org-ql helm-org peg ov org-super-agenda ts helm-mode-manager helm-make helm-gitignore request git-modes helm-flx helm-descbinds helm-dash dash-docs helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio go-guru go-eldoc gnuplot git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter git-commit with-editor transient compat gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck-gometalinter flycheck-credo flycheck flx-ido flx fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav elfeed-web simple-httpd elfeed-org elfeed-goodies link-hint powerline popwin elfeed dumb-jump drupal-mode php-mode diminish diff-hl define-word dash-at-point cython-mode csv-mode copilot editorconfig company-web web-completion-data company-statistics company-shell company-restclient restclient know-your-http-well company-quickhelp pos-tip company-go go-mode company-box frame-local company-ansible company-anaconda column-enforce-mode coffee-mode clean-aindent-mode chruby bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol ht auto-dictionary auto-compile ansible-doc ansible anaconda-mode pythonic f alchemist s pkg-info company elixir-mode epl aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup solarized-theme dash))
+     '(ox-slack magit-todos zpresent org-parser yasnippet-snippets yapfify yaml-mode yafolding xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree queue typo typescript-mode toc-org tide tagedit string-inflection sql-indent spotify spaceline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restclient-helm restart-emacs rbenv ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails rake inflections plantuml-mode pip-requirements phpunit php-extras persp-mode pcre2el paradox spinner ox-gfm origami orgit org-sidebar org-randomnote org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets open-junk-file ob-restclient ob-http ob-elixir nginx-mode neotree multi-term move-text mmm-mode mixed-pitch minitest markdown-toc markdown-mode magit-gitflow magit-popup magit magit-section macrostep lorem-ipsum livid-mode skewer-mode live-py-mode linum-relative key-chord json-mode json-snatcher js2-refactor multiple-cursors js2-mode js-doc jinja2-mode insert-shebang indent-guide hydra lv hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-spotify-plus multi helm-pydoc helm-projectile projectile helm-org-ql org-ql helm-org peg ov org-super-agenda ts helm-mode-manager helm-make helm-gitignore request git-modes helm-flx helm-descbinds helm-dash dash-docs helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode google-translate golden-ratio go-guru go-eldoc gnuplot git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter git-commit with-editor transient compat gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck-gometalinter flycheck-credo flycheck flx-ido flx fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav elfeed-web simple-httpd elfeed-org elfeed-goodies link-hint powerline popwin elfeed dumb-jump drupal-mode php-mode diminish diff-hl define-word dash-at-point cython-mode csv-mode copilot editorconfig company-web web-completion-data company-statistics company-shell company-restclient restclient know-your-http-well company-quickhelp pos-tip company-go go-mode company-box frame-local company-ansible company-anaconda column-enforce-mode coffee-mode clean-aindent-mode chruby bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol ht auto-dictionary auto-compile ansible-doc ansible anaconda-mode pythonic f alchemist s pkg-info company elixir-mode epl aggressive-indent adoc-mode adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup solarized-theme dash))
    '(paradox-github-token t)
    '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
    '(php-mode-enable-project-coding-style t)
