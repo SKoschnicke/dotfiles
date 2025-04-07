@@ -45,6 +45,28 @@
 ;; Bind the function to a key in org-mode
 (spacemacs/set-leader-keys-for-major-mode 'org-mode "j" 'my/org-open-jira-ticket-at-point)
 
+(evil-leader/set-key "aoS" 'org-slack-export-to-clipboard-as-slack)
+
+(defun my/org-git-commit-day ()
+  "Commit all changes and push with the current day name as commit message."
+  (interactive)
+  (let* ((day-names '("Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday"))
+         (current-day (nth (string-to-number (format-time-string "%w")) day-names))
+         (default-directory (or (magit-toplevel) default-directory)))
+
+    (if (not (magit-toplevel))
+        (message "Not in a git repository")
+      (progn
+        (message "Committing changes with message: %s" current-day)
+        (magit-stage-modified t) ;; Stage all modified files
+        (magit-commit-create (list "-m" current-day))
+        (when (magit-get-current-branch)
+          (magit-push-current-to-pushremote nil))
+        (message "Successfully committed and pushed with message: %s" current-day)))))
+
+;; Bind the function to a key in org-mode
+(spacemacs/set-leader-keys-for-major-mode 'org-mode "g c" 'my/org-git-commit-day)
+
 (defcustom my/standup-hidden-tags '("REFILE" "gxp" "frontastic")
   "List of tags to hide in standup messages."
   :type '(repeat string)

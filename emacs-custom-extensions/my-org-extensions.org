@@ -75,6 +75,76 @@ Press ˜SPC m j˜ to invoke the function.
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "j" 'my/org-open-jira-ticket-at-point)
 #+end_src
 
+* Slack Integration
+:PROPERTIES:
+:ID:       67C86450-E260-4570-97C8-B16317F9957E
+:END:
+[2025-04-02 Wed 10:54]
+
+This lets me copy anything from org mode formatted for Slack to the clipboard. Press Ctrl Shift F (Linux/Windows) or ⌘ Shift F (Mac) to apply formats.
+
+#+begin_src emacs-lisp
+  (evil-leader/set-key "aoS" 'org-slack-export-to-clipboard-as-slack)
+#+end_src
+* Git Integration
+
+Functions for automating Git operations from org-mode.
+
+** Auto-commit with Day Name
+
+This function automatically commits all changes in the current repository and pushes them,
+using the current day name (e.g., "Monday") as the commit message.
+
+I end the work day with committing and pushing the org files to a Git repository
+(I sync using that way). While it is fast using magit directly, I can automate
+it. Then I don't have to type the commit message every time.
+
+#+begin_src emacs-lisp
+(defun my/org-git-commit-day ()
+  "Commit all changes and push with the current day name as commit message."
+  (interactive)
+  (let* ((day-names '("Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday"))
+         (current-day (nth (string-to-number (format-time-string "%w")) day-names))
+         (default-directory (or (magit-toplevel) default-directory)))
+
+    (if (not (magit-toplevel))
+        (message "Not in a git repository")
+      (progn
+        (message "Committing changes with message: %s" current-day)
+        (magit-stage-modified t) ;; Stage all modified files
+        (magit-commit-create (list "-m" current-day))
+        (when (magit-get-current-branch)
+          (magit-push-current-to-pushremote nil))
+        (message "Successfully committed and pushed with message: %s" current-day)))))
+
+;; Bind the function to a key in org-mode
+(spacemacs/set-leader-keys-for-major-mode 'org-mode "g c" 'my/org-git-commit-day)
+#+end_src
+
+** Checkout branch belonging to current todo
+[2025-04-07 Mon 10:29]
+
+I have a property named =BRANCH= associated to some of my TODOs in org mode.
+This contains the branch name in which I'm working on this TODO. This function
+checks out this branch.
+
+#+begin_src elisp
+  (defun my/org-checkout-todo-branch ()
+    "Check out the git branch specified in the BRANCH property of the current org-mode TODO.
+  Uses magit for the checkout operation in the ~/development/frontastic directory."
+    (interactive)
+    (let ((branch (org-entry-get (point) "BRANCH"))
+          (project-dir "~/development/frontastic"))
+      (if branch
+          (progn
+            (message "Checking out branch: %s in %s" branch project-dir)
+            (let ((default-directory project-dir))
+              (magit-checkout branch)))
+        (message "No BRANCH property found at point"))))
+
+  (with-eval-after-load 'org
+    (spacemacs/set-leader-keys-for-major-mode 'org-mode "b" 'my/org-checkout-todo-branch))
+#+end_src
 * Standup Message Generator
 
 Functions and customizations for generating daily standup messages from org tasks.
@@ -329,4 +399,27 @@ didn't work.
 ;; Run when Emacs starts
 (eval-after-load 'org
   '(my/add-essential-executables-to-exec-path))
+#+end_src
+
+* Org-Edna extensions
+[2025-04-02 Wed 10:39]
+
+This lets me evaluate a named org-babel block when a heading is set to DONE.
+
+Add a trigger to a heading like this:
+#+begin_example
+:TRIGGER: self eval-babel!("office-hour-stats")
+#+end_example
+
+And have a named babel block in the content.
+
+#+begin_src elisp
+  (defun org-edna-action/eval-babel! (last-entry block-name)
+    "Execute the named Babel source block specified by BLOCK-NAME.
+  LAST-ENTRY is the marker for the current heading."
+    (save-excursion
+      (with-current-buffer (marker-buffer last-entry)
+        (goto-char last-entry)
+        (org-babel-goto-named-src-block block-name)
+        (org-babel-execute-src-block))))
 #+end_src
