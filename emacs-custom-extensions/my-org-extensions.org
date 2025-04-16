@@ -173,6 +173,12 @@ which are tagged with these tags.
   "Template for standup messages. First %s is for completed tasks, second for clocked tasks, third for planned tasks."
   :type 'string
   :group 'org-standup)
+
+(defcustom my/standup-monday-template
+  "Last week I completed:\n%s\nI also worked on:\n%s\nToday I will:\n%s"
+  "Template for Monday standup messages. First %s is for completed tasks, second for clocked tasks, third for planned tasks."
+  :type 'string
+  :group 'org-standup)
 #+end_src
 
 ** Helper Functions
@@ -235,6 +241,25 @@ If today is Monday, returns last Friday. Otherwise returns yesterday."
          (days-to-subtract (if (= day-of-week 1) 3 1))) ; If Monday (1), subtract 3 days
     (ts-adjust 'day (- days-to-subtract) today)))
 
+(defun my/get-previous-workweek-range (today)
+  "Get the date range for the previous work week (Mon-Fri) if TODAY is Monday.
+Otherwise, returns the previous day as a single-day range.
+Returns cons cell (start-date . end-date) as ts objects."
+  (let* ((day-of-week (ts-dow today)))
+    (if (= day-of-week 1) ; If Monday, get last week's work days (Mon-Fri)
+        (let* ((days-to-friday (- 3)) ; 3 days back from Monday to get to Friday
+               (days-to-monday (- 7)) ; 7 days back from Monday to get to last Monday
+               (last-friday (ts-adjust 'day days-to-friday today))
+               (last-monday (ts-adjust 'day days-to-monday today)))
+          (cons 
+           (ts-apply :hour 0 :minute 0 :second 0 last-monday)
+           (ts-apply :hour 23 :minute 59 :second 59 last-friday)))
+      ; For other days, just return previous day as a range
+      (let* ((yesterday (ts-adjust 'day -1 today)))
+        (cons
+         (ts-apply :hour 0 :minute 0 :second 0 yesterday)
+         (ts-apply :hour 23 :minute 59 :second 59 yesterday))))))
+
 (defun my/get-date-range (date)
   "Get start and end of DATE as ts objects."
   (let ((start (ts-apply :hour 0 :minute 0 :second 0 date))
@@ -265,8 +290,10 @@ timestamp includes a time, and TIMESTAMP is the full time value for sorting."
   "Generate a Slack standup message based on today's scheduled tasks, yesterday's completed tasks, and clocked tasks."
   (interactive)
   (let* ((today (ts-now))
-         (prev-workday (my/get-previous-workday today))
-         (prev-day-range (my/get-date-range prev-workday))
+         (day-of-week (ts-dow today))
+         (is-monday (= day-of-week 1))
+         (template (if is-monday my/standup-monday-template my/standup-template))
+         (prev-workday-range (my/get-previous-workweek-range today))
          (exclude-tags (my/task-filter-tags))
          ;; Get today's planned tasks
          (planned-tasks (org-ql-query
@@ -310,7 +337,7 @@ timestamp includes a time, and TIMESTAMP is the full time value for sorting."
                                            (my/get-parent-context))
                             :from (org-agenda-files)
                             :where `(and (done)
-                                         (closed :from ,(car prev-day-range) :to ,(cdr prev-day-range))
+                                         (closed :from ,(car prev-workday-range) :to ,(cdr prev-workday-range))
                                          (not (tags ,@exclude-tags)))
                             :order-by '(priority)))
          ;; Get clocked tasks from previous workday
@@ -322,16 +349,18 @@ timestamp includes a time, and TIMESTAMP is the full time value for sorting."
                                          (org-entry-get nil "EFFORT")
                                          (my/get-parent-context))
                           :from (org-agenda-files)
-                          :where `(and (clocked :from ,(car prev-day-range) :to ,(cdr prev-day-range))
+                          :where `(and (clocked :from ,(car prev-workday-range) :to ,(cdr prev-workday-range))
                                        (not (tags ,@exclude-tags)))
                           :order-by '(priority)))
          (message-text
           (with-temp-buffer
             (insert (format
-                     my/standup-template
+                     template
                      (if completed-tasks
                          (mapconcat #'my/format-task completed-tasks "")
-                       "\n• _No tasks completed_\n")
+                       (if is-monday
+                           "\n• _No tasks completed last week_\n"
+                         "\n• _No tasks completed yesterday_\n"))
                      (if clocked-tasks
                          (mapconcat #'my/format-task clocked-tasks "")
                        "\n• _No tasks clocked_\n")
@@ -353,6 +382,22 @@ timestamp includes a time, and TIMESTAMP is the full time value for sorting."
   (let ((message-text (with-current-buffer "*Standup Preview*"
                         (buffer-string))))
     (insert message-text)))
+
+(defun my/generate-standup-message-as-day (day-number)
+  "Generate a standup message as if today were the specified day.
+DAY-NUMBER is the day of week number (0=Sunday, 1=Monday, ..., 6=Saturday).
+This is useful for testing the Monday behavior on other days."
+  (interactive "nEnter day number (0=Sun, 1=Mon, ..., 6=Sat): ")
+  (let* ((today (ts-now))
+         (current-dow (ts-dow today))
+         (day-diff (- day-number current-dow))
+         (simulated-day (ts-adjust 'day day-diff today))
+         (ts-now-orig (symbol-function 'ts-now)))
+    ;; Temporarily override ts-now to return our simulated day
+    (cl-letf (((symbol-function 'ts-now) (lambda () simulated-day)))
+      (message "Generating standup message as if today were %s"
+               (nth day-number '("Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday")))
+      (my/generate-standup-message))))
 #+end_src
 
 * Utility Functions
