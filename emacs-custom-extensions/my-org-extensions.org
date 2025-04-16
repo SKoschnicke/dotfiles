@@ -128,19 +128,20 @@ I have a property named =BRANCH= associated to some of my TODOs in org mode.
 This contains the branch name in which I'm working on this TODO. This function
 checks out this branch.
 
-#+begin_src elisp
+#+begin_src emacs-lisp
   (defun my/org-checkout-todo-branch ()
     "Check out the git branch specified in the BRANCH property of the current org-mode TODO.
-  Uses magit for the checkout operation in the ~/development/frontastic directory."
+  Uses magit for the checkout operation in the ~/development/frontastic directory.
+  If no BRANCH property is found at point, recursively checks parent headings."
     (interactive)
-    (let ((branch (org-entry-get (point) "BRANCH"))
+    (let ((branch (org-entry-get (point) "BRANCH" t))  ; t means inherit from parents
           (project-dir "~/development/frontastic"))
       (if branch
           (progn
             (message "Checking out branch: %s in %s" branch project-dir)
             (let ((default-directory project-dir))
               (magit-checkout branch)))
-        (message "No BRANCH property found at point"))))
+        (message "No BRANCH property found in this heading or its parents"))))
 
   (with-eval-after-load 'org
     (spacemacs/set-leader-keys-for-major-mode 'org-mode "b" 'my/org-checkout-todo-branch))
