@@ -135,8 +135,8 @@ This function should only modify configuration layer settings."
                         persp-auto-save-fname "autosave"
                         persp-auto-save-opt 2
                         persp-nil-hidden t
-                        persp-nil-name "Default"
-                        persp-save-dir (concat my-sync-path "/emacs-perspectives/"))
+                        persp-nil-name "Default")
+     ;; persp-save-dir (concat my-sync-path "/emacs-perspectives/"))
      (llm-client :variables
                  llm-client-enable-gptel t)
      (nixos :variables
@@ -842,15 +842,29 @@ you should place you code here."
     ;;         (tags . " %i %b")
     ;;         (search . " %i %b")))
 
+    (defun my/cmp-date-property (prop)
+      "Compare two `org-mode' agenda entries, `A' and `B', by some date property.
+
+If a is before b, return -1. If a is after b, return 1. If they
+are equal return nil."
+      (lexical-let ((prop prop))
+        #'(lambda (a b)
+
+            (let* ((a-pos (get-text-property 0 'org-marker a))
+                   (b-pos (get-text-property 0 'org-marker b))
+                   (a-date (or (org-entry-get a-pos prop)
+                               (format "<%s>" (org-read-date t nil "now"))))
+                   (b-date (or (org-entry-get b-pos prop)
+                               (format "<%s>" (org-read-date t nil "now"))))
+                   (cmp (compare-strings a-date nil nil b-date nil nil))
+                   )
+              (if (eq cmp t) nil (signum cmp))
+              ))))
 
     (setq org-agenda-custom-commands
           (quote (("N" "Notes" tags "NOTE"
                    ((org-agenda-overriding-header "Notes")
                     (org-tags-match-list-sublevels t)))
-                  ;; ("h" "Habits" tags-todo "STYLE=\"habit\""
-                  ;;  ((org-agenda-overriding-header "Habits")
-                  ;;   (org-agenda-sorting-strategy
-                  ;;    '(todo-state-down effort-up category-keep))))
                   ("A" "Agenda"
                    ((agenda "" ((org-agenda-span 'day)
                                 (org-agenda-start-day "0d")
@@ -884,44 +898,66 @@ you should place you code here."
                                 ))
                     )
                    )
-                  ("t" todo-tree "TODO")
-                  ("T" tags-todo "/TODO|NEXT" ((org-agenda-todo-ignore-scheduled 'future)
-                                               (org-agenda-tags-todo-honor-ignore-options t)
-                                               (org-agenda-todo-list-sublevels t)))
-                  ("s" todo-tree "STARTED")
-                  ("w" todo-tree "WAITING")
-                  ("R" tags "REFILE")
-                  ("o" tags-todo "-pav-swc-gxp/TODO")
-                  ("S" tags-todo "sprint/TODO")
+                  ("r" "Items to refile" tags "REFILE")
                   ("p" . "Project Agendas")
 
 
-                  ("pp" "Perfavo" ((tags-todo "pav/STARTED" ((org-agenda-overriding-header "Started Tasks")))
-                                   (tags-todo "pav/NEXT" ((org-agenda-overriding-header "Next Tasks")))
-                                   (tags-todo "pav/WAITING" ((org-agenda-overriding-header "Waiting")))
-                                   (tags-todo "pav/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
-                                   ))
+                  ("pc" "commercetools" ((tags-todo "frontastic/STARTED" ((org-agenda-overriding-header "Started Tasks")))
+                                         (tags-todo "frontastic/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                                         (tags-todo "frontastic/WAITING" ((org-agenda-overriding-header "Waiting")))
+                                         (tags-todo "frontastic/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
+                                         ))
                   ("ps" "Software-Challenge" ((tags-todo "swc/STARTED" ((org-agenda-overriding-header "Started Tasks")))
                                               (tags-todo "swc/NEXT" ((org-agenda-overriding-header "Next Tasks")))
                                               (tags-todo "swc/WAITING" ((org-agenda-overriding-header "Waiting")))
                                               (tags-todo "swc/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
                                               ))
-                  ("pg" "GFXpro" ((tags-todo "gxp/STARTED" ((org-agenda-overriding-header "Started Tasks")))
-                                  (tags-todo "gxp/NEXT" ((org-agenda-overriding-header "Next Tasks")))
-                                  (tags-todo "gxp/WAITING" ((org-agenda-overriding-header "Waiting")))
-                                  (tags-todo "gxp/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
+                  ("pg" "GFXpro" ((tags-todo "gxp-frontastic/STARTED" ((org-agenda-overriding-header "Started Tasks")))
+                                  (tags-todo "gxp-frontastic/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                                  (tags-todo "gxp-frontastic/WAITING" ((org-agenda-overriding-header "Waiting")))
+                                  (tags-todo "gxp-frontastic/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
                                   ))
+
+                  ("pp" "Privat" ((tags-todo "prv/STARTED" ((org-agenda-overriding-header "Started Tasks")))
+                                  (tags-todo "prv/NEXT" ((org-agenda-overriding-header "Next Tasks")))
+                                  (tags-todo "prv/WAITING" ((org-agenda-overriding-header "Waiting")))
+                                  (tags-todo "prv/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
+                                  ))
+
+                  ("w" . "Scheduled/deadline tasks for this week")
+                  ("ww" "Week tasks" agenda "Scheduled tasks for this week"
+                   ((org-agenda-use-time-grid nil)))
+                  ("w," "Work week tasks" agenda "Scheduled work tasks for this week"
+                   ((org-agenda-tag-filter-preset '("+frontastic"))
+                    (org-agenda-use-time-grid nil)))
+                  ("w?" "Non-work week tasks" agenda "Scheduled non-work tasks for this week"
+                   ((org-agenda-tag-filter-preset '("-frontastic"))
+                    (org-agenda-use-time-grid nil)))
+
                   ;; Weekly Review block agenda
-                  ("r" . "Weekly Review")
-                  ("r1" "Get Clear: Collect loose materials and process Inbox"
+                  ("R" . "Weekly Review")
+                  ("R1" "Get Clear: Collect loose materials and process Inbox"
                    tags "+REFILE"
                    ((org-agenda-overriding-header "Inbox items to process:")
                     (org-agenda-prefix-format "")))
-                  ("r2" "Get Current: Review Next Actions\n    Archive completed actions, review for further action steps."
-                   (;(todo "DONE|DROPPED|COMPLETE" ((org-agenda-overriding-header "Done/Dropped Items (to archive):")
-                    ;;                               (org-agenda-cmp-user-defined (cmp-date-property "CLOSED"))
-                    ;;                               (org-agenda-sorting-strategy '(user-defined-up))))
-                    ;; (above gives error because cmp-date-property doesn't exist)
+                  ("R2" "Get Current: Review Next Actions\n    Archive completed actions, review for further action steps."
+                   ((todo "DONE|CANCELLED" ((org-agenda-overriding-header "Done/Cancelled Items older than a year (to archive):")
+                                            (org-agenda-cmp-user-defined (my/cmp-date-property "CLOSED"))
+                                            (org-agenda-sorting-strategy '(user-defined-up))
+                                            (org-agenda-skip-function
+                                             '(lambda ()
+                                                (let* ((closed (org-entry-get nil "CLOSED"))
+                                                       (closed-time (and closed
+                                                                         (and (string-match "\\[\\([0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}\\)" closed)
+                                                                              (org-time-string-to-time (match-string 1 closed)))))
+                                                       (current-time (current-time))
+                                                       (seconds-per-year (* 365 24 60 60))
+                                                       (year-ago (time-subtract current-time (seconds-to-time seconds-per-year))))
+                                                  (if (or (not closed-time)
+                                                          (time-less-p year-ago closed-time))
+                                                      (point-max) ;; skip this entry if it's newer than a year or has no closed date
+                                                    nil))))
+                                            ))
                     (tags-todo "-sm/NEXT" ((org-agenda-overriding-header "Next Actions:")
                                            (org-agenda-sorting-strategy '(time-up category-up alpha-up))
                                            (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))
@@ -929,7 +965,7 @@ you should place you code here."
                                            (org-agenda-sorting-strategy '(time-up category-up alpha-up))
                                            (org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled)))))
                    ((org-agenda-prefix-format "%-12:c ")))
-                  ("r3" "Get Current: Review Previous Calendar"
+                  ("R3" "Get Current: Review Previous Calendar\n    Capture loose ends, identify patterns, extract context for current work."
                    ((agenda "" ((org-agenda-start-day (concat "-" (number-to-string (+ 13 (nth 6 (decode-time)))) "d"))
                                 (org-agenda-span (+ 14 (nth 6 (decode-time))))
                                 (org-agenda-repeating-timestamp-show-all t)
