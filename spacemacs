@@ -861,6 +861,149 @@ are equal return nil."
               (if (eq cmp t) nil (signum cmp))
               ))))
 
+    (defun my/org-get-first-timestamp-in-entry (marker)
+      "Get the first plain timestamp in the entry at MARKER."
+      (let ((debug-buffer (get-buffer-create "*timestamp-debug*"))
+            (result nil))
+        (with-current-buffer debug-buffer
+          (goto-char (point-max))
+          (insert "\n\n--- New entry debugging ---\n"))
+
+        (with-current-buffer (marker-buffer marker)
+          (save-excursion
+            (goto-char (marker-position marker))
+            (let ((entry-title (org-get-heading t t t t))
+                  (entry-end (save-excursion (org-end-of-subtree t) (point))))
+
+              ;; Log entry information
+              (with-current-buffer debug-buffer
+                (insert (format "Entry: %s\n" entry-title))
+                (insert (format "Marker position: %d\n" (marker-position marker))))
+
+              ;; Skip the heading
+              (forward-line 1)
+              (with-current-buffer debug-buffer
+                (insert (format "After heading, point: %d, looking at: %s\n"
+                                (point)
+                                (buffer-substring-no-properties (point) (min (+ (point) 30) entry-end)))))
+
+              ;; Skip PROPERTIES or LOGBOOK drawers
+              (while (and (< (point) entry-end)
+                          (looking-at "^[ \t]*:\\(PROPERTIES\\|LOGBOOK\\):[ \t]*$"))
+                (with-current-buffer debug-buffer
+                  (insert (format "Found drawer: %s\n" (match-string 0))))
+
+                (if (not (re-search-forward "^[ \t]*:END:[ \t]*$" entry-end t))
+                    (progn
+                      (with-current-buffer debug-buffer
+                        (insert "No :END: tag found, moving to entry end\n"))
+                      (goto-char entry-end))
+                  (forward-line 1)
+                  (with-current-buffer debug-buffer
+                    (insert (format "After drawer, point: %d, looking at: %s\n"
+                                    (point)
+                                    (buffer-substring-no-properties (point) (min (+ (point) 30) entry-end)))))))
+
+              ;; Look for timestamp at current point
+              (if (and (< (point) entry-end)
+                       (looking-at org-ts-regexp-both))
+                  (progn
+                    (setq result (match-string 0))
+                    (with-current-buffer debug-buffer
+                      (insert (format "Found timestamp at point: %s\n" result))))
+
+                ;; If not found at immediate position, search through the entry
+                (let ((start-point (point)))
+                  (with-current-buffer debug-buffer
+                    (insert "No timestamp at immediate position, searching through entry...\n"))
+
+                  (while (and (< (point) entry-end)
+                              (not result))
+                    (when (looking-at org-ts-regexp-both)
+                      (setq result (match-string 0))
+                      (with-current-buffer debug-buffer
+                        (insert (format "Found timestamp during scan: %s at point %d\n"
+                                        result (point)))))
+                    (forward-line 1))
+
+                  (unless result
+                    (with-current-buffer debug-buffer
+                      (insert "No timestamp found in entry\n"))))))))
+
+        ;; Log the final result
+        (with-current-buffer debug-buffer
+          (insert (format "Final result: %s\n" (or result "nil"))))
+
+        result))
+
+    ;; Enhanced debugging version of the sort function
+    (defun my/org-entry-timestamp-sort (a b)
+      "Sort agenda items by the first timestamp in their entry text."
+      (let* ((debug-buffer (get-buffer-create "*timestamp-debug*"))
+             (ma (get-text-property 0 'org-marker a))
+             (mb (get-text-property 0 'org-marker b))
+             (title-a (and ma (with-current-buffer (marker-buffer ma)
+                                (save-excursion
+                                  (goto-char (marker-position ma))
+                                  (org-get-heading t t t t)))))
+             (title-b (and mb (with-current-buffer (marker-buffer mb)
+                                (save-excursion
+                                  (goto-char (marker-position mb))
+                                  (org-get-heading t t t t)))))
+             (ta (and ma (my/org-get-first-timestamp-in-entry ma)))
+             (tb (and mb (my/org-get-first-timestamp-in-entry mb)))
+             (result nil))
+
+        ;; Log comparison information
+        (with-current-buffer debug-buffer
+          (goto-char (point-max))
+          (insert "\n--- Comparing ---\n")
+          (insert (format "A: %s -> timestamp: %s\n" title-a (or ta "nil")))
+          (insert (format "B: %s -> timestamp: %s\n" title-b (or tb "nil"))))
+
+        (setq result
+              (cond
+               ((and ta tb)
+                (condition-case err
+                    (let ((time-a (org-time-string-to-time ta))
+                          (time-b (org-time-string-to-time tb))
+                          (comp-result nil))
+                      (setq comp-result (time-less-p time-b time-a))
+                      (with-current-buffer debug-buffer
+                        (insert (format "Comparing times: %s %s %s\n"
+                                        ta (if comp-result "<" ">=") tb)))
+                      comp-result)
+                  (error
+                   (with-current-buffer debug-buffer
+                     (insert (format "Error comparing times: %s\n" err)))
+                   (string< tb ta))))
+               (ta
+                (with-current-buffer debug-buffer
+                  (insert "Only A has timestamp, it comes first\n"))
+                t)
+               (tb
+                (with-current-buffer debug-buffer
+                  (insert "Only B has timestamp, it comes first\n"))
+                nil)
+               (t
+                (with-current-buffer debug-buffer
+                  (insert "Neither has timestamp, maintaining current order\n"))
+                nil)))
+
+        (with-current-buffer debug-buffer
+          (insert (format "Sort result: %s\n" result)))
+
+        result))
+
+    ;; Register the custom comparator
+    (setq org-agenda-cmp-user-defined #'my/org-entry-timestamp-sort)
+
+    (setq my/custom-agenda-common-settings
+          '((org-agenda-sorting-strategy '(priority-down user-defined-down))))
+
+    (setq my/week-agenda-common-settings
+          '((org-agenda-use-time-grid nil) (org-agenda-show-future-repeats nil)))
+
     (setq org-agenda-custom-commands
           (quote (("N" "Notes" tags "NOTE"
                    ((org-agenda-overriding-header "Notes")
@@ -902,15 +1045,16 @@ are equal return nil."
                   ("p" . "Project Agendas")
 
 
-                  ("pc" "commercetools" ((tags-todo "frontastic/STARTED" ((org-agenda-overriding-header "Started Tasks")))
-                                         (tags-todo "frontastic/NEXT" ((org-agenda-overriding-header "Next Tasks")))
-                                         (tags-todo "frontastic/WAITING" ((org-agenda-overriding-header "Waiting")))
-                                         (tags-todo "frontastic/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
+                  ;; I should make sure that there are always only a few items STARTED, like 5. These should be finished before starting anything else.
+                  ("pc" "commercetools" ((tags-todo "frontastic/STARTED" ((org-agenda-overriding-header "Started Tasks") ,@my/custom-agenda-common-settings))
+                                         (tags-todo "frontastic/NEXT" ((org-agenda-overriding-header "Next Tasks") ,@my/custom-agenda-common-settings))
+                                         (tags-todo "frontastic/WAITING" ((org-agenda-overriding-header "Waiting") ,@my/custom-agenda-common-settings))
+                                         (tags-todo "frontastic/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled) ,@my/custom-agenda-common-settings))
                                          ))
-                  ("ps" "Software-Challenge" ((tags-todo "swc/STARTED" ((org-agenda-overriding-header "Started Tasks")))
-                                              (tags-todo "swc/NEXT" ((org-agenda-overriding-header "Next Tasks")))
-                                              (tags-todo "swc/WAITING" ((org-agenda-overriding-header "Waiting")))
-                                              (tags-todo "swc/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
+                  ("ps" "Software-Challenge" ((tags-todo "swc/STARTED" ((org-agenda-overriding-header "Started Tasks") ,@my/custom-agenda-common-settings))
+                                              (tags-todo "swc/NEXT" ((org-agenda-overriding-header "Next Tasks") ,@my/custom-agenda-common-settings))
+                                              (tags-todo "swc/WAITING" ((org-agenda-overriding-header "Waiting") ,@my/custom-agenda-common-settings))
+                                              (tags-todo "swc/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled) ,@my/custom-agenda-common-settings))
                                               ))
                   ("pg" "GFXpro" ((tags-todo "gxp-frontastic/STARTED" ((org-agenda-overriding-header "Started Tasks")))
                                   (tags-todo "gxp-frontastic/NEXT" ((org-agenda-overriding-header "Next Tasks")))
@@ -926,13 +1070,11 @@ are equal return nil."
 
                   ("w" . "Scheduled/deadline tasks for this week")
                   ("ww" "Week tasks" agenda "Scheduled tasks for this week"
-                   ((org-agenda-use-time-grid nil)))
+                   (,@my/week-agenda-common-settings))
                   ("w," "Work week tasks" agenda "Scheduled work tasks for this week"
-                   ((org-agenda-tag-filter-preset '("+frontastic"))
-                    (org-agenda-use-time-grid nil)))
-                  ("w?" "Non-work week tasks" agenda "Scheduled non-work tasks for this week"
-                   ((org-agenda-tag-filter-preset '("-frontastic"))
-                    (org-agenda-use-time-grid nil)))
+                   ((org-agenda-tag-filter-preset '("+frontastic")) ,@my/week-agenda-common-settings))
+                  ("w." "Non-work week tasks" agenda "Scheduled non-work tasks for this week"
+                   ((org-agenda-tag-filter-preset '("-frontastic")) ,@my/week-agenda-common-settings))
 
                   ;; Weekly Review block agenda
                   ("R" . "Weekly Review")
