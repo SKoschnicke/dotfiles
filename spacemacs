@@ -939,6 +939,7 @@ are equal return nil."
     ;; Enhanced debugging version of the sort function
     (defun my/org-entry-timestamp-sort (a b)
       "Sort agenda items by the first timestamp in their entry text."
+      (message "DEBUG: my/org-entry-timestamp-sort called with %s and %s" a b)
       (let* ((debug-buffer (get-buffer-create "*timestamp-debug*"))
              (ma (get-text-property 0 'org-marker a))
              (mb (get-text-property 0 'org-marker b))
@@ -959,7 +960,9 @@ are equal return nil."
           (goto-char (point-max))
           (insert "\n--- Comparing ---\n")
           (insert (format "A: %s -> timestamp: %s\n" title-a (or ta "nil")))
-          (insert (format "B: %s -> timestamp: %s\n" title-b (or tb "nil"))))
+          (insert (format "B: %s -> timestamp: %s\n" title-b (or tb "nil")))
+          (display-buffer debug-buffer)
+          )
 
         (setq result
               (cond
