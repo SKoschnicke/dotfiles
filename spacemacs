@@ -1078,6 +1078,8 @@ are equal return nil."
                    ((org-agenda-tag-filter-preset '("+frontastic")) ,@my/week-agenda-common-settings))
                   ("w." "Non-work week tasks" agenda "Scheduled non-work tasks for this week"
                    ((org-agenda-tag-filter-preset '("-frontastic")) ,@my/week-agenda-common-settings))
+                  ("wp" "Private week tasks" agenda "Scheduled non-work tasks for this week"
+                   ((org-agenda-tag-filter-preset '("+prv")) ,@my/week-agenda-common-settings))
 
                   ;; Weekly Review block agenda
                   ("R" . "Weekly Review")
