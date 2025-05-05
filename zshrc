@@ -227,8 +227,8 @@ alias mp=multipass
 
 export AICHAT_CONFIG_DIR=$HOME/.config/aichat
 alias ai="aichat"
-alias aic="aichat --role coder"
-alias ais="aichat --role shell"
+alias aic="aichat --code"
+alias ais="aichat --execute"
 
 source $HOME/.config/broot/launcher/bash/br
 #bindkey -s "^J" "br^M"
