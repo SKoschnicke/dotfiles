@@ -936,6 +936,22 @@ are equal return nil."
 
         result))
 
+    (defun my/org-agenda-skip-tag (tag &optional others)
+      "Skip all entries that correspond to TAG.
+
+If OTHERS is true, skip all entries that do not correspond to TAG."
+      (let ((next-headline (save-excursion (or (outline-next-heading) (point-max))))
+            (current-headline (or (and (org-at-heading-p)
+                                       (point))
+                                  (save-excursion (org-back-to-heading)))))
+        (if others
+            (if (not (member tag (org-get-tags-at current-headline)))
+                next-headline
+              nil)
+          (if (member tag (org-get-tags-at current-headline))
+              next-headline
+            nil))))
+
     ;; Enhanced debugging version of the sort function
     (defun my/org-entry-timestamp-sort (a b)
       "Sort agenda items by the first timestamp in their entry text."
@@ -1071,6 +1087,23 @@ are equal return nil."
                                   (tags-todo "prv/TODO" ((org-agenda-overriding-header "Unscheduled Tasks") (org-agenda-skip-function 'my/org-agenda-skip-scheduled)))
                                   ))
 
+
+                  ("d" "Work tasks completed in the last 14 days"
+                   ((agenda ""
+                            ((org-agenda-start-day "-14d")
+                             (org-agenda-span 14)
+                             (org-agenda-start-on-weekday nil)
+                             (org-agenda-time-grid nil)
+                             (org-agenda-show-all-dates t)
+                             (org-agenda-entry-types '(:closed))
+                             (org-agenda-skip-function
+                              '(lambda ()
+                                 (or (org-agenda-skip-entry-if 'notregexp "\\* DONE")
+                                     (my/org-agenda-skip-tag "frontastic" 't))))
+                             (org-agenda-sorting-strategy '(time-down))
+                             (org-agenda-overriding-header "Work tasks completed in the last 14 days"))))
+                   ((org-agenda-compact-blocks t)))
+
                   ("w" . "Scheduled/deadline tasks for this week")
                   ("ww" "Week tasks" agenda "Scheduled tasks for this week"
                    (,@my/week-agenda-common-settings))
@@ -1078,7 +1111,7 @@ are equal return nil."
                    ((org-agenda-tag-filter-preset '("+frontastic")) ,@my/week-agenda-common-settings))
                   ("w." "Non-work week tasks" agenda "Scheduled non-work tasks for this week"
                    ((org-agenda-tag-filter-preset '("-frontastic")) ,@my/week-agenda-common-settings))
-                  ("wp" "Private week tasks" agenda "Scheduled non-work tasks for this week"
+                  ("wp" "Private week tasks" agenda "Scheduled private tasks for this week"
                    ((org-agenda-tag-filter-preset '("+prv")) ,@my/week-agenda-common-settings))
 
                   ;; Weekly Review block agenda
