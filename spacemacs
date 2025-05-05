@@ -1089,7 +1089,7 @@ If OTHERS is true, skip all entries that do not correspond to TAG."
 
 
                   ("d" "Work tasks completed in the last 14 days"
-                   ((agenda ""
+                   ((agenda "Work tasks completed in the last 14 days"
                             ((org-agenda-start-day "-14d")
                              (org-agenda-span 14)
                              (org-agenda-start-on-weekday nil)
@@ -1101,8 +1101,8 @@ If OTHERS is true, skip all entries that do not correspond to TAG."
                                  (or (org-agenda-skip-entry-if 'notregexp "\\* DONE")
                                      (my/org-agenda-skip-tag "frontastic" 't))))
                              (org-agenda-sorting-strategy '(time-down))
-                             (org-agenda-overriding-header "Work tasks completed in the last 14 days"))))
-                   ((org-agenda-compact-blocks t)))
+                             (org-agenda-overriding-header "Work tasks completed in the last 14 days")
+                             (org-agenda-compact-blocks t)))))
 
                   ("w" . "Scheduled/deadline tasks for this week")
                   ("ww" "Week tasks" agenda "Scheduled tasks for this week"
