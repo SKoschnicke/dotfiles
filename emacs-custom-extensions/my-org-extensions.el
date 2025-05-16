@@ -166,7 +166,7 @@ Returns cons cell (start-date . end-date) as ts objects."
                (days-to-monday (- 7)) ; 7 days back from Monday to get to last Monday
                (last-friday (ts-adjust 'day days-to-friday today))
                (last-monday (ts-adjust 'day days-to-monday today)))
-          (cons 
+          (cons
            (ts-apply :hour 0 :minute 0 :second 0 last-monday)
            (ts-apply :hour 23 :minute 59 :second 59 last-friday)))
       ; For other days, just return previous day as a range
@@ -309,6 +309,38 @@ This is useful for testing the Monday behavior on other days."
       (message "Generating standup message as if today were %s"
                (nth day-number '("Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday")))
       (my/generate-standup-message))))
+
+(defun my/org-count-todays-tasks ()
+  "Count tasks completed and created today.
+Returns a string with the statistics."
+  (let* ((today (format-time-string "%Y-%m-%d"))
+         (done-count 0)
+         (created-count 0))
+
+    ;; Search for all tasks marked DONE today
+    (org-map-entries
+     (lambda ()
+       (let ((closed (org-entry-get (point) "CLOSED")))
+         (when (and closed (string-match today closed))
+           (setq done-count (1+ done-count)))))
+     "TODO=\"DONE\"" 'agenda)
+
+    ;; Search for all tasks created today
+    (org-map-entries
+     (lambda ()
+       (save-excursion
+         (let ((end (save-excursion (outline-next-heading) (point)))
+               (timestamp-regex (concat "\\[" today)))
+           (forward-line 1)  ;; Move past the heading
+           (when (and (< (point) end)
+                      (re-search-forward timestamp-regex end t))
+             (setq created-count (1+ created-count))))))
+     "TODO={.+}" 'agenda)  ;; Match all TODO states
+
+    ;; Format and return the results
+    (format "- Tasks completed today: %d
+- New tasks created today: %d"
+            done-count created-count)))
 
 (defun my/add-to-refile (text)
   "Add TEXT to the refile.org file."
