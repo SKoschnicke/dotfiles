@@ -370,3 +370,12 @@ Returns a string with the statistics."
 ;; Run when Emacs starts
 (eval-after-load 'org
   '(my/add-essential-executables-to-exec-path))
+
+(defun org-edna-action/eval-babel! (last-entry block-name)
+  "Execute the named Babel source block specified by BLOCK-NAME.
+LAST-ENTRY is the marker for the current heading."
+  (save-excursion
+    (with-current-buffer (marker-buffer last-entry)
+      (goto-char last-entry)
+      (org-babel-goto-named-src-block block-name)
+      (org-babel-execute-src-block))))

@@ -694,10 +694,9 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
   (require 'gptel)
   (require 'gptel-curl)
-  (setq gptel-model "gpt-4"
-        gptel-default-mode "org-mode"
-        gptel-org-branching-context t
-        )
+  (setq gptel-model 'claude-3.7-sonnet
+        gptel-default-mode 'org-mode
+        gptel-backend (gptel-make-gh-copilot "Copilot"))
 
   (add-to-list 'gptel-directives '(performance-review . "Revise the given performance review text. The revised text should maintain the original meaning and key points, while improving the grammar, spelling, and alignment with Radical Candor principles."))
   ;; map SPC a g to gptel-send invoked with universal argument

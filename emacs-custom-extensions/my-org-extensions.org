@@ -512,7 +512,7 @@ Add a trigger to a heading like this:
 
 And have a named babel block in the content.
 
-#+begin_src elisp
+#+begin_src emacs-lisp
   (defun org-edna-action/eval-babel! (last-entry block-name)
     "Execute the named Babel source block specified by BLOCK-NAME.
   LAST-ENTRY is the marker for the current heading."
