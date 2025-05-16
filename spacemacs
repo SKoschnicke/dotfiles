@@ -163,7 +163,7 @@ This function should only modify configuration layer settings."
      org-edna ;; for triggers
      yasnippet-snippets
      editorconfig
-                                        ;(copilot :location (recipe :fetcher github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+     (copilot :location (recipe :fetcher github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
      fireplace
      code-review
      elpher
