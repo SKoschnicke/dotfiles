@@ -1373,6 +1373,11 @@ If OTHERS is true, skip all entries that do not correspond to TAG."
   (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
   (key-chord-mode 1)
 
+  ;; Force me to use jj instead of Escape
+  ;; but with my keyboard, ESC is actually better because it's easy to reach and only one keypress
+  ;; (define-key evil-insert-state-map (kbd "<escape>") (lambda ()
+  ;;                                                      (interactive)
+  ;;                                                      (message "Use jj instead of Escape!")))
 
   (setq rubocop-check-command "rubocop --format emacs")
 
@@ -1578,6 +1583,16 @@ If OTHERS is true, skip all entries that do not correspond to TAG."
   (add-to-list 'load-path "~/.dotfiles/emacs-custom-extensions")
   (require 'my-org-extensions)
 
+
+  ;; avy uses highlight colors which are unusable with my theme
+  (with-eval-after-load 'avy
+    (custom-set-faces
+     '(avy-lead-face ((t (:foreground "#002b36" :background "#dc322f"))))   ;; dark on red
+     '(avy-lead-face-0 ((t (:foreground "#002b36" :background "#268bd2")))) ;; dark on blue
+     '(avy-lead-face-1 ((t (:foreground "#002b36" :background "#859900")))) ;; dark on green
+     '(avy-lead-face-2 ((t (:foreground "#002b36" :background "#6c71c4")))) ;; dark on violet
+     )
+    )
   ;; Rest of your user-config
   )
 
