@@ -60,8 +60,8 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t
                       auto-completion-return-key-behavior nil
-                      auto-completion-tab-key-behavior 'cycle
-                      auto-completion-complete-with-key-sequence "jk"
+                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-complete-with-key-sequence "kk"
                       auto-completion-complete-with-key-sequence-delay 0.1
                       auto-completion-private-snippets-directory "~/.dotfiles/snippets"
                       )
@@ -179,7 +179,9 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(
+                                    php-extras ; very old, can't get the PHP docs in JSON format anymore
+                                    )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
