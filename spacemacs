@@ -696,7 +696,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
   (require 'gptel)
   (require 'gptel-curl)
-  (setq gptel-model 'claude-3.7-sonnet
+  (setq gptel-model 'claude-sonnet-4
         gptel-default-mode 'org-mode
         gptel-backend (gptel-make-gh-copilot "Copilot"))
 
@@ -988,23 +988,31 @@ If OTHERS is true, skip all entries that do not correspond to TAG."
                     (let ((time-a (org-time-string-to-time ta))
                           (time-b (org-time-string-to-time tb))
                           (comp-result nil))
-                      (setq comp-result (time-less-p time-b time-a))
+                      (setq comp-result (cond
+                                         ((time-less-p time-a time-b) -1)
+                                         ((time-less-p time-b time-a) 1)
+                                         (t nil)))
                       (with-current-buffer debug-buffer
                         (insert (format "Comparing times: %s %s %s\n"
-                                        ta (if comp-result "<" ">=") tb)))
+                                        ta (cond ((= comp-result -1) "<")
+                                                 ((= comp-result 1) ">")
+                                                 (t "=")) tb)))
                       comp-result)
                   (error
                    (with-current-buffer debug-buffer
                      (insert (format "Error comparing times: %s\n" err)))
-                   (string< tb ta))))
+                   (cond
+                    ((string< ta tb) -1)
+                    ((string< tb ta) 1)
+                    (t nil)))))
                (ta
                 (with-current-buffer debug-buffer
                   (insert "Only A has timestamp, it comes first\n"))
-                t)
+                1)
                (tb
                 (with-current-buffer debug-buffer
                   (insert "Only B has timestamp, it comes first\n"))
-                nil)
+                -1)
                (t
                 (with-current-buffer debug-buffer
                   (insert "Neither has timestamp, maintaining current order\n"))
