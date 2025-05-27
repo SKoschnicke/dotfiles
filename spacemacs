@@ -1651,6 +1651,7 @@ This function is called at the very end of Spacemacs initialization."
    '(js2-missing-semi-one-line-override t)
    '(js2-strict-missing-semi-warning nil)
    '(lsp-intelephense-php-version "8.1.0")
+   '(mac-option-modifier '(:ordinary meta :function meta :mouse meta))
    '(mu4e-view-show-addresses t)
    '(mu4e-view-show-images t)
    '(native-comp-deferred-compilation-deny-list '(".*projectile.*"))
