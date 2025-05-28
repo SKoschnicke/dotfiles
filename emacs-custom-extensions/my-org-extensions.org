@@ -146,6 +146,57 @@ checks out this branch.
   (with-eval-after-load 'org
     (spacemacs/set-leader-keys-for-major-mode 'org-mode "b" 'my/org-checkout-todo-branch))
 #+end_src
+
+** Show flycheck list of errors for modified files
+
+I want to quickly check if there are any problems with the files I modifed before committing them.
+
+#+begin_src emacs-lisp
+  (defun magit-insert-flycheck-errors ()
+    "Insert flycheck errors for modified files in magit status buffer."
+    (when-let ((modified-files (magit-modified-files)))
+      (let ((all-errors '()))
+        ;; Collect errors from modified files
+        (dolist (file modified-files)
+          (let* ((full-path (expand-file-name file (magit-toplevel)))
+                 (buffer (find-buffer-visiting full-path)))
+            (when (and buffer (buffer-live-p buffer))
+              (with-current-buffer buffer
+                (when (and (bound-and-true-p flycheck-mode)
+                           flycheck-current-errors)
+                  (dolist (error flycheck-current-errors)
+                    (push (cons file error) all-errors)))))))
+
+        ;; Insert section if we have errors
+        (when all-errors
+          (magit-insert-section (flycheck-errors)
+            (magit-insert-heading "Flycheck errors in modified files:")
+            (dolist (file-error all-errors)
+              (let* ((file (car file-error))
+                     (error (cdr file-error))
+                     (line (flycheck-error-line error))
+                     (col (flycheck-error-column error))
+                     (level (flycheck-error-level error))
+                     (msg (flycheck-error-message error))
+                     (face (pcase level
+                             ('error 'flycheck-error)
+                             ('warning 'flycheck-warning)
+                             (_ 'flycheck-info))))
+                (magit-insert-section (flycheck-error error)
+                  (insert (format "  %s:%d:%d "
+                                  (propertize file 'face 'magit-filename)
+                                  line (or col 1)))
+                  (insert (propertize (format "%s" level) 'face face))
+                  (insert (format ": %s\n" msg)))))
+            (insert "\n"))))))
+
+  ;; Add the section to magit status
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-flycheck-errors
+                          'magit-insert-unpushed-to-upstream
+                          t)
+#+end_src
+
 * Standup Message Generator
 
 Functions and customizations for generating daily standup messages from org tasks.
