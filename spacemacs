@@ -142,6 +142,7 @@ This function should only modify configuration layer settings."
      (nixos :variables
             nixos-format-on-save t)
      (elfeed :variables rmh-elfeed-org-files (list "~/org/newsfeeds.org"))
+     themes-megapack ;; because I need solarized
      )
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
@@ -349,13 +350,9 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(solarized-selenized-light
-                         solarized-light
-                         solarized-dark
-                         spacemacs-dark
-                         spacemacs-light
-                         leuven
-                         monokai
-                         zenburn)
+                         solarized-selenized-dark
+                         solarized-selenized-black
+                         solarized-selenized-white)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',

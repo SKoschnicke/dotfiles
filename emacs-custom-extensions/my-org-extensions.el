@@ -362,9 +362,9 @@ Returns a string with the statistics."
         (message "Added %s to exec-path" exec-dir)))))
 
 (defun my/add-essential-executables-to-exec-path ()
-  "Add essential executables (git, node, sh) to exec-path."
+  "Add essential executables (git, node, sh, ispell) to exec-path."
   (interactive)
-  (dolist (executable '("git" "node" "sh"))
+  (dolist (executable '("git" "node" "sh" "ispell"))
     (my/add-executable-to-exec-path executable)))
 
 ;; Run when Emacs starts
@@ -379,3 +379,5 @@ LAST-ENTRY is the marker for the current heading."
       (goto-char last-entry)
       (org-babel-goto-named-src-block block-name)
       (org-babel-execute-src-block))))
+
+(provide 'my-org-extensions)
