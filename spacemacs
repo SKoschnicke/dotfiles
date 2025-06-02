@@ -1508,17 +1508,18 @@ If OTHERS is true, skip all entries that do not correspond to TAG."
   ;;(setq dotspacemacs-elpa-https nil)
 
 
-  (defun my-php-mode-setup ()
-    "My PHP-mode hook."
-    ;;(require 'flycheck-phpstan)
-    (flycheck-mode t)
-    (setq flycheck-checker-error-threshold 5000)
-    (setq phpstan-working-dir ".")
-    ;;(flycheck-add-next-checker 'phpstan 'php-phpcs)
-    (flycheck-add-next-checker 'php-phpcs)
-    )
+  ;; phpstan.el is very old, better use lsp
+  ;; (defun my-php-mode-setup ()
+  ;;   "My PHP-mode hook."
+  ;;   ;;(require 'flycheck-phpstan)
+  ;;   (flycheck-mode t)
+  ;;   (setq flycheck-checker-error-threshold 5000)
+  ;;   (setq phpstan-working-dir ".")
+  ;;   ;;(flycheck-add-next-checker 'phpstan 'php-phpcs)
+  ;;   (flycheck-add-next-checker 'php-phpcs)
+  ;;   )
 
-  (add-hook 'php-mode-hook 'my-php-mode-setup)
+  ;; (add-hook 'php-mode-hook 'my-php-mode-setup)
 
   (add-to-list 'projectile-project-root-files "go.mod")
   (add-to-list 'projectile-project-root-files "devbox.json")
