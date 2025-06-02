@@ -148,6 +148,9 @@ checks out this branch.
 #+end_src
 
 ** Show flycheck list of errors for modified files
+:PROPERTIES:
+:ID:       8FEDF343-9324-4F2C-8CAF-7069EFC7606F
+:END:
 
 I want to quickly check if there are any problems with the files I modifed before committing them.
 
@@ -190,11 +193,12 @@ I want to quickly check if there are any problems with the files I modifed befor
                   (insert (format ": %s\n" msg)))))
             (insert "\n"))))))
 
-  ;; Add the section to magit status
-  (magit-add-section-hook 'magit-status-sections-hook
-                          'magit-insert-flycheck-errors
-                          'magit-insert-unpushed-to-upstream
-                          t)
+  (with-eval-after-load 'magit
+    ;; Add the section to magit status
+    (magit-add-section-hook 'magit-status-sections-hook
+                            'magit-insert-flycheck-errors
+                            'magit-insert-unpushed-to-upstream
+                            t))
 #+end_src
 
 * Standup Message Generator

@@ -122,11 +122,12 @@ If no BRANCH property is found at point, recursively checks parent headings."
                 (insert (format ": %s\n" msg)))))
           (insert "\n"))))))
 
-;; Add the section to magit status
-(magit-add-section-hook 'magit-status-sections-hook
-                        'magit-insert-flycheck-errors
-                        'magit-insert-unpushed-to-upstream
-                        t)
+(with-eval-after-load 'magit
+  ;; Add the section to magit status
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-flycheck-errors
+                          'magit-insert-unpushed-to-upstream
+                          t))
 
 (defcustom my/standup-hidden-tags '("REFILE" "gxp" "frontastic")
   "List of tags to hide in standup messages."
