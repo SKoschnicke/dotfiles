@@ -416,6 +416,16 @@ Returns a string with the statistics."
 (eval-after-load 'org
   '(my/add-essential-executables-to-exec-path))
 
+(defun my-enable-lsp-for-visible-php-buffers (frame)
+  "Enable LSP mode for visible PHP buffers that don't have it active."
+  (dolist (window (window-list frame))
+    (with-current-buffer (window-buffer window)
+      (when (and (derived-mode-p 'php-mode)
+                 (not (bound-and-true-p lsp-mode)))
+        (lsp-deferred)))))
+
+(add-hook 'window-buffer-change-functions #'my-enable-lsp-for-visible-php-buffers)
+
 (defun org-edna-action/eval-babel! (last-entry block-name)
   "Execute the named Babel source block specified by BLOCK-NAME.
 LAST-ENTRY is the marker for the current heading."

@@ -555,6 +555,26 @@ didn't work.
   '(my/add-essential-executables-to-exec-path))
 #+end_src
 
+** Fix lsp mode for PHP
+[2025-06-02 Mon 14:53]
+
+Even though I configured lsp for PHP, I always manually have to ~M-x lsp~ when
+opening a PHP buffer. This snipped fixes it by enabling lsp mode after a buffer
+became visible (it doesn't work to add it to the php-mode-hook, likely because
+that is too early).
+
+#+begin_src emacs-lisp
+  (defun my-enable-lsp-for-visible-php-buffers (frame)
+    "Enable LSP mode for visible PHP buffers that don't have it active."
+    (dolist (window (window-list frame))
+      (with-current-buffer (window-buffer window)
+        (when (and (derived-mode-p 'php-mode)
+                   (not (bound-and-true-p lsp-mode)))
+          (lsp-deferred)))))
+
+  (add-hook 'window-buffer-change-functions #'my-enable-lsp-for-visible-php-buffers)
+#+end_src
+
 * Org-Edna extensions
 [2025-04-02 Wed 10:39]
 
