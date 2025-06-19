@@ -175,6 +175,9 @@ This function should only modify configuration layer settings."
      (jwt :location (recipe :fetcher github :repo "joshbax189/jwt-el"))
      exec-path-from-shell
      ox-slack
+     (aidermacs :variables
+                aidermacs-use-architect-mode t
+                aidermacs-default-model "sonnet")
      )
 
    ;; A list of packages that cannot be updated.
@@ -702,6 +705,8 @@ you should place you code here."
   ;; map SPC a g to gptel-send invoked with universal argument
   (spacemacs/set-leader-keys "ag" (lambda () (interactive) (gptel-send '(4))))
 
+  (spacemacs/set-leader-keys "aa" 'aidermacs-transient-menu)
+
   (when (string= system-name "sven-uni")
     (defconst my-sync-path "~/SpiderOak Hive"))
   (when (string= system-name "palanthas")
@@ -773,6 +778,7 @@ you should place you code here."
         org-confirm-babel-evaluate nil
         org-confirm-elisp-link-function nil
         org-confirm-shell-link-function t
+        org-expiry-inactive-timestamps t
         )
 
   ;; Refile targets include this file (5 levels deep) and any file contributing to the agenda (only 1 level, top level headlines)
