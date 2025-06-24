@@ -47,6 +47,111 @@
 
 (evil-leader/set-key "aoS" 'org-slack-export-to-clipboard-as-slack)
 
+;; Slack deep link conversion for org-mode
+;; This code converts Slack web URLs to slack:// deep links
+;; It then uses the "open" utility of macOS to directly send the deep link to
+;; the Slack app. This is way faster than using the browser.
+
+(defcustom slack-team-id nil
+  "Your Slack team ID (e.g., T12345678).
+You can find this in your Slack workspace settings or by checking
+the URL when you're logged into Slack web."
+  :type 'string
+  :group 'org-link)
+
+(defun slack-extract-team-id-from-url (url)
+  "Extract team ID from Slack URL if available, otherwise use slack-team-id."
+  (or slack-team-id
+      ;; Try to extract from URL - this is a fallback that may not always work
+      ;; You should set slack-team-id instead
+      (when (string-match "https://\\([^.]+\\)\\.slack\\.com" url)
+        (concat "T" (match-string 1 url)))))
+
+(defun slack-convert-url-to-deep-link (url)
+  "Convert a Slack web URL to a slack:// deep link."
+  (when (string-match "https://\\([^.]+\\)\\.slack\\.com/archives/\\([^/]+\\)\\(?:/p\\([0-9]+\\)\\)?" url)
+    (let* ((workspace (match-string 1 url))
+           (channel-id (match-string 2 url))
+           (message-ts (match-string 3 url))
+           (team-id (slack-extract-team-id-from-url url)))
+      (if team-id
+          (format "slack://channel?team=%s&id=%s" team-id channel-id)
+        (error "Slack team ID not configured. Please set slack-team-id variable")))))
+
+(defun slack-open-deep-link (url)
+  "Open Slack URL using deep link via native macOS open command."
+  (let ((deep-link (slack-convert-url-to-deep-link url)))
+    (if deep-link
+        (progn
+          (message "Opening Slack deep link: %s" deep-link)
+          (if (eq system-type 'darwin) ; macOS
+              ;; Use open -a Slack to explicitly open with Slack app
+              (start-process "slack-open" nil "open" "-a" "Slack" deep-link)
+            ;; Fallback for other systems
+            (browse-url deep-link)))
+      (error "Failed to convert Slack URL to deep link"))))
+
+(defun org-slack-link-open (path &optional arg)
+  "Open Slack links using deep links instead of browser."
+  (let ((url (if (string-match "^https?://" path)
+                 path
+               (concat "https://" path))))
+    (slack-open-deep-link url)))
+
+;; Register the custom link type
+(with-eval-after-load 'org
+  (org-link-set-parameters "slack"
+                           :follow #'org-slack-link-open))
+
+;; ;; Override the default https handler for slack.com URLs
+;; (defun org-slack-link-advice (orig-fun url &rest args)
+;;   "Advice to intercept Slack URLs and convert them to deep links."
+;;   (if (string-match "https://[^.]+\\.slack\\.com/" url)
+;;       (slack-open-deep-link url)
+;;     (apply orig-fun url args)))
+
+;; ;; Add advice to org-link-open to intercept Slack URLs
+;; (advice-add 'browse-url :around #'org-slack-link-advice)
+
+;; Add a custom protocol handler for existing https links
+(defun org-link-slack-handler (url &rest args)
+  "Handle Slack URLs by converting them to deep links."
+  (when (string-match "https://[^.]+\\.slack\\.com/" url)
+    (slack-open-deep-link url)
+    t)) ; Return t to indicate we handled it
+
+;; Register the handler
+(add-to-list 'browse-url-handlers '("slack\\.com" . org-link-slack-handler))
+
+;; Configuration helper function
+(defun slack-setup-team-id ()
+  "Interactive function to set up your Slack team ID."
+  (interactive)
+  (let ((team-id (read-string "Enter your Slack team ID (e.g., T12345678): ")))
+    (setq slack-team-id team-id)
+    (customize-save-variable 'slack-team-id team-id)
+    (message "Slack team ID set to: %s" team-id)))
+
+(defun slack-remove-deep-link-handling ()
+  "Remove all Slack deep link handling and restore default behavior."
+  (interactive)
+  ;; Remove the advice from browse-url
+  (advice-remove 'browse-url #'org-slack-link-advice)
+
+  ;; Remove the custom URL handler
+  (setq browse-url-handlers
+        (seq-remove (lambda (handler)
+                      (string-match-p "slack\\.com" (car handler)))
+                    browse-url-handlers))
+
+  ;; Remove the custom slack link type (this will reset it to default)
+  (org-link-set-parameters "slack" :follow nil)
+
+  ;; Optionally clear the team ID
+  (setq slack-team-id nil)
+
+  (message "Slack deep link handling removed. URLs will now open in browser."))
+
 (defun my/org-git-commit-day ()
   "Commit all changes and push with the current day name as commit message."
   (interactive)

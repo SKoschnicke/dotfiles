@@ -1644,7 +1644,7 @@ This function is called at the very end of Spacemacs initialization."
        ("FAIL" . "#f2241f") ("DONE" . "#86dc2f") ("NOTE" . "#b1951d")
        ("KLUDGE" . "#b1951d") ("HACK" . "#b1951d") ("TEMP" . "#b1951d")
        ("FIXME" . "#dc752f") ("XXX+" . "#dc752f") ("\\?\\?\\?+" . "#dc752f")))
-   '(jiralib-url "https://commercetools.atlassian.net")
+   '(jiralib-url "https://commercetools.atlassian.net" t)
    '(jiralib-user "sven.koschnicke@commercetools.com")
    '(js2-missing-semi-one-line-override t)
    '(js2-strict-missing-semi-warning nil)
@@ -1892,6 +1892,7 @@ This function is called at the very end of Spacemacs initialization."
        (javascript-backend . tern) (javascript-backend . lsp)))
    '(select-enable-primary t)
    '(send-mail-function 'smtpmail-send-it)
+   '(slack-team-id "T32RXMNLV")
    '(warning-suppress-types '((comp)))
    '(writeroom-width 144))
   (custom-set-faces
