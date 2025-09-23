@@ -718,6 +718,244 @@ And have a named babel block in the content.
         (org-babel-execute-src-block))))
 #+end_src
 
+* Gpt.el (LLM) customizations
+[2025-09-19 Fri 11:49]
+
+** Additional directives (system prompts)
+[2025-09-19 Fri 11:50]
+
+#+begin_src emacs-lisp
+  (add-to-list 'gptel-directives
+    '(performance-review .
+      "Revise the given performance review text. The revised text should maintain the original meaning and key points, while improving the grammar, spelling, and alignment with Radical Candor principles."
+     )
+    '(emacs-configurator .
+      "You are an expert emacs user. I'm asking questions about customizing my emacs instance by modifying configuration (emacs-lisp code) or understanding how parts of emacs work. I'm a professional developer, I know how to program and have a good understanding of Linux, but I'm new in emacs lisp"
+     )
+  )
+#+end_src
+
+** Tool for searching org mode items
+:PROPERTIES:
+:ID:       A45EBF9C-6B1D-4B4D-BB70-41E2271E4985
+:END:
+[2025-09-23 Tue 16:32]
+
+#+begin_src emacs-lisp
+  (gptel-make-tool
+   :name "search_org_items"
+   :function (lambda (query &optional scope)
+               (require 'org-ql)
+               (let ((search-scope (or scope "agenda"))
+                     (buffers-or-files nil)
+                     (refile-files nil)
+                     (all-files nil)
+                     (results '())
+                     (start-time (current-time))
+                     (frontastic-query nil)
+                     (parsed-query nil))
+
+                 ;; Parse the query string into a sexp
+                 (condition-case err
+                     (setq parsed-query (read query))
+                   (error
+                    (message "[org-ql search] ERROR: Invalid Lisp syntax in query: %s" (error-message-string err))
+                    (error "Query must be valid Lisp syntax, e.g., '(todo)' or '(and (todo) (tags \"project\"))'")))
+
+                 ;; Create frontastic-filtered query
+                 (setq frontastic-query `(and (tags "frontastic") ,parsed-query))
+
+                 ;; Log the original and modified query parameters
+                 (message "[org-ql search] Original query: %s | Scope: %s" query search-scope)
+                 (message "[org-ql search] Frontastic query: %S" frontastic-query)
+                 (message "[org-ql search] Refile query: %S" parsed-query)
+
+                 (cond
+                  ((string= search-scope "current")
+                   ;; Search current buffer only
+                   (if (derived-mode-p 'org-mode)
+                       (progn
+                         (setq buffers-or-files (list (current-buffer)))
+                         (message "[org-ql search] Searching current buffer: %s" (buffer-name)))
+                     (error "Current buffer is not an org-mode buffer")))
+                  ((string= search-scope "agenda")
+                   ;; Search agenda files + refile.org
+                   (setq all-files (org-agenda-files))
+                   (setq refile-files (seq-filter (lambda (file)
+                                                    (string-match-p "refile\\.org$" file))
+                                                  all-files))
+                   (setq buffers-or-files all-files)
+                   (message "[org-ql search] Searching %d agenda files (including %d refile.org files): %s"
+                            (length buffers-or-files)
+                            (length refile-files)
+                            (mapconcat 'file-name-nondirectory buffers-or-files ", ")))
+                  (t
+                   ;; Search all org files (default to agenda files)
+                   (setq all-files (org-agenda-files))
+                   (setq refile-files (seq-filter (lambda (file)
+                                                    (string-match-p "refile\\.org$" file))
+                                                  all-files))
+                   (setq buffers-or-files all-files)
+                   (message "[org-ql search] Searching %d files (default scope, including %d refile.org files): %s"
+                            (length buffers-or-files)
+                            (length refile-files)
+                            (mapconcat 'file-name-nondirectory buffers-or-files ", "))))
+
+                 ;; First search for frontastic-tagged items in all files
+                 (condition-case err
+                     (progn
+                       (message "[org-ql search] Executing org-ql query for frontastic items...")
+                       (setq results
+                             (org-ql-select buffers-or-files
+                               frontastic-query
+                               :action '(list :heading (org-get-heading t t t t)
+                                              :file (buffer-file-name)
+                                              :tags (org-get-tags)
+                                              :todo-keyword (org-get-todo-state)
+                                              :priority (org-get-priority (org-get-heading))
+                                              :outline-path (org-get-outline-path t))))
+                       (message "[org-ql search] Found %d frontastic-tagged results" (length results)))
+                   (error
+                    (message "[org-ql search] ERROR in frontastic search: %s" (error-message-string err))))
+
+                 ;; Then search for items in refile.org files (without frontastic tag requirement)
+                 (when refile-files
+                   (condition-case err
+                       (progn
+                         (message "[org-ql search] Executing org-ql query for refile.org items...")
+                         (let ((refile-results
+                                (org-ql-select refile-files
+                                  parsed-query
+                                  :action '(list :heading (org-get-heading t t t t)
+                                                 :file (buffer-file-name)
+                                                 :tags (org-get-tags)
+                                                 :todo-keyword (org-get-todo-state)
+                                                 :priority (org-get-priority (org-get-heading))
+                                                 :outline-path (org-get-outline-path t)))))
+                           (setq results (append results refile-results))
+                           (message "[org-ql search] Found %d additional refile.org results" (length refile-results))))
+                     (error
+                      (message "[org-ql search] ERROR in refile.org search: %s" (error-message-string err)))))
+
+                 (message "[org-ql search] Total found %d results in %.2f seconds"
+                          (length results)
+                          (float-time (time-subtract (current-time) start-time)))
+
+                 (if results
+                     (progn
+                       (message "[org-ql search] Returning formatted results")
+                       (mapconcat
+                        (lambda (item)
+                          (let ((id (plist-get item :id))
+                                (heading (plist-get item :heading))
+                                (todo-keyword (plist-get item :todo-keyword))
+                                (file (plist-get item :file))
+                                (outline-path (plist-get item :outline-path))
+                                (tags (plist-get item :tags)))
+                            (format "- %s%s%s%s\n  File: %s\n  Path: %s\n  Tags: %s\n"
+                                    (or todo-keyword "")
+                                    (if todo-keyword " " "")
+                                    heading
+                                    (if id (format " [ID: %s]" id) "")
+                                    (file-name-nondirectory (or file ""))
+                                    (mapconcat 'identity outline-path " > ")
+                                    (mapconcat 'identity (or tags '()) ", "))))
+                        results "\n"))
+                   (progn
+                     (message "[org-ql search] No results found")
+                     "No matching org items found."))))
+   :description "Search for org mode items using org-ql Lisp syntax. Results are automatically limited to items with the 'frontastic' tag OR items in the refile.org file. Use proper Lisp syntax for queries."
+   :args (list '(:name "query"
+                       :type string
+                       :description "org-ql query in Lisp syntax (e.g., '(todo)', '(tags \"project\")', '(and (todo) (priority \"A\"))', '(or (scheduled :from today) (deadline :to +7))', '(heading-regexp \"meeting\")'). Note different timestamp predicates: 'ts' (any timestamp), 'ts-active' (only active), 'ts-inactive' (only inactive), 'scheduled' (match scheduled timestamp), 'deadline' (match deadline timestamp) and 'planning' (i.e. its deadline, scheduled, or closed timestamp). Do NOT mix syntaxes - use only Lisp forms.")
+               '(:name "scope"
+                       :type string
+                       :description "Search scope: 'current' (current buffer), 'agenda' (agenda files - default), or 'all' (same as agenda)"))
+   :category "org-mode")
+#+end_src
+
+*** org-ql documentation which needs to be provided to the LLM
+[2025-09-23 Tue 17:24]
+
+Not yet sure how to, but LLM does use the predicates wrong otherwise. I added the time predicates, it's a bit better now.
+
+**** General predicates
+
+Arguments are listed next to predicate names, where applicable.
+
++  =blocked= :: Return non-nil if current heading is blocked.  Calls ~org-entry-blocked-p~, which see.
++  =category (&rest categories)= :: Return non-nil if current heading is in one or more of ~CATEGORIES~ (a list of strings).
++  =done= :: Return non-nil if entry's ~TODO~ keyword is in ~org-done-keywords~.
++  =effort (&optional effort-or-comparator effort)= :: Return non-nil if current heading's effort property matches arguments.  The following forms are accepted: ~(effort DURATION)~: Matches if effort is ~DURATION~.  ~(effort DURATION DURATION)~: Matches if effort is between DURATIONs, inclusive.  ~(effort COMPARATOR DURATION)~: Matches if effort compares to ~DURATION~ with ~COMPARATOR~.  ~COMPARATOR~ may be ~<~, ~<=~, ~>~, or ~>=~.  ~DURATION~ should be an Org effort string, like =5= or =0:05=.
++  =habit= :: Return non-nil if entry is a habit.
++  =heading (&rest strings)= :: Return non-nil if current entry's heading matches all ~STRINGS~.  Matching is done case-insensitively.
+     -  Aliases: =h=.
++  ~heading-regexp (&rest regexps)~ :: Return non-nil if current entry's heading matches all ~REGEXPS~ (regexp strings).  Matching is done case-insensitively.
+     -  Aliases: ~h*~.
++  =level (level-or-comparator &optional level)= :: Return non-nil if current heading's outline level matches arguments.  The following forms are accepted: ~(level NUMBER)~: Matches if heading level is ~NUMBER~.  ~(level NUMBER NUMBER)~: Matches if heading level is equal to or between NUMBERs.  ~(level COMPARATOR NUMBER)~: Matches if heading level compares to ~NUMBER~ with ~COMPARATOR~.  ~COMPARATOR~ may be ~<~, ~<=~, ~>~, or ~>=~.
++  =link (&optional description-or-target &key description target regexp-p)= :: Return non-nil if current heading contains a link matching arguments. ~DESCRIPTION-OR-TARGET~ is matched against the link's description and target.  Alternatively, one or both of ~DESCRIPTION~ and ~TARGET~ may be matched separately.  Without arguments, return non-nil if any link is found.
++  =outline-path (&rest strings)= :: Return non-nil if current node's outline path matches all of ~STRINGS~.  Each string may appear as a substring in any part of the node's outline path.  For example, the path =Food/Fruits/Grapes= would match ~(olp "Fruit" "Grape")~.
+     -  Aliases: ~olp~.
++  =outline-path-segment (&rest strings)= :: Return non-nil if current node's outline path matches ~STRINGS~.  Matches ~STRINGS~ as a contiguous segment of the outline path.  Each string is compared as a substring.  For example the path ~Food/Fruits/Grapes~ would match ~(olps "Fruit" "Grape")~ but not ~(olps "Food" "Grape")~.
+     -  Aliases: ~olps~.
++  =path (&rest regexps)= :: Return non-nil if current heading's buffer's filename path matches any of ~REGEXPS~ (regexp strings).  Without arguments, return non-nil if buffer is file-backed.
++  =priority (&rest args)= :: Return non-nil if current heading has a certain priority.  ~ARGS~ may be either a list of one or more priority letters as strings, or a comparator function symbol followed by a priority letter string.  For example:  ~(priority "A") (priority "A" "B") (priority '>= "B")~ Note that items without a priority cookie never match this predicate (while Org itself considers items without a cookie to have the default priority, which, by default, is equal to priority ~B~).
++  =property (property &optional value &key inherit)= :: Return non-nil if current entry has ~PROPERTY~ (a string), and optionally ~VALUE~ (a string).  If ~INHERIT~ is nil, only match entries with ~PROPERTY~ set on the entry; if t, also match entries with inheritance.  If ~INHERIT~ is not specified, use the value of ~org-use-property-inheritance~, which see.
++  =regexp (&rest regexps)= :: Return non-nil if current entry matches all of ~REGEXPS~ (regexp strings).  Matches against entire entry, from beginning of its heading to the next heading.
+     -  Aliases: =r=.
++  =rifle (&rest strings)= :: Return non-nil if each string is found in either the entry or its outline path.  Works like =org-rifle=.  This is probably the most useful, intuitive, general-purpose predicate.
+     - Aliases: ~smart~.
+     - *Note:* By default, this is the default predicate used for plain-string query tokens (i.e. given without a specified predicate).  This can be customized with the option ~org-ql-default-predicate~.
++  ~src (&key lang regexps)~ :: Return non-nil if current entry contains an Org Babel source block.  If ~LANG~ is non-nil, match blocks of that language.  If ~REGEXPS~ is non-nil, require that block's contents match all regexps.  Matching is done case-insensitively.
++  =tags (&rest tags)= :: Return non-nil if current heading has one or more of ~TAGS~ (a list of strings).  Tests both inherited and local tags.
++  =tags-inherited (&rest tags)= :: Return non-nil if current heading's inherited tags include one or more of ~TAGS~ (a list of strings).  If ~TAGS~ is nil, return non-nil if heading has any inherited tags.
+     -  Aliases: ~inherited-tags~, ~tags-i~, ~itags~.
++  =tags-local (&rest tags)= :: Return non-nil if current heading's local tags include one or more of ~TAGS~ (a list of strings).  If ~TAGS~ is nil, return non-nil if heading has any local tags.
+     -  Aliases: ~local-tags~, ~tags-l~, ~ltags~.
++  =tags-all (&rest tags)= :: Return non-nil if current heading includes all of ~TAGS~.  Tests both inherited and local tags.
+     -  Aliases: ~tags&~.
++  =tags-regexp (&rest regexps)= :: Return non-nil if current heading has tags matching one or more of ~REGEXPS~.  Tests both inherited and local tags.
+     -  Aliases: ~tags*~.
++  =todo (&rest keywords)= :: Return non-nil if current heading is a ~TODO~ item.  With ~KEYWORDS~, return non-nil if its keyword is one of ~KEYWORDS~ (a list of strings).  When called without arguments, only matches non-done tasks (i.e. does not match keywords in ~org-done-keywords~).
+
+**** Ancestor/descendant predicates
+
++  =ancestors (&optional query)= :: Return non-nil if current heading has ancestor headings.  If ~QUERY~, return non-nil if an ancestor heading matches it.  This selector may be nested.
++  =children (&optional query)= :: Return non-nil if current heading has direct child headings.  If ~QUERY~, return non-nil if a child heading matches it.  This selector may be nested, e.g. to match grandchild headings.
++  =descendants (&optional query)= :: Return non-nil if current heading has descendant headings.  If ~QUERY~, return non-nil if a descendant heading matches it.  This selector may be nested (if you can grok the nesting!).
++  =parent (&optional query)= :: Return non-nil if current heading has a direct parent heading.  If ~QUERY~, return non-nil if the parent heading matches it.  This selector may be nested, e.g. to match grandparent headings.
+
+**** Date/time predicates
+
+These predicates take optional keyword arguments:
+
++  ~:from~: Match entries whose timestamp is on or after timestamp ~:from~.
++  ~:to~: Match entries whose timestamp is on or before timestamp ~:to~.
++  ~:on~: Match entries whose timestamp is on date ~:on~.
++  ~:with-time~: If unspecified, match timestamps with or without times (i.e. HH:MM).  If nil, match timestamps without times.  If t, match timestamps with times.
+
+Timestamp/date arguments should be either a number of days (positive to look forward, or negative to look backward), a string parseable by ~parse-time-string~ (the string may omit the time value), the symbol ~today~, or a ~ts~ struct.
+
++  *Predicates*
+     -  =ts= :: Return non-nil if current entry has a timestamp in given period.  Without arguments, return non-nil if entry has a timestamp.
+     -  =ts-active=, =ts-a= :: Like =ts=, but only matches active timestamps.
+     -  =ts-inactive=, =ts-i= :: Like =ts=, but only matches inactive timestamps.
+
+The following predicates, in addition to the keyword arguments, can also take a single argument, a number, which looks backward or forward a number of days.  The number can be negative to invert the direction.
+
+These two predicates interpret a single number argument as if it were passed to the ~:from~ keyword argument, which eases the common case of searching for items clocked or closed in the past few days:
+
++  *Backward-looking*
+     -  =clocked= :: Return non-nil if current entry was clocked in given period.  Without arguments, return non-nil if entry was ever clocked.  Note: Clock entries are expected to be clocked out.  Currently clocked entries (i.e. with unclosed timestamp ranges) are ignored.
+     -  =closed= :: Return non-nil if current entry was closed in given period.  Without arguments, return non-nil if entry is closed.
+
+These predicates interpret a single number argument as if it were passed to the ~:to~ keyword argument, which eases the common case of searching for items planned in the next few days:
+
++  *Forward-looking*
+     -  =deadline= :: Return non-nil if current entry has deadline in given period.  If argument is =auto=, return non-nil if entry has deadline within =org-deadline-warning-days=.  Without arguments, return non-nil if entry has any deadline.
+     -  =planning= :: Return non-nil if current entry has planning timestamp (i.e. its deadline, scheduled, or closed timestamp) in given period.  Without arguments, return non-nil if entry has any planning timestamp.
+     -  =scheduled= :: Return non-nil if current entry is scheduled in given period.  Without arguments, return non-nil if entry is scheduled.
+
 * Provide statement (needs to be at the end!)
 
 The provide statement must match the symbol you use in require
