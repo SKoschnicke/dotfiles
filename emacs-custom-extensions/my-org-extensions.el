@@ -319,7 +319,7 @@ Returns cons cell (start-date . end-date) as ts objects."
           (cons
            (ts-apply :hour 0 :minute 0 :second 0 last-monday)
            (ts-apply :hour 23 :minute 59 :second 59 last-friday)))
-      ; For other days, just return previous day as a range
+                                        ; For other days, just return previous day as a range
       (let* ((yesterday (ts-adjust 'day -1 today)))
         (cons
          (ts-apply :hour 0 :minute 0 :second 0 yesterday)
@@ -505,7 +505,7 @@ Returns a string with the statistics."
   "Find EXECUTABLE using whereis and add its directory to exec-path."
   (let* ((whereis-output (shell-command-to-string (concat "whereis " executable)))
          (exec-file-path (when (string-match (concat "/" "[^ ]+" "/" executable) whereis-output)
-                          (match-string 0 whereis-output))))
+                           (match-string 0 whereis-output))))
     (when exec-file-path
       (let ((exec-dir (file-name-directory exec-file-path)))
         (add-to-list 'exec-path exec-dir)
@@ -514,7 +514,7 @@ Returns a string with the statistics."
 (defun my/add-essential-executables-to-exec-path ()
   "Add essential executables (git, node, sh, ispell, aider) to exec-path."
   (interactive)
-  (dolist (executable '("git" "node" "sh" "ispell" "aider"))
+  (dolist (executable '("git" "node" "sh" "ispell" "aider" "languagetool" "rg"))
     (my/add-executable-to-exec-path executable)))
 
 ;; Run when Emacs starts
@@ -541,13 +541,13 @@ LAST-ENTRY is the marker for the current heading."
       (org-babel-execute-src-block))))
 
 (add-to-list 'gptel-directives
-  '(performance-review .
-    "Revise the given performance review text. The revised text should maintain the original meaning and key points, while improving the grammar, spelling, and alignment with Radical Candor principles."
-   )
-  '(emacs-configurator .
-    "You are an expert emacs user. I'm asking questions about customizing my emacs instance by modifying configuration (emacs-lisp code) or understanding how parts of emacs work. I'm a professional developer, I know how to program and have a good understanding of Linux, but I'm new in emacs lisp"
-   )
-)
+             '(performance-review .
+                                  "Revise the given performance review text. The revised text should maintain the original meaning and key points, while improving the grammar, spelling, and alignment with Radical Candor principles."
+                                  )
+             '(emacs-configurator .
+                                  "You are an expert emacs user. I'm asking questions about customizing my emacs instance by modifying configuration (emacs-lisp code) or understanding how parts of emacs work. I'm a professional developer, I know how to program and have a good understanding of Linux, but I'm new in emacs lisp"
+                                  )
+             )
 
 (gptel-make-tool
  :name "search_org_items"

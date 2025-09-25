@@ -144,6 +144,8 @@ This function should only modify configuration layer settings."
      (elfeed :variables rmh-elfeed-org-files (list "~/org/newsfeeds.org"))
      themes-megapack ;; because I need solarized
      (colors :variables colors-colorize-identifiers 'variables)
+     (languagetool :variables
+                   langtool-default-language "en-US")
      )
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
