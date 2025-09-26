@@ -146,6 +146,7 @@ This function should only modify configuration layer settings."
      (colors :variables colors-colorize-identifiers 'variables)
      (languagetool :variables
                    langtool-default-language "en-US")
+     dslide
      )
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
@@ -180,6 +181,8 @@ This function should only modify configuration layer settings."
      (aidermacs :variables
                 aidermacs-use-architect-mode t
                 aidermacs-default-model "sonnet")
+     hnreader
+     (parrot :location (recipe :fetcher github :repo "positron-solutions/parrot"))
      )
 
    ;; A list of packages that cannot be updated.
@@ -698,12 +701,12 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
   (require 'gptel)
-  (require 'gptel-curl)
+;;;(require 'gptel-curl)
+  (require 'gptel-org)
   (setq gptel-model 'claude-sonnet-4
         gptel-default-mode 'org-mode
         gptel-backend (gptel-make-gh-copilot "Copilot"))
 
-  (add-to-list 'gptel-directives '(performance-review . "Revise the given performance review text. The revised text should maintain the original meaning and key points, while improving the grammar, spelling, and alignment with Radical Candor principles."))
   ;; map SPC a g to gptel-send invoked with universal argument
   (spacemacs/set-leader-keys "ag" (lambda () (interactive) (gptel-send '(4))))
 
@@ -1814,73 +1817,64 @@ This function is called at the very end of Spacemacs initialization."
           (help-echo "Tasks with sub-tasks but no NEXT sub-tasks"))
         :sort (date priority) :super-groups org-super-agenda-groups)))
    '(package-selected-packages
-     '(magit-diff-flycheck color-identifiers-mode rainbow-identifiers rainbow-mode
-                           zpresent org-parser yasnippet-snippets yapfify
-                           yaml-mode yafolding xterm-color ws-butler winum
-                           which-key web-mode web-beautify volatile-highlights
-                           vi-tilde-fringe uuidgen use-package undo-tree queue
-                           typo typescript-mode toc-org tide tagedit
-                           string-inflection sql-indent spotify spaceline smeargle
-                           slim-mode shell-pop scss-mode sass-mode rvm ruby-tools
-                           ruby-test-mode rubocop rspec-mode robe restclient-helm
-                           restart-emacs rbenv ranger rainbow-delimiters pyvenv
-                           pytest pyenv-mode py-isort pug-mode projectile-rails
-                           rake inflections plantuml-mode pip-requirements phpunit
-                           php-extras persp-mode pcre2el paradox spinner ox-gfm
-                           origami orgit org-sidebar org-randomnote org-projectile
-                           org-category-capture org-present org-pomodoro alert
-                           log4e gntp org-mime org-download org-bullets
-                           open-junk-file ob-restclient ob-http ob-elixir
-                           nginx-mode neotree multi-term move-text mmm-mode
-                           mixed-pitch minitest markdown-toc markdown-mode
-                           magit-gitflow magit-popup magit magit-section macrostep
-                           lorem-ipsum livid-mode skewer-mode live-py-mode
-                           linum-relative key-chord json-mode json-snatcher
-                           js2-refactor multiple-cursors js2-mode js-doc
-                           jinja2-mode insert-shebang indent-guide hydra lv
-                           hy-mode hungry-delete htmlize hl-todo
-                           highlight-parentheses highlight-numbers parent-mode
-                           highlight-indentation helm-themes helm-swoop
-                           helm-spotify-plus multi helm-pydoc helm-projectile
-                           projectile helm-org-ql org-ql helm-org peg ov
-                           org-super-agenda ts helm-mode-manager helm-make
-                           helm-gitignore request git-modes helm-flx
-                           helm-descbinds helm-dash dash-docs helm-css-scss
-                           helm-company helm-c-yasnippet helm-ag haml-mode
-                           google-translate golden-ratio go-guru go-eldoc gnuplot
-                           git-timemachine git-messenger git-link
-                           git-gutter-fringe+ git-gutter-fringe fringe-helper
-                           git-gutter+ git-gutter git-commit with-editor transient
-                           compat gh-md fuzzy flyspell-correct-helm
-                           flyspell-correct flycheck-pos-tip flycheck-gometalinter
-                           flycheck-credo flycheck flx-ido flx fish-mode
-                           fill-column-indicator feature-mode fancy-battery
-                           eyebrowse expand-region exec-path-from-shell
-                           evil-visualstar evil-visual-mark-mode evil-unimpaired
-                           evil-tutor evil-surround evil-snipe
-                           evil-search-highlight-persist highlight evil-numbers
-                           evil-nerd-commenter evil-mc evil-matchit
-                           evil-lisp-state smartparens evil-indent-plus
-                           evil-iedit-state iedit evil-exchange evil-escape
-                           evil-args evil-anzu anzu evil goto-chg eval-sexp-fu
-                           eshell-z eshell-prompt-extras esh-help emmet-mode
-                           elisp-slime-nav elfeed-web simple-httpd elfeed-org
-                           elfeed-goodies link-hint powerline popwin elfeed
-                           dumb-jump drupal-mode php-mode diminish diff-hl
-                           define-word dash-at-point cython-mode csv-mode copilot
-                           editorconfig company-web web-completion-data
-                           company-statistics company-shell company-restclient
-                           restclient know-your-http-well company-quickhelp
-                           pos-tip company-go go-mode company-box frame-local
-                           company-ansible company-anaconda column-enforce-mode
-                           coffee-mode clean-aindent-mode chruby bundler inf-ruby
-                           bind-map bind-key auto-yasnippet yasnippet
-                           auto-highlight-symbol ht auto-dictionary auto-compile
-                           ansible-doc ansible anaconda-mode pythonic f alchemist
-                           s pkg-info company elixir-mode epl aggressive-indent
-                           adoc-mode adaptive-wrap ace-window ace-link
-                           ace-jump-helm-line helm avy helm-core async ac-ispell
-                           auto-complete popup solarized-theme dash))
+     '(ac-ispell ace-jump-helm-line ace-link ace-window adaptive-wrap adoc-mode
+                 aggressive-indent alchemist alert anaconda-mode ansible
+                 ansible-doc anzu async auto-compile auto-complete auto-dictionary
+                 auto-highlight-symbol auto-yasnippet avy bind-key bind-map
+                 bundler chruby clean-aindent-mode coffee-mode
+                 color-identifiers-mode column-enforce-mode company
+                 company-anaconda company-ansible company-box company-go
+                 company-quickhelp company-restclient company-shell
+                 company-statistics company-web compat copilot csv-mode
+                 cython-mode dash dash-at-point dash-docs define-word diff-hl
+                 diminish drupal-mode dumb-jump editorconfig elfeed elfeed-goodies
+                 elfeed-org elfeed-web elisp-slime-nav elixir-mode emmet-mode epl
+                 esh-help eshell-prompt-extras eshell-z eval-sexp-fu evil
+                 evil-anzu evil-args evil-escape evil-exchange evil-iedit-state
+                 evil-indent-plus evil-lisp-state evil-matchit evil-mc
+                 evil-nerd-commenter evil-numbers evil-search-highlight-persist
+                 evil-snipe evil-surround evil-tutor evil-unimpaired
+                 evil-visual-mark-mode evil-visualstar exec-path-from-shell
+                 expand-region eyebrowse f fancy-battery feature-mode
+                 fill-column-indicator fish-mode flx flx-ido flycheck
+                 flycheck-credo flycheck-gometalinter flycheck-pos-tip
+                 flyspell-correct flyspell-correct-helm frame-local fringe-helper
+                 fuzzy gh-md git-commit git-gutter git-gutter+ git-gutter-fringe
+                 git-gutter-fringe+ git-link git-messenger git-modes
+                 git-timemachine gntp gnuplot go-eldoc go-guru go-mode
+                 golden-ratio google-translate goto-chg haml-mode helm helm-ag
+                 helm-c-yasnippet helm-company helm-core helm-css-scss helm-dash
+                 helm-descbinds helm-flx helm-gitignore helm-make
+                 helm-mode-manager helm-org helm-org-ql helm-projectile helm-pydoc
+                 helm-spotify-plus helm-swoop helm-themes highlight
+                 highlight-indentation highlight-numbers highlight-parentheses
+                 hl-todo hnreader ht htmlize hungry-delete hy-mode hydra iedit
+                 indent-guide inf-ruby inflections insert-shebang jinja2-mode
+                 js-doc js2-mode js2-refactor json-mode json-snatcher key-chord
+                 know-your-http-well link-hint linum-relative live-py-mode
+                 livid-mode log4e lorem-ipsum lv macrostep magit
+                 magit-diff-flycheck magit-gitflow magit-popup magit-section
+                 markdown-mode markdown-toc minitest mixed-pitch mmm-mode
+                 move-text multi multi-term multiple-cursors neotree nginx-mode
+                 ob-elixir ob-http ob-restclient open-junk-file org-bullets
+                 org-category-capture org-download org-mime org-parser
+                 org-pomodoro org-present org-projectile org-ql org-randomnote
+                 org-sidebar org-super-agenda orgit origami ov ox-gfm paradox
+                 parent-mode pcre2el peg persp-mode php-extras php-mode phpunit
+                 pip-requirements pkg-info plantuml-mode popup popwin pos-tip
+                 powerline projectile projectile-rails pug-mode py-isort
+                 pyenv-mode pytest pythonic pyvenv queue rainbow-delimiters
+                 rainbow-identifiers rainbow-mode rake ranger rbenv request
+                 restart-emacs restclient restclient-helm robe rspec-mode rubocop
+                 ruby-test-mode ruby-tools rvm s sass-mode scss-mode shell-pop
+                 simple-httpd skewer-mode slim-mode smartparens smeargle
+                 solarized-theme spaceline spinner spotify sql-indent
+                 string-inflection tagedit tide toc-org transient ts
+                 typescript-mode typo undo-tree use-package uuidgen
+                 vi-tilde-fringe volatile-highlights web-beautify
+                 web-completion-data web-mode which-key winum with-editor
+                 ws-butler xterm-color yafolding yaml-mode yapfify yasnippet
+                 yasnippet-snippets zpresent))
    '(paradox-github-token t)
    '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
    '(php-mode-enable-project-coding-style t)
@@ -1905,7 +1899,8 @@ This function is called at the very end of Spacemacs initialization."
    '(avy-lead-face ((t (:foreground "#ffffff" :background "#dc322f"))))
    '(avy-lead-face-0 ((t (:foreground "#ffffff" :background "#268bd2"))))
    '(avy-lead-face-1 ((t (:foreground "#002b36" :background "#859900"))))
-   '(avy-lead-face-2 ((t (:foreground "#ffffff" :background "#6c71c4")))))
+   '(avy-lead-face-2 ((t (:foreground "#ffffff" :background "#6c71c4"))))
+   '(variable-pitch ((t (:height 1.2 :family "Source Sans 3")))))
   )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
