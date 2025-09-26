@@ -260,6 +260,7 @@ eval "$(direnv hook zsh)"
 #eval "$(starship init zsh)"
 
 alias cdr=grt
+export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 alias gs="git branch | grep -v \"^\*\" | fzf --height=20% --reverse --info=inline | xargs git switch"
@@ -272,3 +273,5 @@ alias lg=lazygit
 alias gama='GITHUB_TOKEN="$(gh auth token)" gama'
 alias pubip='curl -s ifconfig.me'
 alias m=mise
+
+export PATH="$HOME/.rd/bin:$PATH"
