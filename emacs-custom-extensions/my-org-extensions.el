@@ -75,7 +75,12 @@ the URL when you're logged into Slack web."
            (message-ts (match-string 3 url))
            (team-id (slack-extract-team-id-from-url url)))
       (if team-id
-          (format "slack://channel?team=%s&id=%s" team-id channel-id)
+          (if message-ts
+              ;; Include message timestamp to highlight specific message
+              (format "slack://channel?team=%s&id=%s&message=%s"
+                      team-id channel-id message-ts)
+            ;; Just open channel if no message timestamp
+            (format "slack://channel?team=%s&id=%s" team-id channel-id))
         (error "Slack team ID not configured. Please set slack-team-id variable")))))
 
 (defun slack-open-deep-link (url)
@@ -319,7 +324,7 @@ Returns cons cell (start-date . end-date) as ts objects."
           (cons
            (ts-apply :hour 0 :minute 0 :second 0 last-monday)
            (ts-apply :hour 23 :minute 59 :second 59 last-friday)))
-                                        ; For other days, just return previous day as a range
+      ; For other days, just return previous day as a range
       (let* ((yesterday (ts-adjust 'day -1 today)))
         (cons
          (ts-apply :hour 0 :minute 0 :second 0 yesterday)
@@ -502,34 +507,47 @@ Returns a string with the statistics."
     (save-buffer)))
 
 (defun my/add-executable-to-exec-path (executable)
-  "Find EXECUTABLE using whereis and add its directory to exec-path."
-  (let* ((whereis-output (shell-command-to-string (concat "whereis " executable)))
-         (exec-file-path (when (string-match (concat "/" "[^ ]+" "/" executable) whereis-output)
-                           (match-string 0 whereis-output))))
-    (when exec-file-path
-      (let ((exec-dir (file-name-directory exec-file-path)))
-        (add-to-list 'exec-path exec-dir)
-        (message "Added %s to exec-path" exec-dir)))))
+    "Find EXECUTABLE using whereis and add its directory to exec-path."
+    (let* ((whereis-output (shell-command-to-string (concat "whereis " executable)))
+           (exec-file-path (when (string-match (concat "/" "[^ ]+" "/" executable) whereis-output)
+<<<<<<< HEAD
+                            (match-string 0 whereis-output))))
+=======
+                             (match-string 0 whereis-output))))
+>>>>>>> 3437eb8 (languagetool)
+      (when exec-file-path
+        (let ((exec-dir (file-name-directory exec-file-path)))
+          (add-to-list 'exec-path exec-dir)
+          (message "Added %s to exec-path" exec-dir)))))
 
-(defun my/add-essential-executables-to-exec-path ()
-  "Add essential executables (git, node, sh, ispell, aider) to exec-path."
-  (interactive)
-  (dolist (executable '("git" "node" "sh" "ispell" "aider" "languagetool" "rg"))
-    (my/add-executable-to-exec-path executable)))
+  (defun my/add-essential-executables-to-exec-path ()
+<<<<<<< HEAD
+    "Add essential executables (git, node, sh, ispell, aider) to exec-path."
+    (interactive)
+    (dolist (executable '("git" "node" "sh" "ispell" "aider"))
+=======
+    "Add essential executables (git, node, sh, ispell) to exec-path."
+    (interactive)
+    (dolist (executable '("git" "node" "sh" "ispell" "languagetool" "rg"))
+>>>>>>> 3437eb8 (languagetool)
+      (my/add-executable-to-exec-path executable)))
 
-;; Run when Emacs starts
-(eval-after-load 'org
-  '(my/add-essential-executables-to-exec-path))
+  ;; Run when Emacs starts
+  (eval-after-load 'org
+    '(my/add-essential-executables-to-exec-path))
+<<<<<<< HEAD
 
 (defun my-enable-lsp-for-visible-php-buffers (frame)
-  "Enable LSP mode for visible PHP buffers that don't have it active."
-  (dolist (window (window-list frame))
-    (with-current-buffer (window-buffer window)
-      (when (and (derived-mode-p 'php-mode)
-                 (not (bound-and-true-p lsp-mode)))
-        (lsp-deferred)))))
+    "Enable LSP mode for visible PHP buffers that don't have it active."
+    (dolist (window (window-list frame))
+      (with-current-buffer (window-buffer window)
+        (when (and (derived-mode-p 'php-mode)
+                   (not (bound-and-true-p lsp-mode)))
+          (lsp-deferred)))))
 
-(add-hook 'window-buffer-change-functions #'my-enable-lsp-for-visible-php-buffers)
+  (add-hook 'window-buffer-change-functions #'my-enable-lsp-for-visible-php-buffers)
+=======
+>>>>>>> 3437eb8 (languagetool)
 
 (defun org-edna-action/eval-babel! (last-entry block-name)
   "Execute the named Babel source block specified by BLOCK-NAME.
@@ -541,13 +559,13 @@ LAST-ENTRY is the marker for the current heading."
       (org-babel-execute-src-block))))
 
 (add-to-list 'gptel-directives
-             '(performance-review .
-                                  "Revise the given performance review text. The revised text should maintain the original meaning and key points, while improving the grammar, spelling, and alignment with Radical Candor principles."
-                                  )
-             '(emacs-configurator .
-                                  "You are an expert emacs user. I'm asking questions about customizing my emacs instance by modifying configuration (emacs-lisp code) or understanding how parts of emacs work. I'm a professional developer, I know how to program and have a good understanding of Linux, but I'm new in emacs lisp"
-                                  )
-             )
+  '(performance-review .
+    "Revise the given performance review text. The revised text should maintain the original meaning and key points, while improving the grammar, spelling, and alignment with Radical Candor principles."
+   )
+  '(emacs-configurator .
+    "You are an expert emacs user. I'm asking questions about customizing my emacs instance by modifying configuration (emacs-lisp code) or understanding how parts of emacs work. I'm a professional developer, I know how to program and have a good understanding of Linux, but I'm new to emacs lisp"
+   )
+)
 
 (gptel-make-tool
  :name "search_org_items"

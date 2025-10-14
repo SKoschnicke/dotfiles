@@ -128,7 +128,12 @@ To find your team ID:
              (message-ts (match-string 3 url))
              (team-id (slack-extract-team-id-from-url url)))
         (if team-id
-            (format "slack://channel?team=%s&id=%s" team-id channel-id)
+            (if message-ts
+                ;; Include message timestamp to highlight specific message
+                (format "slack://channel?team=%s&id=%s&message=%s"
+                        team-id channel-id message-ts)
+              ;; Just open channel if no message timestamp
+              (format "slack://channel?team=%s&id=%s" team-id channel-id))
           (error "Slack team ID not configured. Please set slack-team-id variable")))))
 
   (defun slack-open-deep-link (url)
@@ -743,7 +748,7 @@ And have a named babel block in the content.
       "Revise the given performance review text. The revised text should maintain the original meaning and key points, while improving the grammar, spelling, and alignment with Radical Candor principles."
      )
     '(emacs-configurator .
-      "You are an expert emacs user. I'm asking questions about customizing my emacs instance by modifying configuration (emacs-lisp code) or understanding how parts of emacs work. I'm a professional developer, I know how to program and have a good understanding of Linux, but I'm new in emacs lisp"
+      "You are an expert emacs user. I'm asking questions about customizing my emacs instance by modifying configuration (emacs-lisp code) or understanding how parts of emacs work. I'm a professional developer, I know how to program and have a good understanding of Linux, but I'm new to emacs lisp"
      )
   )
 #+end_src

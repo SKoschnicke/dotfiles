@@ -846,11 +846,13 @@ you should place you code here."
     (defun my/org-agenda-skip-scheduled ()
       (org-agenda-skip-entry-if 'scheduled 'deadline 'regexp "\n]+>"))
 
-    ;; (setq org-agenda-prefix-format
-    ;;       '((agenda . "%t %i %b")
-    ;;         (todo . " %i %b")
-    ;;         (tags . " %i %b")
-    ;;         (search . " %i %b")))
+
+    ;; make category/filename column a bit wider
+    (setq org-agenda-prefix-format
+          '((agenda . " %i %-20:c%?-12t% s")
+            (todo . " %i %-20:c")
+            (tags . " %i %-20:c")
+            (search . " %i %-20:c")))
 
     (defun my/cmp-date-property (prop)
       "Compare two `org-mode' agenda entries, `A' and `B', by some date property.
