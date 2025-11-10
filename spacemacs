@@ -183,6 +183,9 @@ This function should only modify configuration layer settings."
                 aidermacs-default-model "sonnet")
      hnreader
      (parrot :location (recipe :fetcher github :repo "positron-solutions/parrot"))
+     stimmung-themes
+     gptel-magit
+     (claude-code-ide :location (recipe :fetcher github :repo "manzaltu/claude-code-ide.el"))
      )
 
    ;; A list of packages that cannot be updated.
@@ -703,6 +706,7 @@ you should place you code here."
   (require 'gptel)
 ;;;(require 'gptel-curl)
   (require 'gptel-org)
+  (require 'gptel-magit)
   (setq gptel-model 'claude-sonnet-4
         gptel-default-mode 'org-mode
         gptel-backend (gptel-make-gh-copilot "Copilot"))
@@ -753,7 +757,7 @@ you should place you code here."
 
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "|" "DONE(d!/!)")
-                (sequence "WAITING(w@/!)" "SOMEDAY(S)" "MAYBE(m)" "HOLD(h)" "|" "CANCELLED(c@/!)"))))
+                (sequence "WAITING(w@/!)" "HOLD(h)" "SOMEDAY(S)" "MAYBE(m)" "|" "CANCELLED(c@/!)"))))
 
   (setq org-log-done t
         org-completion-use-ido t
