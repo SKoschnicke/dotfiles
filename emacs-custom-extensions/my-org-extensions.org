@@ -663,32 +663,21 @@ didn't work.
     "Find EXECUTABLE using whereis and add its directory to exec-path."
     (let* ((whereis-output (shell-command-to-string (concat "whereis " executable)))
            (exec-file-path (when (string-match (concat "/" "[^ ]+" "/" executable) whereis-output)
-<<<<<<< HEAD
-                            (match-string 0 whereis-output))))
-=======
                              (match-string 0 whereis-output))))
->>>>>>> 3437eb8 (languagetool)
       (when exec-file-path
         (let ((exec-dir (file-name-directory exec-file-path)))
           (add-to-list 'exec-path exec-dir)
           (message "Added %s to exec-path" exec-dir)))))
 
   (defun my/add-essential-executables-to-exec-path ()
-<<<<<<< HEAD
-    "Add essential executables (git, node, sh, ispell, aider) to exec-path."
-    (interactive)
-    (dolist (executable '("git" "node" "sh" "ispell" "aider"))
-=======
-    "Add essential executables (git, node, sh, ispell) to exec-path."
+    "Add essential executables (git, node, sh, ispell, languagetool, ripgrep) to exec-path."
     (interactive)
     (dolist (executable '("git" "node" "sh" "ispell" "languagetool" "rg"))
->>>>>>> 3437eb8 (languagetool)
       (my/add-executable-to-exec-path executable)))
 
   ;; Run when Emacs starts
   (eval-after-load 'org
     '(my/add-essential-executables-to-exec-path))
-<<<<<<< HEAD
 #+end_src
 
 ** Fix lsp mode for PHP
@@ -709,8 +698,6 @@ that is too early).
           (lsp-deferred)))))
 
   (add-hook 'window-buffer-change-functions #'my-enable-lsp-for-visible-php-buffers)
-=======
->>>>>>> 3437eb8 (languagetool)
 #+end_src
 
 * Org-Edna extensions
