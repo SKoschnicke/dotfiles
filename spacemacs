@@ -186,6 +186,8 @@ This function should only modify configuration layer settings."
      stimmung-themes
      gptel-magit
      (claude-code-ide :location (recipe :fetcher github :repo "manzaltu/claude-code-ide.el"))
+     dslide
+     moc
      )
 
    ;; A list of packages that cannot be updated.
