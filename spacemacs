@@ -188,6 +188,7 @@ This function should only modify configuration layer settings."
      (claude-code-ide :location (recipe :fetcher github :repo "manzaltu/claude-code-ide.el"))
      dslide
      moc
+     vterm ;; for claude-code-ide
      )
 
    ;; A list of packages that cannot be updated.
@@ -1879,7 +1880,7 @@ This function is called at the very end of Spacemacs initialization."
                  solarized-theme spaceline spinner spotify sql-indent
                  string-inflection tagedit tide toc-org transient ts
                  typescript-mode typo undo-tree use-package uuidgen
-                 vi-tilde-fringe volatile-highlights web-beautify
+                 vi-tilde-fringe volatile-highlights vterm web-beautify
                  web-completion-data web-mode which-key winum with-editor
                  ws-butler xterm-color yafolding yaml-mode yapfify yasnippet
                  yasnippet-snippets zpresent))
