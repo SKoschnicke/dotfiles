@@ -730,14 +730,23 @@ And have a named babel block in the content.
 [2025-09-19 Fri 11:50]
 
 #+begin_src emacs-lisp
-  (add-to-list 'gptel-directives
-    '(performance-review .
-      "Revise the given performance review text. The revised text should maintain the original meaning and key points, while improving the grammar, spelling, and alignment with Radical Candor principles."
-     )
-    '(emacs-configurator .
-      "You are an expert emacs user. I'm asking questions about customizing my emacs instance by modifying configuration (emacs-lisp code) or understanding how parts of emacs work. I'm a professional developer, I know how to program and have a good understanding of Linux, but I'm new to emacs lisp"
-     )
-  )
+  (setq gptel-directives
+        (append gptel-directives
+                '((performance-review-creation .
+                   "You are helping me write professional peer feedback for end-of-year performance reviews. I will provide bullet points about a colleague, and you should convert them into a well-structured, professional feedback text.
+
+  Requirements:
+  - Write in a professional but warm tone
+  - Use specific examples when provided
+  - The feedback is either for \"Strenghts and Positive Behaviours\" or \"Areas for Development\". You can tell from the notes given.
+  - Keep it concise but substantive (aim for 200-300 words total)
+  - Use first person perspective (\"I have observed...\", \"In my experience working with...\")
+  - Make it constructive and actionable
+  - Avoid generic corporate language - be authentic and specific")
+                  (performance-review-review .
+                   "Revise the given performance review text. The revised text should maintain the original meaning and key points, while improving the grammar, spelling, and alignment with Radical Candor principles.")
+                  (emacs-configurator .
+                   "You are an expert emacs user. I'm asking questions about customizing my emacs instance by modifying configuration (emacs-lisp code) or understanding how parts of emacs work. I'm a professional developer, I know how to program and have a good understanding of Linux, but I'm new to emacs lisp"))))
 #+end_src
 
 ** Tool for searching org mode items

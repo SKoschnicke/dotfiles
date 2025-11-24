@@ -178,9 +178,6 @@ This function should only modify configuration layer settings."
      (jwt :location (recipe :fetcher github :repo "joshbax189/jwt-el"))
      exec-path-from-shell
      ox-slack
-     (aidermacs :variables
-                aidermacs-use-architect-mode t
-                aidermacs-default-model "sonnet")
      hnreader
      (parrot :location (recipe :fetcher github :repo "positron-solutions/parrot"))
      stimmung-themes
@@ -717,7 +714,7 @@ you should place you code here."
   ;; map SPC a g to gptel-send invoked with universal argument
   (spacemacs/set-leader-keys "ag" (lambda () (interactive) (gptel-send '(4))))
 
-  (spacemacs/set-leader-keys "aa" 'aidermacs-transient-menu)
+  (spacemacs/set-leader-keys "gg" 'gptel-menu)
 
   (when (string= system-name "sven-uni")
     (defconst my-sync-path "~/SpiderOak Hive"))
