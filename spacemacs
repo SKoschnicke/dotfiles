@@ -1704,11 +1704,6 @@ This function is called at the very end of Spacemacs initialization."
    '(custom-safe-themes
      '("eecff0e045e5a54e5a517a042a7491eecfb8d49e79c5813e2110ad3458df52ce" default))
    '(evil-want-Y-yank-to-eol t)
-   '(exec-path
-     '("/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/"
-       "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/"
-       "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/"
-       "/usr/bin/core_perl/" "/home/sven/.rbenv/shims/" "/opt/homebrew/bin"))
    '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
    '(flycheck-go-golint-executable "/Users/sven/go/bin/golint")
    '(flycheck-phpcs-standard "PSR2")
