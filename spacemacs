@@ -715,6 +715,7 @@ you should place you code here."
   (spacemacs/set-leader-keys "ag" (lambda () (interactive) (gptel-send '(4))))
 
   (spacemacs/set-leader-keys "gg" 'gptel-menu)
+  (spacemacs/set-leader-keys "ac" 'claude-code-ide-send-prompt)
 
   (when (string= system-name "sven-uni")
     (defconst my-sync-path "~/SpiderOak Hive"))
