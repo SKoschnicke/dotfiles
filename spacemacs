@@ -717,6 +717,62 @@ you should place you code here."
   (spacemacs/set-leader-keys "gg" 'gptel-menu)
   (spacemacs/set-leader-keys "ac" 'claude-code-ide-send-prompt)
 
+  ;; Fix dslide conflicts with Spacemacs and window-purpose
+  (with-eval-after-load 'dslide
+    (defun my/dslide-fix-environment (orig-fun &rest args)
+      "Fix Spacemacs/purpose-mode conflicts with dslide."
+      (let ((purpose-was-enabled (and (boundp 'purpose-mode) purpose-mode))
+            (saved-buffer (current-buffer))
+            (saved-display-buffer-alist display-buffer-alist)
+            (saved-display-buffer-base-action display-buffer-base-action))
+        ;; Remove Spacemacs' broken advice on clone-indirect-buffer
+        (when (advice-member-p 'spacemacs-deactivate-mark 'clone-indirect-buffer)
+          (advice-remove 'clone-indirect-buffer 'spacemacs-deactivate-mark))
+
+        (when purpose-was-enabled
+          ;; Override purpose--action-function to be a no-op BEFORE disabling mode
+          ;; This prevents it from interfering even if the advice persists
+          (when (fboundp 'purpose--action-function)
+            (advice-add 'purpose--action-function :override (lambda (&rest _) nil)))
+          (purpose-mode -1)
+          ;; Remove ALL purpose-related advice from display-buffer
+          (advice-mapc (lambda (advice _props)
+                         (when (and (symbolp advice)
+                                    (string-match-p "purpose" (symbol-name advice)))
+                           (advice-remove 'display-buffer advice)))
+                       'display-buffer)
+          (setq display-buffer-alist nil)
+          (setq display-buffer-base-action nil)
+          (with-current-buffer saved-buffer
+            (kill-local-variable 'purpose-dedicated-buffer)
+            (kill-local-variable 'purpose-buffer-purpose))
+          (sit-for 0.01))
+
+        (unwind-protect
+            (with-current-buffer saved-buffer
+              (apply orig-fun args))
+          ;; Restore Spacemacs advice
+          (when (and (fboundp 'spacemacs-deactivate-mark)
+                     (not (advice-member-p 'spacemacs-deactivate-mark 'clone-indirect-buffer)))
+            (advice-add 'clone-indirect-buffer :around #'spacemacs-deactivate-mark))
+
+          (when purpose-was-enabled
+            (setq display-buffer-alist saved-display-buffer-alist)
+            (setq display-buffer-base-action saved-display-buffer-base-action)
+            ;; Restore purpose-mode and remove our override
+            (run-with-timer 0.1 nil (lambda ()
+                                      ;; Remove the override first
+                                      (when (fboundp 'purpose--action-function)
+                                        (advice-remove 'purpose--action-function :override))
+                                      ;; Re-enable purpose-mode (this should re-add its advice)
+                                      (purpose-mode 1)))))))
+
+    ;; Wrap the user-facing commands
+    (advice-add 'dslide-deck-start :around #'my/dslide-fix-environment)
+    (advice-add 'dslide-deck-develop :around #'my/dslide-fix-environment)
+    (advice-add 'dslide-deck-stop :around #'my/dslide-fix-environment)
+  )
+
   (when (string= system-name "sven-uni")
     (defconst my-sync-path "~/SpiderOak Hive"))
   (when (string= system-name "palanthas")
@@ -1628,287 +1684,288 @@ If OTHERS is true, skip all entries that do not correspond to TAG."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(auth-source-save-behavior nil)
-   '(c-basic-offset 2)
-   '(company-box-icons-alist 'company-box-icons-all-the-icons)
-   '(custom-safe-themes
-     '("eecff0e045e5a54e5a517a042a7491eecfb8d49e79c5813e2110ad3458df52ce" default))
-   '(evil-want-Y-yank-to-eol t)
-   '(exec-path
-     '("/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/"
-       "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/"
-       "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/"
-       "/usr/bin/core_perl/" "/home/sven/.rbenv/shims/" "/opt/homebrew/bin"))
-   '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
-   '(flycheck-go-golint-executable "/Users/sven/go/bin/golint")
-   '(flycheck-phpcs-standard "PSR2")
-   '(flycheck-phpmd-rulesets '("codesize" "design" "unusedcode"))
-   '(flycheck-phpstan-executable "/home/sven/.config/composer/vendor/bin/phpstan")
-   '(haskell-tags-on-save t)
-   '(hl-todo-keyword-faces
-     '(("TODO" . "#dc752f") ("NEXT" . "#dc752f") ("THEM" . "#2d9574")
-       ("PROG" . "#4f97d7") ("OKAY" . "#4f97d7") ("DONT" . "#f2241f")
-       ("FAIL" . "#f2241f") ("DONE" . "#86dc2f") ("NOTE" . "#b1951d")
-       ("KLUDGE" . "#b1951d") ("HACK" . "#b1951d") ("TEMP" . "#b1951d")
-       ("FIXME" . "#dc752f") ("XXX+" . "#dc752f") ("\\?\\?\\?+" . "#dc752f")))
-   '(jiralib-url "https://commercetools.atlassian.net" t)
-   '(jiralib-user "sven.koschnicke@commercetools.com")
-   '(js2-missing-semi-one-line-override t)
-   '(js2-strict-missing-semi-warning nil)
-   '(lsp-intelephense-php-version "8.1.0")
-   '(mu4e-view-show-addresses t)
-   '(mu4e-view-show-images t)
-   '(native-comp-deferred-compilation-deny-list '(".*projectile.*"))
-   '(ns-alternate-modifier '(:ordinary meta :function meta :mouse meta))
-   '(org-ql-views
-     '(("Review: Refile" :buffers-files
-        ("/Users/sven/org/anniversary.org" "/Users/sven/org/bugs.org"
-         "/Users/sven/org/cli-presentation.org" "/Users/sven/org/getdigital.org"
-         "/Users/sven/org/gfxpro.org" "/Users/sven/org/gtd-daily-cooldown.org"
-         "/Users/sven/org/gtd-evening-review.org"
-         "/Users/sven/org/gtd-weekly-reviews.org"
-         "/Users/sven/org/gxp-frontastic-cli.org"
-         "/Users/sven/org/gxp-frontastic-meetings.org"
-         "/Users/sven/org/gxp-frontastic.org"
-         "/Users/sven/org/gxp-lasersoft-doc.org"
-         "/Users/sven/org/gxp-lasersoft.org" "/Users/sven/org/isavision.org"
-         "/Users/sven/org/knw-dev.org" "/Users/sven/org/knw-docker.org"
-         "/Users/sven/org/knw-emacs.org" "/Users/sven/org/knw-git.org"
-         "/Users/sven/org/knw-go.org" "/Users/sven/org/knw-hardware.org"
-         "/Users/sven/org/knw-haskell.org" "/Users/sven/org/knw-java.org"
-         "/Users/sven/org/knw-linux.org" "/Users/sven/org/knw-macos.org"
-         "/Users/sven/org/knw-misc.org" "/Users/sven/org/knw-php.org"
-         "/Users/sven/org/knw-productivity.org" "/Users/sven/org/knw-ruby.org"
-         "/Users/sven/org/knw-scala.org" "/Users/sven/org/knw-webdev.org"
-         "/Users/sven/org/knw-windows.org" "/Users/sven/org/les-aprpat.org"
-         "/Users/sven/org/mallorca-selection-verarbeitungsverzeichnis.org"
-         "/Users/sven/org/meta.org" "/Users/sven/org/newsfeeds.org"
-         "/Users/sven/org/notes.org" "/Users/sven/org/pav-dev-orga.org"
-         "/Users/sven/org/pav-lambda.org" "/Users/sven/org/pav-plan.org"
-         "/Users/sven/org/pav-psi.org" "/Users/sven/org/pav-rho.org"
-         "/Users/sven/org/pav-sea-gmbh.org" "/Users/sven/org/pav-sysops.org"
-         "/Users/sven/org/pav-theory.org" "/Users/sven/org/plan.org"
-         "/Users/sven/org/postgres-tuning.org" "/Users/sven/org/privat.org"
-         "/Users/sven/org/prs-linting.org" "/Users/sven/org/prv-garten.org"
-         "/Users/sven/org/prv-haus.org" "/Users/sven/org/prv-haushalt.org"
-         "/Users/sven/org/prv-kindergarten.org" "/Users/sven/org/prv-mama.org"
-         "/Users/sven/org/prv-steuern.org" "/Users/sven/org/prv-sysops.org"
-         "/Users/sven/org/refile.org" "/Users/sven/org/social.org"
-         "/Users/sven/org/swc-docu.org" "/Users/sven/org/swc-finalapp.org"
-         "/Users/sven/org/swc-gui.org" "/Users/sven/org/swc-misc.org"
-         "/Users/sven/org/swc-orga.org" "/Users/sven/org/swc-server.org"
-         "/Users/sven/org/swc-sysops.org" "/Users/sven/org/swc-team.org"
-         "/Users/sven/org/swc-verzeichnis-verarbeitungstaetigkeiten.org"
-         "/Users/sven/org/swc-webapp.org" "/Users/sven/org/swc-website.org"
-         "/Users/sven/org/swc-workshop.org"
-         "/Users/sven/org/tmp-daily-cooldown.org"
-         "/Users/sven/org/tmp-evening-review.org"
-         "/Users/sven/org/tmp-frontastic-weekly-report.org"
-         "/Users/sven/org/tmp-weekly-review.org"
-         "/Users/sven/org/uni-bachelor-tim.org" "/Users/sven/org/uni-digisys.org"
-         "/Users/sven/org/uni-doktorarbeit.org" "/Users/sven/org/uni-imps.org"
-         "/Users/sven/org/uni-infprog.org" "/Users/sven/org/uni-misc.org"
-         "/Users/sven/org/uni-plan.org")
-        :query (tags "REFILE") :sort (date) :narrow nil :super-groups nil :title
-        "Review: Refile")
-       ("Prioritize Tasks ct" :buffers-files
-        ("/Users/sven/org/anniversary.org" "/Users/sven/org/bugs.org"
-         "/Users/sven/org/cli-presentation.org" "/Users/sven/org/getdigital.org"
-         "/Users/sven/org/gfxpro.org" "/Users/sven/org/gtd-daily-cooldown.org"
-         "/Users/sven/org/gtd-evening-review.org"
-         "/Users/sven/org/gtd-weekly-reviews.org"
-         "/Users/sven/org/gxp-frontastic-cli.org"
-         "/Users/sven/org/gxp-frontastic-meetings.org"
-         "/Users/sven/org/gxp-frontastic.org"
-         "/Users/sven/org/gxp-lasersoft-doc.org"
-         "/Users/sven/org/gxp-lasersoft.org" "/Users/sven/org/isavision.org"
-         "/Users/sven/org/knw-dev.org" "/Users/sven/org/knw-docker.org"
-         "/Users/sven/org/knw-emacs.org" "/Users/sven/org/knw-git.org"
-         "/Users/sven/org/knw-go.org" "/Users/sven/org/knw-hardware.org"
-         "/Users/sven/org/knw-haskell.org" "/Users/sven/org/knw-java.org"
-         "/Users/sven/org/knw-linux.org" "/Users/sven/org/knw-macos.org"
-         "/Users/sven/org/knw-misc.org" "/Users/sven/org/knw-php.org"
-         "/Users/sven/org/knw-productivity.org" "/Users/sven/org/knw-ruby.org"
-         "/Users/sven/org/knw-scala.org" "/Users/sven/org/knw-webdev.org"
-         "/Users/sven/org/knw-windows.org" "/Users/sven/org/les-aprpat.org"
-         "/Users/sven/org/mallorca-selection-verarbeitungsverzeichnis.org"
-         "/Users/sven/org/meta.org" "/Users/sven/org/newsfeeds.org"
-         "/Users/sven/org/notes.org" "/Users/sven/org/pav-dev-orga.org"
-         "/Users/sven/org/pav-lambda.org" "/Users/sven/org/pav-plan.org"
-         "/Users/sven/org/pav-psi.org" "/Users/sven/org/pav-rho.org"
-         "/Users/sven/org/pav-sea-gmbh.org" "/Users/sven/org/pav-sysops.org"
-         "/Users/sven/org/pav-theory.org" "/Users/sven/org/plan.org"
-         "/Users/sven/org/postgres-tuning.org" "/Users/sven/org/privat.org"
-         "/Users/sven/org/prs-linting.org" "/Users/sven/org/prv-garten.org"
-         "/Users/sven/org/prv-haus.org" "/Users/sven/org/prv-haushalt.org"
-         "/Users/sven/org/prv-kindergarten.org" "/Users/sven/org/prv-mama.org"
-         "/Users/sven/org/prv-steuern.org" "/Users/sven/org/prv-sysops.org"
-         "/Users/sven/org/refile.org" "/Users/sven/org/social.org"
-         "/Users/sven/org/swc-docu.org" "/Users/sven/org/swc-finalapp.org"
-         "/Users/sven/org/swc-gui.org" "/Users/sven/org/swc-misc.org"
-         "/Users/sven/org/swc-orga.org" "/Users/sven/org/swc-server.org"
-         "/Users/sven/org/swc-sysops.org" "/Users/sven/org/swc-team.org"
-         "/Users/sven/org/swc-verzeichnis-verarbeitungstaetigkeiten.org"
-         "/Users/sven/org/swc-webapp.org" "/Users/sven/org/swc-website.org"
-         "/Users/sven/org/swc-workshop.org"
-         "/Users/sven/org/tmp-daily-cooldown.org"
-         "/Users/sven/org/tmp-evening-review.org"
-         "/Users/sven/org/tmp-frontastic-weekly-report.org"
-         "/Users/sven/org/tmp-weekly-review.org"
-         "/Users/sven/org/uni-bachelor-tim.org" "/Users/sven/org/uni-digisys.org"
-         "/Users/sven/org/uni-doktorarbeit.org" "/Users/sven/org/uni-imps.org"
-         "/Users/sven/org/uni-infprog.org" "/Users/sven/org/uni-misc.org"
-         "/Users/sven/org/uni-plan.org")
-        :query (tags "prioritize") :sort nil :narrow nil :super-groups nil :title
-        "Prioritize Tasks ct")
-       ("Overview: Agenda-like" :buffers-files org-agenda-files :query
-        (and (not (done))
-             (or (habit) (deadline auto) (scheduled :to today)
-                 (ts-active :on today)))
-        :sort (todo priority date) :super-groups org-super-agenda-groups :title
-        "Agenda-like")
-       ("Overview: NEXT tasks" :buffers-files org-agenda-files :query
-        (todo "NEXT") :sort (date priority) :super-groups org-super-agenda-groups
-        :title "Overview: NEXT tasks")
-       ("Calendar: Today" :buffers-files org-agenda-files :query
-        (ts-active :on today) :title "Today" :super-groups org-super-agenda-groups
-        :sort (priority))
-       ("Calendar: This week"
-        . #[0
-            "\301 \302\303\304\305\304\306\304\307\310\301 \311\1!\10>\204\34\0\312\313\314\3D\"\210\211\315H\204\232\0\211\315\316\317\320\311\6\6!\10>\2048\0\312\313\314\6\10D\"\210\5\321H\204\223\0\5\321\311\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\203\215\0\4\203\215\0\3\203\215\0\2\203\215\0\1\203\215\0\211\203\215\0\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\202\221\0\330 \266\206I\210\5\321H\"!I\210\211\315H\262\1[\6\12#&\7\302\303\332\305\333\306\333\307\310\327\301 \311\1!\10>\204\300\0\312\313\314\3D\"\210\211\315H\204>\1\211\315\316\317\320\311\6\6!\10>\204\334\0\312\313\314\6\10D\"\210\5\321H\2047\1\5\321\311\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\2031\1\4\2031\1\3\2031\1\2\2031\1\1\2031\1\211\2031\1\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\2025\1\330 \266\206I\210\5\321H\"!I\210\211\315H\262\1Z\6\13#&\7\334\335 \336\337\5\340\6\6\257\5\341\342\343\344\345\346&\10\207"
-            [cl-struct-ts-tags ts-now ts-apply :hour 0 :minute :second ts-adjust
-                               day type-of signal wrong-type-argument ts 7
-                               string-to-number format-time-string "%w" 17 3 2 1 4
-                               5 6 float-time encode-time 23 59 org-ql-search
-                               org-agenda-files ts-active :from :to :title
-                               "This week" :super-groups org-super-agenda-groups
-                               :sort (priority)]
-            34 "Show items with an active timestamp during this calendar week."
-            nil])
-       ("Calendar: Next week"
-        . #[0
-            "\301\302\303\304 #\305\306\307\310\307\311\307\301\302\304 \312\1!\10>\204 \0\313\314\315\3D\"\210\211\303H\204\236\0\211\303\316\317\320\312\6\6!\10>\204<\0\313\314\315\6\10D\"\210\5\321H\204\227\0\5\321\312\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\203\221\0\4\203\221\0\3\203\221\0\2\203\221\0\1\203\221\0\211\203\221\0\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\202\225\0\330 \266\206I\210\5\321H\"!I\210\211\303H\262\1[\6\12#&\7\305\306\332\310\333\311\333\301\302\327\304 \312\1!\10>\204\304\0\313\314\315\3D\"\210\211\303H\204B\1\211\303\316\317\320\312\6\6!\10>\204\340\0\313\314\315\6\10D\"\210\5\321H\204;\1\5\321\312\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\2035\1\4\2035\1\3\2035\1\2\2035\1\1\2035\1\211\2035\1\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\2029\1\330 \266\206I\210\5\321H\"!I\210\211\303H\262\1Z\6\13#&\7\334\335 \336\337\5\340\6\6\257\5\341\342\343\344\345\346&\10\207"
-            [cl-struct-ts-tags ts-adjust day 7 ts-now ts-apply :hour 0 :minute
-                               :second type-of signal wrong-type-argument ts
-                               string-to-number format-time-string "%w" 17 3 2 1 4
-                               5 6 float-time encode-time 23 59 org-ql-search
-                               org-agenda-files ts-active :from :to :title
-                               "Next week" :super-groups org-super-agenda-groups
-                               :sort (priority)]
-            34
-            "Show items with an active timestamp during the next calendar week."
-            nil])
-       ("Review: Recently timestamped" . org-ql-view-recent-items)
-       (#("Review: Dangling tasks" 0 22 (help-echo "Tasks whose ancestor is done"))
-        :buffers-files org-agenda-files :query (and (todo) (ancestors (done)))
-        :title
-        #("Review: Dangling tasks" 0 22 (help-echo "Tasks whose ancestor is done"))
-        :sort (todo priority date) :super-groups ((:auto-parent t)))
-       (#("Review: Stale tasks" 0 19
-          (help-echo "Tasks without a timestamp in the past 2 weeks"))
-        :buffers-files org-agenda-files :query (and (todo) (not (ts :from -14)))
-        :title
-        #("Review: Stale tasks" 0 19
-          (help-echo "Tasks without a timestamp in the past 2 weeks"))
-        :sort (todo priority date) :super-groups ((:auto-parent t)))
-       (#("Review: Stuck projects" 0 22
-          (help-echo "Tasks with sub-tasks but no NEXT sub-tasks"))
-        :buffers-files org-agenda-files :query
-        (and (todo) (descendants (todo)) (not (descendants (todo "NEXT")))) :title
-        #("Review: Stuck projects" 0 22
-          (help-echo "Tasks with sub-tasks but no NEXT sub-tasks"))
-        :sort (date priority) :super-groups org-super-agenda-groups)))
-   '(package-selected-packages
-     '(ac-ispell ace-jump-helm-line ace-link ace-window adaptive-wrap adoc-mode
-                 aggressive-indent alchemist alert anaconda-mode ansible
-                 ansible-doc anzu async auto-compile auto-complete auto-dictionary
-                 auto-highlight-symbol auto-yasnippet avy bind-key bind-map
-                 bundler chruby clean-aindent-mode coffee-mode
-                 color-identifiers-mode column-enforce-mode company
-                 company-anaconda company-ansible company-box company-go
-                 company-quickhelp company-restclient company-shell
-                 company-statistics company-web compat copilot csv-mode
-                 cython-mode dash dash-at-point dash-docs define-word diff-hl
-                 diminish drupal-mode dumb-jump editorconfig elfeed elfeed-goodies
-                 elfeed-org elfeed-web elisp-slime-nav elixir-mode emmet-mode epl
-                 esh-help eshell-prompt-extras eshell-z eval-sexp-fu evil
-                 evil-anzu evil-args evil-escape evil-exchange evil-iedit-state
-                 evil-indent-plus evil-lisp-state evil-matchit evil-mc
-                 evil-nerd-commenter evil-numbers evil-search-highlight-persist
-                 evil-snipe evil-surround evil-tutor evil-unimpaired
-                 evil-visual-mark-mode evil-visualstar exec-path-from-shell
-                 expand-region eyebrowse f fancy-battery feature-mode
-                 fill-column-indicator fish-mode flx flx-ido flycheck
-                 flycheck-credo flycheck-gometalinter flycheck-pos-tip
-                 flyspell-correct flyspell-correct-helm frame-local fringe-helper
-                 fuzzy gh-md git-commit git-gutter git-gutter+ git-gutter-fringe
-                 git-gutter-fringe+ git-link git-messenger git-modes
-                 git-timemachine gntp gnuplot go-eldoc go-guru go-mode
-                 golden-ratio google-translate goto-chg haml-mode helm helm-ag
-                 helm-c-yasnippet helm-company helm-core helm-css-scss helm-dash
-                 helm-descbinds helm-flx helm-gitignore helm-make
-                 helm-mode-manager helm-org helm-org-ql helm-projectile helm-pydoc
-                 helm-spotify-plus helm-swoop helm-themes highlight
-                 highlight-indentation highlight-numbers highlight-parentheses
-                 hl-todo hnreader ht htmlize hungry-delete hy-mode hydra iedit
-                 indent-guide inf-ruby inflections insert-shebang jinja2-mode
-                 js-doc js2-mode js2-refactor json-mode json-snatcher key-chord
-                 know-your-http-well link-hint linum-relative live-py-mode
-                 livid-mode log4e lorem-ipsum lv macrostep magit
-                 magit-diff-flycheck magit-gitflow magit-popup magit-section
-                 markdown-mode markdown-toc minitest mixed-pitch mmm-mode
-                 move-text multi multi-term multiple-cursors neotree nginx-mode
-                 ob-elixir ob-http ob-restclient open-junk-file org-bullets
-                 org-category-capture org-download org-mime org-parser
-                 org-pomodoro org-present org-projectile org-ql org-randomnote
-                 org-sidebar org-super-agenda orgit origami ov ox-gfm paradox
-                 parent-mode pcre2el peg persp-mode php-extras php-mode phpunit
-                 pip-requirements pkg-info plantuml-mode popup popwin pos-tip
-                 powerline projectile projectile-rails pug-mode py-isort
-                 pyenv-mode pytest pythonic pyvenv queue rainbow-delimiters
-                 rainbow-identifiers rainbow-mode rake ranger rbenv request
-                 restart-emacs restclient restclient-helm robe rspec-mode rubocop
-                 ruby-test-mode ruby-tools rvm s sass-mode scss-mode shell-pop
-                 simple-httpd skewer-mode slim-mode smartparens smeargle
-                 solarized-theme spaceline spinner spotify sql-indent
-                 string-inflection tagedit tide toc-org transient ts
-                 typescript-mode typo undo-tree use-package uuidgen
-                 vi-tilde-fringe volatile-highlights vterm web-beautify
-                 web-completion-data web-mode which-key winum with-editor
-                 ws-butler xterm-color yafolding yaml-mode yapfify yasnippet
-                 yasnippet-snippets zpresent))
-   '(paradox-github-token t)
-   '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
-   '(php-mode-enable-project-coding-style t)
-   '(phpcbf-standard "PSR2")
-   '(rbenv-modeline-function 'rbenv--modeline-plain)
-   '(safe-local-variable-values
-     '((js2-basic-offset . 4) (web-mode-indent-style . 2)
-       (web-mode-block-padding . 4) (web-mode-script-padding . 4)
-       (web-mode-style-padding . 4) (typescript-backend . tide)
-       (typescript-backend . lsp) (javascript-backend . tide)
-       (javascript-backend . tern) (javascript-backend . lsp)))
-   '(select-enable-primary t)
-   '(send-mail-function 'smtpmail-send-it)
-   '(slack-team-id "T32RXMNLV")
-   '(warning-suppress-types '((comp)))
-   '(writeroom-width 144))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(avy-lead-face ((t (:foreground "#ffffff" :background "#dc322f"))))
-   '(avy-lead-face-0 ((t (:foreground "#ffffff" :background "#268bd2"))))
-   '(avy-lead-face-1 ((t (:foreground "#002b36" :background "#859900"))))
-   '(avy-lead-face-2 ((t (:foreground "#ffffff" :background "#6c71c4"))))
-   '(variable-pitch ((t (:height 1.2 :family "Source Sans 3")))))
-  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(auth-source-save-behavior nil)
+ '(c-basic-offset 2)
+ '(company-box-icons-alist 'company-box-icons-all-the-icons)
+ '(custom-safe-themes
+   '("eecff0e045e5a54e5a517a042a7491eecfb8d49e79c5813e2110ad3458df52ce" default))
+ '(evil-want-Y-yank-to-eol t)
+ '(exec-path
+   '("/usr/local/sbin/" "/usr/local/bin/" "/usr/bin/"
+     "/opt/android-sdk/platform-tools/" "/opt/android-sdk/tools/"
+     "/usr/lib/jvm/default/bin/" "/usr/bin/site_perl/" "/usr/bin/vendor_perl/"
+     "/usr/bin/core_perl/" "/home/sven/.rbenv/shims/" "/opt/homebrew/bin"))
+ '(flycheck-disabled-checkers '(ruby ruby-rubylint javascript-jshint))
+ '(flycheck-go-golint-executable "/Users/sven/go/bin/golint")
+ '(flycheck-phpcs-standard "PSR2")
+ '(flycheck-phpmd-rulesets '("codesize" "design" "unusedcode"))
+ '(flycheck-phpstan-executable "/home/sven/.config/composer/vendor/bin/phpstan")
+ '(haskell-tags-on-save t)
+ '(hl-todo-keyword-faces
+   '(("TODO" . "#dc752f") ("NEXT" . "#dc752f") ("THEM" . "#2d9574")
+     ("PROG" . "#4f97d7") ("OKAY" . "#4f97d7") ("DONT" . "#f2241f")
+     ("FAIL" . "#f2241f") ("DONE" . "#86dc2f") ("NOTE" . "#b1951d")
+     ("KLUDGE" . "#b1951d") ("HACK" . "#b1951d") ("TEMP" . "#b1951d")
+     ("FIXME" . "#dc752f") ("XXX+" . "#dc752f") ("\\?\\?\\?+" . "#dc752f")))
+ '(jiralib-url "https://commercetools.atlassian.net" t)
+ '(jiralib-user "sven.koschnicke@commercetools.com")
+ '(js2-missing-semi-one-line-override t)
+ '(js2-strict-missing-semi-warning nil)
+ '(lsp-intelephense-php-version "8.1.0")
+ '(mu4e-view-show-addresses t)
+ '(mu4e-view-show-images t t)
+ '(native-comp-deferred-compilation-deny-list '(".*projectile.*"))
+ '(ns-alternate-modifier '(:ordinary meta :function meta :mouse meta))
+ '(org-ql-views
+   '(("Review: Refile" :buffers-files
+      ("/Users/sven/org/anniversary.org" "/Users/sven/org/bugs.org"
+       "/Users/sven/org/cli-presentation.org" "/Users/sven/org/getdigital.org"
+       "/Users/sven/org/gfxpro.org" "/Users/sven/org/gtd-daily-cooldown.org"
+       "/Users/sven/org/gtd-evening-review.org"
+       "/Users/sven/org/gtd-weekly-reviews.org"
+       "/Users/sven/org/gxp-frontastic-cli.org"
+       "/Users/sven/org/gxp-frontastic-meetings.org"
+       "/Users/sven/org/gxp-frontastic.org"
+       "/Users/sven/org/gxp-lasersoft-doc.org"
+       "/Users/sven/org/gxp-lasersoft.org" "/Users/sven/org/isavision.org"
+       "/Users/sven/org/knw-dev.org" "/Users/sven/org/knw-docker.org"
+       "/Users/sven/org/knw-emacs.org" "/Users/sven/org/knw-git.org"
+       "/Users/sven/org/knw-go.org" "/Users/sven/org/knw-hardware.org"
+       "/Users/sven/org/knw-haskell.org" "/Users/sven/org/knw-java.org"
+       "/Users/sven/org/knw-linux.org" "/Users/sven/org/knw-macos.org"
+       "/Users/sven/org/knw-misc.org" "/Users/sven/org/knw-php.org"
+       "/Users/sven/org/knw-productivity.org" "/Users/sven/org/knw-ruby.org"
+       "/Users/sven/org/knw-scala.org" "/Users/sven/org/knw-webdev.org"
+       "/Users/sven/org/knw-windows.org" "/Users/sven/org/les-aprpat.org"
+       "/Users/sven/org/mallorca-selection-verarbeitungsverzeichnis.org"
+       "/Users/sven/org/meta.org" "/Users/sven/org/newsfeeds.org"
+       "/Users/sven/org/notes.org" "/Users/sven/org/pav-dev-orga.org"
+       "/Users/sven/org/pav-lambda.org" "/Users/sven/org/pav-plan.org"
+       "/Users/sven/org/pav-psi.org" "/Users/sven/org/pav-rho.org"
+       "/Users/sven/org/pav-sea-gmbh.org" "/Users/sven/org/pav-sysops.org"
+       "/Users/sven/org/pav-theory.org" "/Users/sven/org/plan.org"
+       "/Users/sven/org/postgres-tuning.org" "/Users/sven/org/privat.org"
+       "/Users/sven/org/prs-linting.org" "/Users/sven/org/prv-garten.org"
+       "/Users/sven/org/prv-haus.org" "/Users/sven/org/prv-haushalt.org"
+       "/Users/sven/org/prv-kindergarten.org" "/Users/sven/org/prv-mama.org"
+       "/Users/sven/org/prv-steuern.org" "/Users/sven/org/prv-sysops.org"
+       "/Users/sven/org/refile.org" "/Users/sven/org/social.org"
+       "/Users/sven/org/swc-docu.org" "/Users/sven/org/swc-finalapp.org"
+       "/Users/sven/org/swc-gui.org" "/Users/sven/org/swc-misc.org"
+       "/Users/sven/org/swc-orga.org" "/Users/sven/org/swc-server.org"
+       "/Users/sven/org/swc-sysops.org" "/Users/sven/org/swc-team.org"
+       "/Users/sven/org/swc-verzeichnis-verarbeitungstaetigkeiten.org"
+       "/Users/sven/org/swc-webapp.org" "/Users/sven/org/swc-website.org"
+       "/Users/sven/org/swc-workshop.org"
+       "/Users/sven/org/tmp-daily-cooldown.org"
+       "/Users/sven/org/tmp-evening-review.org"
+       "/Users/sven/org/tmp-frontastic-weekly-report.org"
+       "/Users/sven/org/tmp-weekly-review.org"
+       "/Users/sven/org/uni-bachelor-tim.org" "/Users/sven/org/uni-digisys.org"
+       "/Users/sven/org/uni-doktorarbeit.org" "/Users/sven/org/uni-imps.org"
+       "/Users/sven/org/uni-infprog.org" "/Users/sven/org/uni-misc.org"
+       "/Users/sven/org/uni-plan.org")
+      :query (tags "REFILE") :sort (date) :narrow nil :super-groups nil :title
+      "Review: Refile")
+     ("Prioritize Tasks ct" :buffers-files
+      ("/Users/sven/org/anniversary.org" "/Users/sven/org/bugs.org"
+       "/Users/sven/org/cli-presentation.org" "/Users/sven/org/getdigital.org"
+       "/Users/sven/org/gfxpro.org" "/Users/sven/org/gtd-daily-cooldown.org"
+       "/Users/sven/org/gtd-evening-review.org"
+       "/Users/sven/org/gtd-weekly-reviews.org"
+       "/Users/sven/org/gxp-frontastic-cli.org"
+       "/Users/sven/org/gxp-frontastic-meetings.org"
+       "/Users/sven/org/gxp-frontastic.org"
+       "/Users/sven/org/gxp-lasersoft-doc.org"
+       "/Users/sven/org/gxp-lasersoft.org" "/Users/sven/org/isavision.org"
+       "/Users/sven/org/knw-dev.org" "/Users/sven/org/knw-docker.org"
+       "/Users/sven/org/knw-emacs.org" "/Users/sven/org/knw-git.org"
+       "/Users/sven/org/knw-go.org" "/Users/sven/org/knw-hardware.org"
+       "/Users/sven/org/knw-haskell.org" "/Users/sven/org/knw-java.org"
+       "/Users/sven/org/knw-linux.org" "/Users/sven/org/knw-macos.org"
+       "/Users/sven/org/knw-misc.org" "/Users/sven/org/knw-php.org"
+       "/Users/sven/org/knw-productivity.org" "/Users/sven/org/knw-ruby.org"
+       "/Users/sven/org/knw-scala.org" "/Users/sven/org/knw-webdev.org"
+       "/Users/sven/org/knw-windows.org" "/Users/sven/org/les-aprpat.org"
+       "/Users/sven/org/mallorca-selection-verarbeitungsverzeichnis.org"
+       "/Users/sven/org/meta.org" "/Users/sven/org/newsfeeds.org"
+       "/Users/sven/org/notes.org" "/Users/sven/org/pav-dev-orga.org"
+       "/Users/sven/org/pav-lambda.org" "/Users/sven/org/pav-plan.org"
+       "/Users/sven/org/pav-psi.org" "/Users/sven/org/pav-rho.org"
+       "/Users/sven/org/pav-sea-gmbh.org" "/Users/sven/org/pav-sysops.org"
+       "/Users/sven/org/pav-theory.org" "/Users/sven/org/plan.org"
+       "/Users/sven/org/postgres-tuning.org" "/Users/sven/org/privat.org"
+       "/Users/sven/org/prs-linting.org" "/Users/sven/org/prv-garten.org"
+       "/Users/sven/org/prv-haus.org" "/Users/sven/org/prv-haushalt.org"
+       "/Users/sven/org/prv-kindergarten.org" "/Users/sven/org/prv-mama.org"
+       "/Users/sven/org/prv-steuern.org" "/Users/sven/org/prv-sysops.org"
+       "/Users/sven/org/refile.org" "/Users/sven/org/social.org"
+       "/Users/sven/org/swc-docu.org" "/Users/sven/org/swc-finalapp.org"
+       "/Users/sven/org/swc-gui.org" "/Users/sven/org/swc-misc.org"
+       "/Users/sven/org/swc-orga.org" "/Users/sven/org/swc-server.org"
+       "/Users/sven/org/swc-sysops.org" "/Users/sven/org/swc-team.org"
+       "/Users/sven/org/swc-verzeichnis-verarbeitungstaetigkeiten.org"
+       "/Users/sven/org/swc-webapp.org" "/Users/sven/org/swc-website.org"
+       "/Users/sven/org/swc-workshop.org"
+       "/Users/sven/org/tmp-daily-cooldown.org"
+       "/Users/sven/org/tmp-evening-review.org"
+       "/Users/sven/org/tmp-frontastic-weekly-report.org"
+       "/Users/sven/org/tmp-weekly-review.org"
+       "/Users/sven/org/uni-bachelor-tim.org" "/Users/sven/org/uni-digisys.org"
+       "/Users/sven/org/uni-doktorarbeit.org" "/Users/sven/org/uni-imps.org"
+       "/Users/sven/org/uni-infprog.org" "/Users/sven/org/uni-misc.org"
+       "/Users/sven/org/uni-plan.org")
+      :query (tags "prioritize") :sort nil :narrow nil :super-groups nil :title
+      "Prioritize Tasks ct")
+     ("Overview: Agenda-like" :buffers-files org-agenda-files :query
+      (and (not (done))
+           (or (habit) (deadline auto) (scheduled :to today)
+               (ts-active :on today)))
+      :sort (todo priority date) :super-groups org-super-agenda-groups :title
+      "Agenda-like")
+     ("Overview: NEXT tasks" :buffers-files org-agenda-files :query
+      (todo "NEXT") :sort (date priority) :super-groups org-super-agenda-groups
+      :title "Overview: NEXT tasks")
+     ("Calendar: Today" :buffers-files org-agenda-files :query
+      (ts-active :on today) :title "Today" :super-groups org-super-agenda-groups
+      :sort (priority))
+     ("Calendar: This week"
+      . #[0
+          "\301 \302\303\304\305\304\306\304\307\310\301 \311\1!\10>\204\34\0\312\313\314\3D\"\210\211\315H\204\232\0\211\315\316\317\320\311\6\6!\10>\2048\0\312\313\314\6\10D\"\210\5\321H\204\223\0\5\321\311\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\203\215\0\4\203\215\0\3\203\215\0\2\203\215\0\1\203\215\0\211\203\215\0\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\202\221\0\330 \266\206I\210\5\321H\"!I\210\211\315H\262\1[\6\12#&\7\302\303\332\305\333\306\333\307\310\327\301 \311\1!\10>\204\300\0\312\313\314\3D\"\210\211\315H\204>\1\211\315\316\317\320\311\6\6!\10>\204\334\0\312\313\314\6\10D\"\210\5\321H\2047\1\5\321\311\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\2031\1\4\2031\1\3\2031\1\2\2031\1\1\2031\1\211\2031\1\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\2025\1\330 \266\206I\210\5\321H\"!I\210\211\315H\262\1Z\6\13#&\7\334\335 \336\337\5\340\6\6\257\5\341\342\343\344\345\346&\10\207"
+          [cl-struct-ts-tags ts-now ts-apply :hour 0 :minute :second ts-adjust
+                             day type-of signal wrong-type-argument ts 7
+                             string-to-number format-time-string "%w" 17 3 2 1 4
+                             5 6 float-time encode-time 23 59 org-ql-search
+                             org-agenda-files ts-active :from :to :title
+                             "This week" :super-groups org-super-agenda-groups
+                             :sort (priority)]
+          34 "Show items with an active timestamp during this calendar week."
+          nil])
+     ("Calendar: Next week"
+      . #[0
+          "\301\302\303\304 #\305\306\307\310\307\311\307\301\302\304 \312\1!\10>\204 \0\313\314\315\3D\"\210\211\303H\204\236\0\211\303\316\317\320\312\6\6!\10>\204<\0\313\314\315\6\10D\"\210\5\321H\204\227\0\5\321\312\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\203\221\0\4\203\221\0\3\203\221\0\2\203\221\0\1\203\221\0\211\203\221\0\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\202\225\0\330 \266\206I\210\5\321H\"!I\210\211\303H\262\1[\6\12#&\7\305\306\332\310\333\311\333\301\302\327\304 \312\1!\10>\204\304\0\313\314\315\3D\"\210\211\303H\204B\1\211\303\316\317\320\312\6\6!\10>\204\340\0\313\314\315\6\10D\"\210\5\321H\204;\1\5\321\312\6\10!\10>\210\6\7\322H\6\10\323H\6\11\324H\6\12\325H\6\13\326H\6\14\327H\5\2035\1\4\2035\1\3\2035\1\2\2035\1\1\2035\1\211\2035\1\330\331\6\7\6\7\6\7\6\7\6\7\6\7&\6!\266\206\2029\1\330 \266\206I\210\5\321H\"!I\210\211\303H\262\1Z\6\13#&\7\334\335 \336\337\5\340\6\6\257\5\341\342\343\344\345\346&\10\207"
+          [cl-struct-ts-tags ts-adjust day 7 ts-now ts-apply :hour 0 :minute
+                             :second type-of signal wrong-type-argument ts
+                             string-to-number format-time-string "%w" 17 3 2 1 4
+                             5 6 float-time encode-time 23 59 org-ql-search
+                             org-agenda-files ts-active :from :to :title
+                             "Next week" :super-groups org-super-agenda-groups
+                             :sort (priority)]
+          34
+          "Show items with an active timestamp during the next calendar week."
+          nil])
+     ("Review: Recently timestamped" . org-ql-view-recent-items)
+     (#("Review: Dangling tasks" 0 22 (help-echo "Tasks whose ancestor is done"))
+      :buffers-files org-agenda-files :query (and (todo) (ancestors (done)))
+      :title
+      #("Review: Dangling tasks" 0 22 (help-echo "Tasks whose ancestor is done"))
+      :sort (todo priority date) :super-groups ((:auto-parent t)))
+     (#("Review: Stale tasks" 0 19
+        (help-echo "Tasks without a timestamp in the past 2 weeks"))
+      :buffers-files org-agenda-files :query (and (todo) (not (ts :from -14)))
+      :title
+      #("Review: Stale tasks" 0 19
+        (help-echo "Tasks without a timestamp in the past 2 weeks"))
+      :sort (todo priority date) :super-groups ((:auto-parent t)))
+     (#("Review: Stuck projects" 0 22
+        (help-echo "Tasks with sub-tasks but no NEXT sub-tasks"))
+      :buffers-files org-agenda-files :query
+      (and (todo) (descendants (todo)) (not (descendants (todo "NEXT")))) :title
+      #("Review: Stuck projects" 0 22
+        (help-echo "Tasks with sub-tasks but no NEXT sub-tasks"))
+      :sort (date priority) :super-groups org-super-agenda-groups)))
+ '(package-selected-packages
+   '(ac-ispell ace-jump-helm-line ace-link ace-window adaptive-wrap adoc-mode
+               aggressive-indent alchemist alert anaconda-mode ansible
+               ansible-doc anzu async auto-compile auto-complete auto-dictionary
+               auto-highlight-symbol auto-yasnippet avy bind-key bind-map
+               bundler chruby clean-aindent-mode coffee-mode
+               color-identifiers-mode column-enforce-mode company
+               company-anaconda company-ansible company-box company-go
+               company-quickhelp company-restclient company-shell
+               company-statistics company-web compat copilot csv-mode
+               cython-mode dash dash-at-point dash-docs define-word diff-hl
+               diminish drupal-mode dumb-jump editorconfig elfeed elfeed-goodies
+               elfeed-org elfeed-web elisp-slime-nav elixir-mode emmet-mode epl
+               esh-help eshell-prompt-extras eshell-z eval-sexp-fu evil
+               evil-anzu evil-args evil-escape evil-exchange evil-iedit-state
+               evil-indent-plus evil-lisp-state evil-matchit evil-mc
+               evil-nerd-commenter evil-numbers evil-search-highlight-persist
+               evil-snipe evil-surround evil-tutor evil-unimpaired
+               evil-visual-mark-mode evil-visualstar exec-path-from-shell
+               expand-region eyebrowse f fancy-battery feature-mode
+               fill-column-indicator fish-mode flx flx-ido flycheck
+               flycheck-credo flycheck-gometalinter flycheck-pos-tip
+               flyspell-correct flyspell-correct-helm frame-local fringe-helper
+               fuzzy gh-md git-commit git-gutter git-gutter+ git-gutter-fringe
+               git-gutter-fringe+ git-link git-messenger git-modes
+               git-timemachine gntp gnuplot go-eldoc go-guru go-mode
+               golden-ratio google-translate goto-chg haml-mode helm helm-ag
+               helm-c-yasnippet helm-company helm-core helm-css-scss helm-dash
+               helm-descbinds helm-flx helm-gitignore helm-make
+               helm-mode-manager helm-org helm-org-ql helm-projectile helm-pydoc
+               helm-spotify-plus helm-swoop helm-themes highlight
+               highlight-indentation highlight-numbers highlight-parentheses
+               hl-todo hnreader ht htmlize hungry-delete hy-mode hydra iedit
+               indent-guide inf-ruby inflections insert-shebang jinja2-mode
+               js-doc js2-mode js2-refactor json-mode json-snatcher key-chord
+               know-your-http-well link-hint linum-relative live-py-mode
+               livid-mode log4e lorem-ipsum lv macrostep magit
+               magit-diff-flycheck magit-gitflow magit-popup magit-section
+               markdown-mode markdown-toc minitest mixed-pitch mmm-mode
+               move-text multi multi-term multiple-cursors neotree nginx-mode
+               ob-elixir ob-http ob-restclient open-junk-file org-bullets
+               org-category-capture org-download org-mime org-parser
+               org-pomodoro org-present org-projectile org-ql org-randomnote
+               org-sidebar org-super-agenda orgit origami ov ox-gfm paradox
+               parent-mode pcre2el peg persp-mode php-extras php-mode phpunit
+               pip-requirements pkg-info plantuml-mode popup popwin pos-tip
+               powerline projectile projectile-rails pug-mode py-isort
+               pyenv-mode pytest pythonic pyvenv queue rainbow-delimiters
+               rainbow-identifiers rainbow-mode rake ranger rbenv request
+               restart-emacs restclient restclient-helm robe rspec-mode rubocop
+               ruby-test-mode ruby-tools rvm s sass-mode scss-mode shell-pop
+               simple-httpd skewer-mode slim-mode smartparens smeargle
+               solarized-theme spaceline spinner spotify sql-indent
+               string-inflection tagedit tide toc-org transient ts
+               typescript-mode typo undo-tree use-package uuidgen
+               vi-tilde-fringe volatile-highlights vterm web-beautify
+               web-completion-data web-mode which-key winum with-editor
+               ws-butler xterm-color yafolding yaml-mode yapfify yasnippet
+               yasnippet-snippets zpresent))
+ '(paradox-github-token t)
+ '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
+ '(php-mode-enable-project-coding-style t)
+ '(phpcbf-standard "PSR2")
+ '(rbenv-modeline-function 'rbenv--modeline-plain)
+ '(safe-local-variable-values
+   '((org-confirm-babel-evaluate) (js2-basic-offset . 4)
+     (web-mode-indent-style . 2) (web-mode-block-padding . 4)
+     (web-mode-script-padding . 4) (web-mode-style-padding . 4)
+     (typescript-backend . tide) (typescript-backend . lsp)
+     (javascript-backend . tide) (javascript-backend . tern)
+     (javascript-backend . lsp)))
+ '(select-enable-primary t)
+ '(send-mail-function 'smtpmail-send-it)
+ '(slack-team-id "T32RXMNLV")
+ '(warning-suppress-types '((comp)))
+ '(writeroom-width 144))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(avy-lead-face ((t (:foreground "#ffffff" :background "#dc322f"))))
+ '(avy-lead-face-0 ((t (:foreground "#ffffff" :background "#268bd2"))))
+ '(avy-lead-face-1 ((t (:foreground "#002b36" :background "#859900"))))
+ '(avy-lead-face-2 ((t (:foreground "#ffffff" :background "#6c71c4"))))
+ '(variable-pitch ((t (:height 1.2 :family "Source Sans 3")))))
+)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
