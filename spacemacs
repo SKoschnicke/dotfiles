@@ -597,7 +597,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
+   ;; "pt" results in an error, removing it ...
+   dotspacemacs-search-tools '("rg" "ag" "ack" "grep")
 
    ;; Format specification for setting the frame title.
    ;; %a - the `abbreviated-file-name', or `buffer-name'
@@ -703,6 +704,13 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
+
+
+  ;; Load custom standup functions
+  (add-to-list 'load-path "~/.dotfiles/emacs-custom-extensions")
+  (require 'my-org-extensions)
+
+
   (require 'gptel)
 ;;;(require 'gptel-curl)
   (require 'gptel-org)
@@ -1670,11 +1678,6 @@ If OTHERS is true, skip all entries that do not correspond to TAG."
             (lambda()
               (global-set-key (kbd "S-TAB") 'company-complete)))
   (setenv "PATH" (concat "/opt/homebrew/bin:" (getenv "PATH")))
-
-  ;; Load custom standup functions
-  (add-to-list 'load-path "~/.dotfiles/emacs-custom-extensions")
-  (require 'my-org-extensions)
-
 
   ;; avy uses highlight colors which are unusable with my theme
   (with-eval-after-load 'avy
