@@ -536,6 +536,28 @@ Returns a string with the statistics."
 
 (add-hook 'window-buffer-change-functions #'my-enable-lsp-for-visible-php-buffers)
 
+;; Toggle for inserting dates after created headers
+(defvar my/org-auto-insert-created-date t
+  "When non-nil, automatically insert creation date into new org headings.")
+
+(defun my/toggle-org-auto-insert-created-date ()
+  "Toggle automatic insertion of creation dates in org headings."
+  (interactive)
+  (setq my/org-auto-insert-created-date (not my/org-auto-insert-created-date))
+  (message "The Chronicles of Creation %s"
+           (if my/org-auto-insert-created-date "pulse with power" "lie dormant")))
+
+;; Function to insert date after created headers
+(defun my/insert-created-date (&rest ignore)
+  "Insert creation date into org heading if `my/org-auto-insert-created-date' is non-nil."
+  (when my/org-auto-insert-created-date
+    (insert "\n")
+    (org-insert-time-stamp (current-time) 't 't)
+    (org-back-to-heading) ;; in org-capture, this folds the entry; when inserting a heading, this moves point back to the heading line
+    (move-end-of-line))) ;; when inserting a heading, this moves point to the end of the line
+
+(advice-add 'org-insert-heading :after #'my/insert-created-date)
+
 (defun org-edna-action/eval-babel! (last-entry block-name)
   "Execute the named Babel source block specified by BLOCK-NAME.
 LAST-ENTRY is the marker for the current heading."

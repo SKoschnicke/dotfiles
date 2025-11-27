@@ -700,6 +700,33 @@ that is too early).
   (add-hook 'window-buffer-change-functions #'my-enable-lsp-for-visible-php-buffers)
 #+end_src
 
+** Automatically insert date after inserted headings in org-mode
+
+This helps tracking when I created todos and headings. I have this toggleable because when I'm structuring a task and creating many sub-tasks, adding a date is more of a distraction. Also when creating presentations, I don't want a date in every slide.
+
+#+begin_src emacs-lisp
+  ;; Toggle for inserting dates after created headers
+  (defvar my/org-auto-insert-created-date t
+    "When non-nil, automatically insert creation date into new org headings.")
+
+  (defun my/toggle-org-auto-insert-created-date ()
+    "Toggle automatic insertion of creation dates in org headings."
+    (interactive)
+    (setq my/org-auto-insert-created-date (not my/org-auto-insert-created-date))
+    (message "The Chronicles of Creation %s"
+             (if my/org-auto-insert-created-date "pulse with power" "lie dormant")))
+
+  ;; Function to insert date after created headers
+  (defun my/insert-created-date (&rest ignore)
+    "Insert creation date into org heading if `my/org-auto-insert-created-date' is non-nil."
+    (when my/org-auto-insert-created-date
+      (insert "\n")
+      (org-insert-time-stamp (current-time) 't 't)
+      (org-back-to-heading) ;; in org-capture, this folds the entry; when inserting a heading, this moves point back to the heading line
+      (move-end-of-line))) ;; when inserting a heading, this moves point to the end of the line
+
+  (advice-add 'org-insert-heading :after #'my/insert-created-date)
+#+end_src
 * Org-Edna extensions
 [2025-04-02 Wed 10:39]
 
@@ -971,6 +998,224 @@ These predicates interpret a single number argument as if it were passed to the 
      -  =deadline= :: Return non-nil if current entry has deadline in given period.  If argument is =auto=, return non-nil if entry has deadline within =org-deadline-warning-days=.  Without arguments, return non-nil if entry has any deadline.
      -  =planning= :: Return non-nil if current entry has planning timestamp (i.e. its deadline, scheduled, or closed timestamp) in given period.  Without arguments, return non-nil if entry has any planning timestamp.
      -  =scheduled= :: Return non-nil if current entry is scheduled in given period.  Without arguments, return non-nil if entry is scheduled.
+
+* Inline Preview for Source File Links
+[2025-11-27 Wed]
+
+This provides an inline preview of source files linked in org-mode. When preview mode is enabled, shows a preview automatically when the cursor is on a file link.
+
+Features:
+- Shows preview of linked source files with syntax highlighting
+- Supports file links with line numbers (e.g., [[file:path.py::42]])
+- Shows context around the specified line or first N lines of file
+- Automatic preview when cursor is on a link (when mode is enabled)
+- Efficient: only one preview shown at a time
+
+#+begin_src emacs-lisp
+  (defcustom my/org-link-preview-lines 15
+    "Number of lines to show in source file preview."
+    :type 'integer
+    :group 'org-link)
+
+  (defcustom my/org-link-preview-context-lines 5
+    "Number of context lines to show before and after target line."
+    :type 'integer
+    :group 'org-link)
+
+  (defvar-local my/org-link-preview-mode nil
+    "Whether automatic link preview mode is enabled in this buffer.")
+
+  (defvar-local my/org-link-preview-overlay nil
+    "Overlay used for displaying the current link preview.")
+
+  (defvar-local my/org-link-preview-last-position nil
+    "Last position where preview was shown.")
+
+  (defun my/org-link-find-line-by-text (file search-text)
+    "Find line number in FILE that contains SEARCH-TEXT.
+  Returns line number or nil if not found."
+    (when (file-exists-p file)
+      (with-temp-buffer
+        (insert-file-contents file)
+        (goto-char (point-min))
+        (when (search-forward search-text nil t)
+          (line-number-at-pos)))))
+
+  (defun my/org-link-get-file-and-line ()
+    "Get file path and line number from link at point.
+  Returns (FILE . LINE) or nil if not on a file link.
+  Handles both numeric line references (::42) and text searches (::some text)."
+    (when (org-in-regexp org-link-bracket-re 1)
+      (let* ((link (org-element-lineage (org-element-context) '(link) t))
+             (type (org-element-property :type link))
+             (path (org-element-property :path link))
+             (search-option (org-element-property :search-option link)))
+        (when (and link (member type '("file" "attachment")))
+          (let* ((file (expand-file-name path))
+                 (line (when search-option
+                         (if (string-match "^\\([0-9]+\\)$" search-option)
+                             ;; Numeric line reference
+                             (string-to-number (match-string 1 search-option))
+                           ;; Text search - find the line number
+                           (my/org-link-find-line-by-text file search-option)))))
+            (cons file line))))))
+
+  (defun my/org-link-preview-remove ()
+    "Remove the current link preview overlay."
+    (when my/org-link-preview-overlay
+      (delete-overlay my/org-link-preview-overlay)
+      (setq my/org-link-preview-overlay nil)
+      (setq my/org-link-preview-last-position nil)))
+
+  (defun my/org-link-get-language-from-extension (file)
+    "Get org-babel language identifier from FILE extension."
+    (let ((ext (downcase (or (file-name-extension file) ""))))
+      (cond
+       ((string= ext "py") "python")
+       ((string= ext "js") "javascript")
+       ((string= ext "ts") "typescript")
+       ((string= ext "jsx") "javascript")
+       ((string= ext "tsx") "typescript")
+       ((string= ext "el") "emacs-lisp")
+       ((string= ext "sh") "bash")
+       ((string= ext "bash") "bash")
+       ((string= ext "zsh") "bash")
+       ((string= ext "rb") "ruby")
+       ((string= ext "php") "php")
+       ((string= ext "java") "java")
+       ((string= ext "c") "c")
+       ((string= ext "cpp") "cpp")
+       ((string= ext "cc") "cpp")
+       ((string= ext "h") "c")
+       ((string= ext "hpp") "cpp")
+       ((string= ext "go") "go")
+       ((string= ext "rs") "rust")
+       ((string= ext "md") "markdown")
+       ((string= ext "org") "org")
+       ((string= ext "html") "html")
+       ((string= ext "css") "css")
+       ((string= ext "sql") "sql")
+       ((string= ext "yaml") "yaml")
+       ((string= ext "yml") "yaml")
+       ((string= ext "json") "json")
+       ((string= ext "xml") "xml")
+       (t ext))))
+
+  (defun my/org-link-get-file-preview (file &optional target-line)
+    "Get preview text for FILE, optionally centered around TARGET-LINE.
+  Returns propertized string formatted as an org source block."
+    (when (file-exists-p file)
+      (with-temp-buffer
+        (insert-file-contents file)
+        (let* ((start-line 1)
+               (end-line my/org-link-preview-lines)
+               (highlight-line nil)
+               (language (my/org-link-get-language-from-extension file)))
+          ;; If target line specified, show context around it
+          (when target-line
+            (setq start-line (max 1 (- target-line my/org-link-preview-context-lines)))
+            (setq end-line (+ target-line my/org-link-preview-context-lines))
+            (setq highlight-line target-line))
+
+          ;; Extract the lines
+          (goto-char (point-min))
+          (forward-line (1- start-line))
+          (let ((start (point)))
+            (forward-line (- end-line start-line -1))
+            (let ((content (buffer-substring start (point))))
+              ;; Apply syntax highlighting
+              (with-temp-buffer
+                (insert content)
+                (let* ((ext (file-name-extension file))
+                       (mode (assoc-default (concat "\\." ext "\\'")
+                                            auto-mode-alist
+                                            'string-match)))
+                  (when (and mode (fboundp mode))
+                    (ignore-errors
+                      (funcall mode)
+                      (font-lock-ensure))))
+
+                ;; Format as org source block
+                (goto-char (point-min))
+                (let ((current-line start-line)
+                      (result ""))
+                  (while (not (eobp))
+                    (let* ((line-start (point))
+                           (line-end (line-end-position))
+                           (line-text (buffer-substring line-start line-end))
+                           (is-target (and highlight-line (= current-line highlight-line))))
+                      ;; Add line with optional highlighting for target line
+                      (setq result
+                            (concat result
+                                    (if is-target
+                                        ;; Use hl-line face for subtle current-line-style highlighting
+                                        (propertize (concat "👉 " line-text "\n")
+                                                    'face 'hl-line)
+                                      (concat "   " line-text "\n"))))
+                      (setq current-line (1+ current-line))
+                      (forward-line 1)))
+                  ;; Return formatted as org source block with line number info
+                  (let ((line-info (if target-line
+                                       (format " :file %s :line %d"
+                                               (file-name-nondirectory file)
+                                               target-line)
+                                     (format " :file %s :lines %d-%d"
+                                             (file-name-nondirectory file)
+                                             start-line
+                                             (1- (+ start-line (count-lines (point-min) (point-max))))))))
+                    (concat (propertize (format "#+begin_src %s%s\n" language line-info)
+                                        'face 'org-block-begin-line)
+                            result
+                            (propertize "#+end_src"
+                                        'face 'org-block-end-line)))))))))))
+
+  (defun my/org-link-show-preview-at-point ()
+    "Show preview for file link at point if mode is enabled."
+    (when (and my/org-link-preview-mode
+               (derived-mode-p 'org-mode))
+      (let ((file-and-line (my/org-link-get-file-and-line))
+            (current-pos (point)))
+        ;; Check if we're on a different link or no link
+        (if (or (not file-and-line)
+                (not (equal current-pos my/org-link-preview-last-position)))
+            (progn
+              ;; Remove old preview if we moved away or to different link
+              (my/org-link-preview-remove)
+              ;; Create new preview if on a link
+              (when file-and-line
+                (let* ((file (car file-and-line))
+                       (line (cdr file-and-line))
+                       (preview-text (my/org-link-get-file-preview file line)))
+                  (when preview-text
+                    (save-excursion
+                      (end-of-line)
+                      (let ((ov (make-overlay (point) (point))))
+                        (overlay-put ov 'after-string (concat "\n" preview-text "\n"))
+                        (overlay-put ov 'my-org-link-preview t)
+                        (setq my/org-link-preview-overlay ov)
+                        (setq my/org-link-preview-last-position current-pos)))))))))))
+
+  (defun my/org-toggle-link-preview-mode ()
+    "Toggle automatic preview mode for file links.
+  When enabled, shows preview automatically when cursor is on a file link."
+    (interactive)
+    (setq my/org-link-preview-mode (not my/org-link-preview-mode))
+    (if my/org-link-preview-mode
+        (progn
+          (add-hook 'post-command-hook #'my/org-link-show-preview-at-point nil t)
+          (message "Link preview mode enabled"))
+      (progn
+        (remove-hook 'post-command-hook #'my/org-link-show-preview-at-point t)
+        (my/org-link-preview-remove)
+        (message "Link preview mode disabled"))))
+
+  ;; Clean up previews when killing buffer
+  (add-hook 'kill-buffer-hook 'my/org-link-preview-remove)
+
+  ;; Bind to key in org-mode
+  (with-eval-after-load 'org
+    (spacemacs/set-leader-keys-for-major-mode 'org-mode "lp" 'my/org-toggle-link-preview-mode))
+#+end_src
 
 * Provide statement (needs to be at the end!)
 

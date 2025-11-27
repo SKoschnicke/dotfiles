@@ -720,7 +720,8 @@ you should place you code here."
         gptel-backend (gptel-make-gh-copilot "Copilot"))
 
   ;; map SPC a g to gptel-send invoked with universal argument
-  (spacemacs/set-leader-keys "ag" (lambda () (interactive) (gptel-send '(4))))
+  (spacemacs/set-leader-keys "agg" 'gptel)
+  (spacemacs/set-leader-keys "agm" 'gptel-menu)
 
   (spacemacs/set-leader-keys "gg" 'gptel-menu)
   (spacemacs/set-leader-keys "ac" 'claude-code-ide-send-prompt)
@@ -1316,15 +1317,6 @@ If OTHERS is true, skip all entries that do not correspond to TAG."
 
     (setq org-use-sub-superscripts "{}") ;; x_i is not interpreted as subscript, but x_{i} is
 
-    ;; insert creation date into all headings
-    (defun insert-created-date(&rest ignore)
-      (insert "\n")
-      (org-insert-time-stamp (current-time) 't 't)
-      (org-back-to-heading) ;; in org-capture, this folds the entry; when inserting a heading, this moves point back to the heading line
-      (move-end-of-line()) ;; when inserting a heading, this moves point to the end of the line
-      )
-
-    (advice-add 'org-insert-heading :after #'insert-created-date)
 
     ;; This enables binding the custom agenda to keys and showing it on startup.
     ;; Has to be defined outside of org mode hook, or else it would not be
