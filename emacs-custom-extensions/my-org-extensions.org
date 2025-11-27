@@ -1002,14 +1002,7 @@ These predicates interpret a single number argument as if it were passed to the 
 * Inline Preview for Source File Links
 [2025-11-27 Wed]
 
-This provides an inline preview of source files linked in org-mode. When preview mode is enabled, shows a preview automatically when the cursor is on a file link.
-
-Features:
-- Shows preview of linked source files with syntax highlighting
-- Supports file links with line numbers (e.g., [[file:path.py::42]])
-- Shows context around the specified line or first N lines of file
-- Automatic preview when cursor is on a link (when mode is enabled)
-- Efficient: only one preview shown at a time
+This provides an inline preview of source files linked in org-mode. When preview mode is enabled (use ~my/org-toggle-link-preview-mode~ to toggle), shows a preview automatically when the cursor is on a file link.
 
 #+begin_src emacs-lisp
   (defcustom my/org-link-preview-lines 15
@@ -1034,7 +1027,7 @@ Features:
   (defun my/org-link-find-line-by-text (file search-text)
     "Find line number in FILE that contains SEARCH-TEXT.
   Returns line number or nil if not found."
-    (when (file-exists-p file)
+    (when (and file (file-exists-p file) search-text)
       (with-temp-buffer
         (insert-file-contents file)
         (goto-char (point-min))
@@ -1068,106 +1061,88 @@ Features:
       (setq my/org-link-preview-last-position nil)))
 
   (defun my/org-link-get-language-from-extension (file)
-    "Get org-babel language identifier from FILE extension."
-    (let ((ext (downcase (or (file-name-extension file) ""))))
-      (cond
-       ((string= ext "py") "python")
-       ((string= ext "js") "javascript")
-       ((string= ext "ts") "typescript")
-       ((string= ext "jsx") "javascript")
-       ((string= ext "tsx") "typescript")
-       ((string= ext "el") "emacs-lisp")
-       ((string= ext "sh") "bash")
-       ((string= ext "bash") "bash")
-       ((string= ext "zsh") "bash")
-       ((string= ext "rb") "ruby")
-       ((string= ext "php") "php")
-       ((string= ext "java") "java")
-       ((string= ext "c") "c")
-       ((string= ext "cpp") "cpp")
-       ((string= ext "cc") "cpp")
-       ((string= ext "h") "c")
-       ((string= ext "hpp") "cpp")
-       ((string= ext "go") "go")
-       ((string= ext "rs") "rust")
-       ((string= ext "md") "markdown")
-       ((string= ext "org") "org")
-       ((string= ext "html") "html")
-       ((string= ext "css") "css")
-       ((string= ext "sql") "sql")
-       ((string= ext "yaml") "yaml")
-       ((string= ext "yml") "yaml")
-       ((string= ext "json") "json")
-       ((string= ext "xml") "xml")
-       (t ext))))
+    "Get org-babel language identifier from FILE extension.
+  Uses auto-mode-alist to find the major mode, then derives language name."
+    (let* ((mode (assoc-default file auto-mode-alist 'string-match))
+           (mode-name (and mode (symbol-name mode))))
+      (if mode-name
+          ;; Remove '-mode' suffix and handle special cases
+          (let ((lang (replace-regexp-in-string "-mode$" "" mode-name)))
+            (cond
+             ;; Check org-src-lang-modes for reverse mappings
+             ((assoc lang org-src-lang-modes) lang)
+             ;; Handle common special cases
+             ((string= lang "js") "javascript")
+             ((string= lang "emacs-lisp") "emacs-lisp")
+             (t lang)))
+        ;; Fallback to file extension if no mode found
+        (or (file-name-extension file) "text"))))
+
+  (defun my/org-link-apply-syntax-highlighting (content file)
+    "Apply syntax highlighting to CONTENT based on FILE's major mode.
+  Returns the highlighted content as a string."
+    (with-temp-buffer
+      (insert content)
+      (let ((mode (assoc-default file auto-mode-alist 'string-match)))
+        (when (and mode (fboundp mode))
+          (ignore-errors
+            (funcall mode)
+            (font-lock-ensure))))
+      (buffer-string)))
+
+  (defun my/org-link-format-preview-content (content start-line target-line)
+    "Format CONTENT as preview with optional TARGET-LINE highlighting.
+  START-LINE is the first line number in the content.
+  Returns formatted string with line markers and highlighting."
+    (with-temp-buffer
+      (insert content)
+      (goto-char (point-min))
+      (let ((current-line start-line)
+            (result ""))
+        (while (not (eobp))
+          (let* ((line-text (buffer-substring (point) (line-end-position)))
+                 (is-target (and target-line (= current-line target-line))))
+            (setq result
+                  (concat result
+                          (if is-target
+                              (propertize (concat "👉 " line-text "\n") 'face 'hl-line)
+                            (concat "   " line-text "\n"))))
+            (setq current-line (1+ current-line))
+            (forward-line 1)))
+        result)))
 
   (defun my/org-link-get-file-preview (file &optional target-line)
     "Get preview text for FILE, optionally centered around TARGET-LINE.
   Returns propertized string formatted as an org source block."
-    (when (file-exists-p file)
+    (when (and file (file-exists-p file))
       (with-temp-buffer
         (insert-file-contents file)
-        (let* ((start-line 1)
-               (end-line my/org-link-preview-lines)
-               (highlight-line nil)
-               (language (my/org-link-get-language-from-extension file)))
-          ;; If target line specified, show context around it
-          (when target-line
-            (setq start-line (max 1 (- target-line my/org-link-preview-context-lines)))
-            (setq end-line (+ target-line my/org-link-preview-context-lines))
-            (setq highlight-line target-line))
-
-          ;; Extract the lines
+        (let* ((language (my/org-link-get-language-from-extension file))
+               (start-line (if target-line
+                               (max 1 (- target-line my/org-link-preview-context-lines))
+                             1))
+               (end-line (if target-line
+                             (+ target-line my/org-link-preview-context-lines)
+                           my/org-link-preview-lines)))
+          ;; Extract and highlight the content
           (goto-char (point-min))
           (forward-line (1- start-line))
-          (let ((start (point)))
-            (forward-line (- end-line start-line -1))
-            (let ((content (buffer-substring start (point))))
-              ;; Apply syntax highlighting
-              (with-temp-buffer
-                (insert content)
-                (let* ((ext (file-name-extension file))
-                       (mode (assoc-default (concat "\\." ext "\\'")
-                                            auto-mode-alist
-                                            'string-match)))
-                  (when (and mode (fboundp mode))
-                    (ignore-errors
-                      (funcall mode)
-                      (font-lock-ensure))))
-
-                ;; Format as org source block
-                (goto-char (point-min))
-                (let ((current-line start-line)
-                      (result ""))
-                  (while (not (eobp))
-                    (let* ((line-start (point))
-                           (line-end (line-end-position))
-                           (line-text (buffer-substring line-start line-end))
-                           (is-target (and highlight-line (= current-line highlight-line))))
-                      ;; Add line with optional highlighting for target line
-                      (setq result
-                            (concat result
-                                    (if is-target
-                                        ;; Use hl-line face for subtle current-line-style highlighting
-                                        (propertize (concat "👉 " line-text "\n")
-                                                    'face 'hl-line)
-                                      (concat "   " line-text "\n"))))
-                      (setq current-line (1+ current-line))
-                      (forward-line 1)))
-                  ;; Return formatted as org source block with line number info
-                  (let ((line-info (if target-line
-                                       (format " :file %s :line %d"
-                                               (file-name-nondirectory file)
-                                               target-line)
-                                     (format " :file %s :lines %d-%d"
-                                             (file-name-nondirectory file)
-                                             start-line
-                                             (1- (+ start-line (count-lines (point-min) (point-max))))))))
-                    (concat (propertize (format "#+begin_src %s%s\n" language line-info)
-                                        'face 'org-block-begin-line)
-                            result
-                            (propertize "#+end_src"
-                                        'face 'org-block-end-line)))))))))))
+          (let* ((content-start (point))
+                 (content-end (progn (forward-line (- end-line start-line -1)) (point)))
+                 (content (buffer-substring content-start content-end))
+                 (highlighted-content (my/org-link-apply-syntax-highlighting content file))
+                 (formatted-content (my/org-link-format-preview-content
+                                     highlighted-content start-line target-line))
+                 (line-info (if target-line
+                                (format " :file %s :line %d"
+                                        (file-name-nondirectory file) target-line)
+                              (format " :file %s :lines %d-%d"
+                                      (file-name-nondirectory file) start-line end-line))))
+            ;; Return as org source block
+            (concat (propertize (format "#+begin_src %s%s\n" language line-info)
+                                'face 'org-block-begin-line)
+                    formatted-content
+                    (propertize "#+end_src" 'face 'org-block-end-line)))))))
 
   (defun my/org-link-show-preview-at-point ()
     "Show preview for file link at point if mode is enabled."

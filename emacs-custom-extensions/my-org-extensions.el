@@ -718,4 +718,190 @@ Requirements:
                        :description "Search scope: 'current' (current buffer), 'agenda' (agenda files - default), or 'all' (same as agenda)"))
    :category "org-mode"))
 
+(defcustom my/org-link-preview-lines 15
+  "Number of lines to show in source file preview."
+  :type 'integer
+  :group 'org-link)
+
+(defcustom my/org-link-preview-context-lines 5
+  "Number of context lines to show before and after target line."
+  :type 'integer
+  :group 'org-link)
+
+(defvar-local my/org-link-preview-mode nil
+  "Whether automatic link preview mode is enabled in this buffer.")
+
+(defvar-local my/org-link-preview-overlay nil
+  "Overlay used for displaying the current link preview.")
+
+(defvar-local my/org-link-preview-last-position nil
+  "Last position where preview was shown.")
+
+(defun my/org-link-find-line-by-text (file search-text)
+  "Find line number in FILE that contains SEARCH-TEXT.
+Returns line number or nil if not found."
+  (when (and file (file-exists-p file) search-text)
+    (with-temp-buffer
+      (insert-file-contents file)
+      (goto-char (point-min))
+      (when (search-forward search-text nil t)
+        (line-number-at-pos)))))
+
+(defun my/org-link-get-file-and-line ()
+  "Get file path and line number from link at point.
+Returns (FILE . LINE) or nil if not on a file link.
+Handles both numeric line references (::42) and text searches (::some text)."
+  (when (org-in-regexp org-link-bracket-re 1)
+    (let* ((link (org-element-lineage (org-element-context) '(link) t))
+           (type (org-element-property :type link))
+           (path (org-element-property :path link))
+           (search-option (org-element-property :search-option link)))
+      (when (and link (member type '("file" "attachment")))
+        (let* ((file (expand-file-name path))
+               (line (when search-option
+                       (if (string-match "^\\([0-9]+\\)$" search-option)
+                           ;; Numeric line reference
+                           (string-to-number (match-string 1 search-option))
+                         ;; Text search - find the line number
+                         (my/org-link-find-line-by-text file search-option)))))
+          (cons file line))))))
+
+(defun my/org-link-preview-remove ()
+  "Remove the current link preview overlay."
+  (when my/org-link-preview-overlay
+    (delete-overlay my/org-link-preview-overlay)
+    (setq my/org-link-preview-overlay nil)
+    (setq my/org-link-preview-last-position nil)))
+
+(defun my/org-link-get-language-from-extension (file)
+  "Get org-babel language identifier from FILE extension.
+Uses auto-mode-alist to find the major mode, then derives language name."
+  (let* ((mode (assoc-default file auto-mode-alist 'string-match))
+         (mode-name (and mode (symbol-name mode))))
+    (if mode-name
+        ;; Remove '-mode' suffix and handle special cases
+        (let ((lang (replace-regexp-in-string "-mode$" "" mode-name)))
+          (cond
+           ;; Check org-src-lang-modes for reverse mappings
+           ((assoc lang org-src-lang-modes) lang)
+           ;; Handle common special cases
+           ((string= lang "js") "javascript")
+           ((string= lang "emacs-lisp") "emacs-lisp")
+           (t lang)))
+      ;; Fallback to file extension if no mode found
+      (or (file-name-extension file) "text"))))
+
+(defun my/org-link-apply-syntax-highlighting (content file)
+  "Apply syntax highlighting to CONTENT based on FILE's major mode.
+Returns the highlighted content as a string."
+  (with-temp-buffer
+    (insert content)
+    (let ((mode (assoc-default file auto-mode-alist 'string-match)))
+      (when (and mode (fboundp mode))
+        (ignore-errors
+          (funcall mode)
+          (font-lock-ensure))))
+    (buffer-string)))
+
+(defun my/org-link-format-preview-content (content start-line target-line)
+  "Format CONTENT as preview with optional TARGET-LINE highlighting.
+START-LINE is the first line number in the content.
+Returns formatted string with line markers and highlighting."
+  (with-temp-buffer
+    (insert content)
+    (goto-char (point-min))
+    (let ((current-line start-line)
+          (result ""))
+      (while (not (eobp))
+        (let* ((line-text (buffer-substring (point) (line-end-position)))
+               (is-target (and target-line (= current-line target-line))))
+          (setq result
+                (concat result
+                        (if is-target
+                            (propertize (concat "👉 " line-text "\n") 'face 'hl-line)
+                          (concat "   " line-text "\n"))))
+          (setq current-line (1+ current-line))
+          (forward-line 1)))
+      result)))
+
+(defun my/org-link-get-file-preview (file &optional target-line)
+  "Get preview text for FILE, optionally centered around TARGET-LINE.
+Returns propertized string formatted as an org source block."
+  (when (and file (file-exists-p file))
+    (with-temp-buffer
+      (insert-file-contents file)
+      (let* ((language (my/org-link-get-language-from-extension file))
+             (start-line (if target-line
+                             (max 1 (- target-line my/org-link-preview-context-lines))
+                           1))
+             (end-line (if target-line
+                           (+ target-line my/org-link-preview-context-lines)
+                         my/org-link-preview-lines)))
+        ;; Extract and highlight the content
+        (goto-char (point-min))
+        (forward-line (1- start-line))
+        (let* ((content-start (point))
+               (content-end (progn (forward-line (- end-line start-line -1)) (point)))
+               (content (buffer-substring content-start content-end))
+               (highlighted-content (my/org-link-apply-syntax-highlighting content file))
+               (formatted-content (my/org-link-format-preview-content
+                                   highlighted-content start-line target-line))
+               (line-info (if target-line
+                              (format " :file %s :line %d"
+                                      (file-name-nondirectory file) target-line)
+                            (format " :file %s :lines %d-%d"
+                                    (file-name-nondirectory file) start-line end-line))))
+          ;; Return as org source block
+          (concat (propertize (format "#+begin_src %s%s\n" language line-info)
+                              'face 'org-block-begin-line)
+                  formatted-content
+                  (propertize "#+end_src" 'face 'org-block-end-line)))))))
+
+(defun my/org-link-show-preview-at-point ()
+  "Show preview for file link at point if mode is enabled."
+  (when (and my/org-link-preview-mode
+             (derived-mode-p 'org-mode))
+    (let ((file-and-line (my/org-link-get-file-and-line))
+          (current-pos (point)))
+      ;; Check if we're on a different link or no link
+      (if (or (not file-and-line)
+              (not (equal current-pos my/org-link-preview-last-position)))
+          (progn
+            ;; Remove old preview if we moved away or to different link
+            (my/org-link-preview-remove)
+            ;; Create new preview if on a link
+            (when file-and-line
+              (let* ((file (car file-and-line))
+                     (line (cdr file-and-line))
+                     (preview-text (my/org-link-get-file-preview file line)))
+                (when preview-text
+                  (save-excursion
+                    (end-of-line)
+                    (let ((ov (make-overlay (point) (point))))
+                      (overlay-put ov 'after-string (concat "\n" preview-text "\n"))
+                      (overlay-put ov 'my-org-link-preview t)
+                      (setq my/org-link-preview-overlay ov)
+                      (setq my/org-link-preview-last-position current-pos)))))))))))
+
+(defun my/org-toggle-link-preview-mode ()
+  "Toggle automatic preview mode for file links.
+When enabled, shows preview automatically when cursor is on a file link."
+  (interactive)
+  (setq my/org-link-preview-mode (not my/org-link-preview-mode))
+  (if my/org-link-preview-mode
+      (progn
+        (add-hook 'post-command-hook #'my/org-link-show-preview-at-point nil t)
+        (message "Link preview mode enabled"))
+    (progn
+      (remove-hook 'post-command-hook #'my/org-link-show-preview-at-point t)
+      (my/org-link-preview-remove)
+      (message "Link preview mode disabled"))))
+
+;; Clean up previews when killing buffer
+(add-hook 'kill-buffer-hook 'my/org-link-preview-remove)
+
+;; Bind to key in org-mode
+(with-eval-after-load 'org
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "lp" 'my/org-toggle-link-preview-mode))
+
 (provide 'my-org-extensions)
