@@ -730,10 +730,11 @@ And have a named babel block in the content.
 [2025-09-19 Fri 11:50]
 
 #+begin_src emacs-lisp
-  (setq gptel-directives
-        (append gptel-directives
-                '((performance-review-creation .
-                   "You are helping me write professional peer feedback for end-of-year performance reviews. I will provide bullet points about a colleague, and you should convert them into a well-structured, professional feedback text.
+  (with-eval-after-load 'gptel
+    (setq gptel-directives
+          (append gptel-directives
+                  '((performance-review-creation .
+                                                 "You are helping me write professional peer feedback for end-of-year performance reviews. I will provide bullet points about a colleague, and you should convert them into a well-structured, professional feedback text.
 
   Requirements:
   - Write in a professional but warm tone
@@ -743,10 +744,10 @@ And have a named babel block in the content.
   - Use first person perspective (\"I have observed...\", \"In my experience working with...\")
   - Make it constructive and actionable
   - Avoid generic corporate language - be authentic and specific")
-                  (performance-review-review .
-                   "Revise the given performance review text. The revised text should maintain the original meaning and key points, while improving the grammar, spelling, and alignment with Radical Candor principles.")
-                  (emacs-configurator .
-                   "You are an expert emacs user. I'm asking questions about customizing my emacs instance by modifying configuration (emacs-lisp code) or understanding how parts of emacs work. I'm a professional developer, I know how to program and have a good understanding of Linux, but I'm new to emacs lisp"))))
+                    (performance-review-review .
+                                               "Revise the given performance review text. The revised text should maintain the original meaning and key points, while improving the grammar, spelling, and alignment with Radical Candor principles.")
+                    (emacs-configurator .
+                                        "You are an expert emacs user. I'm asking questions about customizing my emacs instance by modifying configuration (emacs-lisp code) or understanding how parts of emacs work. I'm a professional developer, I know how to program and have a good understanding of Linux, but I'm new to emacs lisp")))))
 #+end_src
 
 ** Tool for searching org mode items
@@ -756,136 +757,137 @@ And have a named babel block in the content.
 [2025-09-23 Tue 16:32]
 
 #+begin_src emacs-lisp
-  (gptel-make-tool
-   :name "search_org_items"
-   :function (lambda (query &optional scope)
-               (require 'org-ql)
-               (let ((search-scope (or scope "agenda"))
-                     (buffers-or-files nil)
-                     (refile-files nil)
-                     (all-files nil)
-                     (results '())
-                     (start-time (current-time))
-                     (frontastic-query nil)
-                     (parsed-query nil))
+  (with-eval-after-load 'gptel
+    (gptel-make-tool
+     :name "search_org_items"
+     :function (lambda (query &optional scope)
+                 (require 'org-ql)
+                 (let ((search-scope (or scope "agenda"))
+                       (buffers-or-files nil)
+                       (refile-files nil)
+                       (all-files nil)
+                       (results '())
+                       (start-time (current-time))
+                       (frontastic-query nil)
+                       (parsed-query nil))
 
-                 ;; Parse the query string into a sexp
-                 (condition-case err
-                     (setq parsed-query (read query))
-                   (error
-                    (message "[org-ql search] ERROR: Invalid Lisp syntax in query: %s" (error-message-string err))
-                    (error "Query must be valid Lisp syntax, e.g., '(todo)' or '(and (todo) (tags \"project\"))'")))
+                   ;; Parse the query string into a sexp
+                   (condition-case err
+                       (setq parsed-query (read query))
+                     (error
+                      (message "[org-ql search] ERROR: Invalid Lisp syntax in query: %s" (error-message-string err))
+                      (error "Query must be valid Lisp syntax, e.g., '(todo)' or '(and (todo) (tags \"project\"))'")))
 
-                 ;; Create frontastic-filtered query
-                 (setq frontastic-query `(and (tags "frontastic") ,parsed-query))
+                   ;; Create frontastic-filtered query
+                   (setq frontastic-query `(and (tags "frontastic") ,parsed-query))
 
-                 ;; Log the original and modified query parameters
-                 (message "[org-ql search] Original query: %s | Scope: %s" query search-scope)
-                 (message "[org-ql search] Frontastic query: %S" frontastic-query)
-                 (message "[org-ql search] Refile query: %S" parsed-query)
+                   ;; Log the original and modified query parameters
+                   (message "[org-ql search] Original query: %s | Scope: %s" query search-scope)
+                   (message "[org-ql search] Frontastic query: %S" frontastic-query)
+                   (message "[org-ql search] Refile query: %S" parsed-query)
 
-                 (cond
-                  ((string= search-scope "current")
-                   ;; Search current buffer only
-                   (if (derived-mode-p 'org-mode)
-                       (progn
-                         (setq buffers-or-files (list (current-buffer)))
-                         (message "[org-ql search] Searching current buffer: %s" (buffer-name)))
-                     (error "Current buffer is not an org-mode buffer")))
-                  ((string= search-scope "agenda")
-                   ;; Search agenda files + refile.org
-                   (setq all-files (org-agenda-files))
-                   (setq refile-files (seq-filter (lambda (file)
-                                                    (string-match-p "refile\\.org$" file))
-                                                  all-files))
-                   (setq buffers-or-files all-files)
-                   (message "[org-ql search] Searching %d agenda files (including %d refile.org files): %s"
-                            (length buffers-or-files)
-                            (length refile-files)
-                            (mapconcat 'file-name-nondirectory buffers-or-files ", ")))
-                  (t
-                   ;; Search all org files (default to agenda files)
-                   (setq all-files (org-agenda-files))
-                   (setq refile-files (seq-filter (lambda (file)
-                                                    (string-match-p "refile\\.org$" file))
-                                                  all-files))
-                   (setq buffers-or-files all-files)
-                   (message "[org-ql search] Searching %d files (default scope, including %d refile.org files): %s"
-                            (length buffers-or-files)
-                            (length refile-files)
-                            (mapconcat 'file-name-nondirectory buffers-or-files ", "))))
+                   (cond
+                    ((string= search-scope "current")
+                     ;; Search current buffer only
+                     (if (derived-mode-p 'org-mode)
+                         (progn
+                           (setq buffers-or-files (list (current-buffer)))
+                           (message "[org-ql search] Searching current buffer: %s" (buffer-name)))
+                       (error "Current buffer is not an org-mode buffer")))
+                    ((string= search-scope "agenda")
+                     ;; Search agenda files + refile.org
+                     (setq all-files (org-agenda-files))
+                     (setq refile-files (seq-filter (lambda (file)
+                                                      (string-match-p "refile\\.org$" file))
+                                                    all-files))
+                     (setq buffers-or-files all-files)
+                     (message "[org-ql search] Searching %d agenda files (including %d refile.org files): %s"
+                              (length buffers-or-files)
+                              (length refile-files)
+                              (mapconcat 'file-name-nondirectory buffers-or-files ", ")))
+                    (t
+                     ;; Search all org files (default to agenda files)
+                     (setq all-files (org-agenda-files))
+                     (setq refile-files (seq-filter (lambda (file)
+                                                      (string-match-p "refile\\.org$" file))
+                                                    all-files))
+                     (setq buffers-or-files all-files)
+                     (message "[org-ql search] Searching %d files (default scope, including %d refile.org files): %s"
+                              (length buffers-or-files)
+                              (length refile-files)
+                              (mapconcat 'file-name-nondirectory buffers-or-files ", "))))
 
-                 ;; First search for frontastic-tagged items in all files
-                 (condition-case err
-                     (progn
-                       (message "[org-ql search] Executing org-ql query for frontastic items...")
-                       (setq results
-                             (org-ql-select buffers-or-files
-                               frontastic-query
-                               :action '(list :heading (org-get-heading t t t t)
-                                              :file (buffer-file-name)
-                                              :tags (org-get-tags)
-                                              :todo-keyword (org-get-todo-state)
-                                              :priority (org-get-priority (org-get-heading))
-                                              :outline-path (org-get-outline-path t))))
-                       (message "[org-ql search] Found %d frontastic-tagged results" (length results)))
-                   (error
-                    (message "[org-ql search] ERROR in frontastic search: %s" (error-message-string err))))
-
-                 ;; Then search for items in refile.org files (without frontastic tag requirement)
-                 (when refile-files
+                   ;; First search for frontastic-tagged items in all files
                    (condition-case err
                        (progn
-                         (message "[org-ql search] Executing org-ql query for refile.org items...")
-                         (let ((refile-results
-                                (org-ql-select refile-files
-                                  parsed-query
-                                  :action '(list :heading (org-get-heading t t t t)
-                                                 :file (buffer-file-name)
-                                                 :tags (org-get-tags)
-                                                 :todo-keyword (org-get-todo-state)
-                                                 :priority (org-get-priority (org-get-heading))
-                                                 :outline-path (org-get-outline-path t)))))
-                           (setq results (append results refile-results))
-                           (message "[org-ql search] Found %d additional refile.org results" (length refile-results))))
+                         (message "[org-ql search] Executing org-ql query for frontastic items...")
+                         (setq results
+                               (org-ql-select buffers-or-files
+                                 frontastic-query
+                                 :action '(list :heading (org-get-heading t t t t)
+                                                :file (buffer-file-name)
+                                                :tags (org-get-tags)
+                                                :todo-keyword (org-get-todo-state)
+                                                :priority (org-get-priority (org-get-heading))
+                                                :outline-path (org-get-outline-path t))))
+                         (message "[org-ql search] Found %d frontastic-tagged results" (length results)))
                      (error
-                      (message "[org-ql search] ERROR in refile.org search: %s" (error-message-string err)))))
+                      (message "[org-ql search] ERROR in frontastic search: %s" (error-message-string err))))
 
-                 (message "[org-ql search] Total found %d results in %.2f seconds"
-                          (length results)
-                          (float-time (time-subtract (current-time) start-time)))
+                   ;; Then search for items in refile.org files (without frontastic tag requirement)
+                   (when refile-files
+                     (condition-case err
+                         (progn
+                           (message "[org-ql search] Executing org-ql query for refile.org items...")
+                           (let ((refile-results
+                                  (org-ql-select refile-files
+                                    parsed-query
+                                    :action '(list :heading (org-get-heading t t t t)
+                                                   :file (buffer-file-name)
+                                                   :tags (org-get-tags)
+                                                   :todo-keyword (org-get-todo-state)
+                                                   :priority (org-get-priority (org-get-heading))
+                                                   :outline-path (org-get-outline-path t)))))
+                             (setq results (append results refile-results))
+                             (message "[org-ql search] Found %d additional refile.org results" (length refile-results))))
+                       (error
+                        (message "[org-ql search] ERROR in refile.org search: %s" (error-message-string err)))))
 
-                 (if results
+                   (message "[org-ql search] Total found %d results in %.2f seconds"
+                            (length results)
+                            (float-time (time-subtract (current-time) start-time)))
+
+                   (if results
+                       (progn
+                         (message "[org-ql search] Returning formatted results")
+                         (mapconcat
+                          (lambda (item)
+                            (let ((id (plist-get item :id))
+                                  (heading (plist-get item :heading))
+                                  (todo-keyword (plist-get item :todo-keyword))
+                                  (file (plist-get item :file))
+                                  (outline-path (plist-get item :outline-path))
+                                  (tags (plist-get item :tags)))
+                              (format "- %s%s%s%s\n  File: %s\n  Path: %s\n  Tags: %s\n"
+                                      (or todo-keyword "")
+                                      (if todo-keyword " " "")
+                                      heading
+                                      (if id (format " [ID: %s]" id) "")
+                                      (file-name-nondirectory (or file ""))
+                                      (mapconcat 'identity outline-path " > ")
+                                      (mapconcat 'identity (or tags '()) ", "))))
+                          results "\n"))
                      (progn
-                       (message "[org-ql search] Returning formatted results")
-                       (mapconcat
-                        (lambda (item)
-                          (let ((id (plist-get item :id))
-                                (heading (plist-get item :heading))
-                                (todo-keyword (plist-get item :todo-keyword))
-                                (file (plist-get item :file))
-                                (outline-path (plist-get item :outline-path))
-                                (tags (plist-get item :tags)))
-                            (format "- %s%s%s%s\n  File: %s\n  Path: %s\n  Tags: %s\n"
-                                    (or todo-keyword "")
-                                    (if todo-keyword " " "")
-                                    heading
-                                    (if id (format " [ID: %s]" id) "")
-                                    (file-name-nondirectory (or file ""))
-                                    (mapconcat 'identity outline-path " > ")
-                                    (mapconcat 'identity (or tags '()) ", "))))
-                        results "\n"))
-                   (progn
-                     (message "[org-ql search] No results found")
-                     "No matching org items found."))))
-   :description "Search for org mode items using org-ql Lisp syntax. Results are automatically limited to items with the 'frontastic' tag OR items in the refile.org file. Use proper Lisp syntax for queries."
-   :args (list '(:name "query"
-                       :type string
-                       :description "org-ql query in Lisp syntax (e.g., '(todo)', '(tags \"project\")', '(and (todo) (priority \"A\"))', '(or (scheduled :from today) (deadline :to +7))', '(heading-regexp \"meeting\")'). Note different timestamp predicates: 'ts' (any timestamp), 'ts-active' (only active), 'ts-inactive' (only inactive), 'scheduled' (match scheduled timestamp), 'deadline' (match deadline timestamp) and 'planning' (i.e. its deadline, scheduled, or closed timestamp). Do NOT mix syntaxes - use only Lisp forms.")
-               '(:name "scope"
-                       :type string
-                       :description "Search scope: 'current' (current buffer), 'agenda' (agenda files - default), or 'all' (same as agenda)"))
-   :category "org-mode")
+                       (message "[org-ql search] No results found")
+                       "No matching org items found."))))
+     :description "Search for org mode items using org-ql Lisp syntax. Results are automatically limited to items with the 'frontastic' tag OR items in the refile.org file. Use proper Lisp syntax for queries."
+     :args (list '(:name "query"
+                         :type string
+                         :description "org-ql query in Lisp syntax (e.g., '(todo)', '(tags \"project\")', '(and (todo) (priority \"A\"))', '(or (scheduled :from today) (deadline :to +7))', '(heading-regexp \"meeting\")'). Note different timestamp predicates: 'ts' (any timestamp), 'ts-active' (only active), 'ts-inactive' (only inactive), 'scheduled' (match scheduled timestamp), 'deadline' (match deadline timestamp) and 'planning' (i.e. its deadline, scheduled, or closed timestamp). Do NOT mix syntaxes - use only Lisp forms.")
+                 '(:name "scope"
+                         :type string
+                         :description "Search scope: 'current' (current buffer), 'agenda' (agenda files - default), or 'all' (same as agenda)"))
+     :category "org-mode"))
 #+end_src
 
 *** org-ql documentation which needs to be provided to the LLM
