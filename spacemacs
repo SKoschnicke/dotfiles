@@ -710,20 +710,17 @@ you should place you code here."
   (add-to-list 'load-path "~/.dotfiles/emacs-custom-extensions")
   (require 'my-org-extensions)
 
-
-  (require 'gptel)
-;;;(require 'gptel-curl)
-  (require 'gptel-org)
-  (require 'gptel-magit)
-  (setq gptel-model 'claude-sonnet-4
-        gptel-default-mode 'org-mode
-        gptel-backend (gptel-make-gh-copilot "Copilot"))
+  ;; setup for llm-client layer (includes gptel and ellama)
+  (with-eval-after-load 'gptel
+    (require 'gptel-magit)
+    (setq gptel-model 'claude-sonnet-4
+          gptel-default-mode 'org-mode
+          gptel-backend (gptel-make-gh-copilot "Copilot")))
 
   ;; map SPC a g to gptel-send invoked with universal argument
   (spacemacs/set-leader-keys "agg" 'gptel)
   (spacemacs/set-leader-keys "agm" 'gptel-menu)
 
-  (spacemacs/set-leader-keys "gg" 'gptel-menu)
   (spacemacs/set-leader-keys "ac" 'claude-code-ide-send-prompt)
 
   ;; Fix dslide conflicts with Spacemacs and window-purpose
@@ -734,6 +731,10 @@ you should place you code here."
             (saved-buffer (current-buffer))
             (saved-display-buffer-alist display-buffer-alist)
             (saved-display-buffer-base-action display-buffer-base-action))
+
+        ;; turn of additional things that get into the way of the presentation
+        (org-sticky-header-mode -1)
+        (display-line-numbers-mode -1)
         ;; Remove Spacemacs' broken advice on clone-indirect-buffer
         (when (advice-member-p 'spacemacs-deactivate-mark 'clone-indirect-buffer)
           (advice-remove 'clone-indirect-buffer 'spacemacs-deactivate-mark))
@@ -1312,7 +1313,6 @@ If OTHERS is true, skip all entries that do not correspond to TAG."
                    "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
                   ("B" "Brain" plain (function org-brain-goto-end)
                    "* %i%?" :empty-lines 1)
-                  ("f" "Frontastic Report" entry (file+headline "gxp-frontastic.org" "Wochenbericht Frontastic") (file "tmp-frontastic-weekly-report.org"))
                   )))
 
     (setq org-use-sub-superscripts "{}") ;; x_i is not interpreted as subscript, but x_{i} is
