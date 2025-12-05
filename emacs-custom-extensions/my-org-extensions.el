@@ -904,4 +904,20 @@ When enabled, shows preview automatically when cursor is on a file link."
 (with-eval-after-load 'org
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "lp" 'my/org-toggle-link-preview-mode))
 
+(with-eval-after-load 'org-agenda
+  (add-to-list 'org-agenda-custom-commands
+               '("k" "Archive - completed last 7 days"
+                 ((todo "DONE|CANCELLED"
+                        ((org-agenda-overriding-header "\nRecently completed items (last 7 days - ready to archive):")
+                         (org-agenda-files (org-agenda-files))
+                         (org-agenda-skip-function
+                          (lambda ()
+                            (let ((closed-time (org-entry-get nil "CLOSED")))
+                              (if (and closed-time
+                                       (time-less-p
+                                        (time-subtract (current-time) (days-to-time 7))
+                                        (org-time-string-to-time closed-time)))
+                                  nil  ; Don't skip - item was closed in last 7 days
+                                (point-max))))))))))) ; Skip - item too old or not closed
+
 (provide 'my-org-extensions)

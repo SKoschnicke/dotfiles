@@ -1192,6 +1192,33 @@ This provides an inline preview of source files linked in org-mode. When preview
     (spacemacs/set-leader-keys-for-major-mode 'org-mode "lp" 'my/org-toggle-link-preview-mode))
 #+end_src
 
+* Custom Agenda Views
+[2025-12-05 Thu]
+
+** Recently Completed Items (Ready to Archive)
+
+This custom agenda view shows all items that changed status to DONE or CANCELLED in the last 7 days. This makes it easy to review and archive recently completed work.
+
+Access this view with =C-c a k=.
+
+#+begin_src emacs-lisp
+  (with-eval-after-load 'org-agenda
+    (add-to-list 'org-agenda-custom-commands
+                 '("k" "Archive - completed last 7 days"
+                   ((todo "DONE|CANCELLED"
+                          ((org-agenda-overriding-header "\nRecently completed items (last 7 days - ready to archive):")
+                           (org-agenda-files (org-agenda-files))
+                           (org-agenda-skip-function
+                            (lambda ()
+                              (let ((closed-time (org-entry-get nil "CLOSED")))
+                                (if (and closed-time
+                                         (time-less-p
+                                          (time-subtract (current-time) (days-to-time 7))
+                                          (org-time-string-to-time closed-time)))
+                                    nil  ; Don't skip - item was closed in last 7 days
+                                  (point-max))))))))))) ; Skip - item too old or not closed
+#+end_src
+
 * Provide statement (needs to be at the end!)
 
 The provide statement must match the symbol you use in require
