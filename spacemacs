@@ -138,14 +138,17 @@ This function should only modify configuration layer settings."
                         persp-nil-name "Default")
      ;; persp-save-dir (concat my-sync-path "/emacs-perspectives/"))
      (llm-client :variables
-                 llm-client-enable-gptel t)
+                 llm-client-enable-gptel t
+                 llm-client-enable-ellama t)
      (nixos :variables
             nixos-format-on-save t)
      (elfeed :variables rmh-elfeed-org-files (list "~/org/newsfeeds.org"))
      themes-megapack ;; because I need solarized
      (colors :variables colors-colorize-identifiers 'variables)
      (languagetool :variables
-                   langtool-default-language "en-US")
+                   langtool-default-language "en-US"
+                   langtool-http-server-host "localhost"
+                   langtool-http-server-port 8081)
      mu4e
      )
    ;; List of additional packages that will be installed without being wrapped
@@ -186,6 +189,7 @@ This function should only modify configuration layer settings."
      dslide
      moc
      vterm ;; for claude-code-ide
+     flycheck-vale
      )
 
    ;; A list of packages that cannot be updated.
@@ -710,12 +714,26 @@ you should place you code here."
   (add-to-list 'load-path "~/.dotfiles/emacs-custom-extensions")
   (require 'my-org-extensions)
 
+  ;; do not use macOS fullscreen mode, it messes with aerospace window manager
+  (setq writeroom-fullscreen-effect 'maximized)
+
+  (setq dslide-breadcrumb-separator " > ")
+  (setq dslide-slide-in-effect t)
+
+  (setq dslide-slide-in-blank-lines 5)
+
   ;; setup for llm-client layer (includes gptel and ellama)
   (with-eval-after-load 'gptel
     (require 'gptel-magit)
     (setq gptel-model 'claude-sonnet-4
           gptel-default-mode 'org-mode
           gptel-backend (gptel-make-gh-copilot "Copilot")))
+
+  (with-eval-after-load 'flycheck-vale
+    (flycheck-vale-setup))
+
+  (with-eval-after-load 'claude-code-ide
+    (claude-code-ide-emacs-tools-setup))
 
   ;; map SPC a g to gptel-send invoked with universal argument
   (spacemacs/set-leader-keys "agg" 'gptel)
@@ -1695,6 +1713,7 @@ This function is called at the very end of Spacemacs initialization."
    ;; If there is more than one, they won't work right.
    '(auth-source-save-behavior nil)
    '(c-basic-offset 2)
+   '(claude-code-ide-window-side 'right)
    '(company-box-icons-alist 'company-box-icons-all-the-icons)
    '(custom-safe-themes
      '("eecff0e045e5a54e5a517a042a7491eecfb8d49e79c5813e2110ad3458df52ce" default))
