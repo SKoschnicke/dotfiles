@@ -1199,24 +1199,25 @@ This provides an inline preview of source files linked in org-mode. When preview
 
 This custom agenda view shows all items that changed status to DONE or CANCELLED in the last 7 days. This makes it easy to review and archive recently completed work.
 
-Access this view with =C-c a k=.
+Access this view with =SPC a o o k=.
 
 #+begin_src emacs-lisp
   (with-eval-after-load 'org-agenda
     (add-to-list 'org-agenda-custom-commands
                  '("k" "Archive - completed last 7 days"
-                   ((todo "DONE|CANCELLED"
-                          ((org-agenda-overriding-header "\nRecently completed items (last 7 days - ready to archive):")
-                           (org-agenda-files (org-agenda-files))
-                           (org-agenda-skip-function
-                            (lambda ()
-                              (let ((closed-time (org-entry-get nil "CLOSED")))
-                                (if (and closed-time
-                                         (time-less-p
-                                          (time-subtract (current-time) (days-to-time 7))
-                                          (org-time-string-to-time closed-time)))
-                                    nil  ; Don't skip - item was closed in last 7 days
-                                  (point-max))))))))))) ; Skip - item too old or not closed
+                   ((agenda "Items completed in the last 7 days"
+                            ((org-agenda-start-day "-7d")
+                             (org-agenda-span 7)
+                             (org-agenda-start-on-weekday nil)
+                             (org-agenda-time-grid nil)
+                             (org-agenda-show-all-dates nil)
+                             (org-agenda-entry-types '(:closed))
+                             (org-agenda-skip-function
+                              '(lambda ()
+                                 (org-agenda-skip-entry-if 'nottodo '("DONE" "CANCELLED"))))
+                             (org-agenda-sorting-strategy '(time-down))
+                             (org-agenda-overriding-header "\nRecently completed items (last 7 days - ready to archive):")
+                             (org-agenda-compact-blocks t)))))))
 #+end_src
 
 * Provide statement (needs to be at the end!)

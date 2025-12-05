@@ -907,17 +907,18 @@ When enabled, shows preview automatically when cursor is on a file link."
 (with-eval-after-load 'org-agenda
   (add-to-list 'org-agenda-custom-commands
                '("k" "Archive - completed last 7 days"
-                 ((todo "DONE|CANCELLED"
-                        ((org-agenda-overriding-header "\nRecently completed items (last 7 days - ready to archive):")
-                         (org-agenda-files (org-agenda-files))
-                         (org-agenda-skip-function
-                          (lambda ()
-                            (let ((closed-time (org-entry-get nil "CLOSED")))
-                              (if (and closed-time
-                                       (time-less-p
-                                        (time-subtract (current-time) (days-to-time 7))
-                                        (org-time-string-to-time closed-time)))
-                                  nil  ; Don't skip - item was closed in last 7 days
-                                (point-max))))))))))) ; Skip - item too old or not closed
+                 ((agenda "Items completed in the last 7 days"
+                          ((org-agenda-start-day "-7d")
+                           (org-agenda-span 7)
+                           (org-agenda-start-on-weekday nil)
+                           (org-agenda-time-grid nil)
+                           (org-agenda-show-all-dates nil)
+                           (org-agenda-entry-types '(:closed))
+                           (org-agenda-skip-function
+                            '(lambda ()
+                               (org-agenda-skip-entry-if 'nottodo '("DONE" "CANCELLED"))))
+                           (org-agenda-sorting-strategy '(time-down))
+                           (org-agenda-overriding-header "\nRecently completed items (last 7 days - ready to archive):")
+                           (org-agenda-compact-blocks t)))))))
 
 (provide 'my-org-extensions)
