@@ -735,11 +735,22 @@ you should place you code here."
   (with-eval-after-load 'claude-code-ide
     (claude-code-ide-emacs-tools-setup))
 
+  (defun my/claude-code-ide-send-or-start ()
+    "Send prompt to Claude Code if session exists, otherwise start a new session."
+    (interactive)
+    (let* ((buffer-name (claude-code-ide--get-buffer-name))
+           (buffer (get-buffer buffer-name)))
+      (if buffer
+          (claude-code-ide-send-prompt)
+        (claude-code-ide))))
+
   ;; map SPC a g to gptel-send invoked with universal argument
   (spacemacs/set-leader-keys "agg" 'gptel)
   (spacemacs/set-leader-keys "agm" 'gptel-menu)
 
-  (spacemacs/set-leader-keys "ac" 'claude-code-ide-send-prompt)
+  (spacemacs/set-leader-keys "ac" 'my/claude-code-ide-send-or-start)
+
+  (spacemacs/set-leader-keys "aT" 'spacemacs/shell-pop-vterm)
 
   ;; Fix dslide conflicts with Spacemacs and window-purpose
   (with-eval-after-load 'dslide
